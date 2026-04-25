@@ -2,6 +2,23 @@
 
 Browsable directory for Zynkr AI assistants, workflows, and Claude skills.
 
+## Pipeline Role
+
+This repo is the production catalog and delivery layer in the Zynkr skill pipeline:
+
+```text
+product-ideas -> zynkr-skills -> zynkr-skill-directory -> zynkr.ai
+```
+
+Repo responsibilities:
+- `product-ideas`: idea backlog, research, approval, and build handoff.
+- `zynkr-skills`: backstage authoring repo for live skill packages.
+- `zynkr-skill-directory`: ingest, normalize, validate, generate catalog artifacts, and render the public website.
+
+This repo should not become the place where skills are authored. It consumes built skills from source repos and keeps the web/API contract stable.
+
+See [docs/three-repo-pipeline.md](./docs/three-repo-pipeline.md) for the operating model.
+
 Primary goals:
 - help users discover the right assistant by category and project
 - explain what each skill does in a scan-friendly format
@@ -96,6 +113,12 @@ The old CSV is no longer the target source of truth. It is useful for:
 - coverage tracking
 - comparing legacy descriptions against normalized fields
 - anchoring legacy IPO for IDs that are intentionally mapped back to existing catalog entries
+
+Pipeline source-of-truth rule:
+- idea decisions live in `product-ideas`
+- executable skill content lives in `zynkr-skills`
+- generated catalog artifacts live in this repo
+- frontend/backend consume generated artifacts, never raw idea docs
 
 ---
 
@@ -226,6 +249,11 @@ Why this matters:
 - source repos can evolve independently
 - normalization rules stay in one place instead of leaking into frontend/backend
 - legacy CSV parity is enforced at the transform boundary instead of visually in the UI
+
+Expected upstream trigger:
+- pushes to `peter-tu-zynkr/zynkr-skills` dispatch `skills-updated`
+- `.github/workflows/ingest-skills.yml` runs ingest against the changed source repo
+- the workflow commits updated `content/`, `generated/`, and frontend generated data when output changes
 
 Current transform policy:
 - frontend/backend consume normalized IPO fields only
