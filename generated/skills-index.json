@@ -675,7 +675,7 @@
     "project": "vercel-labs-agent-browser",
     "platform": "claude",
     "status": "Done",
-    "author": "Peter Tu",
+    "author": "Vercel Labs",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skills-production",
     "source_path": "skills/6-tech/vercel-labs-agent-browser/SKILL.md",
     "install_command": "curl -sL zynkr.ai/s/6.07.md -o ~/.claude/skills/agent-browser.md",
@@ -687,7 +687,8 @@
     ],
     "updated_at": "2026-05-09",
     "upstream_repo": "vercel-labs/agent-browser",
-    "github_stars": 32385,
+    "github_stars": 32387,
+    "github_forks": 2000,
     "first_seen": "2026-05-09"
   }
 ]
