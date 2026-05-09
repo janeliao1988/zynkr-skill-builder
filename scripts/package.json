@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "ingest": "tsx ingest.ts",
+    "build-marketplace": "tsx build-marketplace.ts",
     "check-ipo": "tsx check-ipo-drift.ts"
   },
   "dependencies": {

@@ -77,20 +77,22 @@ This is the canonical category index for the Zynkr skill directory. Each top-lev
 
 ---
 
-## 5. Development Ops
+## 5. Product
 
-**Definition**: Translates business needs into AI agents and workflows. Covers three sub-functions (use projects to distinguish): process excellence (5.1), agent building (5.2), and go-to-market (5.3).
+**Definition**: Defines what gets built and why. Owns the product roadmap, user experience, and go-to-market strategy. Bridges business needs and engineering execution.
 
 **Functions**:
-- 5.1 Process Excellence — process mining, redesign, optimization; ROI/RICE modeling
-- 5.2 Build Assistant — AI/prompt engineers, software engineers, solution architects
-- 5.3 Go-to-Market — product managers, marketplace managers, customer success
+- Product management (roadmap, prioritization, OKRs)
+- Product design & UX
+- Go-to-market & marketplace management
+- Customer discovery & feedback loops
+- Product analytics & growth
 
-**Slug**: `dev-ops`
+**Slug**: `product`
 
 ---
 
-## 6. Tech
+## 6. Engineer
 
 **Definition**: Builds and maintains Zynkr's technological foundation — from internal automation to the AI Agent Platform. Ensures scalable, reliable, and secure systems.
 
@@ -102,7 +104,7 @@ This is the canonical category index for the Zynkr skill directory. Each top-lev
 - Security & infrastructure (cloud, compliance, access control)
 - Tooling & enablement (GPTs, plugins, collaboration stack)
 
-**Slug**: `tech`
+**Slug**: `engineer`
 
 ---
 

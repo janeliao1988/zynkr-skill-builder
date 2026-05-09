@@ -4,64 +4,32 @@ Browsable directory for Zynkr AI assistants, workflows, and Claude skills.
 
 ## Pipeline Role
 
-This repo is the production catalog and delivery layer in the Zynkr skill pipeline:
+This repo is the production source and artifact-generation layer in the Zynkr skill pipeline:
 
 ```text
-product-ideas -> zynkr-skills -> zynkr-skill-directory -> zynkr.ai
-```
-
-Repo responsibilities:
-- `product-ideas`: idea backlog, research, approval, and build handoff.
-- `zynkr-skills`: backstage authoring repo for live skill packages.
-- `zynkr-skill-directory`: ingest, normalize, validate, generate catalog artifacts, and render the public website.
-
-This repo should not become the place where skills are authored. It consumes built skills from source repos and keeps the web/API contract stable.
-
-See [docs/three-repo-pipeline.md](./docs/three-repo-pipeline.md) for the operating model.
-
-Primary goals:
-- help users discover the right assistant by category and project
-- explain what each skill does in a scan-friendly format
-- provide installation/setup instructions, especially for Claude skills
-- keep GitHub repos as the source of truth while serving a stable web/app contract
-
-Current public targets:
-- `https://zynkr.ai`
-- `https://zynkr.ai/ai-skills-marketplace`
-
----
-
-## Pipeline Role
-
-This repo is the staging, review, and artifact-generation layer in the Zynkr skill pipeline:
-
-```text
-product-ideas -> zynkr-skill-directory -> zynkr-skills -> zynkr-website -> zynkr.ai
+zynkr-skills-idea -> zynkr-skills-production -> zynkr.ai/ai-skills-marketplace
+    (ideas)               (source + CI)               (live, auto-sync)
 ```
 
 Role boundaries:
-- `product-ideas`: raw ideas, backlog, and candidate intake
-- `zynkr-skill-directory`: review gate, validation, normalization, duplicate checks, and generated marketplace artifacts
-- `zynkr-skills`: approved published skills and canonical source of truth
-- `zynkr-website`: static presentation layer that renders copied JSON artifacts
+- `zynkr-skills-idea`: idea backlog (GitHub issues), approval workflow
+- `zynkr-skills-production` (this repo): SKILL.md source files, ingest pipeline, generated JSON artifacts
+- `zynkr-website`: frontend — reads from `zynkr-skills-production` raw GitHub URLs at runtime
 
-Important rule:
-- do not treat `zynkr-skill-directory` as the final published source
-- approval happens here, but publish happens when approved changes land in `zynkr-skills`
+Primary goals:
+- maintain the canonical SKILL.md source under `skills/`
+- run ingest + build-marketplace on every push to produce stable JSON artifacts
+- keep `generated/*.json` as the stable contract consumed by the frontend
+
+Current public targets:
+- `https://zynkr.ai/ai-skills-marketplace`
 
 ---
 
 ## Current Architecture
 
-This repo is in the middle of a migration away from `assistant-index.csv`.
-It should be treated as the operational catalog layer, not the final published source.
-
-The intended architecture is:
-
 ```text
-zynkr-skills (canonical published source)
-legacy/migration repos
-assistant-index.csv (legacy reference)
+skills/[N]-[category]/[slug]/SKILL.md
         ↓
 scripts/ingest.ts
         ↓
@@ -72,54 +40,50 @@ scripts/build-marketplace.ts
         ↓
 generated/skills-index.json
 generated/skills-detail.json
-frontend/lib/generated-skills.json
-../zynkr-website-fe/data/*.json
+../zynkr-website-fe/data/*.json    ← synced locally when repo exists
         ↓
-frontend build-time import
-backend read API
-static website marketplace
+zynkr-website-fe (fetches raw GitHub URLs on page load)
+backend/ (kept for future API integration)
 ```
 
-Important boundary:
-- GitHub repos are the authoring/source layer
+Important boundaries:
+- `skills/` is the authoring source — all SKILL.md files live here
 - `scripts/ingest.ts` is the normalization and schema-transform boundary
 - `content/` and `generated/` are the app-facing artifacts
-- frontend/backend should consume artifacts, not raw GitHub repos at runtime
+- frontend consumes raw GitHub URLs pointing to `generated/`; backend will eventually replace this
 
-Current migration state:
-- frontend already reads generated data
-- backend now defaults to reading `generated/skills.json`
-- CSV still exists only as a transitional fallback and historical reference
-- ingest now centrally resolves IPO field precedence and records field provenance
+Migration state (as of 2026-05-09):
+- `zynkr-website-fe` is the canonical frontend (HTML/CSS/JS on Vercel)
+- backend exists but is not yet wired to the live site
+- `assistant-index.csv` is legacy reference only (used by `check-ipo-drift.ts`)
 
 ---
 
 ## Repository Structure
 
 ```text
-zynkr-skill-directory/
-├── frontend/     Next.js 16 App Router UI
-├── backend/      Fastify read API over normalized/generated skill data
+zynkr-skills-production/
+├── skills/       SKILL.md source files (canonical authoring location)
+├── backend/      Fastify read API — kept for future integration
 ├── catalog/      Stable ID overrides and catalog-specific mapping config
-├── content/      Canonical normalized markdown skill records
-├── generated/    Generated JSON artifacts for app and API consumption
+├── content/      Canonical normalized markdown skill records (generated by ingest)
+├── generated/    JSON artifacts for frontend and API consumption (generated by ingest)
 ├── scripts/      Ingest pipeline and data tooling
 ├── database/     Placeholder for future schema and migration work
 ├── deploy/       Deployment docs and config
-└── assistant-index.csv   Legacy inventory source during migration
+└── assistant-index.csv   Legacy inventory reference (used only by check-ipo-drift.ts)
 ```
 
 What each area is for:
-- `frontend/`: public catalog UI
-- `backend/`: stable read contract if/when runtime API is needed
+- `skills/`: canonical SKILL.md source — all skill authoring happens here
+- `backend/`: stable read API contract for future integration; not yet wired to live site
 - `catalog/`: explicit transform controls such as stable ID remaps
-- `content/skills/`: normalized markdown files keyed by skill ID
+- `content/skills/`: normalized markdown files keyed by skill ID (generated; do not edit manually)
 - `generated/skills.json`: machine-friendly artifact for backend/tools
 - `generated/skills-index.json`: public marketplace browse/search contract
 - `generated/skills-detail.json`: public marketplace detail contract
-- `frontend/lib/generated-skills.json`: frontend-local generated artifact for build-time import
-- `scripts/ingest.ts`: converts external repo content into normalized records using one canonical transform
-- `scripts/build-marketplace.ts`: emits public marketplace artifacts and syncs them to `zynkr-website-fe/data/`
+- `scripts/ingest.ts`: converts SKILL.md source files into normalized records
+- `scripts/build-marketplace.ts`: emits public marketplace artifacts and syncs to `zynkr-website-fe/data/`
 
 ---
 
@@ -140,7 +104,6 @@ There are now three layers, with different purposes:
 - `generated/skills.json`
 - `generated/skills-index.json`
 - `generated/skills-detail.json`
-- `frontend/lib/generated-skills.json`
 - optimized for frontend/backend consumption
 
 The old CSV is no longer the target source of truth. It is useful for:
@@ -159,34 +122,17 @@ Pipeline source-of-truth rule:
 
 ## Frontend
 
-Stack:
-- Next.js 16
-- App Router
-- Tailwind CSS
+The canonical frontend is `zynkr-website-fe` — a static HTML/CSS/JS site deployed on Vercel.
 
-Current frontend behavior:
-- imports generated data through `frontend/lib/skills-data.ts`
-- renders category -> project -> skill navigation
-- uses static generation for current routes
+Repo: `peter-tu-zynkr/zynkr-website` | Local: `../zynkr-website-fe/`
 
-Static website marketplace behavior:
-- `zynkr-website-fe/ai-skills-marketplace.html` loads copied JSON from `zynkr-website-fe/data/`
-- no runtime GitHub crawling
-- filter/search behavior is client-side only
+How it works:
+- fetches `generated/skills-index.json` and `generated/skills-detail.json` from raw GitHub URLs on every page load
+- no Vercel redeploy needed when skills change — GitHub CDN refreshes within ~5 minutes
+- filter/search is client-side only
+- local `data/` folder holds a synced copy (written by `build-marketplace.ts` when run locally)
 
-Current public routes:
-- `/`
-  category overview and landing page
-- `/[category]`
-  project listing within a category
-- `/[category]/[project]`
-  project page with orchestrator/subagent context
-- `/skills/[id]`
-  skill detail page with setup guide, IPO, and workflow chain
-
-Important note:
-- frontend does not need to parse GitHub repos or CSV directly
-- it should keep consuming normalized/generated artifacts unless there is a strong reason to move to runtime API fetches
+Live page: `https://zynkr.ai/ai-skills-marketplace`
 
 ---
 
@@ -282,10 +228,9 @@ What it currently does:
 - writes normalized markdown into `content/skills/`
 - regenerates:
   - `generated/skills.json`
-  - `frontend/lib/generated-skills.json`
   - `generated/skills-index.json`
   - `generated/skills-detail.json`
-  - `../zynkr-website-fe/data/*.json`
+  - `../zynkr-website-fe/data/*.json` (when run locally and the repo exists)
 
 Why this matters:
 - app code stays simple
@@ -327,32 +272,14 @@ Transitional design note:
 
 ## Local Development
 
-Frontend:
+Run the ingest pipeline:
 
 ```bash
-cd frontend
-npm install
-npm run dev
-npm run build
+cd scripts
+npm ci
+npm run ingest          # scans skills/ → writes content/ and generated/skills.json
+npm run build-marketplace  # reads generated/skills.json → writes generated/skills-index.json + skills-detail.json
 ```
-
-Backend:
-
-```bash
-cd backend
-npm install
-npm run dev
-npm run check
-```
-
-Ingest a repo:
-
-```bash
-npx tsx scripts/ingest.ts <github-repo-url>
-```
-
-Examples:
-- `npx tsx scripts/ingest.ts https://github.com/peter-tu-zynkr/writing-agent`
 
 Check IPO drift against the legacy CSV:
 
@@ -361,33 +288,35 @@ cd scripts
 npm run check-ipo
 ```
 
+Backend (not yet wired to live site):
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
 ---
 
 ## Deployment
 
-Current intended deployment:
-- frontend on Zeabur
-- custom domain `zynkr.ai`
-- backend can remain separate or deferred until needed
+| Surface | Platform | Notes |
+|---|---|---|
+| `zynkr-website-fe` (frontend) | Vercel | Auto-deploys on push to `peter-tu-zynkr/zynkr-website` |
+| `generated/*.json` (data) | GitHub raw URLs | Updated by CI on every push to `skills/**` |
+| `backend/` | Not yet deployed | Kept for future integration; will deploy on Vercel |
+| Database | Supabase | Not yet needed; chosen platform when Git-managed artifacts are insufficient |
 
-Current practical status:
-- frontend is the primary deployment target
-- raw file serving for Claude install URLs still needs to be wired
-
-Deployment details:
-- see `deploy/deploy-plan.md`
+No Vercel redeploy needed when skills change — the frontend fetches raw GitHub URLs at page load time.
 
 ---
 
 ## Documentation Strategy
 
 Where architecture should be documented:
-- root `README.md`
-  system-level architecture, source-of-truth model, migration state, repo flow
-- `frontend/README.md`
-  frontend-specific runtime/build/deployment notes
-- `backend/README.md`
-  API/provider/config notes
+- root `README.md` — system-level architecture, source-of-truth model, repo flow
+- `backend/README.md` — API/provider/config notes
+- `skills/README.md` — taxonomy, folder conventions, SKILL.md authoring rules
 
 Use this root README as the primary architecture overview.
 
@@ -396,23 +325,18 @@ Use this root README as the primary architecture overview.
 ## Roadmap
 
 Done:
-- project scaffold
-- taxonomy-driven frontend routes
-- skill detail pages with setup and workflow context
-- ingest pipeline for repo-managed content
-- frontend switched to generated artifacts
-- backend default provider switched to generated artifacts
+- ingest pipeline for repo-managed content (`skills/` → `content/` → `generated/`)
 - ingest-layer IPO transform with provenance and stable ID overrides
 - IPO drift check against legacy CSV
-- Milestone 1 cleanup
-- shared site shell/header-footer for route pages
+- `zynkr-website-fe` wired as canonical frontend (Vercel, fetches raw GitHub URLs)
+- `generated/*.json` as stable artifact contract consumed by frontend
+- CI/CD: `ingest-skills.yml` fires on `skills/**` push, commits back `generated/`
+- Cleanup: legacy intake pipeline archived, stale artifacts deleted, Next.js frontend experiment deleted (2026-05-09)
 
 Next:
-- implement raw markdown serving for install URLs
-- decide whether frontend should remain artifact-first or move to backend fetches
-- remove remaining hardcoded taxonomy/project assumptions where generated data should drive rendering
+- decide next content ingestion batch after `writing-agent` core
 - keep migrating source content from legacy CSV assumptions into explicit repo-managed metadata
-- deploy production on Zeabur
 
 Later:
-- add database/admin layer only if Git-managed content becomes insufficient
+- integrate `backend/` as API layer (replaces raw GitHub URL fetching in `zynkr-website-fe`); deploy on Vercel
+- add Supabase database when Git-managed artifacts are no longer sufficient

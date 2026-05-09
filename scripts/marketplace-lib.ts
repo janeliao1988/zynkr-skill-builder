@@ -286,10 +286,7 @@ export function buildMarketplaceArtifacts(skills: NormalizedSkillRecord[]): Mark
   return {
     index: detailEntries.map(({ description, input, process, output, kind, stage, synergy, github_url, security_audits, ...entry }) => entry),
     detail: Object.fromEntries(
-      detailEntries.flatMap((entry) => [
-        [entry.id, entry],
-        [entry.slug, entry],
-      ])
+      detailEntries.map((entry) => [entry.id, entry])
     ),
   };
 }

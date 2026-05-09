@@ -13,45 +13,23 @@ This file is organized into:
 
 ### Now
 
-- [x] Implement raw markdown serving for Claude install URLs at `frontend/app/s/[id]/route.ts`
-- [x] Verify the install flow end-to-end with `curl -sL zynkr.ai/s/1.01.md -o ~/.claude/skills/writing-agent.md` (local confirmed; production pending deploy)
-- [x] Replace remaining hardcoded project rendering with generated-data-driven rendering
 - [ ] Decide the next content ingestion batch after `writing-agent` core
-- [ ] Deploy the frontend to Zeabur once raw file serving is in place
 
 ### Current Facts
 
-- [x] Frontend reads generated artifacts through `frontend/lib/generated-skills.json`
+- [x] `zynkr-website-fe` is the canonical frontend (HTML/CSS/JS on Vercel) — Next.js frontend experiment deleted 2026-05-09
+- [x] Backend (`backend/`) is kept for future integration; not yet wired to the live site
 - [x] Backend now defaults to reading `generated/skills.json`
 - [x] `writing-agent` core (`1.01`–`1.08`) has been ingested
-- [x] Shared UI shell/header-footer is in place
-- [x] Cleanup of dead catalog-era frontend files is complete
+- [x] Cleanup of legacy intake pipeline and stale artifacts complete (2026-05-09)
 
 ---
 
 ## Remaining Plan
 
-### Workstream A — Delivery Surface
+### ~~Workstream A — Delivery Surface~~ (superseded 2026-05-09)
 
-Goal:
-make the public site and install URLs work as a coherent user-facing product
-
-### A1. Raw file delivery
-
-- [x] Add `frontend/app/s/[id]/route.ts` to serve `content/skills/{id}.md` as `text/plain`
-- [x] Return 404 for unknown skill IDs
-- [x] Confirm route shape matches generated `installCommand`
-- [x] Test local route behavior against at least `1.01` — confirmed serving raw markdown and 404 on unknown IDs
-
-### A2. Production deployment
-
-- [ ] Push the current repo state to `main`
-- [ ] Create/connect the Zeabur project
-- [ ] Set frontend service root to `frontend/`
-- [ ] Set required Zeabur environment variables
-- [ ] Point `zynkr.ai` DNS to Zeabur
-- [ ] Verify SSL and production routing
-- [ ] Re-test install URL behavior on production
+The Next.js frontend and Zeabur deployment plan were superseded when the `frontend/` experiment was deleted. The canonical FE is `zynkr-website-fe` (HTML/CSS/JS on Vercel). Raw file serving via Next.js route is no longer applicable.
 
 ---
 
@@ -77,8 +55,8 @@ make the app consume normalized/generated data consistently, without hardcoded p
 
 ### B3. Backend/API alignment
 
-- [ ] Decide whether the frontend should remain build-time artifact-first or move to backend fetches
-- [ ] If backend remains in scope, extend backend filters to support `project`, `kind`, and `stage`
+- [x] Decided: `zynkr-website-fe` is artifact-first (fetches raw GitHub JSON); backend will replace this in a future phase
+- [ ] When integrating backend: extend filters to support `project`, `kind`, and `stage`
 - [ ] Keep the backend contract aligned with generated artifact fields
 
 ---
@@ -131,13 +109,27 @@ capture important but non-blocking architectural decisions without mixing them i
 - [ ] Decide where taxonomy metadata should live long term: code-owned or content-owned
 - [ ] Decide how skill content should be edited: Git-only, structured content workflow, or CMS/admin
 - [ ] Add `docLink` if prompt/reference docs should be first-class in the directory
-- [ ] Decide whether backend deployment is needed beyond the current frontend-first MVP
-- [ ] Decide when a database becomes justified instead of Git-managed artifacts
+- [x] Decided: backend (`backend/`) is kept for future integration — will eventually replace raw GitHub URL fetching in `zynkr-website-fe`
+- [x] Decided: database platform is Supabase — add when Git-managed artifacts are no longer sufficient
 - [ ] Replace temporary visual assets such as the current browser tab icon when final brand assets exist
 
 ---
 
 ## Progress Log
+
+### May 9, 2026 — Cleanup & architecture alignment
+
+**Done:**
+- [x] Archived legacy intake scripts (`review-pipeline-lib.ts`, `sheet-sync.ts`, `intake-research.ts`) to `scripts/legacy/`
+- [x] Deleted stale `generated/review-candidates.json` and `.csv` (last touched 2026-03-29)
+- [x] Fixed duplicate slug keys in `skills-detail.json` — `marketplace-lib.ts` now keys by `id` only
+- [x] Added missing `build-marketplace` npm script to `scripts/package.json`
+- [x] Added `skills/README.md` to document taxonomy and empty category placeholders
+- [x] Removed stale `frontend/lib/generated-skills.json` reference from CI `git add`
+- [x] Deleted `frontend/` Next.js experiment (canonical FE is `zynkr-website-fe` on Vercel)
+- [x] Updated `ACTION-ITEMS.md` and `README.md` to match current architecture
+
+---
 
 ### March 9, 2026 (session 2)
 

@@ -42,8 +42,8 @@ const TAXONOMY: Record<string, number> = {
   "business-consulting": 2,
   "operations": 3,
   "training": 4,
-  "dev-ops": 5,
-  "tech": 6,
+  "product": 5,
+  "engineer": 6,
   "talent-development": 7,
   "finance-admin": 8,
 };
