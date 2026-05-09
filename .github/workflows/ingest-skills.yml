@@ -30,6 +30,10 @@ jobs:
           REPO_URL="${{ github.event.inputs.repo_url || 'https://github.com/peter-tu-zynkr/zynkr-skills-staging' }}"
           npx tsx scripts/ingest.ts "$REPO_URL"
 
+      - name: Run build-marketplace
+        working-directory: scripts
+        run: npx tsx build-marketplace.ts
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
