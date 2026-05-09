@@ -165,9 +165,10 @@ function buildGithubUrl(skill: NormalizedSkillRecord, repoUrl: string, sourcePat
   const cleanedSourcePath = sourcePath.replace(/^\/+/, "");
 
   if (cleanedSourcePath === "CLAUDE.md" || cleanedSourcePath.endsWith("/CLAUDE.md")) {
-    const projectPath = ensureString(skill.project);
-    if (projectPath) {
-      return `${cleanedRepoUrl}/tree/main/${projectPath}`;
+    // Use the directory containing CLAUDE.md — more accurate than skill.project alone
+    const projectDir = path.dirname(cleanedSourcePath);
+    if (projectDir && projectDir !== ".") {
+      return `${cleanedRepoUrl}/tree/main/${projectDir}`;
     }
   }
 
