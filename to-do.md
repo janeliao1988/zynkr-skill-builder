@@ -55,6 +55,14 @@ Canonical task tracker for the Zynkr skill directory.
 - [x] Archive `zynkr-skills-staging` repo on GitHub ✓ 2026-05-09
 - [ ] Add branch protection to `main` on `zynkr-skills-production` if PR review gate is wanted
 
+### Skill writing guideline upgrades
+
+- [ ] Review skills.sh format (e.g. `skills.sh/anthropics/skills/skill-creator`) and update the authoring guideline to include:
+  - **Easy installation** — one-command install snippet at the top
+  - **Summary** — short human-readable description of what the skill does and when to trigger it
+  - **SKILL.md spec** — formalize required fields and structure so new skills are consistent
+- [ ] Apply updated spec to existing skills when ingesting the next batch
+
 ### Longer-term decisions
 
 - [ ] Decide where taxonomy metadata should live long term: code-owned (`ingest.ts`) or content-owned (`taxonomy.md`)
