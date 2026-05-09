@@ -1,19 +1,17 @@
-name: Ingest skills from monorepo
+name: Ingest skills
 
 on:
-  repository_dispatch:
-    types: [skills-updated]
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
   workflow_dispatch:
-    inputs:
-      repo_url:
-        description: "GitHub repo URL to ingest"
-        default: "https://github.com/peter-tu-zynkr/zynkr-skills-staging"
 
 jobs:
   ingest:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout skill directory
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -25,15 +23,8 @@ jobs:
         working-directory: scripts
         run: npm ci
 
-      - name: Configure git credentials
-        run: |
-          git config --global credential.helper store
-          echo "https://x-access-token:${{ secrets.SKILL_DIRECTORY_PAT }}@github.com" > ~/.git-credentials
-
       - name: Run ingest
-        run: |
-          REPO_URL="${{ github.event.inputs.repo_url || 'https://github.com/peter-tu-zynkr/zynkr-skills-staging' }}"
-          npx tsx scripts/ingest.ts "$REPO_URL"
+        run: npx tsx scripts/ingest.ts "$GITHUB_WORKSPACE/skills"
 
       - name: Run build-marketplace
         working-directory: scripts
@@ -47,9 +38,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: auto-ingest skills from zynkr-skills-staging
-
-          Triggered by: ${{ github.event.client_payload.repo || 'manual' }}
-          SHA: ${{ github.event.client_payload.sha || 'N/A' }}"
+            git commit -m "chore: auto-ingest skills"
             git push
           fi

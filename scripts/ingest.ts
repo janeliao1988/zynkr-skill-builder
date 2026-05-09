@@ -21,6 +21,7 @@ import os from "os";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
 import { z } from "zod";
+import { syncMarketplaceArtifacts } from "./build-marketplace.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -629,19 +630,184 @@ function writeNormalizedSkillFile(
   fs.writeFileSync(outPath, matter.stringify(body, stripUndefinedDeep(normalized) as Record<string, unknown>));
 }
 
+function findOrchestratorAndAgents(
+  projectDir: string
+): { orchestratorPath: string; agentsDir: string } | null {
+  // Try flat layout first: SKILL.md + agents/
+  const flatOrchestrator = path.join(projectDir, "SKILL.md");
+  const flatAgents = path.join(projectDir, "agents");
+  if (fs.existsSync(flatOrchestrator) && fs.existsSync(flatAgents)) {
+    return { orchestratorPath: flatOrchestrator, agentsDir: flatAgents };
+  }
+
+  // Try .claude/ layout: .claude/skills/*/SKILL.md + .claude/agents/
+  const claudeAgents = path.join(projectDir, ".claude", "agents");
+  const claudeSkillsDir = path.join(projectDir, ".claude", "skills");
+  if (fs.existsSync(claudeAgents) && fs.existsSync(claudeSkillsDir)) {
+    const skillDirs = fs
+      .readdirSync(claudeSkillsDir, { withFileTypes: true })
+      .filter((d) => d.isDirectory());
+    for (const skillDir of skillDirs) {
+      const skillMd = path.join(claudeSkillsDir, skillDir.name, "SKILL.md");
+      if (fs.existsSync(skillMd)) {
+        return { orchestratorPath: skillMd, agentsDir: claudeAgents };
+      }
+    }
+  }
+
+  return null;
+}
+
+function ingestProjectSkills(
+  repoUrl: string,
+  projectDir: string,
+  monorepoRoot: string,
+  legacyCsvById: Map<string, LegacyCsvRecord>,
+  skillIdOverrides: SkillIdOverrideMap
+): IngestRecord[] {
+  const skillMdPath = path.join(projectDir, "SKILL.md");
+  if (!fs.existsSync(skillMdPath)) return [];
+
+  const skillFile = readRepoMarkdownFile(monorepoRoot, skillMdPath);
+  const parsed = SkillFrontmatter.safeParse(skillFile.data);
+  if (!parsed.success) return [];
+
+  const manifest = parsed.data;
+  const prefix = TAXONOMY[manifest.category];
+  const today = new Date().toISOString().split("T")[0];
+
+  // Collect all source files: SKILL.md (orchestrator) + agent files (subagents)
+  const agentsDir = path.join(projectDir, "agents");
+  const agentFiles: RepoMarkdownFile[] = [];
+  if (fs.existsSync(agentsDir)) {
+    const agentPaths = fs
+      .readdirSync(agentsDir)
+      .filter((f) => f.endsWith(".md") && !f.startsWith("."))
+      .map((f) => path.join(agentsDir, f));
+    agentPaths.forEach((filePath) => {
+      agentFiles.push(readRepoMarkdownFile(monorepoRoot, filePath));
+    });
+  }
+
+  const sourceFiles = [skillFile.relPath, ...agentFiles.map((f) => f.relPath)];
+  const idsBySourceFile = allocateIdsForSourceFiles(prefix, repoUrl, sourceFiles, skillIdOverrides);
+  const synergy = sourceFiles.map((sf) => idsBySourceFile.get(sf)!);
+  const ingested: IngestRecord[] = [];
+
+  cleanupRepoRecords(repoUrl, manifest.project, idsBySourceFile);
+
+  // Write orchestrator
+  const orchestratorId = idsBySourceFile.get(skillFile.relPath)!;
+  const orchestratorSlug = toSlug(manifest.name);
+  const orchestratorOutPath = path.join(CONTENT_DIR, `${orchestratorId}.md`);
+  const orchestratorOverride = getOverrideEntry(skillIdOverrides, repoUrl, skillFile.relPath);
+  const orchestratorLegacyIpoId = orchestratorOverride
+    ? orchestratorOverride.legacyIpoId ?? null
+    : orchestratorId;
+  const orchestratorIpo = resolveIpoFields(
+    orchestratorOverride?.legacyIpoId,
+    {
+      input: [{ value: manifest.input, source: "frontmatter" }],
+      process: [{ value: manifest.process, source: "frontmatter" }],
+      output: [{ value: manifest.output, source: "frontmatter" }],
+    },
+    legacyCsvById
+  );
+  writeNormalizedSkillFile(orchestratorOutPath, skillFile.content, {
+    id: orchestratorId,
+    name: manifest.name,
+    category: manifest.category,
+    project: manifest.project,
+    platform: manifest.platform,
+    status: manifest.status,
+    author: manifest.author,
+    description: manifest.description,
+    input: orchestratorIpo.input,
+    process: orchestratorIpo.process,
+    output: orchestratorIpo.output,
+    ipoProvenance: orchestratorIpo.ipoProvenance,
+    legacyIpoId: orchestratorLegacyIpoId,
+    kind: agentFiles.length > 0 ? "orchestrator" : "skill",
+    synergy,
+    installCommand: buildInstallCommand(orchestratorId, orchestratorSlug),
+    updatedAt: today,
+    sourceRepo: repoUrl,
+    sourceFile: skillFile.relPath,
+  });
+  ingested.push({
+    id: orchestratorId,
+    name: manifest.name,
+    sourceFile: skillFile.relPath,
+    outPath: orchestratorOutPath,
+  });
+
+  // Write subagents
+  agentFiles.forEach((agentFile) => {
+    const agentData = agentFile.data as Record<string, unknown>;
+    const agentName =
+      (typeof agentData.name === "string" && agentData.name) ||
+      path.basename(agentFile.relPath, ".md");
+    const agentDescription = optionalString(agentData, "description");
+    const sourceFile = agentFile.relPath;
+    const agentId = idsBySourceFile.get(sourceFile)!;
+    const agentOutPath = path.join(CONTENT_DIR, `${agentId}.md`);
+    const agentOverride = getOverrideEntry(skillIdOverrides, repoUrl, sourceFile);
+    const agentLegacyIpoId = agentOverride ? agentOverride.legacyIpoId ?? null : agentId;
+    const agentIpo = resolveIpoFields(
+      agentOverride?.legacyIpoId,
+      {
+        input: [{ value: optionalString(agentData, "input"), source: "frontmatter" }],
+        process: [{ value: optionalString(agentData, "process"), source: "frontmatter" }],
+        output: [{ value: optionalString(agentData, "output"), source: "frontmatter" }],
+      },
+      legacyCsvById
+    );
+
+    writeNormalizedSkillFile(agentOutPath, agentFile.content, {
+      id: agentId,
+      name: agentName,
+      category: manifest.category,
+      project: manifest.project,
+      platform: manifest.platform,
+      status: manifest.status,
+      author: manifest.author,
+      description: agentDescription,
+      input: agentIpo.input,
+      process: agentIpo.process,
+      output: agentIpo.output,
+      ipoProvenance: agentIpo.ipoProvenance,
+      legacyIpoId: agentLegacyIpoId,
+      kind: "subagent",
+      synergy,
+      updatedAt: today,
+      sourceRepo: repoUrl,
+      sourceFile,
+    });
+
+    ingested.push({
+      id: agentId,
+      name: agentName,
+      sourceFile,
+      outPath: agentOutPath,
+    });
+  });
+
+  return ingested;
+}
+
 function ingestRepoAsPipeline(
   repoUrl: string,
   tmpDir: string,
   files: RepoMarkdownFile[],
   legacyCsvById: Map<string, LegacyCsvRecord>,
-  skillIdOverrides: SkillIdOverrideMap
+  skillIdOverrides: SkillIdOverrideMap,
+  baseDir?: string
 ): IngestRecord[] {
-  const orchestratorPath = path.join(tmpDir, ".claude", "skills", "write-article", "SKILL.md");
-  const agentsDir = path.join(tmpDir, ".claude", "agents");
+  const relBase = baseDir ?? tmpDir;
+  const layout = findOrchestratorAndAgents(tmpDir);
+  if (!layout) return [];
 
-  if (!fs.existsSync(orchestratorPath) || !fs.existsSync(agentsDir)) {
-    return [];
-  }
+  const { orchestratorPath, agentsDir } = layout;
 
   const manifestFile = findManifestFile(files);
   if (!manifestFile) {
@@ -653,7 +819,7 @@ function ingestRepoAsPipeline(
     return [];
   }
 
-  const orchestratorFile = readRepoMarkdownFile(tmpDir, orchestratorPath);
+  const orchestratorFile = readRepoMarkdownFile(relBase, orchestratorPath);
   const stages = parsePipelineStages(orchestratorFile.content);
   if (stages.length === 0) {
     return [];
@@ -664,7 +830,7 @@ function ingestRepoAsPipeline(
     .filter((file) => file.endsWith(".md") && !file.startsWith("."))
     .map((file) => path.join(agentsDir, file));
 
-  const agentFiles = agentPaths.map((filePath) => readRepoMarkdownFile(tmpDir, filePath));
+  const agentFiles = agentPaths.map((filePath) => readRepoMarkdownFile(relBase, filePath));
   const agentByStem = new Map(
     agentFiles.map((file) => [path.basename(file.relPath, ".md"), file])
   );
@@ -862,14 +1028,64 @@ function generateSkillsJson(
   fs.writeFileSync(FRONTEND_GENERATED, json);
   console.log(`\n  → generated/skills.json updated (${skills.length} skills total)`);
   console.log(`  → frontend/lib/generated-skills.json updated`);
+  syncMarketplaceArtifacts();
+}
+
+// ── Monorepo detection ──────────────────────────────────────────────────────
+
+function detectMonorepoProjects(repoDir: string): string[] {
+  return fs
+    .readdirSync(repoDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && !d.name.startsWith("."))
+    .filter((d) => {
+      const subdir = path.join(repoDir, d.name);
+      const hasSkillMd = fs.existsSync(path.join(subdir, "SKILL.md"));
+      const hasClaudeDir = fs.existsSync(path.join(subdir, ".claude"));
+      return hasSkillMd || hasClaudeDir;
+    })
+    .map((d) => d.name);
+}
+
+function ingestSingleProject(
+  repoUrl: string,
+  projectDir: string,
+  monorepoRoot: string,
+  legacyCsvById: Map<string, LegacyCsvRecord>,
+  skillIdOverrides: SkillIdOverrideMap
+): IngestRecord[] {
+  // Try pipeline ingest first (has ## Pipeline Stages table)
+  const mdFiles = findMdFiles(projectDir);
+  const repoFiles = mdFiles.map((filePath) => readRepoMarkdownFile(monorepoRoot, filePath));
+
+  const pipelineResult = ingestRepoAsPipeline(
+    repoUrl,
+    projectDir,
+    repoFiles,
+    legacyCsvById,
+    skillIdOverrides,
+    monorepoRoot
+  );
+  if (pipelineResult.length > 0) return pipelineResult;
+
+  // Fall back to project-level ingest (SKILL.md + agents/)
+  const projectResult = ingestProjectSkills(
+    repoUrl,
+    projectDir,
+    monorepoRoot,
+    legacyCsvById,
+    skillIdOverrides
+  );
+  if (projectResult.length > 0) return projectResult;
+
+  return [];
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const repoUrl = process.argv[2];
-  if (!repoUrl) {
-    console.error("Usage: npx tsx scripts/ingest.ts <github-repo-url>");
+  const arg = process.argv[2];
+  if (!arg) {
+    console.error("Usage: npx tsx scripts/ingest.ts <github-repo-url|local-path> [canonical-url]");
     process.exit(1);
   }
 
@@ -878,101 +1094,150 @@ async function main() {
   const legacyCsvById = loadLegacyCsvById();
   const skillIdOverrides = loadSkillIdOverrides();
 
-  // Clone to temp dir
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "zynkr-ingest-"));
-  console.log(`\nCloning ${repoUrl}...`);
-  execSync(`git clone --depth 1 ${repoUrl} ${tmpDir}`, { stdio: "inherit" });
+  const isLocalPath = !arg.startsWith("http");
+  // Keep the staging URL as canonical namespace so existing skill IDs don't change
+  const repoUrl = isLocalPath
+    ? (process.argv[3] ?? "https://github.com/peter-tu-zynkr/zynkr-skills-staging")
+    : arg;
 
-  const mdFiles = findMdFiles(tmpDir);
-  const repoFiles = mdFiles.map((filePath) => readRepoMarkdownFile(tmpDir, filePath));
-  console.log(`Found ${mdFiles.length} .md file(s)\n`);
+  let tmpDir: string;
+  let shouldCleanupTmpDir = false;
+
+  if (isLocalPath) {
+    tmpDir = path.resolve(arg);
+    console.log(`\nScanning local path ${tmpDir}...`);
+  } else {
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "zynkr-ingest-"));
+    console.log(`\nCloning ${repoUrl}...`);
+    execSync(`git clone --depth 1 ${repoUrl} ${tmpDir}`, { stdio: "inherit" });
+    shouldCleanupTmpDir = true;
+  }
 
   const ingested: { id: string; name: string; sourceFile: string }[] = [];
   const skipped: { file: string; reason: string }[] = [];
 
-  const pipelineIngested = ingestRepoAsPipeline(
-    repoUrl,
-    tmpDir,
-    repoFiles,
-    legacyCsvById,
-    skillIdOverrides
-  );
-  if (pipelineIngested.length > 0) {
-    pipelineIngested.forEach((record) => {
-      ingested.push({
-        id: record.id,
-        name: record.name,
-        sourceFile: record.sourceFile,
-      });
-      console.log(`  ✓  ${record.id}  ${record.name}`);
-    });
-  } else {
-    for (const file of repoFiles) {
-      const { data, content, relPath } = file;
+  // Check for monorepo layout
+  const monorepoProjects = detectMonorepoProjects(tmpDir);
 
-      // Skip files with no frontmatter
-      if (!data || Object.keys(data).length === 0) {
-        skipped.push({ file: relPath, reason: "No frontmatter" });
-        continue;
-      }
+  if (monorepoProjects.length > 0) {
+    console.log(`Detected monorepo with ${monorepoProjects.length} project(s): ${monorepoProjects.join(", ")}\n`);
 
-      const parsed = SkillFrontmatter.safeParse(data);
-      if (!parsed.success) {
-        const issues = parsed.error.issues.map((i) => i.message).join("; ");
-        skipped.push({ file: relPath, reason: issues });
-        continue;
-      }
+    for (const projectName of monorepoProjects) {
+      const projectDir = path.join(tmpDir, projectName);
+      console.log(`── ${projectName} ──`);
 
-      const fm = parsed.data;
-      const prefix = TAXONOMY[fm.category];
-      const sourceFile = relPath;
-      const id = allocateIdsForSourceFiles(prefix, repoUrl, [sourceFile], skillIdOverrides).get(sourceFile)!;
-      const slug = toSlug(fm.name);
-      const today = new Date().toISOString().split("T")[0];
-      const overrideEntry = getOverrideEntry(skillIdOverrides, repoUrl, sourceFile);
-      const legacyIpoId = overrideEntry ? overrideEntry.legacyIpoId ?? null : id;
-      const standaloneIpo = resolveIpoFields(
-        legacyIpoId ?? undefined,
-        {
-          input: [{ value: fm.input, source: "frontmatter" }],
-          process: [{ value: fm.process, source: "frontmatter" }],
-          output: [{ value: fm.output, source: "frontmatter" }],
-        },
-        legacyCsvById
+      const projectIngested = ingestSingleProject(
+        repoUrl,
+        projectDir,
+        tmpDir,
+        legacyCsvById,
+        skillIdOverrides
       );
 
-      const normalized = {
-        id,
-        name: fm.name,
-        category: fm.category,
-        project: fm.project,
-        platform: fm.platform,
-        status: fm.status,
-        author: fm.author,
-        description: fm.description,
-        input: standaloneIpo.input,
-        process: standaloneIpo.process,
-        output: standaloneIpo.output,
-        ipoProvenance: standaloneIpo.ipoProvenance,
-        legacyIpoId,
-        kind: "skill",
-        synergy: fm.synergy,
-        installCommand: buildInstallCommand(id, slug),
-        updatedAt: today,
-        sourceRepo: repoUrl,
-        sourceFile,
-      };
+      if (projectIngested.length > 0) {
+        projectIngested.forEach((record) => {
+          ingested.push({
+            id: record.id,
+            name: record.name,
+            sourceFile: record.sourceFile,
+          });
+          console.log(`  ✓  ${record.id}  ${record.name}`);
+        });
+      } else {
+        console.log(`  (no ingestible skills found)`);
+      }
+    }
+  } else {
+    // Single-project repo (existing behavior)
+    const mdFiles = findMdFiles(tmpDir);
+    const repoFiles = mdFiles.map((filePath) => readRepoMarkdownFile(tmpDir, filePath));
+    console.log(`Found ${mdFiles.length} .md file(s)\n`);
 
-      const outPath = path.join(CONTENT_DIR, `${id}.md`);
-      writeNormalizedSkillFile(outPath, content, normalized);
+    const pipelineIngested = ingestRepoAsPipeline(
+      repoUrl,
+      tmpDir,
+      repoFiles,
+      legacyCsvById,
+      skillIdOverrides
+    );
+    if (pipelineIngested.length > 0) {
+      pipelineIngested.forEach((record) => {
+        ingested.push({
+          id: record.id,
+          name: record.name,
+          sourceFile: record.sourceFile,
+        });
+        console.log(`  ✓  ${record.id}  ${record.name}`);
+      });
+    } else {
+      for (const file of repoFiles) {
+        const { data, content, relPath } = file;
 
-      ingested.push({ id, name: fm.name, sourceFile: relPath });
-      console.log(`  ✓  ${id}  ${fm.name}`);
+        if (!data || Object.keys(data).length === 0) {
+          skipped.push({ file: relPath, reason: "No frontmatter" });
+          continue;
+        }
+
+        const parsed = SkillFrontmatter.safeParse(data);
+        if (!parsed.success) {
+          const issues = parsed.error.issues.map((i) => i.message).join("; ");
+          skipped.push({ file: relPath, reason: issues });
+          continue;
+        }
+
+        const fm = parsed.data;
+        const prefix = TAXONOMY[fm.category];
+        const sourceFile = relPath;
+        const id = allocateIdsForSourceFiles(prefix, repoUrl, [sourceFile], skillIdOverrides).get(sourceFile)!;
+        const slug = toSlug(fm.name);
+        const today = new Date().toISOString().split("T")[0];
+        const overrideEntry = getOverrideEntry(skillIdOverrides, repoUrl, sourceFile);
+        const legacyIpoId = overrideEntry ? overrideEntry.legacyIpoId ?? null : id;
+        const standaloneIpo = resolveIpoFields(
+          legacyIpoId ?? undefined,
+          {
+            input: [{ value: fm.input, source: "frontmatter" }],
+            process: [{ value: fm.process, source: "frontmatter" }],
+            output: [{ value: fm.output, source: "frontmatter" }],
+          },
+          legacyCsvById
+        );
+
+        const normalized = {
+          id,
+          name: fm.name,
+          category: fm.category,
+          project: fm.project,
+          platform: fm.platform,
+          status: fm.status,
+          author: fm.author,
+          description: fm.description,
+          input: standaloneIpo.input,
+          process: standaloneIpo.process,
+          output: standaloneIpo.output,
+          ipoProvenance: standaloneIpo.ipoProvenance,
+          legacyIpoId,
+          kind: "skill",
+          synergy: fm.synergy,
+          installCommand: buildInstallCommand(id, slug),
+          updatedAt: today,
+          sourceRepo: repoUrl,
+          sourceFile,
+        };
+
+        const outPath = path.join(CONTENT_DIR, `${id}.md`);
+        writeNormalizedSkillFile(outPath, content, normalized);
+
+        ingested.push({ id, name: fm.name, sourceFile: relPath });
+        console.log(`  ✓  ${id}  ${fm.name}`);
+      }
     }
   }
 
-  // Cleanup temp dir
-  fs.rmSync(tmpDir, { recursive: true, force: true });
+  // Cleanup temp dir (only if we cloned; don't delete local workspace)
+  if (shouldCleanupTmpDir) {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
 
   // Regenerate generated/skills.json
   generateSkillsJson(legacyCsvById, skillIdOverrides);
