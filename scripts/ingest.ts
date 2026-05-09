@@ -21,7 +21,7 @@ import os from "os";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
 import { z } from "zod";
-import { syncMarketplaceArtifacts } from "./build-marketplace.js";
+import { syncMarketplaceArtifacts } from "./build-marketplace.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
