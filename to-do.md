@@ -10,7 +10,6 @@ Canonical task tracker for the Zynkr skill directory.
 
 **Current facts:**
 - `zynkr-website-fe` is the canonical frontend (HTML/CSS/JS on Vercel)
-- Backend (`backend/`) is kept for future integration; not yet wired to the live site
 - `writing-agent` core (`1.01`–`1.08`) has been ingested
 - Stack confirmed: Vercel (FE + BE deployment), Supabase (database, when needed)
 
@@ -65,19 +64,17 @@ Canonical task tracker for the Zynkr skill directory.
 
 ---
 
-## Backend Integration Roadmap
+## Skills API Roadmap
 
-`backend/` (Fastify + Zod + TypeScript) is kept but not yet wired to the live site.
+Current data flow: `generated/*.json` → raw GitHub URLs → client-side fetch + filter in `zynkr-website-fe`.
 
-| Phase | Change | Benefit |
+| Phase | Trigger | What to build |
 |---|---|---|
-| 1 (now) | Keep as-is; reads `generated/skills.json` | No change to live site |
-| 2 | Deploy backend to Vercel | API endpoint available |
-| 3 | Update `zynkr-website-fe` to fetch from API instead of raw GitHub URLs | Enables staging, caching, server-side filtering |
-| 4 | Extend `/categories` and `/skills/:id` to power drawer detail | Removes need for `skills-detail.json` on the FE |
-| 5 (later) | Add Supabase database layer | Enables admin, search, user features |
+| Now | — | Keep GitHub raw JSON; no change |
+| ~150–200 skills | JSON too heavy for full client-side load | Vercel Functions in `zynkr-website-fe/api/` backed by Supabase — server-side search + filter |
+| User features | Community submissions, saved skills, accounts | Next.js app (same pattern as `zynkr-crm`) with Supabase auth |
 
-Current routes: `GET /health`, `GET /skills`, `GET /skills/:id`, `GET /categories`
+Stack when the time comes: Vercel Functions + Supabase (matches existing `zynkr-crm` pattern).
 
 ---
 
