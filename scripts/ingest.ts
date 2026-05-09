@@ -202,7 +202,7 @@ function readFirstSeen(outPath: string): string | undefined {
   return typeof data.firstSeen === "string" ? data.firstSeen : undefined;
 }
 
-async function fetchGitHubStats(ownerRepo: string): Promise<{ stars: number } | null> {
+async function fetchGitHubStats(ownerRepo: string): Promise<{ stars: number; forks: number } | null> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github.v3+json",
     "User-Agent": "zynkr-ingest",
@@ -212,8 +212,8 @@ async function fetchGitHubStats(ownerRepo: string): Promise<{ stars: number } | 
   try {
     const res = await fetch(`https://api.github.com/repos/${ownerRepo}`, { headers });
     if (!res.ok) return null;
-    const data = (await res.json()) as { stargazers_count: number };
-    return { stars: data.stargazers_count };
+    const data = (await res.json()) as { stargazers_count: number; forks_count: number };
+    return { stars: data.stargazers_count, forks: data.forks_count };
   } catch {
     return null;
   }
@@ -1076,14 +1076,14 @@ async function generateSkillsJson(
         : undefined))
       .filter((r): r is string => Boolean(r))
   );
-  const githubStarsCache = new Map<string, number>();
+  const githubStatsCache = new Map<string, { stars: number; forks: number }>();
   if (upstreamRepos.size > 0) {
     console.log(`\n  → Fetching GitHub stats for ${upstreamRepos.size} upstream repo(s)...`);
     for (const repo of upstreamRepos) {
       const stats = await fetchGitHubStats(repo);
       if (stats !== null) {
-        githubStarsCache.set(repo, stats.stars);
-        console.log(`    ★  ${repo}: ${stats.stars.toLocaleString()} stars`);
+        githubStatsCache.set(repo, stats);
+        console.log(`    ★  ${repo}: ${stats.stars.toLocaleString()} stars, ${stats.forks.toLocaleString()} forks`);
       }
     }
   }
@@ -1092,8 +1092,8 @@ async function generateSkillsJson(
     const upstreamRepo = typeof (skill as Record<string, unknown>).upstreamRepo === "string"
       ? (skill as Record<string, unknown>).upstreamRepo as string
       : undefined;
-    const githubStars = upstreamRepo ? githubStarsCache.get(upstreamRepo) : undefined;
-    return githubStars !== undefined ? { ...skill, githubStars } : skill;
+    const stats = upstreamRepo ? githubStatsCache.get(upstreamRepo) : undefined;
+    return stats !== undefined ? { ...skill, githubStars: stats.stars, githubForks: stats.forks } : skill;
   });
 
   const json = JSON.stringify(enrichedSkills, null, 2);

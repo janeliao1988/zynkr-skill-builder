@@ -36,6 +36,7 @@ export type NormalizedSkillRecord = {
   slug?: string;
   upstreamRepo?: string;
   githubStars?: number;
+  githubForks?: number;
   securityAudits?: SecurityAudits;
 };
 
@@ -56,6 +57,7 @@ export type MarketplaceIndexEntry = {
   updated_at: string;
   upstream_repo?: string;
   github_stars?: number;
+  github_forks?: number;
   first_seen?: string;
 };
 
@@ -258,6 +260,7 @@ export function buildMarketplaceArtifacts(skills: NormalizedSkillRecord[]): Mark
         updated_at: ensureString(skill.updatedAt) ?? new Date().toISOString().split("T")[0],
         upstream_repo: ensureString(skill.upstreamRepo),
         github_stars: typeof skill.githubStars === "number" ? skill.githubStars : undefined,
+        github_forks: typeof skill.githubForks === "number" ? skill.githubForks : undefined,
         first_seen: ensureString(skill.firstSeen),
       };
 

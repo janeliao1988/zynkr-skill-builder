@@ -5,7 +5,7 @@ category: tech
 project: vercel-labs-agent-browser
 platform: claude
 status: Done
-author: Peter Tu
+author: Vercel Labs
 input: "CLI instructions — URLs to open, actions to perform, element selectors or ref IDs, data to extract, or screenshots to capture"
 output: "Accessibility-tree snapshots with element refs, page text/HTML/attributes, screenshots (PNG/JPEG/PDF), JSON results, HAR recordings, visual diffs, React component trees, Web Vitals metrics"
 synergy: []
