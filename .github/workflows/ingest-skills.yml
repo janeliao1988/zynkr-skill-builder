@@ -34,13 +34,39 @@ jobs:
         run: npx tsx build-marketplace.ts
 
       - name: Commit and push if changed
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add content/ generated/
           if git diff --staged --quiet; then
             echo "No changes to commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore: auto-ingest skills"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Notify Vercel sync
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          SYNC_SECRET: ${{ secrets.SKILLS_SYNC_HMAC_SECRET }}
+          SOURCE_SHA: ${{ steps.commit.outputs.sha }}
+        run: |
+          if [ -z "$SYNC_SECRET" ]; then
+            echo "SKILLS_SYNC_HMAC_SECRET not set — skipping webhook"
+            exit 0
+          fi
+          BODY_FILE=generated/skills-detail.json
+          if [ ! -f "$BODY_FILE" ]; then
+            echo "Expected $BODY_FILE not found — skipping webhook"
+            exit 0
+          fi
+          SIG=$(openssl dgst -sha256 -hmac "$SYNC_SECRET" < "$BODY_FILE" | awk '{print $NF}')
+          curl -fsSL -X POST https://zynkr.ai/api/skills/sync \
+            -H "Content-Type: application/json" \
+            -H "X-Zynkr-Signature: $SIG" \
+            -H "X-Zynkr-Source-Sha: $SOURCE_SHA" \
+            --data-binary @"$BODY_FILE"

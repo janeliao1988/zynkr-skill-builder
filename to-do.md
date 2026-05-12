@@ -47,8 +47,8 @@ Canonical task tracker for the Zynkr skill directory.
 
 ### zynkr-website-fe
 
-- [ ] Deduplicate fetch URL — `ai-skills-marketplace.html:269` and `app.js:347` both hardcode the same raw GitHub URL; extract to a single constant
-- [ ] Add fetch error feedback — `ai-skills-marketplace.html:627` silently swallows errors; show a "Failed to load skills — please refresh" banner
+- [x] Deduplicate fetch URL ✓ 2026-05-12 (superseded by Phase 1 — both files now hit `/api/skills*` with a single raw-GitHub fallback path)
+- [ ] Add fetch error feedback — `ai-skills-marketplace.html` still silently swallows errors after the API+fallback both fail; show a "Failed to load skills — please refresh" banner
 
 ### Repo hygiene
 
@@ -108,7 +108,7 @@ Target data flow: `generated/*.json` → GitHub webhook → Vercel Function → 
 
 | Phase | Status | What |
 |---|---|---|
-| Phase 1 — Supabase read mirror | [ ] next | Add `skills` + `skills_history` tables in Supabase. Add `/api/skills`, `/api/skills/[slug]`, `/api/skills/sync` Vercel Functions in `zynkr-website-fe/api/`. GitHub Actions posts the post-ingest webhook (HMAC-signed). FE swaps fetch URLs (raw GitHub stays as fallback). |
+| Phase 1 — Supabase read mirror | [ ] secrets set, awaiting deploy + backfill | `skills` + `skills_history` tables created on Supabase project `uomieoqlkazknjgmfdda`. Vercel Functions: `/api/skills` (index), `/api/skills/details` (full detail dict — added so marketplace preload keeps working), `/api/skills/[slug]` (one detail), `/api/skills/sync` (HMAC-verified webhook). FE fetches in `app.js` and `ai-skills-marketplace.html` hit `/api/skills*` with raw-GitHub fallback. `ingest-skills.yml` posts `generated/skills-detail.json` after each push. Vercel env vars (`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SKILLS_SYNC_HMAC_SECRET`) + matching GitHub Actions secret set 2026-05-12. Remaining: redeploy zynkr-website, run one-time manual backfill curl, verify per plan §Verification. |
 | Phase 2 — GA4 events on marketplace | [x] shipped 2026-05-12 (`09a4fa2`) | `skill_view`, `skill_card_click`, `copy_install_command`, `filter_applied`, `search_performed` wired in the marketplace IIFE; Copy button added next to install_command; Playwright-verified all five events fire with correct params. |
 | Phase 3 — First-party event store | [ ] later | Add `skill_events` table + `/api/track` if/when GA4 cohort/funnel limits hurt or ad-block coverage matters. |
 | Phase 4 — User accounts + community submissions | [ ] later | Next.js app + Supabase auth (same pattern as `zynkr-crm`). |
