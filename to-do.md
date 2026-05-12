@@ -108,8 +108,8 @@ Target data flow: `generated/*.json` → GitHub webhook → Vercel Function → 
 
 | Phase | Status | What |
 |---|---|---|
-| Phase 1 — Supabase read mirror | [ ] in progress | Add `skills` + `skills_history` tables in Supabase. Add `/api/skills`, `/api/skills/[slug]`, `/api/skills/sync` Vercel Functions in `zynkr-website-fe/api/`. GitHub Actions posts the post-ingest webhook (HMAC-signed). FE swaps fetch URLs (raw GitHub stays as fallback). |
-| Phase 2 — GA4 events on marketplace | [ ] | Wire `skill_view`, `skill_card_click`, `copy_install_command`, `filter_applied`, `search_performed` custom events in `app.js`. |
+| Phase 1 — Supabase read mirror | [ ] next | Add `skills` + `skills_history` tables in Supabase. Add `/api/skills`, `/api/skills/[slug]`, `/api/skills/sync` Vercel Functions in `zynkr-website-fe/api/`. GitHub Actions posts the post-ingest webhook (HMAC-signed). FE swaps fetch URLs (raw GitHub stays as fallback). |
+| Phase 2 — GA4 events on marketplace | [x] shipped 2026-05-12 (`09a4fa2`) | `skill_view`, `skill_card_click`, `copy_install_command`, `filter_applied`, `search_performed` wired in the marketplace IIFE; Copy button added next to install_command; Playwright-verified all five events fire with correct params. |
 | Phase 3 — First-party event store | [ ] later | Add `skill_events` table + `/api/track` if/when GA4 cohort/funnel limits hurt or ad-block coverage matters. |
 | Phase 4 — User accounts + community submissions | [ ] later | Next.js app + Supabase auth (same pattern as `zynkr-crm`). |
 
@@ -119,6 +119,13 @@ Plan file: `~/.claude/plans/i-was-thinking-of-composed-rain.md`.
 ---
 
 ## Progress Log
+
+### May 12, 2026 — Stack upgrade Phase 2: GA4 events on marketplace
+
+- Brought forward the Vercel + Supabase migration on the *Skills API Roadmap* (was threshold-gated at ~150–200 skills; now a concrete Phase 1–4 plan). Plan file: `~/.claude/plans/i-was-thinking-of-composed-rain.md`
+- Shipped Phase 2 in `zynkr-website` (`09a4fa2`): five GA4 custom events on the marketplace — `skill_view`, `skill_card_click`, `copy_install_command`, `filter_applied`, `search_performed`. Added a Copy button next to install commands with a 1.5s "Copied" flash. Skill rows now carry `data-skill-slug` / `data-skill-category` / `data-position` for future event delegation
+- Verified end-to-end with Playwright before commit: all five events fire with correct params; `active_category` is preserved on `search_performed` so filter+search cohorts are queryable
+- Phase 1 (Supabase read mirror + Vercel Functions + HMAC webhook) is the next pickup; needs Supabase project provisioning + three Vercel env vars + GitHub Actions secret before code lands
 
 ### May 12, 2026 — First inbound-flow skill + ingest pipeline hardening
 
