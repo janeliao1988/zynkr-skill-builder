@@ -11,7 +11,7 @@ Canonical task tracker for the Zynkr skill directory.
 **Current facts:**
 - `zynkr-website-fe` is the canonical frontend (HTML/CSS/JS on Vercel)
 - `writing-agent` core (`1.01`–`1.08`) has been ingested
-- Stack confirmed: Vercel (FE + BE deployment), Supabase (database, when needed)
+- Stack confirmed: Vercel (FE + BE deployment), Supabase (skills database, being migrated onto)
 
 ---
 
@@ -104,14 +104,17 @@ Surfaced while shipping `inbound-sales-project-init`. The first push hit a silen
 ## Skills API Roadmap
 
 Current data flow: `generated/*.json` → raw GitHub URLs → client-side fetch + filter in `zynkr-website-fe`.
+Target data flow: `generated/*.json` → GitHub webhook → Vercel Function → Supabase → `/api/skills*` → FE. SKILL.md stays canonical; Supabase is a read mirror.
 
-| Phase | Trigger | What to build |
+| Phase | Status | What |
 |---|---|---|
-| Now | — | Keep GitHub raw JSON; no change |
-| ~150–200 skills | JSON too heavy for full client-side load | Vercel Functions in `zynkr-website-fe/api/` backed by Supabase — server-side search + filter |
-| User features | Community submissions, saved skills, accounts | Next.js app (same pattern as `zynkr-crm`) with Supabase auth |
+| Phase 1 — Supabase read mirror | [ ] in progress | Add `skills` + `skills_history` tables in Supabase. Add `/api/skills`, `/api/skills/[slug]`, `/api/skills/sync` Vercel Functions in `zynkr-website-fe/api/`. GitHub Actions posts the post-ingest webhook (HMAC-signed). FE swaps fetch URLs (raw GitHub stays as fallback). |
+| Phase 2 — GA4 events on marketplace | [ ] | Wire `skill_view`, `skill_card_click`, `copy_install_command`, `filter_applied`, `search_performed` custom events in `app.js`. |
+| Phase 3 — First-party event store | [ ] later | Add `skill_events` table + `/api/track` if/when GA4 cohort/funnel limits hurt or ad-block coverage matters. |
+| Phase 4 — User accounts + community submissions | [ ] later | Next.js app + Supabase auth (same pattern as `zynkr-crm`). |
 
-Stack when the time comes: Vercel Functions + Supabase (matches existing `zynkr-crm` pattern).
+Stack: Vercel Functions + Supabase (matches existing `zynkr-crm` pattern).
+Plan file: `~/.claude/plans/i-was-thinking-of-composed-rain.md`.
 
 ---
 
