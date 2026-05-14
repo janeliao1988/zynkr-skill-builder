@@ -35,14 +35,14 @@ description: "Configuration for the business card pipeline skill — Google Shee
 ## Google Account
 
 ```
-user_google_email: peter_tu@zynkr.ai
+user_google_email: <your-google-workspace-account>
 ```
 
 ## Email Defaults
 
 | Setting | Value |
 |---------|-------|
-| **From** | peter_tu@zynkr.ai |
+| **From** | <your-google-workspace-account> |
 | **Default action** | Save as Draft (never auto-send) |
 | **Language** | Match the contact's card language (Chinese card → Traditional Chinese email; English card → English email) |
 | **Tone** | Professional, warm, brief — reference one specific detail from company research |
@@ -54,7 +54,7 @@ user_google_email: peter_tu@zynkr.ai
 ---
 Peter Tu
 [Title] | Zynkr
-peter_tu@zynkr.ai
+<your-google-workspace-account>
 ```
 
 > Note: Update this signature once confirmed. It will be appended to every drafted email.

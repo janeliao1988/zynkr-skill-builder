@@ -72,7 +72,7 @@ Display the result. If confidence is **medium or low**, show the runner-up and a
 
 Spawn the **skill-deduplicator** subagent with the confirmed extract and classifier output.
 
-It reads the **Zynkr Skills Pipeline** sheet (`1_0bYyZiB6sGEI4nGw1QDgLip4rRQtNh9ybPGs-WXAMA`) and checks all existing entries for overlap.
+It reads the **Zynkr Skills Pipeline** sheet (`<your-pipeline-sheet-id>`) and checks all existing entries for overlap.
 
 It returns a verdict: `exact_duplicate`, `near_duplicate`, `partial_overlap`, or `new`.
 

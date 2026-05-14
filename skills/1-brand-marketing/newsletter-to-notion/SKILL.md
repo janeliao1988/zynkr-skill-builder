@@ -18,7 +18,7 @@ Syncs a newsletter from Google Docs to Peter's Notion Content DB with auto-class
 
 ## Hardcoded context
 
-- **Google account**: `peter_tu@zynkr.ai`
+- **Google account**: `<your-google-workspace-account>`
 - **Notion Content DB data source**: `collection://64bd3535-0cb3-4f96-946c-c2240294307c`
 - **Subject taxonomy file**: `/Users/petertu/Desktop/Claude/zynkr/1.0 brand-marketing/subject-taxonomy.csv`
 
@@ -27,7 +27,7 @@ Syncs a newsletter from Google Docs to Peter's Notion Content DB with auto-class
 ### 1. Fetch Google Doc content
 
 Use `mcp__google-workspace__get_doc_content` with:
-- `user_google_email`: `peter_tu@zynkr.ai`
+- `user_google_email`: `<your-google-workspace-account>`
 - `document_id`: extracted from the URL the user provided
 
 Extract:

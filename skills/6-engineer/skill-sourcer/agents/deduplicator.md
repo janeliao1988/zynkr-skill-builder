@@ -17,7 +17,7 @@ You are a skill deduplication agent. Given an extracted skill and its classified
 
 ## Check: Zynkr Skills Pipeline sheet
 
-Read `Pipeline!A1:L200` from spreadsheet `1_0bYyZiB6sGEI4nGw1QDgLip4rRQtNh9ybPGs-WXAMA` via Google Workspace MCP (user: peter_tu@zynkr.ai).
+Read `Pipeline!A1:L200` from spreadsheet `<your-pipeline-sheet-id>` via Google Workspace MCP (user: <your-google-workspace-account>).
 
 Compare against columns:
 - **C (Skill Name)** — name match

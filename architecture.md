@@ -29,14 +29,13 @@ zynkr.ai/ai-skills-marketplace (fetches raw GitHub URLs on page load)
 | [`zynkr-skill-idea`](https://github.com/peter-tu-zynkr/zynkr-skill-idea) | Private | Ideas backlog (GitHub issues) |
 | [`zynkr-skill-builder`](https://github.com/peter-tu-zynkr/zynkr-skill-builder) | **Public** | Skill source + CI/CD + generated artifacts |
 | [`zynkr-website`](https://github.com/peter-tu-zynkr/zynkr-website) | — | Frontend — reads from production raw URLs at runtime |
-| ~~`zynkr-skills-staging`~~ | Archived | Merged into production — no longer used |
 
 ---
 
 ## Gate 1 — Idea Capture
 
 **Tool:** `/skill-sourcer` in Claude Code  
-**Sheet:** [Zynkr Skills Pipeline](https://docs.google.com/spreadsheets/d/1_0bYyZiB6sGEI4nGw1QDgLip4rRQtNh9ybPGs-WXAMA) — tab `Pipeline`
+**Pipeline state:** internal Google Sheet — see `process.md` (private) for the ID and tab name
 
 Runs 4 subagents in sequence:
 
@@ -163,7 +162,7 @@ const FALLBACK_INDEX_URL = 'https://raw.githubusercontent.com/peter-tu-zynkr/zyn
 const FALLBACK_DETAIL_URL = 'https://raw.githubusercontent.com/peter-tu-zynkr/zynkr-skill-builder/main/generated/skills-detail.json';
 ```
 
-After each ingest run, `ingest-skills.yml` POSTs `generated/skills-detail.json` to `/api/skills/sync` (HMAC-SHA-256 signed) so the Supabase `skills` table mirrors the latest push. The raw-GitHub fallback still serves stale-but-correct data if the API or DB is down. GitHub CDN caches raw URLs for ~5 minutes.
+After each ingest run, `ingest-skills.yml` POSTs `generated/skills-detail.json` to the sync webhook (HMAC-SHA-256 signed) so the Supabase mirror reflects the latest push. The raw-GitHub fallback still serves stale-but-correct data if the API or DB is down. GitHub CDN caches raw URLs for ~5 minutes.
 
 ---
 

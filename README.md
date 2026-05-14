@@ -15,14 +15,14 @@ zynkr-skill-idea -> zynkr-skill-builder -> zynkr.ai/ai-skills-marketplace
 
 Role boundaries:
 - `zynkr-skill-idea`: idea backlog (GitHub issues), approval workflow
-- `zynkr-skill-builder` (this repo): SKILL.md source files, ingest pipeline, generated JSON artifacts, post-ingest HMAC webhook to the Supabase mirror
+- `zynkr-skill-builder` (this repo): SKILL.md source files, ingest pipeline, generated JSON artifacts, post-ingest webhook to the Supabase mirror
 - `zynkr-website`: frontend — fetches `/api/skills*` (Vercel Functions backed by Supabase) on page load, with raw-GitHub fallback
 
 Primary goals:
 - maintain the canonical SKILL.md source under `skills/`
 - run ingest + build-marketplace on every push to produce stable JSON artifacts
 - keep `generated/*.json` as the stable contract consumed by the frontend
-- sync `generated/skills-detail.json` to the Supabase read mirror via HMAC-verified webhook after each ingest
+- sync `generated/skills-detail.json` to the Supabase read mirror via signed webhook after each ingest
 
 Current public targets:
 - `https://zynkr.ai/ai-skills-marketplace`
@@ -45,7 +45,7 @@ generated/skills-index.json
 generated/skills-detail.json
 ../zynkr-website-fe/data/*.json    ← synced locally when repo exists
         ↓
-CI: ingest-skills.yml — commits artifacts + POSTs HMAC-signed payload to /api/skills/sync
+CI: ingest-skills.yml — commits artifacts + POSTs signed payload to the sync webhook
         ↓
 Supabase (public.skills + public.skills_history) ← read mirror
         ↓
@@ -62,7 +62,7 @@ Important boundaries:
 
 Migration state (as of 2026-05-12):
 - `zynkr-website-fe` is the canonical frontend (HTML/CSS/JS on Vercel)
-- Supabase read mirror is live (project `uomieoqlkazknjgmfdda`); 32 records committed in `content/skills/`
+- Supabase read mirror is live; 32 records committed in `content/skills/`
 - GA4 events on the marketplace shipped (`skill_view`, `skill_card_click`, `copy_install_command`, `filter_applied`, `search_performed`)
 - `assistant-index.csv` is legacy reference only (used by `check-ipo-drift.ts`)
 
@@ -145,23 +145,23 @@ Live page: `https://zynkr.ai/ai-skills-marketplace`
 
 ## API Layer
 
-Live as of 2026-05-12 (Phase 1). Four Vercel Functions in `zynkr-website-fe/api/`, backed by Supabase project `uomieoqlkazknjgmfdda`.
+Live. Vercel Functions in `zynkr-website-fe/api/`, backed by a Supabase read mirror.
 
 | Endpoint | Purpose | Source |
 |---|---|---|
 | `GET /api/skills` | marketplace index | `public.skills` |
 | `GET /api/skills/details` | full detail dict (all rows) | `public.skills` |
 | `GET /api/skills/[slug]` | single detail | `public.skills` |
-| `POST /api/skills/sync` | HMAC-verified webhook from CI | writes `public.skills` + `public.skills_history` |
+| Sync webhook (server-to-server) | Signature-verified webhook from CI | writes the mirror tables |
 
-Schema: `public.skills` (PK `slug`, public read RLS) + `public.skills_history` (service-role only).
-Sync trigger: `.github/workflows/ingest-skills.yml` signs `generated/skills-detail.json` with `SKILLS_SYNC_HMAC_SECRET` and POSTs to `/api/skills/sync` only when the prior commit step actually pushed.
+Schema: public read RLS on the marketplace table, service-role only on the audit table.
+Sync trigger: `.github/workflows/ingest-skills.yml` signs `generated/skills-detail.json` with a shared secret and POSTs to the sync webhook only when the prior commit step actually pushed.
 
 Roadmap:
-- **Phase 1 (shipped 2026-05-12):** Supabase read mirror + 4 Vercel Functions + HMAC sync — see `plan.md`
-- **Phase 2 (shipped 2026-05-12):** GA4 events on marketplace + copy-install button — see `plan.md`
-- **Phase 3 (deferred):** first-party event store (`skill_events` table + `/api/track`) if GA4 cohort/funnel limits hurt or ad-block coverage matters
-- **Phase 4 (deferred):** Next.js app with Supabase auth for user accounts, submissions, admin (same pattern as `zynkr-crm`)
+- **Phase 1 (shipped):** Supabase read mirror + serverless functions + signed sync webhook
+- **Phase 2 (shipped):** GA4 events on marketplace + copy-install button
+- **Phase 3 (deferred):** first-party event store if GA4 cohort/funnel limits hurt or ad-block coverage matters
+- **Phase 4 (deferred):** authenticated app for user accounts, submissions, admin
 
 ---
 
@@ -244,7 +244,7 @@ Expected upstream trigger:
 - pushes to `peter-tu-zynkr/zynkr-skill-builder` dispatch `skills-updated`
 - `.github/workflows/ingest-skills.yml` runs ingest against the changed source repo (Node 22)
 - the workflow commits updated `content/`, `generated/`, and frontend generated data when output changes
-- on successful push, the workflow POSTs HMAC-signed `generated/skills-detail.json` to `/api/skills/sync` so the Supabase mirror stays in step
+- on successful push, the workflow POSTs the signed `generated/skills-detail.json` to the sync webhook so the Supabase mirror stays in step
 
 Pipeline safety (hardened 2026-05-12):
 - `scripts/ingest.ts` logs Zod validation failures inline with the offending `sourceFile` instead of silently skipping
@@ -313,8 +313,8 @@ npm run check-ipo
 |---|---|---|
 | `zynkr-website-fe` (frontend) | Vercel | Auto-deploys on push to `peter-tu-zynkr/zynkr-website` |
 | `generated/*.json` (data) | GitHub raw URLs | Updated by CI on every push to `skills/**`; used as fallback path |
-| API layer | Vercel Functions + Supabase | Live — `/api/skills`, `/api/skills/details`, `/api/skills/[slug]`, `/api/skills/sync` |
-| Read mirror | Supabase project `uomieoqlkazknjgmfdda` | Updated by CI via HMAC-signed POST to `/api/skills/sync` after each ingest |
+| API layer | Vercel Functions + Supabase | Live — public read endpoints + signed sync webhook |
+| Read mirror | Supabase | Updated by CI via signed POST after each ingest |
 
 No Vercel redeploy needed when skills change — the frontend fetches `/api/skills*` and the Supabase mirror is updated by CI within seconds of a push.
 
@@ -333,33 +333,25 @@ Use this root README as the primary architecture overview.
 
 ## Roadmap
 
-For the canonical task tracker see `to-do.md`; for shipped detail and progress log see `plan.md`.
+A high-level outward view. Themes, not items.
 
-Done (highlights — full list in `plan.md`):
+Done (highlights):
 - ingest pipeline for repo-managed content (`skills/` → `content/` → `generated/`)
 - ingest-layer IPO transform with provenance and stable ID overrides
-- IPO drift check against legacy CSV
-- `zynkr-website-fe` wired as canonical frontend (Vercel)
-- CI/CD: `ingest-skills.yml` fires on `skills/**` push, commits back `generated/`, then HMAC-syncs to `/api/skills/sync` (Node 22)
-- Cleanup pass 2026-05-09: legacy intake archived, stale artifacts deleted, Next.js experiment removed, categories renamed (5 `dev-ops` → `product`, 6 `tech` → `engineer`)
-- Ingest pipeline robustness 2026-05-12: surfaced Zod errors, repo-wide orphan pruning, `npm run validate` for authors, CI status badge in README
-- Skills API Phase 1 shipped 2026-05-12: Supabase read mirror + 4 Vercel Functions + HMAC sync webhook (33 + 43 rows backfilled)
-- Skills API Phase 2 shipped 2026-05-12: five GA4 events on the marketplace + copy-install button
+- canonical frontend on Vercel with marketplace UI
+- CI/CD: push-to-main triggers ingest, commits artifacts, syncs to the read mirror
+- ingest pipeline robustness: surfaced validation errors, orphan pruning, local author validation
+- Skills API: Supabase read mirror + serverless functions + signed sync webhook
+- marketplace telemetry: analytics events + copy-install button
 
-Next (from `to-do.md`):
-- Re-ingest pass to rewrite stale `sourceRepo: …/zynkr-skills-staging` (archived) on all 32 committed records to canonical `…/zynkr-skill-builder`
-- Resolve 9 untracked `writing-agent` orphans at `content/skills/1.11.md`–`1.19.md` (gap at 1.14)
-- Reconcile `cv-customizer` category drift (SKILL.md at `7-people/`, records at `2.03–2.08`)
-- Decide next ingestion batch — `skills/` monorepo has 11 SKILL.md files; ~21 records reference upstream repos not yet migrated in
-- Define portable path convention for SKILL.md cross-file refs (relative `./config.md` vs `{{SKILL_DIR}}` token); retrofit `biz-card` + `inbound-sales-project-init`
-- Author tooling: `scripts/new-skill.sh` scaffolder + folder-name-vs-taxonomy-key bridge (rename folders or drop `CATEGORY.md` markers)
-- Adopt skills.sh-style SKILL.md spec (install snippet, summary, required fields)
-- Remove raw-GitHub `FALLBACK_URLS` from FE after ~2 weeks of clean `/api/skills*` logs (earliest 2026-05-26)
+Now:
+- author ergonomics: scaffolder tooling, portable cross-file refs
+- taxonomy reconciliation between folder structure and ingested records
+- skill-authoring spec upgrades (install snippet, summary, required-fields contract)
+- retiring the raw-GitHub fallback path once the API has stabilised
 
 Later:
-- Phase 3: first-party event store (`skill_events` + `/api/track`) if GA4 limits hurt
-- Phase 4: user accounts, saved skills, community submissions — Next.js + Supabase auth (same pattern as `zynkr-crm`)
-- Decide long-term taxonomy ownership (code-owned `ingest.ts` vs content-owned `taxonomy.md`)
-- Decide content-editing workflow (Git-only vs structured workflow vs CMS/admin)
-- Add `docLink` field if prompt/reference docs should be first-class
-- Replace temporary visual assets (browser tab icon) with final brand assets
+- first-party event store, if external analytics limits hit
+- authenticated app for user accounts and community submissions
+- long-term taxonomy ownership model (code-owned vs content-owned)
+- richer content surface (reference docs as first-class)

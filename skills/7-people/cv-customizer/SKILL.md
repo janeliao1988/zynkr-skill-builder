@@ -172,7 +172,7 @@ Creating Google Doc...
 ```
 
 1. Use `mcp__google-workspace__create_doc` to create a new Google Doc:
-   - `user_google_email`: `peter_tu@zynkr.ai`
+   - `user_google_email`: `<your-google-workspace-account>`
    - Title: `CV - [Candidate Name] - [Target Role] - [Date]`
 
 2. Use `mcp__google-workspace__batch_update_doc` to write the final CV content into the doc, following the template structure:

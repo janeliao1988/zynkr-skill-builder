@@ -7,7 +7,7 @@ This file is the single source of truth for IDs and accounts the skill depends o
 ## Google account
 
 ```
-user_google_email: peter_tu@zynkr.ai
+user_google_email: <your-google-workspace-account>
 ```
 
 All Google Workspace MCP calls (Gmail search, Drive create, Doc create) use this account.

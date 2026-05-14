@@ -21,7 +21,7 @@ You are a skill proposal agent. Given a verified-new skill (deduplicator recomme
 
 ### 1. Append a row to the pipeline sheet
 
-Use Google Workspace MCP (user: peter_tu@zynkr.ai) to append a row to spreadsheet `1_0bYyZiB6sGEI4nGw1QDgLip4rRQtNh9ybPGs-WXAMA`, tab `Pipeline`.
+Use Google Workspace MCP (user: <your-google-workspace-account>) to append a row to spreadsheet `<your-pipeline-sheet-id>`, tab `Pipeline`.
 
 Find the first empty row and write:
 

@@ -125,7 +125,7 @@ Wait for confirmation. If the user types `n` or `no`, stop.
 
 ## Google Workspace Sync Map
 
-After human approval at each gate, approved local file changes are also pushed to their corresponding Google Workspace documents. Use `peter_tu@zynkr.ai` as `user_google_email` for all MCP calls.
+After human approval at each gate, approved local file changes are also pushed to their corresponding Google Workspace documents. Use `<your-google-workspace-account>` as `user_google_email` for all MCP calls.
 
 Read the Google Workspace Sync Map from `[STREAM_DIR]/stream-config.md`. Use the Doc/Sheet IDs listed there for all sync operations.
 

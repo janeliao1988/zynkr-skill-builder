@@ -20,11 +20,23 @@ export function syncMarketplaceArtifacts(): void {
   }
 
   const CANONICAL_REPO_URL = "https://github.com/peter-tu-zynkr/zynkr-skill-builder";
-  const normalizedSkills = loadNormalizedSkills(GENERATED_SKILLS_PATH).map(skill => ({
+  const PUBLISH_ONLY_DONE = process.env.PUBLISH_ONLY_DONE === "1";
+
+  const allSkills = loadNormalizedSkills(GENERATED_SKILLS_PATH).map(skill => ({
     ...skill,
     sourceRepo: CANONICAL_REPO_URL,
     sourceFile: skill.sourceFile ? `skills/${skill.sourceFile}` : skill.sourceFile,
   }));
+
+  const normalizedSkills = PUBLISH_ONLY_DONE
+    ? allSkills.filter(skill => skill.status === "Done")
+    : allSkills;
+
+  if (PUBLISH_ONLY_DONE) {
+    const hidden = allSkills.length - normalizedSkills.length;
+    if (hidden > 0) console.log(`  → PUBLISH_ONLY_DONE=1: hiding ${hidden} non-Done skill(s) from marketplace`);
+  }
+
   const artifacts = buildMarketplaceArtifacts(normalizedSkills);
 
   writeMarketplaceArtifacts(GENERATED_DIR, artifacts);

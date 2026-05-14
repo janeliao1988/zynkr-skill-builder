@@ -4,7 +4,7 @@
 
 | Sheet | ID | Tab |
 |-------|-----|-----|
-| [Zynkr Skills Pipeline](https://docs.google.com/spreadsheets/d/1_0bYyZiB6sGEI4nGw1QDgLip4rRQtNh9ybPGs-WXAMA) | `1_0bYyZiB6sGEI4nGw1QDgLip4rRQtNh9ybPGs-WXAMA` | `Pipeline` |
+| [Zynkr Skills Pipeline](https://docs.google.com/spreadsheets/d/<your-pipeline-sheet-id>) | `<your-pipeline-sheet-id>` | `Pipeline` |
 
 **Columns:** Source, Date Added, Skill Name, Link, Description, Category, Category Name, Status, Overlap, Keep, GitHub Issue, Notes
 
