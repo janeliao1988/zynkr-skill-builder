@@ -821,7 +821,7 @@
     "author": "Peter Tu",
     "description": "Aggregate skill candidates from any source, classify against the Zynkr taxonomy, check for duplicates in the pipeline index, and propose new skills for review.",
     "input": "GitHub link, URL, file path, or pasted raw text describing a potential skill",
-    "output": "Row added to Zynkr Skills Pipeline sheet (proposed, Keep=?), and optionally a GitHub issue in peter-tu-zynkr/zynkr-skills-idea if approved",
+    "output": "Row added to Zynkr Skills Pipeline sheet (proposed, Keep=?), and optionally a GitHub issue in peter-tu-zynkr/zynkr-skill-idea if approved",
     "ipoProvenance": {
       "input": "frontmatter",
       "output": "frontmatter"
@@ -995,7 +995,7 @@
       "socket": "pending",
       "snyk": "pending"
     },
-    "githubStars": 33075,
+    "githubStars": 33077,
     "githubForks": 2046
   }
 ]

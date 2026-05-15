@@ -946,7 +946,7 @@
     "first_seen": "2026-05-12",
     "description": "Aggregate skill candidates from any source, classify against the Zynkr taxonomy, check for duplicates in the pipeline index, and propose new skills for review.",
     "input": "GitHub link, URL, file path, or pasted raw text describing a potential skill",
-    "output": "Row added to Zynkr Skills Pipeline sheet (proposed, Keep=?), and optionally a GitHub issue in peter-tu-zynkr/zynkr-skills-idea if approved",
+    "output": "Row added to Zynkr Skills Pipeline sheet (proposed, Keep=?), and optionally a GitHub issue in peter-tu-zynkr/zynkr-skill-idea if approved",
     "kind": "orchestrator",
     "synergy": [
       "6.07",
@@ -1129,7 +1129,7 @@
     "upstream_repo": "https://github.com/vercel-labs/agent-browser",
     "original_source_url": "https://github.com/vercel-labs/agent-browser/blob/main/README.md",
     "original_author": "Vercel Labs",
-    "github_stars": 33075,
+    "github_stars": 33077,
     "github_forks": 2046,
     "first_seen": "2026-05-12",
     "description": "Give AI agents full browser control via CDP — navigate pages, click, fill forms, screenshot, and run multi-step web workflows without Playwright or Node.js",
