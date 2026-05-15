@@ -273,7 +273,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people/cv-customizer/SKILL.md",
+    "source_path": "skills/2-sales-consultant/cv-customizer/SKILL.md",
     "install_command": "curl -sL zynkr.ai/s/2.03.md -o ~/.claude/skills/cv-customizer.md",
     "tags": [
       "cv-customizer",
@@ -295,7 +295,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people/cv-customizer/agents/cv-phase1-job-decoder.md",
+    "source_path": "skills/2-sales-consultant/cv-customizer/agents/cv-phase1-job-decoder.md",
     "tags": [
       "cv-customizer",
       "business-consulting",
@@ -316,7 +316,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people/cv-customizer/agents/cv-phase2-story-extractor.md",
+    "source_path": "skills/2-sales-consultant/cv-customizer/agents/cv-phase2-story-extractor.md",
     "tags": [
       "cv-customizer",
       "business-consulting",
@@ -337,7 +337,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people/cv-customizer/agents/cv-phase3-fit-scorer.md",
+    "source_path": "skills/2-sales-consultant/cv-customizer/agents/cv-phase3-fit-scorer.md",
     "tags": [
       "cv-customizer",
       "business-consulting",
@@ -358,7 +358,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people/cv-customizer/agents/cv-phase4-progression.md",
+    "source_path": "skills/2-sales-consultant/cv-customizer/agents/cv-phase4-progression.md",
     "tags": [
       "cv-customizer",
       "business-consulting",
@@ -379,7 +379,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people/cv-customizer/agents/cv-phase5-rewriter.md",
+    "source_path": "skills/2-sales-consultant/cv-customizer/agents/cv-phase5-rewriter.md",
     "tags": [
       "cv-customizer",
       "business-consulting",
