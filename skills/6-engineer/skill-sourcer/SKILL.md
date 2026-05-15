@@ -7,7 +7,7 @@ platform: claude
 status: WIP
 author: Peter Tu
 input: "GitHub link, URL, file path, or pasted raw text describing a potential skill"
-output: "Row added to Zynkr Skills Pipeline sheet (proposed, Keep=?), and optionally a GitHub issue in peter-tu-zynkr/zynkr-skills-idea if approved"
+output: "Row added to Zynkr Skills Pipeline sheet (proposed, Keep=?), and optionally a GitHub issue in peter-tu-zynkr/zynkr-skill-idea if approved"
 synergy: []
 disable-model-invocation: true
 security_audits:
@@ -18,9 +18,11 @@ security_audits:
 
 # Skill Sourcer
 
-Ingest a skill candidate from any source, classify it, check for duplicates in the pipeline index, and propose it for review.
+```bash
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill skill-sourcer
+```
 
-<!-- SKILL BASE PATH: /Users/petertu/Desktop/Claude/zynkr/6.0 tech/zynkr-skill-builder/skills/6-engineer/skill-sourcer/agents -->
+Ingest a skill candidate from any source, classify it, check for duplicates in the pipeline index, and propose it for review.
 
 ---
 
@@ -99,7 +101,7 @@ It will:
 
 If the user approves immediately:
 3. Update the row to Keep=`Y`, Status=`approved`
-4. Open a GitHub issue in `peter-tu-zynkr/zynkr-skills-idea` with label `skill-proposal`
+4. Open a GitHub issue in `peter-tu-zynkr/zynkr-skill-idea` with label `skill-proposal`
 5. Write the issue URL back to the pipeline sheet
 
 ---
@@ -110,7 +112,7 @@ This step runs when the user says **"sync approved skills"** outside of the norm
 
 1. Read all rows from the pipeline sheet where `Keep=Y` AND `Status=proposed` AND `GitHub Issue` is empty
 2. For each row:
-   - Open a GitHub issue in `peter-tu-zynkr/zynkr-skills-idea`
+   - Open a GitHub issue in `peter-tu-zynkr/zynkr-skill-idea`
    - Write the issue URL back to column K
    - Update Status to `approved`
 3. Report how many skills were synced
