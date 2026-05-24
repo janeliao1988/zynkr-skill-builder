@@ -43,7 +43,7 @@ This is the canonical category index for the Zynkr skill directory. Each top-lev
 - Consultants (career, AI, process)
 - Client success & account management
 
-**Slug**: `business-consulting`
+**Slug**: `sales-consultant`
 
 ---
 
@@ -118,7 +118,7 @@ This is the canonical category index for the Zynkr skill directory. Each top-lev
 - HR business partners
 - Community of practice leaders
 
-**Slug**: `talent-development`
+**Slug**: `people-talent`
 
 ---
 

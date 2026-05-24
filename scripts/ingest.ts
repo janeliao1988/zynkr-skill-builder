@@ -39,12 +39,12 @@ const MAX_OUTPUT_LENGTH = 180;
 const TAXONOMY: Record<string, number> = {
   "strategy": 0,
   "brand-marketing": 1,
-  "business-consulting": 2,
+  "sales-consultant": 2,
   "operations": 3,
   "training": 4,
   "product": 5,
   "engineer": 6,
-  "talent-development": 7,
+  "people-talent": 7,
   "finance-admin": 8,
   "legal": 9,
 };

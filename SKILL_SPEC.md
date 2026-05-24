@@ -37,18 +37,18 @@ Frontmatter is YAML between two `---` fences at the very top of the file. The sc
 | `status` | enum | `Done` · `WIP` · `Not started` · `Pause` · `Out dated` |
 | `author` | string | The **original** creator. Use `Peter Tu` only when the work is genuinely original (see §6 Attribution). |
 
-**Taxonomy keys** (validator-enforced — note these are **not** the folder names):
+**Taxonomy keys** (validator-enforced — folder name suffix = canonical slug):
 
 | Folder | `category:` value |
 |---|---|
 | `0-strategy/` | `strategy` |
 | `1-brand-marketing/` | `brand-marketing` |
-| `2-sales-consultant/` | `business-consulting` |
+| `2-sales-consultant/` | `sales-consultant` |
 | `3-operations/` | `operations` |
 | `4-training/` | `training` |
 | `5-product/` | `product` |
 | `6-engineer/` | `engineer` |
-| `7-people/` | `talent-development` |
+| `7-people-talent/` | `people-talent` |
 | `8-finance-admin/` | `finance-admin` |
 | `9-legal/` | `legal` |
 

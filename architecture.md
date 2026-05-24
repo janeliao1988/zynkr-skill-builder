@@ -89,7 +89,7 @@ upstream_repo: vercel-labs/agent-browser   # optional: owner/repo of the origina
 
 **Rules that cause ingest to skip a file:**
 - Missing any of: `name`, `category`, `project`, `platform`, `status`, `author`
-- `category` not in the canonical 9 values (never `sales` → use `business-consulting`)
+- `category` not in the canonical 10 values (never `sales` → use `sales-consultant`)
 - `status` not exactly matching allowed values
 - `description` value containing `:` without being quoted
 
@@ -99,12 +99,12 @@ upstream_repo: vercel-labs/agent-browser   # optional: owner/repo of the origina
 |---|---|---|
 | 0 | `strategy` | Vision, OKRs, decisions |
 | 1 | `brand-marketing` | Content, copywriting, social |
-| 2 | `business-consulting` | Sales, proposals, CRM |
+| 2 | `sales-consultant` | Sales, proposals, CRM |
 | 3 | `operations` | SOPs, project tracking |
 | 4 | `training` | Courses, transcripts, onboarding |
 | 5 | `product` | Roadmap, UX, GTM, product analytics |
 | 6 | `engineer` | Platform, infra, automation, data, tooling |
-| 7 | `people` | Recruiting, HR, org design |
+| 7 | `people-talent` | Recruiting, HR, org design |
 | 8 | `finance-admin` | Budgeting, invoicing |
 | 9 | `legal` | Contracts, compliance |
 

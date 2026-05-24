@@ -3,9 +3,9 @@
  * Local frontmatter validator. Run before pushing to catch the same Zod
  * failures CI would flag during ingest.
  *
- *   npm run validate skills/2-business-consulting/foo/SKILL.md
- *   npm run validate skills/2-business-consulting/foo            # resolves SKILL.md
- *   npm run validate skills/2-business-consulting                # scans the tree
+ *   npm run validate skills/2-sales-consultant/foo/SKILL.md
+ *   npm run validate skills/2-sales-consultant/foo            # resolves SKILL.md
+ *   npm run validate skills/2-sales-consultant                # scans the tree
  *
  * Exits non-zero if any SKILL.md fails. Schema mirrors scripts/ingest.ts —
  * keep in sync if SkillFrontmatter or TAXONOMY there change.
@@ -18,12 +18,12 @@ import { z } from "zod";
 const TAXONOMY: Record<string, number> = {
   "strategy": 0,
   "brand-marketing": 1,
-  "business-consulting": 2,
+  "sales-consultant": 2,
   "operations": 3,
   "training": 4,
   "product": 5,
   "engineer": 6,
-  "talent-development": 7,
+  "people-talent": 7,
   "finance-admin": 8,
   "legal": 9,
 };

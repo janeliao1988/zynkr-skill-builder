@@ -38,22 +38,26 @@ const FOLDER_BY_NUMBER: Record<string, string> = {
   "4": "4-training",
   "5": "5-product",
   "6": "6-engineer",
-  "7": "7-people",
+  "7": "7-people-talent",
   "8": "8-finance-admin",
   "9": "9-legal",
 };
 
 // Slug → numeric prefix. Used when category arrives as a slug instead of a digit.
-// Slugs match scripts/validate-skill.ts TAXONOMY plus the on-disk variants.
+// Canonical slugs match scripts/validate-skill.ts TAXONOMY (taxonomy.md SOT).
+// Legacy aliases preserved so older [Skill Proposal] issue bodies still resolve.
 const NUMBER_BY_SLUG: Record<string, string> = {
   strategy: "0",
   "brand-marketing": "1",
-  "business-consulting": "2",
   "sales-consultant": "2",
+  // legacy alias
+  "business-consulting": "2",
   operations: "3",
   training: "4",
   product: "5",
   engineer: "6",
+  "people-talent": "7",
+  // legacy aliases
   "talent-development": "7",
   people: "7",
   "finance-admin": "8",
@@ -65,12 +69,12 @@ const NUMBER_BY_SLUG: Record<string, string> = {
 const SCHEMA_CATEGORY_BY_NUMBER: Record<string, string> = {
   "0": "strategy",
   "1": "brand-marketing",
-  "2": "business-consulting",
+  "2": "sales-consultant",
   "3": "operations",
   "4": "training",
   "5": "product",
   "6": "engineer",
-  "7": "talent-development",
+  "7": "people-talent",
   "8": "finance-admin",
   "9": "legal",
 };

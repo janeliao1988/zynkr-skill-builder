@@ -1,44 +1,15 @@
 ---
-id: '2.18'
 name: inbound-sales-project-init
-category: business-consulting
+description: "Intake an inbound sales / consulting email, gather all of its context, create a project folder in Drive with a structured context doc + attachments, and create a matching Notion ticket in the Consultant service DB with status 'Consult intake'. Trigger whenever the user forwards or references an inbound lead email and says things like '幫我建專案', 'create a ticket for this', 'intake this email', 'kick off this lead', 'log this inbound', or shares an inbound proposal / introduction / 講座提案 / 合作邀請 and wants it stacked up into a trackable project — even if they only say 'I got this email' with intent to process it."
+category: sales-consultant
 project: inbound-sales-project-init
 platform: claude
 status: Done
 author: Peter Tu
-description: >-
-  Intake an inbound sales / consulting email, gather all of its context, create
-  a project folder in Drive with a structured context doc + attachments, and
-  create a matching Notion ticket in the Consultant service DB with status
-  'Consult intake'. Trigger whenever the user forwards or references an inbound
-  lead email and says things like '幫我建專案', 'create a ticket for this', 'intake
-  this email', 'kick off this lead', 'log this inbound', or shares an inbound
-  proposal / introduction / 講座提案 / 合作邀請 and wants it stacked up into a trackable
-  project — even if they only say 'I got this email' with intent to process it.
-input: >-
-  Gmail message (ID, thread link, or search query) for an inbound sales /
-  consulting lead
-process: >-
-  Read email + attachments → fetch Notion DB schema → create Drive project
-  folder → create Google Doc with structured context (sender, body, proposal
-  breakdown, open questions, next actions) → re-upload attachments → create
-  Notion ticket (Consult intake) →...
-output: >-
-  Drive project folder (with context doc + attachments) + Notion ticket in
-  Consultant service DB, status Consult intake, body linking back to all assets
-ipoProvenance:
-  input: frontmatter
-  process: frontmatter
-  output: frontmatter
-legacyIpoId: '2.18'
-kind: skill
-synergy:
-  - '2.18'
-installCommand: curl -sL zynkr.ai/s/2.18.md -o ~/.claude/skills/inbound-sales-project-init.md
-updatedAt: '2026-05-24'
-firstSeen: '2026-05-24'
-sourceRepo: 'https://github.com/peter-tu-zynkr/zynkr-skill-builder'
-sourceFile: 2-business-consulting/inbound-sales-project-init/SKILL.md
+input: "Gmail message (ID, thread link, or search query) for an inbound sales / consulting lead"
+process: "Read email + attachments → fetch Notion DB schema → create Drive project folder → create Google Doc with structured context (sender, body, proposal breakdown, open questions, next actions) → re-upload attachments → create Notion ticket (Consult intake) → bidirectionally link Drive ↔ Notion"
+output: "Drive project folder (with context doc + attachments) + Notion ticket in Consultant service DB, status Consult intake, body linking back to all assets"
+synergy: []
 ---
 
 # Inbound Sales Project Init

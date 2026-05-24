@@ -1,7 +1,7 @@
 ---
 name: biz-card
 description: "7-phase business card pipeline — OCR extraction, schema normalization, Google Sheet CRM logging, company research, and personalized follow-up email drafting."
-category: business-consulting
+category: sales-consultant
 project: biz-card
 platform: claude
 status: Done

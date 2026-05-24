@@ -1,37 +1,15 @@
 ---
-id: '2.12'
 name: cv-customizer
-category: business-consulting
+description: "5-phase CV optimization workflow — job analysis, story extraction, fit scoring, career progression analysis, and CV rewrite with Google Doc output."
+category: sales-consultant
 project: cv-customizer
 platform: claude
 status: Done
 author: Peter Tu
-description: >-
-  5-phase CV optimization workflow — job analysis, story extraction, fit
-  scoring, career progression analysis, and CV rewrite with Google Doc output.
-input: 'Job description (text, URL, or file) and candidate CV/resume'
-process: >-
-  5-phase pipeline — job decoding, SCQA story extraction, fit scoring, career
-  progression analysis, and section-by-section CV rewrite
-output: 'Optimized CV as a Google Doc, with fit scores and progression report'
-ipoProvenance:
-  input: frontmatter
-  process: frontmatter
-  output: frontmatter
-legacyIpoId: '2.12'
-kind: orchestrator
-synergy:
-  - '2.12'
-  - '2.13'
-  - '2.14'
-  - '2.15'
-  - '2.16'
-  - '2.17'
-installCommand: curl -sL zynkr.ai/s/2.12.md -o ~/.claude/skills/cv-customizer.md
-updatedAt: '2026-05-24'
-firstSeen: '2026-05-24'
-sourceRepo: 'https://github.com/peter-tu-zynkr/zynkr-skill-builder'
-sourceFile: 2-business-consulting/cv-customizer/SKILL.md
+input: "Job description (text, URL, or file) and candidate CV/resume"
+process: "5-phase pipeline — job decoding, SCQA story extraction, fit scoring, career progression analysis, and section-by-section CV rewrite"
+output: "Optimized CV as a Google Doc, with fit scores and progression report"
+synergy: []
 ---
 
 # CV Customizer

@@ -19,12 +19,12 @@ Empty category folders are valid placeholders — they exist to reserve the cate
 |---|---|---|
 | 0 | `strategy` | Vision, OKRs, decisions |
 | 1 | `brand-marketing` | Content, copywriting, social |
-| 2 | `business-consulting` | Sales, proposals, CRM |
+| 2 | `sales-consultant` | Sales, proposals, CRM |
 | 3 | `operations` | SOPs, project tracking |
 | 4 | `training` | Courses, transcripts, onboarding |
 | 5 | `product` | Roadmap, UX, GTM, product analytics |
 | 6 | `engineer` | Platform, infra, automation, data, tooling |
-| 7 | `talent-development` | Recruiting, HR, org design |
+| 7 | `people-talent` | Recruiting, HR, org design |
 | 8 | `finance-admin` | Budgeting, invoicing |
 | 9 | `legal` | Contracts, compliance |
 
@@ -43,7 +43,7 @@ skills/
 │   ├── newsletter-to-notion/             ✓ Sync a newsletter article from Google Docs to the Notion Content DB.…
 │   ├── write-newsletter/                 ✓ Drafts Peter's weekly Chinese newsletter by combining three sources:…
 │   └── writing-agent/                    ⚠ _Missing SKILL.md_
-├── 2-business-consulting/
+├── 2-sales-consultant/
 │   ├── biz-card/                         ✓ 7-phase business card pipeline — OCR extraction, schema normalization… +agents
 │   ├── cv-customizer/                    ✓ 5-phase CV optimization workflow — job analysis, story extraction, fi… +agents
 │   └── inbound-sales-project-init/       ✓ Intake an inbound sales / consulting email, gather all of its context…
@@ -60,7 +60,7 @@ skills/
 │   ├── skill-sourcer/                    ✓ Aggregate skill candidates from any source, classify against the Zynk… +agents
 │   ├── skill-triager/                    ✓ Triage the queue of approved skill proposals in peter-tu-zynkr/zynkr-…
 │   └── vercel-labs-agent-browser/        ✓ Give AI agents full browser control via CDP — navigate pages, click,…
-├── 7-talent-development/                 (empty)
+├── 7-people-talent/                      (empty)
 ├── 8-finance-admin/                      (empty)
 └── 9-legal/                              (empty)
 ```
