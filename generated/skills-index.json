@@ -1172,7 +1172,7 @@
     "original_source_url": "https://github.com/vercel-labs/agent-browser/blob/main/README.md",
     "original_author": "Vercel Labs",
     "github_stars": 34276,
-    "github_forks": 2149,
+    "github_forks": 2150,
     "first_seen": "2026-05-12"
   },
   {
@@ -1198,8 +1198,8 @@
     "upstream_repo": "https://github.com/NousResearch/hermes-agent",
     "original_source_url": "https://github.com/NousResearch/hermes-agent/blob/main/README.md",
     "original_author": "Nous Research",
-    "github_stars": 166994,
-    "github_forks": 27589,
+    "github_stars": 167013,
+    "github_forks": 27596,
     "first_seen": "2026-05-20"
   },
   {
@@ -1271,6 +1271,28 @@
     "original_author": "vercel-labs",
     "github_stars": 20020,
     "github_forks": 1609,
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "6.17",
+    "slug": "zynkr",
+    "name": "zynkr",
+    "summary": "The front-door router for the Zynkr assistant ecosystem.",
+    "category": "engineer",
+    "project": "zynkr",
+    "platform": "claude",
+    "status": "WIP",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/6-engineer/zynkr/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/6.17.md -o ~/.claude/skills/zynkr.md",
+    "tags": [
+      "zynkr",
+      "engineer",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-25"
   },
   {

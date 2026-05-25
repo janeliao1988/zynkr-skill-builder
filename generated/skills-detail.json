@@ -1786,7 +1786,7 @@
     "original_source_url": "https://github.com/vercel-labs/agent-browser/blob/main/README.md",
     "original_author": "Vercel Labs",
     "github_stars": 34276,
-    "github_forks": 2149,
+    "github_forks": 2150,
     "first_seen": "2026-05-12",
     "description": "Give AI agents full browser control via CDP — navigate pages, click, fill forms, screenshot, and run multi-step web workflows without Playwright or Node.js",
     "input": "CLI instructions — URLs to open, actions to perform, element selectors or ref IDs, data to extract, or screenshots to capture",
@@ -1825,8 +1825,8 @@
     "upstream_repo": "https://github.com/NousResearch/hermes-agent",
     "original_source_url": "https://github.com/NousResearch/hermes-agent/blob/main/README.md",
     "original_author": "Nous Research",
-    "github_stars": 166994,
-    "github_forks": 27589,
+    "github_stars": 167013,
+    "github_forks": 27596,
     "first_seen": "2026-05-20",
     "description": "Self-improving AI agent runtime by Nous Research. A persistent agent that lives across CLI plus every major messaging platform (Telegram, Discord, Slack, WhatsApp, Signal, Email), autonomously creates and improves its own skills from experience, persists memory across sessions, and runs anywhere from a $5 VPS to serverless. Use when you want an agent that isn't tied to your laptop, supports any LLM provider, and is compatible with the agentskills.io open standard.",
     "input": "Conversation with the agent via CLI or any messaging platform; configuration via `hermes config`; optional user-authored skills in `~/.hermes/skills/`",
@@ -1943,6 +1943,37 @@
       "6.16"
     ],
     "github_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder/blob/main/skills/6-engineer/find-skills/SKILL.md"
+  },
+  "6.17": {
+    "id": "6.17",
+    "slug": "zynkr",
+    "name": "zynkr",
+    "summary": "The front-door router for the Zynkr assistant ecosystem.",
+    "category": "engineer",
+    "project": "zynkr",
+    "platform": "claude",
+    "status": "WIP",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/6-engineer/zynkr/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/6.17.md -o ~/.claude/skills/zynkr.md",
+    "tags": [
+      "zynkr",
+      "engineer",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25",
+    "description": "The front-door router for the Zynkr assistant ecosystem. Takes ANY input from the user — a URL, a file path, a slug, a vague idea, a question about pipeline state — figures out which Zynkr skill it belongs to, reads the relevant state across GitHub Project / issues / on-disk / live marketplace, and either auto-invokes the right sub-skill or asks one targeted clarifying question. Use this skill whenever the user drops something into the conversation without specifying which skill should handle it — every undirected URL, file mention, idea, status question, or 'what should I do with this?' is a candidate. Especially fire on phrases like 'I found this', 'I just built X', 'where am I with Y', 'what's in my queue', 'I have an idea about', '幫我看一下這個', '/zynkr', or when the user pastes a link with no further direction. Triggers MORE eagerly than the specific skills below it — when in doubt, route through /zynkr rather than asking the user to remember the right slash command.",
+    "input": "Anything: a URL, local file path, skill slug, free-text idea, status question, or pasted content. The skill classifies the input shape before doing anything else.",
+    "process": "Classify input shape → look up state across the four signals (Project / issues / on-disk / live API) when the input references a skill-pipeline item → route to the right sub-skill via the Skill tool when confidence is high, or ask one targeted clarifying...",
+    "output": "Either: (a) an auto-invocation of the right Zynkr sub-skill (most common); (b) one targeted clarifying question when intent is genuinely ambiguous; (c) a compact state table...",
+    "kind": "skill",
+    "synergy": [
+      "6.17"
+    ],
+    "github_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder/blob/main/skills/6-engineer/zynkr/SKILL.md"
   },
   "7.01": {
     "id": "7.01",

@@ -1593,7 +1593,7 @@
       "snyk": "pending"
     },
     "githubStars": 34276,
-    "githubForks": 2149
+    "githubForks": 2150
   },
   {
     "id": "6.13",
@@ -1630,8 +1630,8 @@
       "socket": "pending",
       "snyk": "pending"
     },
-    "githubStars": 166994,
-    "githubForks": 27589
+    "githubStars": 167013,
+    "githubForks": 27596
   },
   {
     "id": "6.14",
@@ -1722,6 +1722,34 @@
     "originalAuthor": "vercel-labs",
     "githubStars": 20020,
     "githubForks": 1609
+  },
+  {
+    "id": "6.17",
+    "name": "zynkr",
+    "category": "engineer",
+    "project": "zynkr",
+    "platform": "claude",
+    "status": "WIP",
+    "author": "Peter Tu",
+    "description": "The front-door router for the Zynkr assistant ecosystem. Takes ANY input from the user — a URL, a file path, a slug, a vague idea, a question about pipeline state — figures out which Zynkr skill it belongs to, reads the relevant state across GitHub Project / issues / on-disk / live marketplace, and either auto-invokes the right sub-skill or asks one targeted clarifying question. Use this skill whenever the user drops something into the conversation without specifying which skill should handle it — every undirected URL, file mention, idea, status question, or 'what should I do with this?' is a candidate. Especially fire on phrases like 'I found this', 'I just built X', 'where am I with Y', 'what's in my queue', 'I have an idea about', '幫我看一下這個', '/zynkr', or when the user pastes a link with no further direction. Triggers MORE eagerly than the specific skills below it — when in doubt, route through /zynkr rather than asking the user to remember the right slash command.",
+    "input": "Anything: a URL, local file path, skill slug, free-text idea, status question, or pasted content. The skill classifies the input shape before doing anything else.",
+    "process": "Classify input shape → look up state across the four signals (Project / issues / on-disk / live API) when the input references a skill-pipeline item → route to the right sub-skill via the Skill tool when confidence is high, or ask one targeted clarifying...",
+    "output": "Either: (a) an auto-invocation of the right Zynkr sub-skill (most common); (b) one targeted clarifying question when intent is genuinely ambiguous; (c) a compact state table...",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "6.17",
+    "kind": "skill",
+    "synergy": [
+      "6.17"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/6.17.md -o ~/.claude/skills/zynkr.md",
+    "updatedAt": "2026-05-25",
+    "firstSeen": "2026-05-25",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "6-engineer/zynkr/SKILL.md"
   },
   {
     "id": "7.01",
