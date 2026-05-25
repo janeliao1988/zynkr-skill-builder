@@ -24,6 +24,8 @@ npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill ski
 
 Ingest a skill candidate from any source, classify it, check for duplicates in the pipeline, and propose it for review.
 
+> **Where this fits:** the **first step** of the canonical 4-skill chain — `/skill-sourcer` → `/skill-triager` → `/skill-creator` → `/skill-publish`. After you approve (`Keep=yes`), the next hop is `/skill-triager` picking up the `triage-ready` label. See `process.md` in the repo root for the full chain.
+
 > **Source of truth:** the skills pipeline lives in GitHub Project `<your-skills-pipeline-project>` (e.g., `owner/N`). Every pipeline entry is a GitHub Issue in the idea repo, added to the Project with custom fields (Pipeline Status, Keep, Category, Intake Source, Build *). The legacy Google Sheet is deprecated — do not read or write to it.
 
 ---

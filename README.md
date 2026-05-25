@@ -13,9 +13,28 @@ zynkr-skill-idea -> zynkr-skill-builder -> zynkr.ai/ai-skills-marketplace
     (ideas)            (source + CI)          (live, auto-sync)
 ```
 
+### The canonical 4-skill authoring chain
+
+Skills land here through a sequential chain of Claude Code skills, each handing off a deliberate artifact to the next:
+
+```
+/skill-sourcer  →  /skill-triager  →  /skill-creator  →  /skill-publish  →  /skill-triager
+  (find idea)       Option A          (build SKILL.md)    (land + dispatch)    Option D
+                    assign-build                                                confirm-ship
+```
+
+Two GitHub Actions workflows in this repo are the automation backbone:
+
+- `pickup-approved-issue.yml` — fired by `/skill-triager` Option A. Scaffolds a stub `SKILL.md` (or mirrors an upstream README in lift-and-shift mode) and opens a PR. Dispatch event: `skill-build-request`.
+- `publish-skill.yml` — fired by `/skill-publish`. Lands an author-supplied `SKILL.md` (via inline base64 or a GitHub URL) and opens a PR. Dispatch event: `skill-publish-request`.
+
+Both end at `ingest-skills.yml` (the shared terminal step) which validates, normalises, regenerates `generated/*.json`, and POSTs to the Supabase mirror.
+
+See [`architecture.md`](./architecture.md) for the full gate-by-gate breakdown including decouple points.
+
 Role boundaries:
-- `zynkr-skill-idea`: idea backlog (GitHub issues), approval workflow
-- `zynkr-skill-builder` (this repo): SKILL.md source files, ingest pipeline, generated JSON artifacts, post-ingest webhook to the Supabase mirror
+- `zynkr-skill-idea`: idea backlog (GitHub issues + Project), approval workflow, `/skill-sourcer` and `/skill-triager` state
+- `zynkr-skill-builder` (this repo): SKILL.md source files, two scaffold/publish workflows, ingest pipeline, generated JSON artifacts, post-ingest webhook to the Supabase mirror
 - `zynkr-website`: frontend — fetches `/api/skills*` (Vercel Functions backed by Supabase) on page load, with raw-GitHub fallback
 
 Primary goals:
