@@ -3,9 +3,13 @@ name: Publish authored skill
 # Sibling of pickup-approved-issue.yml.
 #
 # Fired by /skill-publish via repository_dispatch (event_type: skill-publish-request)
-# whenever a user-authored SKILL.md is ready to land in this repo. The dispatch
-# carries the SKILL.md content (inline base64) or a URL to fetch it from. The
-# workflow lands the file at skills/<N-category>/<slug>/SKILL.md, validates,
+# whenever a user-authored skill is ready to land in this repo. The dispatch
+# carries one of:
+#   - skill_md_url   — URL to fetch a single SKILL.md from
+#   - skill_md_b64   — inline base64 of a single SKILL.md
+#   - bundle_b64     — inline base64 of a gzipped tarball containing the whole
+#                      skill folder (SKILL.md + references/ + scripts/ + assets/)
+# The workflow lands the file(s) at skills/<N-category>/<slug>/, validates,
 # pushes a branch, and opens a PR linked back to the source issue.
 #
 # Also manually invocable via "Run workflow" with the same inputs — useful for
@@ -30,10 +34,13 @@ on:
         description: 'Category — digit 0-9 or slug (engineer, strategy, ...)'
         required: true
       skill_md_url:
-        description: 'URL of the authored SKILL.md (raw or blob). Provide this OR skill_md_b64, not both.'
+        description: 'URL of the authored SKILL.md (raw or blob). Single-file mode.'
         required: false
       skill_md_b64:
-        description: 'Inline base64-encoded SKILL.md content. Provide this OR skill_md_url, not both.'
+        description: 'Inline base64-encoded SKILL.md content. Single-file mode.'
+        required: false
+      bundle_b64:
+        description: 'Inline base64-encoded gzipped tarball of the whole skill folder. Multi-file mode (SKILL.md + references/ + scripts/ + assets/). Build with: tar -czf - -C <parent> <slug>/ | base64. Provide exactly one of skill_md_url, skill_md_b64, or bundle_b64.'
         required: false
 
 jobs:
@@ -53,8 +60,9 @@ jobs:
             echo "slug=${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
             echo "category=${{ github.event.client_payload.category }}" >> "$GITHUB_OUTPUT"
             echo "skill_md_url=${{ github.event.client_payload.skill_md_url }}" >> "$GITHUB_OUTPUT"
-            # skill_md_b64 may be long — write to a file to avoid env-var size limits and shell quoting headaches.
+            # skill_md_b64 and bundle_b64 may be long — write to files to avoid env-var size limits and shell quoting headaches.
             printf '%s' "${{ github.event.client_payload.skill_md_b64 }}" > /tmp/skill_md.b64
+            printf '%s' "${{ github.event.client_payload.bundle_b64 }}" > /tmp/bundle.b64
           else
             echo "issue_number=${{ inputs.issue_number }}" >> "$GITHUB_OUTPUT"
             echo "issue_repo=${{ inputs.issue_repo }}" >> "$GITHUB_OUTPUT"
@@ -62,6 +70,7 @@ jobs:
             echo "category=${{ inputs.category }}" >> "$GITHUB_OUTPUT"
             echo "skill_md_url=${{ inputs.skill_md_url }}" >> "$GITHUB_OUTPUT"
             printf '%s' "${{ inputs.skill_md_b64 }}" > /tmp/skill_md.b64
+            printf '%s' "${{ inputs.bundle_b64 }}" > /tmp/bundle.b64
           fi
 
       - name: Checkout
@@ -92,12 +101,18 @@ jobs:
         working-directory: scripts
         run: |
           set -euo pipefail
-          # Read b64 from the file the previous step wrote (empty file is treated as "not provided").
+          # Read b64 inputs from files the previous step wrote (empty file = "not provided").
           if [ -s /tmp/skill_md.b64 ]; then
             export SKILL_MD_B64="$(cat /tmp/skill_md.b64)"
           fi
+          if [ -s /tmp/bundle.b64 ]; then
+            export BUNDLE_B64="$(cat /tmp/bundle.b64)"
+          fi
           OUT=$(npx tsx publish-skill.ts | tail -n1)
           echo "skill_path=$OUT" >> "$GITHUB_OUTPUT"
+          # Derive the skill folder from the SKILL.md path so the commit step can
+          # add the whole tree (matters in bundle mode where references/ landed too).
+          echo "skill_dir=$(dirname "$OUT")" >> "$GITHUB_OUTPUT"
 
       - name: Validate authored frontmatter
         working-directory: scripts
@@ -108,6 +123,7 @@ jobs:
         env:
           SLUG: ${{ steps.payload.outputs.slug }}
           SKILL_PATH: ${{ steps.publish.outputs.skill_path }}
+          SKILL_DIR: ${{ steps.publish.outputs.skill_dir }}
           ISSUE_NUMBER: ${{ steps.payload.outputs.issue_number }}
           ISSUE_REPO: ${{ steps.payload.outputs.issue_repo }}
         run: |
@@ -116,7 +132,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BRANCH="skill/${SLUG}"
           git checkout -b "$BRANCH"
-          git add "$SKILL_PATH"
+          # Add the whole skill folder — single-file mode only contains SKILL.md
+          # here, but bundle mode also brings references/, scripts/, assets/.
+          git add "$SKILL_DIR"
           git commit -m "publish: ${SLUG} from ${ISSUE_REPO}#${ISSUE_NUMBER}"
           git push -u origin "$BRANCH"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
@@ -146,6 +164,11 @@ jobs:
           echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
 
       - name: Comment back on the source issue
+        # Cross-repo issue comments require a PAT (GITHUB_TOKEN is scoped to this
+        # repo only). We try anyway, but treat failure as non-fatal — the real
+        # work (PR opened, file landed) is already done, and /skill-publish
+        # writes the same comment client-side as a fallback.
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.SKILL_IDEA_PAT || secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ steps.payload.outputs.issue_number }}
@@ -153,10 +176,15 @@ jobs:
           PR_URL: ${{ steps.pr.outputs.pr_url }}
           SKILL_PATH: ${{ steps.publish.outputs.skill_path }}
         run: |
-          set -euo pipefail
+          set +e
           gh issue comment "$ISSUE_NUMBER" --repo "$ISSUE_REPO" --body "Published via \`publish-skill\` workflow.
 
           - **Skill path:** \`${SKILL_PATH}\`
           - **PR:** ${PR_URL}
 
           On merge, \`ingest-skills\` will push the artifact to the marketplace. Run \`/skill-triager\` and pick the \`confirm-ship\` branch to mark this issue \`shipped\`."
+          rc=$?
+          if [ $rc -ne 0 ]; then
+            echo "::warning::Cross-repo comment failed (rc=$rc). The PR is open at $PR_URL — substantive work landed. Set the SKILL_IDEA_PAT secret with cross-repo issue:write to enable auto-commenting."
+          fi
+          exit 0

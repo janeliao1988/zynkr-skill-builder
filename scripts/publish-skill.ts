@@ -15,10 +15,24 @@
  *   ISSUE_REPO   / --repo           default: peter-tu-zynkr/zynkr-skill-idea
  *   SLUG         / --slug           kebab-case skill slug
  *   CATEGORY     / --category       digit 0-9 or canonical slug
- *   SKILL_MD_URL / --skill-md-url   raw/blob URL to fetch SKILL.md from (preferred when content lives on GitHub)
- *   SKILL_MD_B64 / --skill-md-b64   inline base64-encoded SKILL.md content (fallback for local content)
+ *   SKILL_MD_URL / --skill-md-url   raw/blob URL to fetch a single SKILL.md from
+ *   SKILL_MD_B64 / --skill-md-b64   inline base64-encoded SKILL.md content (single-file mode)
+ *   BUNDLE_B64   / --bundle-b64     inline base64-encoded gzipped tarball of the whole skill folder
+ *                                   (multi-file mode — SKILL.md + references/ + scripts/ + assets/)
  *
- * Exactly one of SKILL_MD_URL or SKILL_MD_B64 must be set.
+ * Exactly one of SKILL_MD_URL, SKILL_MD_B64, or BUNDLE_B64 must be set.
+ *
+ * Bundle format: `tar -czf - -C <parent> <slug>/` then base64. The tarball must
+ * contain a top-level directory matching the slug, with SKILL.md inside. The
+ * script extracts the whole folder verbatim, so any references/, scripts/, or
+ * assets/ subfolders ride along.
+ *
+ * Size note: GitHub repository_dispatch caps client_payload at ~64 KB. Gzipped
+ * markdown typically lands at 25-35% of original, so most multi-file skills fit.
+ * If a bundle is too large, fall back to: push the folder to a branch by hand,
+ * then dispatch with SKILL_MD_B64 of just SKILL.md (the workflow's idempotency
+ * check will refuse to overwrite — instead pre-push the whole folder on the
+ * `skill/<slug>` branch and skip the dispatch entirely).
  *
  * Outputs the relative path of the new SKILL.md on stdout's last line —
  * the wrapping workflow reads it for commit + PR title (same contract as
@@ -74,6 +88,7 @@ type Args = {
   category: string;
   skillMdUrl?: string;
   skillMdB64?: string;
+  bundleB64?: string;
 };
 
 function parseArgs(): Args {
@@ -89,6 +104,7 @@ function parseArgs(): Args {
     category: get("--category") ?? process.env.CATEGORY ?? "",
     skillMdUrl: get("--skill-md-url") ?? process.env.SKILL_MD_URL,
     skillMdB64: get("--skill-md-b64") ?? process.env.SKILL_MD_B64,
+    bundleB64: get("--bundle-b64") ?? process.env.BUNDLE_B64,
   };
   const missing = (["issueNumber", "slug", "category"] as const).filter((k) => !args[k]);
   if (missing.length) {
@@ -96,11 +112,14 @@ function parseArgs(): Args {
     console.error("See header comment for usage.");
     process.exit(2);
   }
-  const hasUrl = Boolean(args.skillMdUrl?.trim());
-  const hasB64 = Boolean(args.skillMdB64?.trim());
-  if (hasUrl === hasB64) {
+  const sources = [args.skillMdUrl, args.skillMdB64, args.bundleB64].filter((v) =>
+    Boolean(v?.trim())
+  );
+  if (sources.length !== 1) {
     console.error(
-      "Exactly one of --skill-md-url / SKILL_MD_URL or --skill-md-b64 / SKILL_MD_B64 must be provided."
+      "Exactly one of --skill-md-url, --skill-md-b64, or --bundle-b64 must be provided " +
+        "(or their env-var equivalents). Got: " +
+        sources.length
     );
     process.exit(2);
   }
@@ -124,6 +143,64 @@ function resolveCategory(input: string): { number: string; folder: string } {
   const folder = FOLDER_BY_NUMBER[digit];
   if (!folder) throw new Error(`No on-disk folder for category number ${digit}.`);
   return { number: digit, folder };
+}
+
+/**
+ * Extract a base64-encoded gzipped tarball into the parent directory of
+ * targetDir. The tarball's top-level entry must match `args.slug` (the on-disk
+ * folder name). After extraction, targetDir must exist and contain a SKILL.md.
+ *
+ * Uses system `tar` for portability — same shape `pickup-approved-issue.yml`
+ * already relies on (ubuntu-latest has BSD-compatible tar with -z).
+ */
+function extractBundle(bundleB64: string, targetDir: string, slug: string): void {
+  const parentDir = path.dirname(targetDir);
+  fs.mkdirSync(parentDir, { recursive: true });
+
+  // Decode the base64 → binary tarball through Node, so behavior is identical
+  // on macOS (base64 -D) and Linux (base64 --decode). Write to a temp .tgz
+  // that system `tar` can list and extract.
+  const tmpTar = path.join(parentDir, `.bundle-${slug}.tgz`);
+  try {
+    fs.writeFileSync(tmpTar, Buffer.from(bundleB64.trim(), "base64"));
+
+    // Inspect the tarball to confirm the top-level entry is the slug folder.
+    const listing = execSync(`tar -tzf ${JSON.stringify(tmpTar)}`, { encoding: "utf-8" });
+    const topLevels = new Set(
+      listing
+        .split("\n")
+        .filter(Boolean)
+        .map((line) => line.split("/")[0])
+    );
+    if (!topLevels.has(slug)) {
+      throw new Error(
+        `Bundle's top-level directory does not match slug "${slug}". ` +
+          `Top-level entries: ${[...topLevels].join(", ")}. ` +
+          `Build the tarball with: tar -czf - -C <parent-of-slug-dir> ${slug}/`
+      );
+    }
+    if (topLevels.size > 1) {
+      throw new Error(
+        `Bundle contains multiple top-level entries (${[...topLevels].join(", ")}). ` +
+          `Tar only the slug folder: tar -czf - -C <parent> ${slug}/`
+      );
+    }
+
+    // Extract into parent — the tarball already carries the slug folder as
+    // its root, so this lands content at <parentDir>/<slug>/...
+    execSync(`tar -xzf ${JSON.stringify(tmpTar)} -C ${JSON.stringify(parentDir)}`);
+
+    const skillMd = path.join(targetDir, "SKILL.md");
+    if (!fs.existsSync(skillMd)) {
+      throw new Error(
+        `Bundle extracted but SKILL.md not found at ${path.relative(ROOT, skillMd)}. ` +
+          `Every published bundle must contain SKILL.md at its root.`
+      );
+    }
+  } finally {
+    // Clean up temp file regardless of success/failure.
+    if (fs.existsSync(tmpTar)) fs.unlinkSync(tmpTar);
+  }
 }
 
 function fetchContent(args: Args): string {
@@ -175,21 +252,47 @@ function main() {
     process.exit(3);
   }
 
-  const content = fetchContent(args);
-  if (!content.trim().startsWith("---")) {
-    console.error(
-      "Fetched content does not look like a SKILL.md (missing YAML frontmatter). Aborting."
-    );
-    process.exit(4);
+  if (args.bundleB64?.trim()) {
+    // Multi-file mode — extract the tarball, then sanity-check SKILL.md.
+    extractBundle(args.bundleB64, targetDir, args.slug);
+    const content = fs.readFileSync(targetFile, "utf-8");
+    if (!content.trim().startsWith("---")) {
+      console.error(
+        "Extracted SKILL.md does not look valid (missing YAML frontmatter). Aborting."
+      );
+      process.exit(4);
+    }
+    // Count what landed so the workflow log has a clear summary.
+    const files = listFilesRecursive(targetDir);
+    console.log(`Wrote bundle to ${path.relative(ROOT, targetDir)} (${files.length} files):`);
+    for (const f of files) console.log(`  ${path.relative(ROOT, f)}`);
+  } else {
+    // Single-file mode — fetch and write just SKILL.md (unchanged behavior).
+    const content = fetchContent(args);
+    if (!content.trim().startsWith("---")) {
+      console.error(
+        "Fetched content does not look like a SKILL.md (missing YAML frontmatter). Aborting."
+      );
+      process.exit(4);
+    }
+    fs.mkdirSync(targetDir, { recursive: true });
+    fs.writeFileSync(targetFile, content, "utf-8");
+    console.log(`Wrote ${relTarget} (${content.length} bytes)`);
   }
 
-  fs.mkdirSync(targetDir, { recursive: true });
-  fs.writeFileSync(targetFile, content, "utf-8");
-
-  // Last line of stdout is the relative path — the workflow reads this.
-  console.log(`Wrote ${relTarget} (${content.length} bytes)`);
   console.log(`Source issue: ${args.issueRepo}#${args.issueNumber}`);
+  // Last line of stdout is the relative path of SKILL.md — the workflow reads this.
   console.log(relTarget);
+}
+
+function listFilesRecursive(dir: string): string[] {
+  const out: string[] = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...listFilesRecursive(p));
+    else out.push(p);
+  }
+  return out.sort();
 }
 
 main();
