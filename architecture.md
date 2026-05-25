@@ -3,22 +3,34 @@
 ## Pipeline
 
 ```
-any input (GitHub link / URL / text)
+any input (GitHub link / URL / text)             |    a built skill (SKILL.md on disk / GH URL)
+      ↓                                          |          ↓
+/skill-sourcer (Claude Code)                     |    /skill-publish (Claude Code, mid-pipeline intake)
+      ↓  extract → classify → dedup check        |          ↓  read SKILL.md → classify → dedup check
+      ↓                                          |          ↓
+       \________________  ______________________/___________/
+                        \/
+Zynkr Skills Pipeline (GitHub Project on zynkr-skill-idea)
+      ↓  item added — Pipeline Status=proposed, Keep=?, Intake Source=(skill-sourcer | skill-publish)
+      ↓  human sets Keep=yes → triage-ready label added
+/skill-triager (Claude Code)
+      ↓  review packet → assign-build → repository_dispatch → zynkr-skill-builder
       ↓
-/skill-sourcer (Claude Code)
-      ↓  extract → classify → dedup check
-Zynkr Skills Pipeline (Google Sheet)
-      ↓  row added (Status=proposed, Keep=?)
-      ↓  human sets Keep=Y
-zynkr-skill-idea (GitHub issue auto-created)
-      ↓
-      ↓  create skills/[category]/[slug]/SKILL.md
 zynkr-skill-builder
+      ↓  pickup-approved-issue.yml scaffolds skills/[N-category]/[slug]/SKILL.md
+      ↓  (for /skill-publish items already in-tree, scaffold is skipped — Build Status starts at ready-to-ship)
       ↓  push to main → ingest-skills.yml fires
       ↓  ingest.ts + build-marketplace.ts → generated/*.json committed
       ↓
 zynkr.ai/ai-skills-marketplace (fetches raw GitHub URLs on page load)
 ```
+
+There are two intake entry points into the same pipeline:
+
+- **`/skill-sourcer`** — raw inputs (link, URL, text). Runs the full extractor → classifier → deduplicator → proposer chain. Use when you've found a skill candidate but haven't built anything yet.
+- **`/skill-publish`** — already-built artifacts (a SKILL.md on disk or at a GitHub URL). Skips extraction and reads the frontmatter directly, then runs the same classifier → deduplicator → proposer chain. Use after `/skill-creator` or when you've downloaded a SKILL.md and want it categorised + dedup-checked before it enters the pipeline.
+
+Both feed the same Project; `Intake Source` distinguishes them. `/skill-triager` is the single authorised path to fire a build dispatch, regardless of which intake fed it.
 
 ---
 
@@ -34,22 +46,32 @@ zynkr.ai/ai-skills-marketplace (fetches raw GitHub URLs on page load)
 
 ## Gate 1 — Idea Capture
 
-**Tool:** `/skill-sourcer` in Claude Code  
-**Pipeline state:** internal Google Sheet — see `process.md` (private) for the ID and tab name
+**Tools:** `/skill-sourcer` (raw inputs) and `/skill-publish` (built artifacts) in Claude Code  
+**Pipeline state:** GitHub Project on `peter-tu-zynkr/zynkr-skill-idea` — every entry is an Issue + Project item with custom fields (`Pipeline Status`, `Keep`, `Category`, `Intake Source`, `Build *`)
+
+### `/skill-sourcer` — for raw inputs (link / URL / text)
 
 Runs 4 subagents in sequence:
 
 | Subagent | What it does |
 |---|---|
 | **extractor** | Pulls name, description, input/output, source URL from raw input; for GitHub links, extracts `owner/repo` as `upstream_repo` |
-| **classifier** | Maps to one of 9 taxonomy categories (0–9) |
-| **deduplicator** | Checks Google Sheet for existing duplicates |
-| **proposer** | Appends row: `Status=proposed`, `Keep=?`, `upstream_repo` column populated if external |
+| **classifier** | Maps to one of the 10 taxonomy categories (0–9) |
+| **deduplicator** | Scans the GitHub Project for `exact_duplicate`, `near_duplicate`, `partial_overlap`, or `new` |
+| **proposer** | Creates an issue (`skill-proposal` label) + Project item: `Pipeline Status=proposed`, `Keep=?`, `Intake Source=skill-sourcer`, `Build Status=not-started`, `Artifact=issue-only` |
 
-On approval (`Keep=Y`):
-- Row updated to `Status=approved`
-- GitHub issue opened in `zynkr-skill-idea` with label `skill-proposal`
-- Issue URL written back to column K
+### `/skill-publish` — for already-built artifacts (SKILL.md path / GitHub URL / pasted content)
+
+Skips the extractor (the SKILL.md is the extract) and runs 3 subagents in sequence — `classifier`, `deduplicator`, `proposer` — sharing the same agent files via `skills/6-engineer/skill-sourcer/agents/`. Differences from `/skill-sourcer`:
+
+- The SKILL.md's `category:` frontmatter is passed to the classifier as a **prior** (confirm or override).
+- The proposer sets `Intake Source=skill-publish` and `Artifact=skill-md-only`, prompts for `Build Status` (`ready-to-ship` / `shipped` / `testing`) since the skill is already built, and writes `**Built via**: skill-publish` plus a `**Built Skill URL**:` line into the issue body.
+
+### On approval (`Keep=yes`, either intake)
+
+- Project item updated to `Pipeline Status=approved`
+- `triage-ready` label added to the issue — signal for `/skill-triager`
+- Optional spec md committed at `zynkr-skill-idea/skills/approved/{slug}.md`
 
 ---
 
