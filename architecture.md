@@ -1,51 +1,50 @@
 # Zynkr Skills — Architecture
 
-## Pipeline
+## Pipeline — the canonical 4-skill chain
 
 ```
-any input (GitHub link / URL / text)             |    a built skill (SKILL.md on disk / GH URL)
-      ↓                                          |          ↓
-/skill-sourcer (Claude Code)                     |    /skill-publish (Claude Code, mid-pipeline intake)
-      ↓  extract → classify → dedup check        |          ↓  read SKILL.md → classify → dedup check
-      ↓                                          |          ↓
-       \________________  ______________________/___________/
-                        \/
-Zynkr Skills Pipeline (GitHub Project on zynkr-skill-idea)
-      ↓  item added — Pipeline Status=proposed, Keep=?, Intake Source=(skill-sourcer | skill-publish)
-      ↓  human sets Keep=yes → triage-ready label added
-/skill-publish — fires repository_dispatch on intake (event: skill-publish-request)
-      ↓
-      publish-skill.yml lands skills/[N-cat]/[slug]/SKILL.md and opens a PR
-      ↓
-      human reviews + merges → ingest-skills.yml runs → live on marketplace
-      ↓
-/skill-triager (Claude Code) — picks decision from Intake Source
-      ├─ Intake Source=skill-sourcer → assign-build → repository_dispatch (skill-build-request)
-      │       ↓
-      │       pickup-approved-issue.yml scaffolds skills/[N-cat]/[slug]/SKILL.md (stub)
-      │       human writes the body → push → ingest-skills.yml → live
-      │
-      └─ Intake Source=skill-publish → confirm-ship (3 read-only checks)
-              ↓  artifact already merged by publish-skill.yml; ingest-skills.yml already published it
-              ↓  triager verifies gh api contents + skills-index.json + /api/skills
-              ↓  Pipeline Status=shipped, Build Status=shipped, issue closed
-                                          ↓
-                                          (both paths converge here)
-                                          ↓
-zynkr-skill-builder
-      ↓  push to main → ingest-skills.yml fires (only meaningful for new commits)
-      ↓  ingest.ts + build-marketplace.ts → generated/*.json committed
-      ↓  signed POST → Supabase mirror (/api/skills* read source)
-      ↓
-zynkr.ai/ai-skills-marketplace (fetches /api/skills* on page load; raw GitHub fallback)
+/skill-sourcer  →  /skill-triager  →  /skill-creator  →  /skill-publish  →  /skill-triager
+  (find idea)       (Option A:        (build SKILL.md   (land + dispatch)    (Option D:
+                     assign-build)     content)                               confirm-ship)
+       │                  │                  │                  │                  │
+       │                  │                  │                  │                  │
+       ▼                  ▼                  ▼                  ▼                  ▼
+   GH issue        repo_dispatch        finished           repo_dispatch       /api/skills
+   + Project        skill-build-         SKILL.md          skill-publish-        verified;
+   item with         request →            on               request →             Project
+   triage-ready    pickup-approved-     skill/<slug>      publish-skill.yml      shipped;
+   label            issue.yml             branch (or       opens PR with         issue closed
+                    scaffolds stub        fresh path)       finished content
+                    PR
+                                                                ↓
+                                                    human merges PR
+                                                                ↓
+                                                    ingest-skills.yml (terminal)
+                                                      → generated/*.json committed
+                                                      → signed POST → Supabase mirror
+                                                                ↓
+                                                    zynkr.ai/ai-skills-marketplace
+                                                    (fetches /api/skills* on page load;
+                                                     raw GitHub fallback)
 ```
 
-There are two intake entry points into the same pipeline:
+### The chain in one sentence
 
-- **`/skill-sourcer`** — raw inputs (link, URL, text). Runs the full extractor → classifier → deduplicator → proposer chain. Use when you've found a skill candidate but haven't built anything yet.
-- **`/skill-publish`** — already-built artifacts (a SKILL.md on disk or at a GitHub URL). Skips extraction and reads the frontmatter directly, then runs the same classifier → deduplicator → proposer chain. Use after `/skill-creator` or when you've downloaded a SKILL.md and want it categorised + dedup-checked before it enters the pipeline.
+> **`/skill-sourcer` opens an issue, `/skill-triager` (Option A) approves it and scaffolds a stub PR, `/skill-creator` writes the real SKILL.md, `/skill-publish` lands it into the repo via dispatch, and `/skill-triager` (Option D) closes the loop after the marketplace verifies live.**
 
-Both feed the same Project; `Intake Source` distinguishes them. `/skill-triager` is the single authorised path to fire a build dispatch, regardless of which intake fed it.
+### Decouple points
+
+Each handoff in the chain has a clean break-point. Use these when the canonical assumption doesn't fit:
+
+| Skip | Use when | Cost |
+|---|---|---|
+| `/skill-sourcer` | A finished SKILL.md drops in cold (downloaded, third-party, hand-authored) — enter at `/skill-publish` **fresh-intake mode** | Lose source attribution |
+| `/skill-triager` scaffold | `/skill-creator` ran standalone; no `skill/<slug>` branch exists yet — run `/skill-publish` directly against the approved issue | Lose the second-look gate |
+| `/skill-creator` | Trivial skill or porting an existing prompt — hand-write the SKILL.md | Lose eval rigor |
+| `/skill-publish` | The scaffold PR is sufficient — merge it after writing the body inline | Lose the publish-skill.yml audit comment + Project bookkeeping |
+| `/skill-triager` Option D | Low-stakes / personal skills — merge and ignore the Project | Audit trail stays at `ready-to-ship` |
+
+The pipeline survives any single skip — what's lost is the specific value-add that step provides.
 
 ---
 
@@ -59,12 +58,10 @@ Both feed the same Project; `Intake Source` distinguishes them. `/skill-triager`
 
 ---
 
-## Gate 1 — Idea Capture
+## Gate 1 — Idea capture (`/skill-sourcer`)
 
-**Tools:** `/skill-sourcer` (raw inputs) and `/skill-publish` (built artifacts) in Claude Code  
+**Tool:** `/skill-sourcer` in Claude Code  
 **Pipeline state:** GitHub Project on `peter-tu-zynkr/zynkr-skill-idea` — every entry is an Issue + Project item with custom fields (`Pipeline Status`, `Keep`, `Category`, `Intake Source`, `Build *`)
-
-### `/skill-sourcer` — for raw inputs (link / URL / text)
 
 Runs 4 subagents in sequence:
 
@@ -75,22 +72,40 @@ Runs 4 subagents in sequence:
 | **deduplicator** | Scans the GitHub Project for `exact_duplicate`, `near_duplicate`, `partial_overlap`, or `new` |
 | **proposer** | Creates an issue (`skill-proposal` label) + Project item: `Pipeline Status=proposed`, `Keep=?`, `Intake Source=skill-sourcer`, `Build Status=not-started`, `Artifact=issue-only` |
 
-### `/skill-publish` — for already-built artifacts (SKILL.md path / GitHub URL / pasted content)
+On approval (`Keep=yes`):
+- Project item → `Pipeline Status=approved`
+- `triage-ready` label added — signal for `/skill-triager`
+- Optional spec md at `zynkr-skill-idea/skills/approved/{slug}.md`
 
-Skips the extractor (the SKILL.md is the extract) and runs 3 subagents in sequence — `classifier`, `deduplicator`, `proposer` — sharing the same agent files via `skills/6-engineer/skill-sourcer/agents/`. Differences from `/skill-sourcer`:
+## Gate 2 — Triage (`/skill-triager`, Option A)
 
-- The SKILL.md's `category:` frontmatter is passed to the classifier as a **prior** (confirm or override).
-- The proposer sets `Intake Source=skill-publish` and `Artifact=skill-md-only`, prompts for `Build Status` (`ready-to-ship` / `shipped` / `testing`) since the skill is already built, and writes `**Built via**: skill-publish` plus a `**Built Skill URL**:` line into the issue body.
+The second-look gate that fires the build dispatch. See [process.md Touchpoint 2](process.md) for the full flow.
 
-### On approval (`Keep=yes`, either intake)
+- Default for `Intake Source=skill-sourcer` items: **`assign-build`** → `repository_dispatch skill-build-request` → `pickup-approved-issue.yml` opens a `skill/<slug>` PR with a stub SKILL.md
+- Sub-decision: `rescaffold` (default, Peter-authored) or `lift-and-shift` (mirror upstream README as-is)
 
-- Project item updated to `Pipeline Status=approved`
-- `triage-ready` label added to the issue — signal for `/skill-triager`
-- Optional spec md committed at `zynkr-skill-idea/skills/approved/{slug}.md`
+## Gate 3 — Build SKILL.md content (`/skill-creator`)
+
+Anthropic-published skill in `~/.claude/plugins`. Used on the `skill/<slug>` branch to fill in the stub. Captures intent, drafts content, optionally runs evals (with-skill vs baseline), iterates on user feedback, optimises the description for triggering accuracy.
+
+Output: a complete SKILL.md ready for landing. Either committed in-place on the branch (canonical) or sitting in `/skill-creator`'s workspace (decoupled).
+
+## Gate 4 — Publish (`/skill-publish`)
+
+Lands the finished SKILL.md into the repo via dispatch. Two modes:
+
+- **Continuation (canonical):** attaches to the existing sourcer-opened issue. No new issue, no re-classification.
+- **Fresh intake (fallback):** runs the full classifier + deduplicator + proposer chain (sharing subagents with `/skill-sourcer`) and creates a new issue with `Intake Source=skill-publish`.
+
+Both modes fire `repository_dispatch skill-publish-request` → `publish-skill.yml` opens a PR titled `publish(<slug>): from ...`.
+
+## Gate 5 — Confirm-ship (`/skill-triager`, Option D)
+
+After the PR merges and `ingest-skills.yml` runs, `/skill-triager` Option D runs three read-only verifications (`gh api contents`, `skills-index.json`, `/api/skills`) and flips Project to `shipped`. Bookkeeping only — no dispatch fired.
 
 ---
 
-## Gate 2 — Build & Ship
+## Repo conventions (`zynkr-skill-builder`)
 
 **Repo:** [`zynkr-skill-builder`](https://github.com/peter-tu-zynkr/zynkr-skill-builder)
 
