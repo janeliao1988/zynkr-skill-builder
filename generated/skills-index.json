@@ -607,6 +607,28 @@
     "first_seen": "2026-05-25"
   },
   {
+    "id": "2.33",
+    "slug": "bd-sourcing",
+    "name": "bd-sourcing",
+    "summary": "9-step BD sourcing pipeline — turn a workshop/event satisfaction survey into an enriched outbound funnel with company website, background, tailored 陌生開發 strategy, Hot Lead flag, and Well-Known firm flag.",
+    "category": "sales-consultant",
+    "project": "bd-sourcing",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/2-sales-consultant/bd-sourcing/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/2.33.md -o ~/.claude/skills/bd-sourcing.md",
+    "tags": [
+      "bd-sourcing",
+      "sales-consultant",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25"
+  },
+  {
     "id": "3.01",
     "slug": "meeting-prep",
     "name": "meeting-prep",
@@ -1198,7 +1220,7 @@
     "upstream_repo": "https://github.com/NousResearch/hermes-agent",
     "original_source_url": "https://github.com/NousResearch/hermes-agent/blob/main/README.md",
     "original_author": "Nous Research",
-    "github_stars": 167013,
+    "github_stars": 167015,
     "github_forks": 27596,
     "first_seen": "2026-05-20"
   },
