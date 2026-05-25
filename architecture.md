@@ -13,16 +13,25 @@ any input (GitHub link / URL / text)             |    a built skill (SKILL.md on
 Zynkr Skills Pipeline (GitHub Project on zynkr-skill-idea)
       ↓  item added — Pipeline Status=proposed, Keep=?, Intake Source=(skill-sourcer | skill-publish)
       ↓  human sets Keep=yes → triage-ready label added
-/skill-triager (Claude Code)
-      ↓  review packet → assign-build → repository_dispatch → zynkr-skill-builder
-      ↓
+/skill-triager (Claude Code) — picks decision from Intake Source
+      ├─ Intake Source=skill-sourcer → assign-build → repository_dispatch
+      │       ↓
+      │       pickup-approved-issue.yml scaffolds skills/[N-cat]/[slug]/SKILL.md
+      │       human writes the body → push
+      │
+      └─ Intake Source=skill-publish → confirm-ship (3 read-only checks)
+              ↓  artifact already committed; ingest-skills.yml already published it
+              ↓  triager verifies gh api contents + skills-index.json + /api/skills
+              ↓  Pipeline Status=shipped, Build Status=shipped, issue closed
+                                          ↓
+                                          (both paths converge here)
+                                          ↓
 zynkr-skill-builder
-      ↓  pickup-approved-issue.yml scaffolds skills/[N-category]/[slug]/SKILL.md
-      ↓  (for /skill-publish items already in-tree, scaffold is skipped — Build Status starts at ready-to-ship)
-      ↓  push to main → ingest-skills.yml fires
+      ↓  push to main → ingest-skills.yml fires (only meaningful for new commits)
       ↓  ingest.ts + build-marketplace.ts → generated/*.json committed
+      ↓  signed POST → Supabase mirror (/api/skills* read source)
       ↓
-zynkr.ai/ai-skills-marketplace (fetches raw GitHub URLs on page load)
+zynkr.ai/ai-skills-marketplace (fetches /api/skills* on page load; raw GitHub fallback)
 ```
 
 There are two intake entry points into the same pipeline:
