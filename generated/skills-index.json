@@ -223,7 +223,7 @@
     "id": "1.11",
     "slug": "article-fission",
     "name": "article-fission",
-    "summary": "寫作助理 ─ 文章裂變",
+    "summary": "Article fission — extract outline + summary from any popular article, then run 3 rounds of reflective dialogue to surface the writer's own refined take, ending with a new actionable outline ready for style + writing hand",
     "category": "brand-marketing",
     "project": "article-fission",
     "platform": "claude",
@@ -234,6 +234,72 @@
     "install_command": "curl -sL zynkr.ai/s/1.11.md -o ~/.claude/skills/article-fission.md",
     "tags": [
       "article-fission",
+      "brand-marketing",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "1.12",
+    "slug": "ai-literacy-article-writer",
+    "name": "ai-literacy-article-writer",
+    "summary": "Turn an AI-literacy context packet (audience, pain point, constraints, desired outcome) into a publish-ready first-person article using a pattern-break → reframe → copy-paste approach.",
+    "category": "brand-marketing",
+    "project": "ai-literacy-article-writer",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Bicky Yang",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/1-brand-marketing/ai-literacy-article-writer/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/1.12.md -o ~/.claude/skills/ai-literacy-article-writer.md",
+    "tags": [
+      "ai-literacy-article-writer",
+      "brand-marketing",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "1.13",
+    "slug": "ai-literacy-topic-selector",
+    "name": "ai-literacy-topic-selector",
+    "summary": "Pick the right AI-literacy article topic for a target role.",
+    "category": "brand-marketing",
+    "project": "ai-literacy-topic-selector",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/1-brand-marketing/ai-literacy-topic-selector/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/1.13.md -o ~/.claude/skills/ai-literacy-topic-selector.md",
+    "tags": [
+      "ai-literacy-topic-selector",
+      "brand-marketing",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "1.14",
+    "slug": "zh-tw-translator",
+    "name": "zh-tw-translator",
+    "summary": "Translate English (or any source language) into natural, conversational Traditional Chinese using Taiwanese expressions and tone.",
+    "category": "brand-marketing",
+    "project": "zh-tw-translator",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/1-brand-marketing/zh-tw-translator/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/1.14.md -o ~/.claude/skills/zh-tw-translator.md",
+    "tags": [
+      "zh-tw-translator",
       "brand-marketing",
       "claude",
       "skill"
@@ -694,7 +760,7 @@
     "id": "3.08",
     "slug": "project-charter-facilitator",
     "name": "project-charter-facilitator",
-    "summary": "專案章程發想 (New)",
+    "summary": "Stress-test and refine a project idea before execution via a 7-stage Socratic facilitation — WHY (5 Whys) → WHAT → HOW → WHO (RACI) → WHEN (Gantt) → MEASURES → RISKS — producing an execution-ready project charter.",
     "category": "operations",
     "project": "project-charter-facilitator",
     "platform": "claude",
@@ -884,6 +950,28 @@
     "first_seen": "2026-05-09"
   },
   {
+    "id": "4.09",
+    "slug": "lecture-recap-writer",
+    "name": "lecture-recap-writer",
+    "summary": "Turn a video file or transcript into a reader-friendly lecture recap structured into five fixed sections — Summary, Theme, Q&A, Tools, Call to Action — while strictly avoiding any reference-outline detail leakage.",
+    "category": "training",
+    "project": "lecture-recap-writer",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/4-training/lecture-recap-writer/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/4.09.md -o ~/.claude/skills/lecture-recap-writer.md",
+    "tags": [
+      "lecture-recap-writer",
+      "training",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25"
+  },
+  {
     "id": "5.01",
     "slug": "product-planning",
     "name": "product-planning",
@@ -914,7 +1002,7 @@
     "id": "5.02",
     "slug": "prompt-engineer",
     "name": "prompt-engineer",
-    "summary": "指令工程助理 ─ 重構指令",
+    "summary": "Refactor a prompt (or prompt idea) into a production-ready package via 4 phases — GUIDE intake → diagnosis → structured refactor with explicit IPO sections + system/developer/user layers → optional multi-turn conversatio",
     "category": "product",
     "project": "prompt-engineer",
     "platform": "claude",
@@ -925,6 +1013,28 @@
     "install_command": "curl -sL zynkr.ai/s/5.02.md -o ~/.claude/skills/prompt-engineer.md",
     "tags": [
       "prompt-engineer",
+      "product",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "5.03",
+    "slug": "skill-finder",
+    "name": "skill-finder",
+    "summary": "Recommend the right Zynkr assistant(s) for a user's task.",
+    "category": "product",
+    "project": "skill-finder",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/5-product/skill-finder/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/5.03.md -o ~/.claude/skills/skill-finder.md",
+    "tags": [
+      "skill-finder",
       "product",
       "claude",
       "skill"
@@ -1061,7 +1171,7 @@
     "upstream_repo": "https://github.com/vercel-labs/agent-browser",
     "original_source_url": "https://github.com/vercel-labs/agent-browser/blob/main/README.md",
     "original_author": "Vercel Labs",
-    "github_stars": 34265,
+    "github_stars": 34266,
     "github_forks": 2146,
     "first_seen": "2026-05-12"
   },
@@ -1088,8 +1198,8 @@
     "upstream_repo": "https://github.com/NousResearch/hermes-agent",
     "original_source_url": "https://github.com/NousResearch/hermes-agent/blob/main/README.md",
     "original_author": "Nous Research",
-    "github_stars": 166714,
-    "github_forks": 27520,
+    "github_stars": 166723,
+    "github_forks": 27523,
     "first_seen": "2026-05-20"
   },
   {

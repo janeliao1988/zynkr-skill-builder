@@ -348,7 +348,7 @@
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
-    "description": "寫作助理 ─ 文章裂變",
+    "description": "Article fission — extract outline + summary from any popular article, then run 3 rounds of reflective dialogue to surface the writer's own refined take, ending with a new actionable outline ready for style + writing handoff.",
     "input": "A prepared context packet describing audience, pain point, constraints, and desired outcome.",
     "process": "Diagnose intent and cognition, reframe the problem, then craft a first-person, action-driven article using a pattern-break → reframe → copy-paste approach.",
     "output": "A ready-to-publish AI productivity article with immediate, reusable prompts.",
@@ -368,6 +368,93 @@
     "firstSeen": "2026-05-25",
     "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "sourceFile": "1-brand-marketing/article-fission/SKILL.md"
+  },
+  {
+    "id": "1.12",
+    "name": "ai-literacy-article-writer",
+    "category": "brand-marketing",
+    "project": "ai-literacy-article-writer",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Bicky Yang",
+    "description": "Turn an AI-literacy context packet (audience, pain point, constraints, desired outcome) into a publish-ready first-person article using a pattern-break → reframe → copy-paste approach. Each article ends with immediate, reusable prompts the reader can copy.",
+    "input": "A prepared context packet describing audience, pain point, constraints, and desired outcome — typically the handoff packet from ai-literacy-topic-selector (1.10)",
+    "process": "Diagnose intent and reader cognition, reframe the problem using AI-judgment language, then craft a first-person, action-driven article via pattern-break → reframe → copy-paste structure",
+    "output": "A ready-to-publish AI productivity article with immediate, reusable prompts the reader can copy into ChatGPT/Claude",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "1.12",
+    "sheetId": "1.11",
+    "kind": "skill",
+    "synergy": [
+      "1.12"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/1.12.md -o ~/.claude/skills/ai-literacy-article-writer.md",
+    "updatedAt": "2026-05-25",
+    "firstSeen": "2026-05-25",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "1-brand-marketing/ai-literacy-article-writer/SKILL.md"
+  },
+  {
+    "id": "1.13",
+    "name": "ai-literacy-topic-selector",
+    "category": "brand-marketing",
+    "project": "ai-literacy-topic-selector",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "description": "Pick the right AI-literacy article topic for a target role. Validates user context, selects a target professional role, and generates 3 realistic workplace problems using a strict 3-stage IPO pipeline grounded in AI judgment rules.",
+    "input": "Unstructured user context (writing intent, knowledge, audience, workflow) plus two reference documents: AI judgment rules (K1) and role distribution (K2)",
+    "process": "Stage 1 validate context, Stage 2 select target role from K2 distribution, Stage 3 generate 3 role-specific workplace problems using the AI judgment rules from K1",
+    "output": "Validation result, ranked role options, and 3 realistic workplace problems suitable for AI-literacy article use cases",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "1.13",
+    "sheetId": "1.10",
+    "kind": "skill",
+    "synergy": [
+      "1.13"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/1.13.md -o ~/.claude/skills/ai-literacy-topic-selector.md",
+    "updatedAt": "2026-05-25",
+    "firstSeen": "2026-05-25",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "1-brand-marketing/ai-literacy-topic-selector/SKILL.md"
+  },
+  {
+    "id": "1.14",
+    "name": "zh-tw-translator",
+    "category": "brand-marketing",
+    "project": "zh-tw-translator",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "description": "Translate English (or any source language) into natural, conversational Traditional Chinese using Taiwanese expressions and tone. Removes the 'translation smell' that comes from word-for-word renderings.",
+    "input": "Text in English or another language (plain text, paragraph, document, or code-block-free passage)",
+    "process": "Translate into natural conversational Traditional Chinese using Taiwanese expressions and tone; localize idioms, units, and references; preserve any code fences untouched",
+    "output": "Fluent, localized Traditional Chinese (Taiwan) text that sounds like everyday spoken or written language, not machine-translated",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "1.14",
+    "sheetId": "1.09",
+    "kind": "skill",
+    "synergy": [
+      "1.14"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/1.14.md -o ~/.claude/skills/zh-tw-translator.md",
+    "updatedAt": "2026-05-25",
+    "firstSeen": "2026-05-25",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "1-brand-marketing/zh-tw-translator/SKILL.md"
   },
   {
     "id": "2.19",
@@ -971,7 +1058,7 @@
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
-    "description": "專案章程發想 (New)",
+    "description": "Stress-test and refine a project idea before execution via a 7-stage Socratic facilitation — WHY (5 Whys) → WHAT → HOW → WHO (RACI) → WHEN (Gantt) → MEASURES → RISKS — producing an execution-ready project charter.",
     "input": "A proposed project, initiative, or problem the user wants to validate before execution.",
     "process": "Structured, Socratic facilitation that stress-tests logic across purpose, problem, execution, governance, timing, metrics, and risks.",
     "output": "A clarified, execution-ready project foundation with aligned rationale, plan, roles, timeline, success measures, and risk mitigation.",
@@ -1202,6 +1289,35 @@
     "sourceFile": "4-training/process-livestream/agents/qa-knowledge-base.md"
   },
   {
+    "id": "4.09",
+    "name": "lecture-recap-writer",
+    "category": "training",
+    "project": "lecture-recap-writer",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "description": "Turn a video file or transcript into a reader-friendly lecture recap structured into five fixed sections — Summary, Theme, Q&A, Tools, Call to Action — while strictly avoiding any reference-outline detail leakage.",
+    "input": "A user-provided video file, a video URL, or the verbatim transcript of a recorded lecture/livestream",
+    "process": "Transcribe the video (if not already a transcript), remove filler words, map the cleaned content to the reference outline structure, then render the recap",
+    "output": "A reader-friendly recap document with five sections: Summary, Theme, Q&A, Tools, Call to Action",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "4.09",
+    "sheetId": "4.01",
+    "kind": "skill",
+    "synergy": [
+      "4.09"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/4.09.md -o ~/.claude/skills/lecture-recap-writer.md",
+    "updatedAt": "2026-05-25",
+    "firstSeen": "2026-05-25",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "4-training/lecture-recap-writer/SKILL.md"
+  },
+  {
     "id": "5.01",
     "name": "product-planning",
     "category": "product",
@@ -1242,7 +1358,7 @@
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
-    "description": "指令工程助理 ─ 重構指令",
+    "description": "Refactor a prompt (or prompt idea) into a production-ready package via 4 phases — GUIDE intake → diagnosis → structured refactor with explicit IPO sections + system/developer/user layers → optional multi-turn conversation blueprint.",
     "input": "User provides a prompt to optimize.",
     "process": "Apply GUIDE and IPO, clarify only when needed, restructure into system/developer/user layers, and define goals, reasoning steps, and output format.",
     "output": "A clear, testable prompt package with explicit roles, instructions, and structure, plus variants or blueprints when useful.",
@@ -1262,6 +1378,35 @@
     "firstSeen": "2026-05-25",
     "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "sourceFile": "5-product/prompt-engineer/SKILL.md"
+  },
+  {
+    "id": "5.03",
+    "name": "skill-finder",
+    "category": "product",
+    "project": "skill-finder",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "description": "Recommend the right Zynkr assistant(s) for a user's task. Interprets intent, matches against the structured assistant index, filters to usable entries, and either recommends or asks a single clarifying question.",
+    "input": "A user inquiry describing a task, problem, or workflow they want help with",
+    "process": "Interpret intent, match against the structured assistant index using functional descriptions, filter to usable entries, decide whether to recommend or ask one clarification",
+    "output": "A concise recommendation of the most relevant assistant(s), or a clear single-question clarification request, or an honest 'no match' response",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "5.03",
+    "sheetId": "0.01",
+    "kind": "skill",
+    "synergy": [
+      "5.03"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/5.03.md -o ~/.claude/skills/skill-finder.md",
+    "updatedAt": "2026-05-25",
+    "firstSeen": "2026-05-25",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "5-product/skill-finder/SKILL.md"
   },
   {
     "id": "6.07",
@@ -1447,7 +1592,7 @@
       "socket": "pending",
       "snyk": "pending"
     },
-    "githubStars": 34265,
+    "githubStars": 34266,
     "githubForks": 2146
   },
   {
@@ -1485,8 +1630,8 @@
       "socket": "pending",
       "snyk": "pending"
     },
-    "githubStars": 166714,
-    "githubForks": 27520
+    "githubStars": 166723,
+    "githubForks": 27523
   },
   {
     "id": "6.14",
