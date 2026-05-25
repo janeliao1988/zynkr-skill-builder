@@ -18,7 +18,7 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -40,7 +40,7 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -62,7 +62,7 @@
       "claude",
       "orchestrator"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -84,7 +84,7 @@
       "subagent",
       "0-optional"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -106,7 +106,7 @@
       "subagent",
       "1"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -128,7 +128,7 @@
       "subagent",
       "2"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -150,7 +150,7 @@
       "subagent",
       "3"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -172,7 +172,7 @@
       "subagent",
       "35-optional"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -194,7 +194,7 @@
       "subagent",
       "4"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -216,7 +216,7 @@
       "subagent",
       "5"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -238,7 +238,7 @@
       "claude",
       "orchestrator"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -259,7 +259,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -281,7 +281,7 @@
       "claude",
       "orchestrator"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -302,7 +302,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -323,7 +323,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -344,7 +344,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -365,7 +365,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -386,7 +386,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -408,7 +408,7 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -430,7 +430,7 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   },
   {
@@ -452,8 +452,30 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-18"
+  },
+  {
+    "id": "3.02",
+    "slug": "support-reply-drafter",
+    "name": "support-reply-drafter",
+    "summary": "讀取 Gmail 中所有貼有 support 標籤但尚未回覆的信件，到知識庫資料夾搜尋相關內容，幫你在原信 thread 上起一份回信草稿。語言自動配合來信（中／英），找不到答案時會起一份 holding reply 並用 [[NEEDS PETER: ...]] 區塊標出缺漏，避免回信時亂編產品行為。",
+    "category": "operations",
+    "project": "support-reply-drafter",
+    "platform": "claude",
+    "status": "WIP",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/3-operations/support-reply-drafter/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/3.02.md -o ~/.claude/skills/support-reply-drafter.md",
+    "tags": [
+      "support-reply-drafter",
+      "operations",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-05-25",
+    "first_seen": "2026-05-25"
   },
   {
     "id": "4.01",
@@ -474,7 +496,7 @@
       "multi",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -496,7 +518,7 @@
       "claude",
       "orchestrator"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -518,7 +540,7 @@
       "multi",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -539,7 +561,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -560,7 +582,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -581,7 +603,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -602,7 +624,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -623,7 +645,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-09"
   },
   {
@@ -645,11 +667,11 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "upstream_repo": "https://github.com/MrPM-Stanley/product-planning-skill",
     "original_source_url": "https://github.com/MrPM-Stanley/product-planning-skill/blob/main/README.md",
     "original_author": "MrPM-Stanley",
-    "github_stars": 37,
+    "github_stars": 38,
     "github_forks": 9,
     "first_seen": "2026-05-20"
   },
@@ -672,7 +694,7 @@
       "claude",
       "orchestrator"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-12"
   },
   {
@@ -693,7 +715,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-12"
   },
   {
@@ -714,7 +736,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-12"
   },
   {
@@ -735,7 +757,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-12"
   },
   {
@@ -756,7 +778,7 @@
       "claude",
       "subagent"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-12"
   },
   {
@@ -778,12 +800,12 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "upstream_repo": "https://github.com/vercel-labs/agent-browser",
     "original_source_url": "https://github.com/vercel-labs/agent-browser/blob/main/README.md",
     "original_author": "Vercel Labs",
-    "github_stars": 34173,
-    "github_forks": 2139,
+    "github_stars": 34261,
+    "github_forks": 2146,
     "first_seen": "2026-05-12"
   },
   {
@@ -805,12 +827,12 @@
       "multi",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "upstream_repo": "https://github.com/NousResearch/hermes-agent",
     "original_source_url": "https://github.com/NousResearch/hermes-agent/blob/main/README.md",
     "original_author": "Nous Research",
-    "github_stars": 165581,
-    "github_forks": 27279,
+    "github_stars": 166608,
+    "github_forks": 27510,
     "first_seen": "2026-05-20"
   },
   {
@@ -832,7 +854,7 @@
       "claude",
       "skill"
     ],
-    "updated_at": "2026-05-24",
+    "updated_at": "2026-05-25",
     "first_seen": "2026-05-24"
   }
 ]
