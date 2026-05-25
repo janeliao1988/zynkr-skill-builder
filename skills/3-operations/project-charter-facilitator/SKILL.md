@@ -1,6 +1,6 @@
 ---
 name: project-charter-facilitator
-description: "專案章程發想 (New)"
+description: "Stress-test and refine a project idea before execution via a 7-stage Socratic facilitation — WHY (5 Whys) → WHAT → HOW → WHO (RACI) → WHEN (Gantt) → MEASURES → RISKS — producing an execution-ready project charter."
 category: operations
 project: project-charter-facilitator
 platform: claude

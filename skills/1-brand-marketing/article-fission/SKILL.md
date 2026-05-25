@@ -1,6 +1,6 @@
 ---
 name: article-fission
-description: "寫作助理 ─ 文章裂變"
+description: "Article fission — extract outline + summary from any popular article, then run 3 rounds of reflective dialogue to surface the writer's own refined take, ending with a new actionable outline ready for style + writing handoff."
 category: brand-marketing
 project: article-fission
 platform: claude

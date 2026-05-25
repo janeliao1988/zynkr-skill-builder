@@ -1,6 +1,6 @@
 ---
 name: prompt-engineer
-description: "指令工程助理 ─ 重構指令"
+description: "Refactor a prompt (or prompt idea) into a production-ready package via 4 phases — GUIDE intake → diagnosis → structured refactor with explicit IPO sections + system/developer/user layers → optional multi-turn conversation blueprint."
 category: product
 project: prompt-engineer
 platform: claude

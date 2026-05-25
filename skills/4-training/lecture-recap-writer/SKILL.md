@@ -1,0 +1,132 @@
+---
+name: lecture-recap-writer
+description: "Turn a video file or transcript into a reader-friendly lecture recap structured into five fixed sections — Summary, Theme, Q&A, Tools, Call to Action — while strictly avoiding any reference-outline detail leakage."
+category: training
+project: lecture-recap-writer
+platform: claude
+status: Done
+author: Peter Tu
+sheetId: "4.01"
+originalName: "處理影片回顧"
+input: "A user-provided video file, a video URL, or the verbatim transcript of a recorded lecture/livestream"
+process: "Transcribe the video (if not already a transcript), remove filler words, map the cleaned content to the reference outline structure, then render the recap"
+output: "A reader-friendly recap document with five sections: Summary, Theme, Q&A, Tools, Call to Action"
+synergy: []
+---
+
+# Lecture Recap Writer
+
+```bash
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill lecture-recap-writer
+```
+
+Turn a recorded lecture, livestream, or workshop into a publishable five-section recap. Use this skill when you have a video or transcript and need a reader-friendly summary in the canonical Zynkr recap format. **Different from sibling skills**:
+- `polish-lecture-transcript` polishes the raw transcript itself (preserves every line).
+- `process-livestream` produces four parallel workstreams (slides, social posts, etc.) — not a single doc.
+- `lecture-recap-writer` (this skill) produces **one** narrative recap doc with five fixed sections.
+
+---
+
+## Step 1 — Collect inputs
+
+Ask the user for:
+1. **Source** — one of:
+   - Video file (`.mp4`, `.mov`, `.m4a`, `.wav`)
+   - Video URL (YouTube, Vimeo, etc.)
+   - Transcript text (paste or file path)
+2. **Lecture context** — speaker name, topic, target audience (1–2 sentences)
+3. **Recap outline** (optional) — a reference structure or session outline if available
+
+Store as `SOURCE`, `CONTEXT`, `OUTLINE_REF` (may be empty).
+
+---
+
+## Step 2 — Get a clean transcript
+
+Branch by input type:
+
+- **Already a transcript** → proceed to Step 3
+- **Video file** → transcribe locally or via the user's preferred ASR tool (suggest `whisper` or `polish-lecture-transcript` skill for the cleanup pass)
+- **Video URL** → ask the user to download or provide the transcript; this skill does not fetch external media
+
+Once you have raw transcript text:
+1. Remove obvious filler words (嗯、啊、那個、就是, "um", "uh", "like")
+2. Normalize speaker labels if present
+3. Preserve direct quotes from the speaker — these become Q&A material
+
+Store as `CLEAN_TRANSCRIPT`.
+
+---
+
+## Step 3 — Map content to the five sections
+
+Walk through `CLEAN_TRANSCRIPT` and bucket content into the five canonical sections. Strict rule: **if a reference outline was provided in `OUTLINE_REF`, use it only to structure section order — never copy detail text from the outline**. Detail comes from the transcript only.
+
+### Section structure
+
+**1. Summary (摘要)** — 2–3 sentences capturing the lecture's central message. Reader-friendly, third-person.
+
+**2. Theme (主題)** — The lecture's argument or framework. 3–5 bullets, each one main point with a one-sentence explanation drawn from the transcript.
+
+**3. Q&A** — Either:
+   - Actual audience Q&A from the recording, OR
+   - Inferred Q&A: pull 3–5 questions a reader would likely ask, then answer them using direct quotes from the speaker.
+   Format: `Q: ... / A: <quote or paraphrase from the lecture>`
+
+**4. Tools (工具)** — Concrete tools, frameworks, books, or references the speaker mentioned. Bullet list with one-line context per item.
+
+**5. Call to Action (行動呼籲)** — 1–2 sentences. What does the lecture invite the reader to do next? Pull from the speaker's actual closing remarks if present; otherwise infer the most natural reader action.
+
+---
+
+## Step 4 — Output
+
+Render in zh-TW unless the lecture is in English (then English). Use this template:
+
+```
+# 講座回顧：<lecture title>
+
+> Speaker: <name>  ·  Audience: <audience>
+
+## 摘要 / Summary
+<2–3 sentences>
+
+## 主題 / Theme
+- **<point 1>** — <explanation>
+- **<point 2>** — <explanation>
+- **<point 3>** — <explanation>
+
+## Q&A
+**Q:** <question>
+**A:** <answer drawn from transcript>
+
+(repeat 3–5 times)
+
+## 工具 / Tools
+- **<tool name>** — <one-line context>
+
+## 行動呼籲 / Call to Action
+<1–2 sentences>
+```
+
+---
+
+## Step 5 — Quality checks before delivery
+
+Before handing the recap to the user, verify:
+- [ ] Summary is under 80 words
+- [ ] Theme has 3–5 bullets, no overlap with Summary
+- [ ] Q&A pulls from actual transcript content, not invented
+- [ ] No detail copied verbatim from `OUTLINE_REF`
+- [ ] All speaker quotes are accurate (paraphrase if you can't preserve verbatim)
+- [ ] CTA is concrete and actionable, not generic
+
+---
+
+## Rules
+
+- Never invent statements the speaker did not make
+- Never copy reference outline text into the body — outline is for ordering only
+- Always preserve the speaker's voice — if they're casual, the recap is casual; if formal, formal
+- Filler-word removal is editorial — do not change meaning
+- When uncertain about a fact mentioned in the lecture, mark with `[unclear in source]` rather than guessing

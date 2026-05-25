@@ -14,11 +14,13 @@
   },
   "rows": {
     "0.01": {
-      "kind": "skip",
-      "category": "operations",
+      "kind": "standalone",
+      "category": "product",
+      "project": "skill-finder",
+      "slug": "skill-finder",
       "sheet_name": "行政助理 ─ 搜尋助理索引",
       "author": "Peter Tu",
-      "notes": "Sheet prefix '0' (strategy) conflicts with 'For upload' category '營運' (operations). Decide category before scaffolding."
+      "notes": "Resolved 2026-05-25: neither strategy nor operations fits — this is a marketplace discovery agent (end-user finds the right assistant). Placed in 5-product (GTM / marketplace management function). Hand-authored from sheet description, not synced via tmp/docs."
     },
     "1.01": { "kind": "agent", "category": "brand-marketing", "parent_project": "writing-agent", "slug": "socratic-ideation-partner", "sheet_name": "寫作助理 ─ 靈感發想", "exists": true },
     "1.02": { "kind": "agent", "category": "brand-marketing", "parent_project": "writing-agent", "slug": "article-style-selector", "sheet_name": "寫作助理 ─ 文章風格導航員", "exists": true },
@@ -28,9 +30,9 @@
     "1.06": { "kind": "agent", "category": "brand-marketing", "parent_project": "writing-agent", "slug": "cta-writer", "sheet_name": "寫作助理 ─ 客製化行動呼籲", "exists": true },
     "1.07": { "kind": "skip", "category": "brand-marketing", "sheet_name": "寫作助理 ─ 內容標籤助理", "notes": "Status=Not started, no prompt doc." },
     "1.08": { "kind": "standalone", "category": "brand-marketing", "project": "article-fission", "slug": "article-fission", "sheet_name": "寫作助理 ─ 文章裂變", "author": "Peter Tu" },
-    "1.09": { "kind": "standalone", "category": "brand-marketing", "project": "zh-tw-translator", "slug": "zh-tw-translator", "sheet_name": "寫作助理 ─ 翻譯蒟蒻", "author": "Peter Tu", "notes": "Sheet's 'Claude skill' col is populated — confirm whether already exists before scaffolding." },
-    "1.10": { "kind": "standalone", "category": "brand-marketing", "project": "ai-literacy-topic-selector", "slug": "ai-literacy-topic-selector", "sheet_name": "寫作助理 ─ AI 素養文章選題", "author": "Peter Tu" },
-    "1.11": { "kind": "standalone", "category": "brand-marketing", "project": "ai-literacy-article-writer", "slug": "ai-literacy-article-writer", "sheet_name": "寫作助理 ─ AI 素養文章撰寫", "author": "Bicky Yang" },
+    "1.09": { "kind": "standalone", "category": "brand-marketing", "project": "zh-tw-translator", "slug": "zh-tw-translator", "sheet_name": "寫作助理 ─ 翻譯蒟蒻", "author": "Peter Tu", "notes": "Hand-authored 2026-05-25 — prompt doc is the giant 63K-char multi-tab writing-agent course doc (tab t.0). Written from sheet description instead of fetched body." },
+    "1.10": { "kind": "standalone", "category": "brand-marketing", "project": "ai-literacy-topic-selector", "slug": "ai-literacy-topic-selector", "sheet_name": "寫作助理 ─ AI 素養文章選題", "author": "Peter Tu", "notes": "Hand-authored 2026-05-25 — same giant-doc issue. Knowledge doc (judgment-rules + audience-distribution) saved at references/." },
+    "1.11": { "kind": "standalone", "category": "brand-marketing", "project": "ai-literacy-article-writer", "slug": "ai-literacy-article-writer", "sheet_name": "寫作助理 ─ AI 素養文章撰寫", "author": "Bicky Yang", "notes": "Hand-authored 2026-05-25 — same giant-doc issue. Written from sheet description." },
     "1.12": { "kind": "skip", "category": "brand-marketing", "sheet_name": "簡報助理 ─ 設計簡報故事線", "notes": "Status=Not started." },
     "1.13": { "kind": "skip", "category": "brand-marketing", "sheet_name": "簡報助理 ─ 分頁設定", "notes": "Status=Not started." },
     "1.14": { "kind": "skip", "category": "brand-marketing", "sheet_name": "簡報助理 ─ 簡報視覺呈現選擇", "notes": "Status=Not started." },
@@ -63,7 +65,7 @@
     "3.09": { "kind": "skip", "category": "engineer", "sheet_name": "知識庫管理 ─ 判斷重複", "notes": "Status=Not started. Category drift." },
     "3.10": { "kind": "skip", "category": "engineer", "sheet_name": "知識庫管理 ─ 自動更新", "notes": "Status=Not started. Category drift." },
 
-    "4.01": { "kind": "review", "category": "training", "sheet_name": "處理影片回顧", "author": "Peter Tu", "notes": "Description (transcribe + Summary/Theme/Q&A/Tools/CTA) overlaps with existing 'polish-lecture-transcript' OR 'process-livestream' in repo. User must confirm which (or both) the sheet row represents before sync runs." },
+    "4.01": { "kind": "standalone", "category": "training", "project": "lecture-recap-writer", "slug": "lecture-recap-writer", "sheet_name": "處理影片回顧", "author": "Peter Tu", "notes": "Resolved 2026-05-25: distinct from polish-lecture-transcript (transcript polishing) and process-livestream (4 parallel workstreams) — 4.01's output is a unified recap with fixed sections (Summary/Theme/Q&A/Tools/CTA). Scaffolded as its own skill. Hand-authored from sheet description." },
 
     "5.01": { "kind": "skip", "category": "product", "sheet_name": "指令工程助理 ─ 引導產品需求", "notes": "Status=Not started." },
     "5.02": { "kind": "standalone", "category": "product", "project": "prompt-engineer", "slug": "prompt-engineer", "sheet_name": "指令工程助理 ─ 重構指令", "author": "Peter Tu" },
