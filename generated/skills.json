@@ -1114,6 +1114,34 @@
     "sourceFile": "3-operations/project-charter-facilitator/SKILL.md"
   },
   {
+    "id": "3.09",
+    "name": "drift-check",
+    "category": "operations",
+    "project": "drift-check",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "description": "Weekly hygiene ritual for Zynkr's local↔cloud knowledge governance. Lists Google Drive Docs modified in the last N days across the 8 LOB folders (and Drive root), diffs against local `_INDEX.md` entries in `~/Desktop/Claude/zynkr/`, and proposes specific index edits: new entries to add, broken/renamed links to fix, deleted Docs to remove. Triggers on phrases like 'drift check', 'weekly hygiene', 'sync indexes', 'check cloud changes', 'what changed in cloud this week', '/drift-check', or when the user pastes nothing but asks to reconcile local/cloud state. Should fire eagerly when the user references the weekly hygiene ritual from the Zynkr knowledge-governance model.",
+    "input": "Optional: number of days to look back (default 7). Optional: LOB scope as either an LOB number ('2.0', '7.1') or 'all' (default 'all'). Optional: Google account override...",
+    "process": "List cloud folder contents with modifiedTime via Google Workspace MCP → filter to the time window → read each affected local `_INDEX.md` → diff cloud entries against indexed URLs → emit a per-LOB report: new Docs to add, broken entries to fix, summary...",
+    "output": "Per-LOB report (one section per LOB touched in the window): NEW (cloud Docs not in index) · CHANGED (Docs whose modifiedTime moved within the window) · BROKEN (index entries...",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "3.09",
+    "kind": "skill",
+    "synergy": [
+      "3.09"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/3.09.md -o ~/.claude/skills/drift-check.md",
+    "updatedAt": "2026-05-27",
+    "firstSeen": "2026-05-27",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "3-operations/drift-check/SKILL.md"
+  },
+  {
     "id": "4.01",
     "name": "polish-lecture-transcript",
     "category": "training",
@@ -1380,9 +1408,7 @@
     "sourceFile": "5-product/product-planning/SKILL.md",
     "upstreamRepo": "https://github.com/MrPM-Stanley/product-planning-skill",
     "originalSourceUrl": "https://github.com/MrPM-Stanley/product-planning-skill/blob/main/README.md",
-    "originalAuthor": "MrPM-Stanley",
-    "githubStars": 38,
-    "githubForks": 9
+    "originalAuthor": "MrPM-Stanley"
   },
   {
     "id": "5.02",
@@ -1653,9 +1679,7 @@
       "gen_agent_trust_hub": "pending",
       "socket": "pending",
       "snyk": "pending"
-    },
-    "githubStars": 34465,
-    "githubForks": 2168
+    }
   },
   {
     "id": "6.13",
@@ -1691,9 +1715,7 @@
       "gen_agent_trust_hub": "pending",
       "socket": "pending",
       "snyk": "pending"
-    },
-    "githubStars": 170059,
-    "githubForks": 28408
+    }
   },
   {
     "id": "6.14",
@@ -1781,9 +1803,7 @@
     "sourceFile": "6-engineer/find-skills/SKILL.md",
     "upstreamRepo": "https://github.com/vercel-labs/skills",
     "originalSourceUrl": "https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md",
-    "originalAuthor": "vercel-labs",
-    "githubStars": 20332,
-    "githubForks": 1633
+    "originalAuthor": "vercel-labs"
   },
   {
     "id": "6.17",
