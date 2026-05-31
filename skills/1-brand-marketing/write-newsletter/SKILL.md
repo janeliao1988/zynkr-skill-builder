@@ -1,25 +1,13 @@
 ---
 name: write-newsletter
-description: "Drafts Peter's weekly Chinese newsletter by combining three sources: (1) the user's article outline or topic, (2) last 7 days of Threads engagement data to understand what readers care about, and (3) Claude Code /insights from the past week to surface what Peter has been building and learning. Use this skill whenever Peter says \"幫我寫電子報\", \"來寫電子報\", \"寫 newsletter\", \"電子報大綱\", or shares a topic/outline and wants it shaped into a newsletter. Trigger even if Peter only gives a rough idea — the skill will pull the other context automatically."
-category: brand-marketing
-project: write-newsletter
-platform: claude
-status: Done
-author: Peter Tu
-input: "Article topic, outline, or rough idea"
-process: "Combine outline, Threads 7-day engagement data, and /insights into a drafted newsletter"
-output: "Drafted weekly Chinese newsletter ready for review"
-synergy: []
+description: Drafts Peter's weekly Chinese newsletter from the user's article outline or topic idea, shaping it into a structured handoff for the /write-article pipeline. Use this skill whenever Peter says "幫我寫電子報", "來寫電子報", "寫newsletter", "電子報大綱", or shares a topic/outline and wants it shaped into a newsletter. Trigger even if Peter only gives a rough idea — the skill will structure it into a full outline.
 ---
 
 # Write Newsletter
 
-Peter writes a weekly Chinese newsletter for career professionals and AI practitioners. The newsletter's strength is that Peter doesn't just theorize — he shows real things he's been building, and backs it up with what his readers are actually engaging with on Threads.
+Peter writes a weekly Chinese newsletter for career professionals and AI practitioners. The newsletter's strength is that Peter doesn't just theorize — he shows real things he's been building and learning.
 
-Each issue has three ingredients:
-- **Central theme** — from Peter's outline or topic idea
-- **Reader pulse** — what's resonating on Threads this week (from API data)
-- **First-person experience** — what Peter has been building/learning (from Claude Code insights)
+The single ingredient is the **central theme** — Peter's outline or topic idea.
 
 ---
 
@@ -31,52 +19,22 @@ If not, ask: "你這週想寫什麼主題？給我一個大綱或幾個關鍵想
 
 ---
 
-## Step 2: Fetch Threads 7-day engagement data
+## Step 2: Shape the outline
 
-Run the threads-extract pipeline:
+Before writing, develop the topic into a structured outline:
+- What's the core insight or argument of this issue?
+- What concrete example or story makes it land for readers?
+- What should readers do or take away by the end?
 
-```bash
-cd '/Users/petertu/Desktop/Claude/zynkr/6.0 tech/threads-extract'
-.venv/bin/python fetch_30d.py 2>/dev/null
-```
-
-From the output, identify:
-- Top 3 posts by impressions this week
-- Which content types performed best (image vs text)
-- Topics with the highest comment counts (reader questions = newsletter gold)
-- Any recurring reader pain points or questions
+A clear through-line is what makes the newsletter feel alive rather than generic.
 
 ---
 
-## Step 3: Fetch Claude Code insights
-
-Run the insights skill: `/insights`
-
-From the report, extract:
-- Main projects or workflows built this week
-- Key breakthroughs or things that finally clicked
-- Friction points that were solved (these make great relatable stories)
-- Any new automations or skills created
-
----
-
-## Step 4: Find the connecting thread
-
-Before writing, spend a moment synthesizing:
-- How does the central theme connect to what Peter has been building this week?
-- Which Threads posts add real-world validation to the theme?
-- Are there reader questions that the newsletter can directly answer?
-- What's the one thing Peter knows this week that he didn't know last week?
-
-This connection is what makes the newsletter feel alive rather than generic.
-
----
-
-## Step 5: Hand off to /write-article
+## Step 3: Hand off to /write-article
 
 At this point we have a structured outline with key points per section. This is exactly **Stage 2** entry point for the `/write-article` pipeline.
 
-Package the synthesized context into a handoff summary in this format, then invoke `/write-article`:
+Package the outline into a handoff summary in this format, then invoke `/write-article`:
 
 ```
 ## Newsletter Handoff Summary
@@ -86,17 +44,10 @@ Package the synthesized context into a handoff summary in this format, then invo
 **Confirmed structure:** [structure name, e.g. Problem → Insight → Application → CTA]
 
 **Section key points:**
-1. [Section title] — [2–3 bullet points, including which Threads post or insight to weave in]
+1. [Section title] — [2–3 bullet points]
 2. [Section title] — [2–3 bullet points]
 3. [Section title] — [2–3 bullet points]
 4. CTA — [3 specific actions]
-
-**Reader evidence to weave in:**
-- [Top Threads post: impressions, topic, why it's relevant]
-- [Second signal if applicable]
-
-**First-person examples from this week:**
-- [Specific thing Peter built or learned, from insights]
 ```
 
-Then say: "我已經整理好大綱和所有 context，交給 /write-article 開始撰寫。" and invoke `/write-article` with the handoff summary as the argument — it will enter at Stage 2 (article-drafter) and run the full writing pipeline from there.
+Then say: "我已經整理好大綱，交給 /write-article 開始撰寫。" and invoke `/write-article` with the handoff summary as the argument — it will enter at Stage 2 (article-drafter) and run the full writing pipeline from there.
