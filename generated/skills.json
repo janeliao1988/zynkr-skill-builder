@@ -853,8 +853,36 @@
     "upstreamRepo": "https://github.com/anthropics/skills",
     "originalSourceUrl": "https://github.com/anthropics/skills/blob/HEAD/skills/pptx/SKILL.md",
     "originalAuthor": "Anthropic, PBC",
-    "githubStars": 146098,
+    "githubStars": 146100,
     "githubForks": 17214
+  },
+  {
+    "id": "1.29",
+    "name": "zynkr-slide",
+    "category": "brand-marketing",
+    "project": "zynkr-slide",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "description": "簡報接力的總指揮（站在三棒接力之上）：使用者說「做一份簡報／做個 deck／幫我把這些做成投影片／做季報簡報／all-hands 簡報／deep dive 簡報／pitch deck」時主動觸發。我做一次到位的智慧 intake──偵測這是哪種簡報（deep-dive 深掘 / business-review 業務檢視 / data-presentation 數據簡報 / all-hands 全員大會 / planning 規劃 / pitch 提案 / update 更新 / teach 培訓 / fundraise 募資）、盤點使用者已給的素材與故事線、提案頁數讓使用者確認、收齊必含素材與模式──組出一份 SLIDE_PACKET ▸ Brief，再依序驅動 slide-storyline-designer → slide-page-splitter → slide-visual-selector → pptx 技能算成 .pptx。預設 express 模式（前面一次問清楚，只在故事線定稿與最終檔兩處請使用者拍板）；帶 guided 參數則保留三棒各自的逐棒人工審核。範圍界線：我只做意圖偵測、context 收斂、▸ Brief 注入與接力調度；不自己排敘事弧線、不自己分頁、不自己選版式、不自己算繪 .pptx──那是三棒與 pptx 技能各自的事。",
+    "input": "原始簡報素材／主題 + 想傳達的訊息（零散筆記、bullet、舊 deck、數據、口頭重點皆可），可帶簡報用途線索；或一份已存在的 ▸ Storyline／▸ Pages 想接續往下跑。參數：express（預設）/ guided。",
+    "process": "偵測意圖 + 盤點既有 context → 單次智慧 intake（確認用途、受眾/場合、提案頁數、必含素材、模式）→ 載入 use-case playbook 組出 SLIDE_PACKET ▸ Brief → 建立共用工作子資料夾存 ▸ Brief → 依序驅動三棒接力（帶著 ▸ Brief）→ 把 ▸ Visuals 交給 pptx 技能算繪 → 交付 .pptx",
+    "output": "一份成稿 .pptx（經三棒接力 + pptx 技能算繪），以及完整 SLIDE_PACKET（▸ Brief / ▸ Storyline / ▸ Pages / ▸ Visuals）存在同一個工作子資料夾。",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "1.29",
+    "kind": "skill",
+    "synergy": [
+      "1.29"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/1.29.md -o ~/.claude/skills/zynkr-slide.md",
+    "updatedAt": "2026-06-03",
+    "firstSeen": "2026-06-03",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "1-brand-marketing/zynkr-slide/SKILL.md"
   },
   {
     "id": "2.19",
@@ -2148,8 +2176,8 @@
       "socket": "pending",
       "snyk": "pending"
     },
-    "githubStars": 179017,
-    "githubForks": 30668
+    "githubStars": 179031,
+    "githubForks": 30669
   },
   {
     "id": "6.14",
@@ -2238,7 +2266,7 @@
     "upstreamRepo": "https://github.com/vercel-labs/skills",
     "originalSourceUrl": "https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md",
     "originalAuthor": "vercel-labs",
-    "githubStars": 21182,
+    "githubStars": 21184,
     "githubForks": 1701
   },
   {
@@ -2249,7 +2277,7 @@
     "platform": "claude",
     "status": "WIP",
     "author": "Peter Tu",
-    "description": "The front-door router for the Zynkr assistant ecosystem. Takes ANY input from the user — a URL, a file path, a slug, a vague idea, a question about pipeline state — figures out which Zynkr skill it belongs to, reads the relevant state across GitHub Project / issues / on-disk / live marketplace, and either auto-invokes the right sub-skill or asks one targeted clarifying question. Use this skill whenever the user drops something into the conversation without specifying which skill should handle it — every undirected URL, file mention, idea, status question, or 'what should I do with this?' is a candidate. Especially fire on phrases like 'I found this', 'I just built X', 'where am I with Y', 'what's in my queue', 'I have an idea about', '幫我看一下這個', '/zynkr', or when the user pastes a link with no further direction. Triggers MORE eagerly than the specific skills below it — when in doubt, route through /zynkr rather than asking the user to remember the right slash command.",
+    "description": "The front-door router for the Zynkr assistant ecosystem. Takes ANY input from the user — a URL, a file path, a slug, a vague idea, a question about pipeline state — figures out which Zynkr skill it belongs to, reads the relevant state across GitHub Project / issues / on-disk / live marketplace, and either auto-invokes the right sub-skill or asks one targeted clarifying question. Use this skill whenever the user drops something into the conversation without specifying which skill should handle it — every undirected URL, file mention, idea, status question, or 'what should I do with this?' is a candidate. Especially fire on phrases like 'I found this', 'I just built X', 'where am I with Y', 'what's in my queue', 'I have an idea about', '幫我看一下這個', '/zynkr', or when the user pastes a link with no further direction. Triggers MORE eagerly than the specific skills below it — when in doubt, route through /zynkr rather than asking the user to remember the right slash command. Also fire on deck / 簡報 requests — 'make me a deck', '幫我做簡報', '做投影片', 'pitch deck', 'deep dive 簡報', 'all-hands 簡報', '把這份資料做成簡報' — and route them to /zynkr-slide (the slide-relay orchestrator).",
     "input": "Anything: a URL, local file path, skill slug, free-text idea, status question, or pasted content. The skill classifies the input shape before doing anything else.",
     "process": "Classify input shape → look up state across the four signals (Project / issues / on-disk / live API) when the input references a skill-pipeline item → route to the right sub-skill via the Skill tool when confidence is high, or ask one targeted clarifying...",
     "output": "Either: (a) an auto-invocation of the right Zynkr sub-skill (most common); (b) one targeted clarifying question when intent is genuinely ambiguous; (c) a compact state table...",
