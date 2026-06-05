@@ -65,3 +65,28 @@ When you see this hex range, read it as this layer:
 - The full Lucid Standard Import JSON schema — fetch `lucid://diagram-specification` at runtime; it can change.
 - Cloud architecture shapes (AWS, GCP, Azure icons) — only relevant for infrastructure diagrams, not process flows. Use `lucid://shape-libraries/*` if you ever need them.
 - Endpoint / arrow styles — fetch `lucid://endpoint-styles`. Default is `Equilateral Arrow`.
+
+---
+
+## Standard Import quick-map (drafting via `lucid_create_diagram_from_specification`)
+
+The `shapeType` column above is the `add_block` / `fetch` vocabulary. The **Standard-Import `type`** (lowercase) is what goes in the create-spec JSON:
+
+| Semantic | Standard-Import `type` | BlockClass (fetch) | FillColor |
+|---|---|---|---|
+| Terminal · Start/End | `terminator` | TerminatorBlockV2 | `#ffe342` |
+| FE input | `manualInput` | ManualInputBlock | `#ffd9d9` |
+| FE output | `manualInput` | ManualInputBlock | `#fff0f0` |
+| HITL manual op | `manualOperation` | ManualOperationBlockNew | `#edf5ff` |
+| BE LLM step | `process` | ProcessBlock | `#cfe4ff` |
+| BE deterministic step | `process` | ProcessBlock | `#9391ff` |
+| Decision gate | `decision` | DecisionBlock | `#dedeff` |
+| DB cylinder | `database` | DatabaseBlock | `#e3fae3` |
+| Durable doc | `document` | DocumentBlock | `#e3fae3` |
+| RAG knowledge doc | `document` | DocumentBlock | `#c3f7c8` |
+
+Gotchas (full notes in `SKILL.md` §8):
+- Set every node's `fontSize` to **10**; short labels balloon on default.
+- `swimLanes` render **flat** (no nested sub-lanes) — one lane per sub-band, group via the title; lane widths must sum to the pool dimension.
+- `lucid_add_line` / `lucid_edit_item` endpoint styles are **Capitalized** (`None`, `Equilateral Arrow`); the create-spec uses lowercase (`none`, `arrow`).
+- No native legend block — build colour chips (filled rectangles whose own text is the label).

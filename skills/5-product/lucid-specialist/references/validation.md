@@ -70,6 +70,18 @@ Ten rules. Each cites the underlying principle (from `architecture-principles.md
 - **Detect**: any node whose fill family contradicts its lane (e.g., a green `DatabaseBlock` floating in the FE lane, or a red node in the DB lane).
 - **Fix**: either move the node to the right lane, or recolor it to match the lane it belongs in.
 
+### V11 — Node text size 10 (soft)
+
+- **Principle**: legibility / canonical template uses `fontSize` 10; `SKILL.md` §8.
+- **Detect**: a node on default/auto font (short labels render oversized vs neighbours — the "ransom-note" look).
+- **Fix**: set every node's `fontSize` to 10.
+
+### V12 — Clean-register hygiene (soft — stakeholder/presentation charts only)
+
+- **Principle**: two registers, `SKILL.md` §9.
+- **Detect**: a stakeholder-facing chart missing a legend or "how to read" panel, with sentence-long node labels, empty lanes, or every edge labelled; OR distinct knowledge sources collapsed into one node so a coupling is lost.
+- **Fix**: add a colour-chip legend + overview panel; shorten labels to ≤4 words; drop/merge empty lanes; demote plumbing edges to dashed grey and label only decisions; keep each RAG source as its own dashed edge to its consuming stage.
+
 ---
 
 ## Lint output format

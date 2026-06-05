@@ -106,3 +106,18 @@ When you have a node and need to pick its lane, ask in this order:
 5. **None of the above** → It's probably a `Terminator` or `Off-page link`; place near the relevant lane boundary.
 
 If a node feels like it could go in two lanes, re-read `architecture-principles.md` §2 (golden rules). The smell test: "FE shows intent; BE owns meaning."
+
+---
+
+## 6) Clean / presentation variant (stakeholder charts)
+
+When the chart is for stakeholders rather than an engineering audit ("make it human-readable / 視覺友善"), keep the FE→BE→DB order and Shape × Colour semantics, but relax the mandatory 6-sub-lane scaffold for readability:
+
+- **Drop empty lanes** (no `External user` step → don't render that band) and you may collapse the BE sub-bands to `Backend · human gate (HITL)` + `Backend · AI / rules`. Net **4–5 lanes, no empty rows**.
+- Add a **legend** (colour-chip key) and a **"How to read this"** panel beside the flow.
+- **Bold dark lane headers** (`headerFill` ≈ `#3a3f4b`) with a faint per-layer `laneFill`.
+- One node per step, **≤4-word labels**, `fontSize` **10**, generous column pitch (~300).
+- Plumbing edges (saves / loads / consults) = thin **dashed grey** (`#888888`, width 1); only decisions and gate outcomes get labels.
+- Don't collapse distinct knowledge into one node — keep *which* RAG source feeds *which* stage as separate dashed edges.
+
+The lane-width-sum and node-in-band rules still apply. See `SKILL.md` §8 (build reality) and §9 (two registers). Reference exemplar: Lucid's stock "AI process diagram" template.
