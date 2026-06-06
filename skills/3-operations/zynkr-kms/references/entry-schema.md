@@ -9,8 +9,10 @@ The KB holds **two kinds of blocks**, and keeping them distinct is the whole poi
 
 Why split them: a price or policy that's copied into ten answers drifts the moment it
 changes. Put it in one FACT, have entries cite it, and a single edit updates every answer.
-The drafter reads the whole doc in one fetch, so a citing entry still resolves to the real
-numbers at draft time.
+The KB is **nested** (one doc per section + a single `01 Core Facts` doc); the drafter reads
+the relevant **section doc + `01 Core Facts` together**, so a citing entry still resolves to the
+real numbers at draft time — *provided the fact actually lives in `01 Core Facts`*. Always
+write/UPDATE the FACT in `01 Core Facts` before the citing entry that references it.
 
 > **Rule of thumb:** if a fact could appear in more than one answer, or is the kind of thing
 > that changes over time (price, rate, policy, lead time) — it belongs in a **FACT**, and
@@ -33,7 +35,8 @@ numbers at draft time.
   the fact if it helps (e.g. "一天 6 小時 → …").
 - Note any **undefined scope** explicitly ("實體是否含交通費 — 尚未定義") so it isn't silently
   assumed.
-- Facts live in the **`## Core Facts`** section (anchor `<!-- ▼APPEND:core-facts▼ -->`).
+- Facts live **only** in the `01 Core Facts` doc (ID `1R8JoTiIihh4h7Yk3P2GlIgOIzbgSWMNkIzFcmWOzvb0`,
+  anchor `<!-- ▼APPEND:core-facts▼ -->`) — never in a section doc. Section docs hold citing Q&A only.
 
 ## Block type 2 — Q&A entry
 
