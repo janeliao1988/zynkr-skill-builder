@@ -10,7 +10,7 @@ author: Peter Tu
 input: "Raw meeting notes, transcripts, voice memos, or unstructured updates."
 output: "A structured \"Weekly Project Update\" featuring Summary, Progress, Blockers, and What's Next."
 ---
-# 專案筆記專家 (Project Note Specialist)
+# Project Note Specialist
 
 ```bash
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill project-note-specialist

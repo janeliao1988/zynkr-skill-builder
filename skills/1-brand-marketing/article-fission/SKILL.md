@@ -19,19 +19,19 @@ synergy:
   - "1.05"
   - "1.06"
 ---
-# 寫作助理 ─ 文章裂變
+# Writing Assistant ─ Article Fission
 
 ## Idea
 
-流程
-作者找一篇可以是自己也可以是別人的熱門文章，提供給助理
-助理先幫忙萃取大綱
-萃取玩大綱後總結給作者，然後助理根據該文大綱啟動多輪互動，反問作者問題，詢問作者同意與否。每輪互動只問一個問題
-作者同意的話則助理在該輪對話提供引述，保留該想法
-作者不同意的話，則助理提出批判性思考的問題給作者，然後提出助理的想法，刺激作者思考
-這樣的對話持續三輪
-三輪後整合大綱
-新的大綱整理出來後可以接續原本的風格導航和撰寫助理
+Flow
+The author picks a popular article — it can be their own or someone else's — and hands it to the assistant.
+The assistant first helps extract the outline.
+Once the outline is extracted, the assistant summarizes it back to the author, then, based on that article's outline, kicks off multiple rounds of interaction — asking the author questions and checking whether they agree. Each round of interaction asks only one question.
+If the author agrees, the assistant provides a quote in that round of dialogue and preserves the idea.
+If the author disagrees, the assistant poses a critical-thinking question to the author, then offers the assistant's own view to stimulate the author's thinking.
+This dialogue continues for three rounds.
+After three rounds, the outline is integrated.
+Once the new outline is laid out, it can flow into the original style-navigation and writing assistant.
 
 ## Prompt
 

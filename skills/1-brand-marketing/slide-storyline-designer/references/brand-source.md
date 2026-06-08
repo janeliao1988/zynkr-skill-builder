@@ -1,49 +1,49 @@
-# 品牌語氣來源（設定，非內建）
+# Brand Voice Source (configured, not built in)
 
-> **本技能不內建任何品牌語氣內容。** 品牌敘事方法、語氣公式、用字偏好屬於內部資訊，不放進這個公開技能庫。
-> 本檔只做兩件事：(1) 告訴技能**去哪裡載入**你的品牌語氣規範；(2) 給一份**通用 schema**，說明要萃取什麼、怎麼套進故事線。
-> 實際的品牌敘事方法與用字一律在**執行時**從你設定的來源載入，不寫死在這裡。
-
----
-
-## 1 · 設定品牌來源（編輯這裡）
-
-```
-BRAND_GUIDE = <你的品牌指南位置>
-```
-
-- **本機檔案**：用 Read 讀取你的品牌指南（含 Voice & Tone / Method / Messaging 章節）。
-- **Google Drive**：用 `google-workspace` MCP 依名稱 search 你的品牌指南。
-- **Zynkr 內部預設**：品牌指南檔名 `Zynkr-Brand-Guide.md`（位於品牌資料夾），含敘事方法、語氣公式、招牌句型、用字偏好；以本機 Read 或 Drive 搜尋載入。
-
-**找不到 / 未設定時** → 用 §3 的通用敘事原則，並告訴使用者「目前用通用敘事原則，未套用品牌語氣」。
+> **This skill ships no brand-voice content of its own.** The brand narrative method, voice formulas, and word-choice preferences are internal information and are not placed in this public skill library.
+> This file does only two things: (1) tells the skill **where to load** your brand-voice guidelines from; (2) provides a **generic schema** describing what to extract and how to apply it to the storyline.
+> The actual brand narrative method and wording are always loaded **at runtime** from the source you configure — never hard-coded here.
 
 ---
 
-## 2 · 要從品牌指南萃取什麼（通用 schema）
+## 1 · Configure the brand source (edit here)
 
-| 項目 | 說明 | 套用在 |
+```
+BRAND_GUIDE = <your brand guide location>
+```
+
+- **Local file**: use Read to open your brand guide (including the Voice & Tone / Method / Messaging sections).
+- **Google Drive**: use the `google-workspace` MCP to search for your brand guide by name.
+- **Zynkr internal default**: the brand guide is named `Zynkr-Brand-Guide.md` (located in the brand folder) and contains the narrative method, voice formula, signature sentence patterns, and word-choice preferences; load it via local Read or a Drive search.
+
+**When not found / not configured** → use the generic narrative principles in §3, and tell the user "Currently using generic narrative principles; no brand voice applied."
+
+---
+
+## 2 · What to extract from the brand guide (generic schema)
+
+| Item | Description | Applied to |
 |---|---|---|
-| **敘事方法 (narrative method)** | 品牌的「從問題到承諾」步驟序列（若品牌有定義） | 敘事弧線 beats 的預設骨架 |
-| **語氣公式 (voice formula)** | 品牌說話的人格與順序 | 整體口吻 |
-| **招牌句型 (signature patterns)** | 可複用的句型模板 | 核心主張、標題、轉場 |
-| **用字偏好 (lexicon)** | 要用 / 要少用的字 | 措辭；邏輯檢查的用字漂移 |
+| **narrative method** | The brand's "from problem to promise" step sequence (if the brand defines one) | the default skeleton for the narrative-arc beats |
+| **voice formula** | The persona and ordering in how the brand speaks | overall tone |
+| **signature patterns** | Reusable sentence-pattern templates | core claim, titles, transitions |
+| **lexicon** | Words to use / to avoid | phrasing; word-choice drift in the logic check |
 
 ---
 
-## 3 · 通用敘事原則（非品牌專屬，可直接守）
+## 3 · Generic narrative principles (not brand-specific, can be followed directly)
 
-即使沒有品牌指南，這些原則一律成立：
+Even without a brand guide, these principles always hold:
 
-- **核心主張用「決策框架」寫**：這份簡報幫聽眾**做什麼決定／看清什麼取捨**，而不是功能或主題的羅列。
-- **標題自帶結論 (action title)**：每頁標題是結論，不是主題名。
-- **點名取捨**：說清楚真正的 trade-off 是什麼，而不只是列選項。
-- **先講決策、夠資訊才拍板**：別只給答案不給判斷。
+- **Write the core claim as a "decision framework"**: what decision this deck helps the audience **make / what trade-off it helps them see clearly**, rather than an enumeration of features or topics.
+- **Titles carry their own conclusion (action title)**: each slide's title is a conclusion, not a topic name.
+- **Name the trade-off**: spell out what the real trade-off is, not just a list of options.
+- **State the decision first, commit once there's enough information**: don't just give the answer without the judgment behind it.
 
 ---
 
-## 4 · 套進故事線三個動作（用載入到的品牌或通用原則）
+## 4 · Three moves to apply to the storyline (using the loaded brand or generic principles)
 
-- **核心主張 (through-line)**：用品牌語氣 + 「決策框架」框法寫。
-- **敘事弧線 (beats)**：決策型簡報優先套品牌的敘事方法（載入到才用；否則用「問題 → 取捨 → 方向」通用結構）。
-- **邏輯檢查**：若簡報「只給答案沒給判斷」「給選項沒給取捨」，或違反品牌用字偏好，標記為**語氣漂移**並建議改寫——和邏輯跳躍一樣是要補的缺口。
+- **core claim (through-line)**: write it with the brand voice + the "decision framework" framing.
+- **narrative arc (beats)**: for decision-type decks, prefer applying the brand's narrative method (only when loaded; otherwise use the generic "problem → trade-off → direction" structure).
+- **logic check**: if the deck "gives the answer without the judgment" or "gives options without the trade-off," or violates the brand word-choice preferences, flag it as **voice drift** and suggest a rewrite — just like a logic jump, it's a gap to be filled.

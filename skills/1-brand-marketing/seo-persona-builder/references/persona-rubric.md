@@ -1,28 +1,28 @@
-# 消費者人物誌 Rubric（decision-first，B2B 優先）
+# Consumer Persona Rubric (decision-first, B2B-first)
 
-對應 v2 流程圖綠色節點「消費者輪廓和人物誌」。Zynkr 品牌以「決策狀態」定義受眾——不是用職稱，而是「正面對什麼有後果的決策」。每個人物誌填滿以下欄位才算完整。
+Maps to the green node "Consumer profile and personas" in the v2 flowchart. The Zynkr brand defines its audience by "decision state" — not by job title, but by "the consequential decision they are currently facing." A persona is only complete once all of the fields below are filled in.
 
-## 必填欄位
+## Required fields
 
-| 欄位 | 說明 |
+| Field | Description |
 |---|---|
-| 決策狀態（最重要） | 這個人此刻卡在什麼有後果的選擇？（例：要不要把某流程自動化、自建 vs 外包、先導入哪個團隊） |
-| 角色情境（給搜尋用） | 職稱與組織情境只用來反推「他會打什麼字搜尋」，不是品牌定位主軸 |
-| 核心痛點 | 對照三鴻溝：知識（找不到答案）／認知（不知怎麼解）／執行（不會落地） |
-| 真實 trade-off | 這個決策背後沒被講清楚的取捨是什麼 |
-| 目前解法 | 現在如何處理（外包、內部試、不處理） |
-| 購買旅程階段 | 認知 TOFU / 評估 MOFU / 決策 BOFU |
-| 搜尋語言 | 會在 Google / ChatGPT 打什麼字（口語） |
-| 成功樣貌 | 做對這個決策後對他的意義 |
+| Decision state (most important) | What consequential choice is this person stuck on right now? (e.g., whether to automate a given process, build vs. outsource, which team to roll out to first) |
+| Role context (for search) | Job title and organizational context are used only to infer "what they would type into a search box" — they are not the core of the brand positioning |
+| Core pain point | Map against the three gaps: knowledge (can't find the answer) / cognition (don't know how to solve it) / execution (can't put it into practice) |
+| The real trade-off | What is the unstated trade-off behind this decision |
+| Current solution | How they handle it today (outsource, try internally, do nothing) |
+| Buyer journey stage | Awareness TOFU / Evaluation MOFU / Decision BOFU |
+| Search language | What they would type into Google / ChatGPT (colloquial) |
+| What success looks like | What it means for them once they get this decision right |
 
-## 受眾定義（Brand Guide）
+## Audience definition (Brand Guide)
 
-- 品牌受眾＝**決策狀態**：「任何正面對有後果決策的人」。
-- B2B 漏斗仍鎖定企業情境（HR/L&D/營運/轉型）——但這只用於「關鍵字意圖與情境」，文章聲音一律 decision-first，不用職稱當賣點。
-- 次要：想做更好職涯／工作決策的專業工作者（B2C 暖身）。
+- The brand audience = **decision state**: "anyone facing a consequential decision."
+- The B2B funnel still targets enterprise contexts (HR/L&D/operations/transformation) — but this is used only for "keyword intent and context"; the article voice is always decision-first and never sells on job titles.
+- Secondary: professionals who want to make better career / work decisions (B2C warm-up).
 
-## 品質檢查
+## Quality check
 
-- 是否清楚寫出「這個人正在做的決策」與背後的 trade-off？（不能只寫「想用 AI」）
-- 是否標出他最可能問 AI 引擎的一句決策型問題？（給 AEO）
-- 三個人物誌之間是否 MECE，不重疊？
+- Does it clearly state "the decision this person is making" and the trade-off behind it? (It can't just say "wants to use AI")
+- Does it identify the single decision-type question they are most likely to ask an AI engine? (for AEO)
+- Are the three personas MECE relative to each other, with no overlap?

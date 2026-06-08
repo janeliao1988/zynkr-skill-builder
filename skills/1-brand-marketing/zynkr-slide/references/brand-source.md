@@ -1,46 +1,46 @@
-# 品牌來源（設定，非內建）
+# Brand Source (configuration, not built-in)
 
-> **本技能不內建任何品牌內容。** 品牌語氣、敘事方法、視覺規範（色彩/字體/影像）屬於內部資訊，不放進這個公開技能庫。
-> 本檔只做兩件事：(1) 告訴 `zynkr-slide` **去哪裡載入**你的品牌規範；(2) 給一份**通用 schema**，說明 intake 與組 ▸ Brief 時要關心什麼。
-> 實際的品牌內容一律在**執行時**從你設定的來源載入，不寫死在這裡。
+> **This skill ships with no brand content.** Brand voice, narrative method, and visual conventions (color/font/imagery) are internal information and are not placed in this public skill library.
+> This file does only two things: (1) tell `zynkr-slide` **where to load** your brand guidelines from; (2) provide a **generic schema** describing what to care about during intake and when assembling the ▸ Brief.
+> The actual brand content is always loaded **at runtime** from the source you configure — it is never hard-coded here.
 
-> **分工提醒**：`zynkr-slide` 這一層只負責把「這份簡報要不要套品牌」帶進 `SLIDE_PACKET ▸ Brief`（「套用品牌」欄位）。**真正逐棒套用品牌**仍由三棒各自的 brand-source 在自己那一棒載入：
-> - 語氣/敘事 → `slide-storyline-designer/references/brand-source.md`
-> - 視覺/色彩/字體 → `slide-visual-selector/references/brand-source.md`
-> 本層不重複定義品牌細節，只統一「來源指向」與「要不要套」這個總開關。
-
----
-
-## 1 · 設定品牌來源（編輯這裡）
-
-```
-BRAND_GUIDE = <你的品牌指南位置>
-```
-
-- **本機檔案**：用 Read 讀取你的品牌指南（含 Voice & Tone / Method / Visual / Messaging 章節）。
-- **Google Drive**：用 `google-workspace` MCP 依名稱 search 你的品牌指南。
-- **Zynkr 內部預設**：品牌指南檔名 `Zynkr-Brand-Guide.md`（位於品牌資料夾），含敘事方法、語氣公式、招牌句型、用字偏好、色彩角色、字級、影像法則、logo；以本機 Read 或 Drive 搜尋載入。
-
-**找不到 / 未設定時** → ▸ Brief 的「套用品牌」記為「否，中性預設」，並在 intake 告訴使用者「目前用中性預設，未套用品牌」。
+> **Division-of-labor reminder**: this `zynkr-slide` layer is only responsible for carrying "should this deck apply the brand or not" into the `SLIDE_PACKET ▸ Brief` (the "Apply brand" field). The **actual per-relay brand application** is still done by each relay's own brand-source, loaded within that relay:
+> - Voice/narrative → `slide-storyline-designer/references/brand-source.md`
+> - Visual/color/font → `slide-visual-selector/references/brand-source.md`
+> This layer does not redefine brand details; it only unifies the "source pointer" and the master switch of "apply or not".
 
 ---
 
-## 2 · 本層要關心的（通用 schema）
+## 1 · Configure the brand source (edit here)
 
-| 項目 | 說明 | 套用在 |
+```
+BRAND_GUIDE = <location of your brand guide>
+```
+
+- **Local file**: use Read to load your brand guide (including the Voice & Tone / Method / Visual / Messaging sections).
+- **Google Drive**: use the `google-workspace` MCP to search for your brand guide by name.
+- **Zynkr internal default**: the brand guide file is named `Zynkr-Brand-Guide.md` (located in the brand folder) and contains the narrative method, voice formulas, signature sentence patterns, word-choice preferences, color roles, type scale, imagery rules, and logo; load it via local Read or Drive search.
+
+**When not found / not configured** → record the ▸ Brief's "Apply brand" as "No, neutral default", and tell the user during intake that "the neutral default is currently in use; no brand is applied".
+
+---
+
+## 2 · What this layer cares about (generic schema)
+
+| Item | Description | Applied in |
 |---|---|---|
-| **要不要套品牌** | 總開關：這份簡報是否依品牌指南產出 | 寫進 ▸ Brief「套用品牌」欄位 |
-| **品牌來源指向** | 品牌指南實際在哪（本機/Drive/未設定） | 傳遞給三棒，讓它們各自載入 |
+| **Apply brand or not** | Master switch: whether this deck is produced according to the brand guide | Written into the ▸ Brief "Apply brand" field |
+| **Brand source pointer** | Where the brand guide actually lives (local/Drive/unset) | Passed to the three relays so they each load it |
 
-> 細部的語氣公式、色彩角色、字級級距等**不在本層處理**──那是棒1（語氣）與棒3（視覺）各自 brand-source 的職責。本層只確保「來源一致、開關明確」。
+> The detailed voice formulas, color roles, type-scale steps, etc. **are not handled at this layer** — those are the responsibility of relay 1 (voice) and relay 3 (visual), each in its own brand-source. This layer only ensures "consistent source, explicit switch".
 
 ---
 
-## 3 · 未設定品牌時的中性預設（可直接守）
+## 3 · Neutral default when no brand is set (safe to follow directly)
 
-即使沒有品牌指南，這些原則一律成立（與三棒內建一致）：
+Even without a brand guide, these principles always hold (consistent with what the three relays build in):
 
-- **核心主張用「決策框架」寫**：這份簡報幫聽眾**做什麼決定／看清什麼取捨**。
-- **標題自帶結論 (action title)**：每頁標題是結論，不是主題名。
-- **用色節制**：決策色每頁最多 1 次；不靠花俏配色撐版面。
-- **不捏素材**：缺數據/案例標「待補」交還使用者。
+- **Write the core claim as a "decision framework"**: what decision does this deck help the audience **make / what trade-off does it help them see clearly**.
+- **Titles carry their own conclusion (action title)**: each page's title is a conclusion, not a topic name.
+- **Restrained use of color**: the decision color appears at most once per page; don't prop up the layout with flashy color schemes.
+- **Don't fabricate material**: mark missing data/cases as "to be filled in" and hand them back to the user.

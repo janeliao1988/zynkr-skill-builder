@@ -1,15 +1,15 @@
 ---
 name: seo-angle-finder
 sheetId: "1.17"
-description: "SEO 流程第三棒：從 SEO 專家角度＋競爭對手網址，找出「哪裡可以加強」的內容切角與差異化機會。對應 v2 流程圖「從 SEO 角度思考加強 + 參考競爭對手網址思考加強」。當使用者交出 Questions 交棒包、提供競品網址、說「找 SEO 切角」時觸發。只找切角，不做關鍵字地圖、不寫文章。"
+description: "Third leg of the SEO pipeline: working from an SEO expert's perspective plus competitor URLs, surface the content angles and differentiation opportunities for 'where we can do better.' Maps to the v2 flow diagram step 'think about strengthening from the SEO angle + reference competitor URLs to think about strengthening.' Triggers when the user hands over a Questions handoff packet, provides competitor URLs, or says 「找 SEO 切角」. It only finds angles — it does not build the keyword map and does not write the article."
 category: brand-marketing
 project: seo-angle-finder
 platform: claude
 status: WIP
 author: Peter Tu
-input: "seo-question-miner 的 SEO_PACKET ▸ Questions；可選：已知競爭對手網址（文章資料包）"
-process: "從問題與競品內容找出未被滿足的角度、可加強處、Zynkr 第一手證據可切入點 → 人工驗證 → 交棒"
-output: "差異化內容切角清單（含競品缺口），交給 seo-keyword-mapper"
+input: "The SEO_PACKET ▸ Questions from seo-question-miner; optional: known competitor URLs (article reference pack)"
+process: "From the questions and competitor content, surface unmet angles, points to strengthen, and entry points for Zynkr's first-hand evidence → human validation → handoff"
+output: "Differentiated content angle list (including competitor gaps), handed off to seo-keyword-mapper"
 synergy: ["seo-keyword-mapper"]
 ---
 
@@ -19,34 +19,34 @@ synergy: ["seo-keyword-mapper"]
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill seo-angle-finder
 ```
 
-SEO 流程第三棒，對應流程圖「找線頭」階段的 SEO 加強思考。它從買家問題與已知競品出發，找出 Zynkr 能用「決策優先（decision-first）」差異化的切角——別人都在給答案，Zynkr 點出背後的決策與真實取捨。第一手經驗只是支撐判斷的證據，不是賣點。
+The third leg of the SEO pipeline, corresponding to the SEO-strengthening thinking in the "find the thread end" stage of the flow diagram. Starting from buyer questions and known competitors, it surfaces the angles where Zynkr can differentiate via "decision-first" thinking — everyone else hands out answers; Zynkr points out the decision and the real trade-offs behind it. First-hand experience is only the evidence that backs up the judgment, not the selling point.
 
 ---
 
 ## Resources you'll use
 
-> **知識來源**：本 skill 用到的 rubric/範本優先從 SEO Knowledge Base 的「01 Rubrics & Templates」(Drive，google-workspace MCP，依名稱 search) 讀取；取不到時 fallback 本地 `./references/`。對照表見 `seo-article-pipeline/seo-pipeline-config.md`。
+> **Knowledge sources**: The rubrics/templates this skill uses are read first from the SEO Knowledge Base's "01 Rubrics & Templates" (Drive, google-workspace MCP, search by name); when unavailable, fall back to the local `./references/`. See the mapping table in `seo-article-pipeline/seo-pipeline-config.md`.
 
-- **切角評估**：`./references/seo-angle-rubric.md`
-- **SEO 知識庫資料夾 ID**：`<your-seo-kb-folder-id>`；種子知識（直播實作經驗、第一手案例）在 `02 Seed Knowledge` 子資料夾——`search_drive_files` 撈相關角度當差異化證據
-- **MCP server**：`google-workspace`；競品網址可用 WebFetch 摘要
+- **Angle evaluation**: `./references/seo-angle-rubric.md`
+- **SEO Knowledge Base folder ID**: `<your-seo-kb-folder-id>`; the seed knowledge (livestream hands-on experience, first-hand cases) is in the `02 Seed Knowledge` subfolder — use `search_drive_files` to pull relevant angles as differentiation evidence
+- **MCP server**: `google-workspace`; competitor URLs can be summarized with WebFetch
 
-## Step 1 — 接收問題包與競品
+## Step 1 — Receive the question pack and competitors
 
-讀取 `SEO_PACKET ▸ Questions`。若使用者提供已知競爭對手網址（文章資料包），用 WebFetch 摘要競品涵蓋了什麼、漏了什麼。
+Read `SEO_PACKET ▸ Questions`. If the user provides known competitor URLs (article reference pack), use WebFetch to summarize what the competitors cover and what they miss.
 
-## Step 2 — 找加強切角
+## Step 2 — Find strengthening angles
 
-依 `./references/seo-angle-rubric.md`：
-- 競品缺口（covered vs missing）。
-- Zynkr 第一手證據可切入點（直播實作、真實 build、顧問方法論）。
-- AEO 切角：哪個問題可以用「答案寫前面」的結構搶 AI 引用。
+Per `./references/seo-angle-rubric.md`:
+- Competitor gaps (covered vs missing).
+- Entry points for Zynkr's first-hand evidence (livestream hands-on, real builds, consulting methodology).
+- AEO angle: which question can grab an AI citation using an "answer-up-front" structure.
 
-## Step 3 — 人工驗證提議（HITL）
+## Step 3 — Human-validate the proposals (HITL)
 
-列出切角，問使用者哪些值得做。對應流程圖「從 SEO 角度發想，驗證提議」「提供已知競爭對手網址，驗證提議」。
+List the angles and ask the user which are worth doing. Maps to the flow-diagram steps "brainstorm from the SEO angle, validate the proposals" and "provide known competitor URLs, validate the proposals."
 
-## Step 4 — 交棒並存檔
+## Step 4 — Hand off and save
 
 ```
 SEO_PACKET ▸ Angles
@@ -58,8 +58,8 @@ SEO_PACKET ▸ Angles
 
 ## Outputs
 
-差異化切角清單（`SEO_PACKET ▸ Angles`），含競品缺口與第一手證據點。
+Differentiated angle list (`SEO_PACKET ▸ Angles`), including competitor gaps and first-hand evidence points.
 
 ## Limitations
 
-不產關鍵字地圖、不分類、不寫文章。競品分析以公開頁面為限。
+Does not produce the keyword map, does not classify, does not write the article. Competitor analysis is limited to public pages.

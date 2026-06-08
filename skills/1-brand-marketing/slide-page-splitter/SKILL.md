@@ -1,6 +1,6 @@
 ---
 name: slide-page-splitter
-description: "簡報助理三棒接力的第二棒：把上一棒通過的故事線（SLIDE_PACKET ▸ Storyline）依分頁原則切成一頁一頁的投影片清單，決定每頁對應哪個 beat、放什麼標題、放多少要點、資訊密度多高。當使用者交出 ▸ Storyline 交棒包、說「幫我分頁」、「把故事線切成投影片」、「每頁放什麼」、「規劃投影片頁數」、「slide 分頁設定」時，立刻觸發我。我只負責分頁與每頁內容配置，產出 ▸ Pages 後即交棒；不設計版式與視覺、不算繪 .pptx（那是 slide-visual-selector 和 pptx 技能），也不回頭重寫故事線（那是 slide-storyline-designer）。"
+description: "The second leg of the slide-assistant three-leg relay: take the storyline approved by the previous leg (SLIDE_PACKET ▸ Storyline) and, following paging principles, slice it into a page-by-page slide list — deciding which beat each page maps to, what title it carries, how many bullet points it holds, and how dense its information should be. Trigger me immediately when the user hands over a ▸ Storyline handoff packet, or says 「幫我分頁」, 「把故事線切成投影片」, 「每頁放什麼」, 「規劃投影片頁數」, 「slide 分頁設定」. I only handle paging and per-page content allocation, handing off once ▸ Pages is produced; I do not design layout or visuals, nor render .pptx (that's slide-visual-selector and the pptx skill), and I do not go back and rewrite the storyline (that's slide-storyline-designer)."
 category: brand-marketing
 project: slide-page-splitter
 platform: claude
@@ -8,9 +8,9 @@ status: Done
 author: Peter Tu
 sheetId: "1.26"
 originalName: "品牌行銷助理 ─ 分頁設定"
-input: "slide-storyline-designer 的 SLIDE_PACKET ▸ Storyline 交棒包（簡報目標、受眾與情境、核心主張 through-line、敘事弧線 beats、邏輯檢查）"
-process: "把每個 beat 依分頁原則展開成一或多頁 → 為每頁定標題（自帶結論）、內容要點、頁面類型、資訊密度 → 控管單頁資訊量上限 → 人工審核保留/刪除/合併 → 交棒"
-output: "有序的分頁清單 SLIDE_PACKET ▸ Pages，交給 slide-visual-selector 選版式與視覺"
+input: "The SLIDE_PACKET ▸ Storyline handoff packet from slide-storyline-designer (presentation goal, audience and context, core claim through-line, narrative arc beats, logic check)"
+process: "Expand each beat into one or more pages per paging principles → for each page set a title (carrying its own conclusion), content bullets, page type, and information density → enforce the per-page information cap → human review to keep/delete/merge → hand off"
+output: "An ordered page list SLIDE_PACKET ▸ Pages, handed to slide-visual-selector to choose layout and visuals"
 synergy: ["slide-storyline-designer", "slide-visual-selector"]
 ---
 
@@ -20,7 +20,7 @@ synergy: ["slide-storyline-designer", "slide-visual-selector"]
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill slide-page-splitter
 ```
 
-這是 Zynkr 簡報助理三棒接力的**第二棒**（legacy 1.13《品牌行銷助理 ─ 分頁設定》）。完整接力鏈：
+This is the **second leg** of the Zynkr slide-assistant three-leg relay (legacy 1.13 《品牌行銷助理 ─ 分頁設定》). The full relay chain:
 
 ```
 zynkr-slide（總指揮，選用）─ 一路帶著 SLIDE_PACKET ▸ Brief
@@ -37,80 +37,80 @@ slide-visual-selector (1.27)
 pptx 技能  → 算繪成 .pptx
 ```
 
-**核心理念：故事線是「線」，投影片是「點」。** 觀眾一頁只能吸收一個重點，所以分頁不是把文字平均灌進格子，而是替每個 beat 決定「要拆成幾頁、每頁聚焦哪一句結論、塞多少資訊才不會爆」。
+**Core idea: the storyline is the "line," the slides are the "points."** The audience can absorb only one key point per page, so paging is not about pouring text evenly into boxes — it's about deciding, for each beat, "how many pages to split it into, which single conclusion each page focuses on, and how much information to pack in before it overflows."
 
-- **吃**：`SLIDE_PACKET ▸ Storyline`（上一棒 slide-storyline-designer 的產出）。
-- **吐**：`SLIDE_PACKET ▸ Pages`——一份有序、每頁職責明確的投影片骨架，讓下一棒不必再猜內容、只需專心選版式。
+- **Takes in**: `SLIDE_PACKET ▸ Storyline` (the output of the previous leg, slide-storyline-designer).
+- **Puts out**: `SLIDE_PACKET ▸ Pages` — an ordered slide skeleton with a clear responsibility per page, so the next leg doesn't have to guess content and can focus purely on choosing layouts.
 
-我不碰視覺，也不重寫故事（見 ## Limitations）。
+I don't touch visuals, and I don't rewrite the story (see ## Limitations).
 
 ---
 
 ## Resources you'll use
 
-- **分頁原則卡**：見下方 Step 2、Step 3 的內建準則（一頁一重點、單頁資訊量上限、標題自帶結論）。若 `./references/` 下有 `paging-principles.md` / `slide-density-rubric.md`，優先讀取作為更細的 rubric；取不到就用本文內建準則，**不要因缺檔停擺**。
-- **品牌資料**：分頁階段**不需要**動到品牌色彩／字體（那是視覺棒的事）；但若 ▸ Storyline 帶有受眾／場合資訊，分頁的詳略要據此調整（對外提案宜精簡、內部更新／教學可較密）。
-- **存檔位置**：本份簡報的工作子資料夾（與 1.25、1.27 共用同一份 SLIDE_PACKET 的 durable 紀錄）。
+- **Paging principle cards**: see the built-in guidelines in Step 2 and Step 3 below (one point per page, per-page information cap, titles that carry their own conclusion). If `paging-principles.md` / `slide-density-rubric.md` exist under `./references/`, read those first as a finer-grained rubric; if they're unavailable, use the built-in guidelines in this document — **do not stall over a missing file**.
+- **Brand assets**: the paging stage **does not** need to touch brand colors/fonts (that's the visual leg's job); but if ▸ Storyline carries audience/occasion information, adjust the level of detail per page accordingly (external pitches should be lean; internal updates/training can be denser).
+- **Save location**: this presentation's working subfolder (it shares the same SLIDE_PACKET durable record with 1.25 and 1.27).
 
 ---
 
-## Step 1 — 接收故事線交棒包
+## Step 1 — Receive the storyline handoff packet
 
-讀取上一棒的 `SLIDE_PACKET ▸ Storyline`，確認五個欄位都在（欄名沿用接力合約，逐字對齊）：**簡報目標、受眾與情境、核心主張 (through-line)、敘事弧線 (beats)、邏輯檢查**。
+Read the previous leg's `SLIDE_PACKET ▸ Storyline` and confirm all five fields are present (field names follow the relay contract verbatim): **presentation goal, audience and context, core claim (through-line), narrative arc (beats), logic check**.
 
-- 若使用者**未提供** ▸ Storyline，先要求他貼上，或先去跑 `slide-storyline-designer`——**不要自己腦補故事線、不提前分頁**。憑空補出來的故事線會把整份簡報的根基弄歪。
-- 若 ▸ Storyline 的「邏輯檢查」標出了未解的跳躍／缺口，先回報使用者：「故事線仍有 X 缺口，建議先補完再分頁，或你要我照現況分頁？」**先確認再做**，避免把問題帶進投影片——分頁救不了一條斷掉的故事線。
+- If the user **did not provide** ▸ Storyline, first ask them to paste it, or go run `slide-storyline-designer` first — **do not invent a storyline yourself, and do not jump ahead to paging**. A storyline conjured out of thin air will skew the foundation of the entire deck.
+- If the ▸ Storyline's "logic check" flagged unresolved jumps/gaps, report back to the user first: "The storyline still has gap X; I'd suggest filling it in before paging, or would you like me to page it as-is?" **Confirm before acting**, to avoid carrying the problem into the slides — paging cannot rescue a broken storyline.
 
-> **若帶有上游 `SLIDE_PACKET ▸ Brief`（由 `zynkr-slide` 產生）**：先讀「逐棒強調 ▸ 分頁 (棒2)」directives 與 `頁數預算`、預設密度，作為本棒判斷的權重──`頁數預算` 當切頁的 **target（非硬上限）**，預設密度當 Step 3 的起點密度。若 ▸ Brief 的「模式 (mode)」值為 express，本棒人工審核（Step 4）改走**非阻斷式**：仍把分頁清單列給使用者並標明「可隨時喊停／修改」，但無重大問題即自動往下交，不停下逐項等確認；「模式 (mode)」值為 guided、**或沒有 ▸ Brief** 時，維持 Step 4 原本逐頁阻斷式 HITL。▸ Brief 與本棒原則衝突時，以本棒原則與使用者裁示為準。**沒有 ▸ Brief 時，本棒完全照 Step 1–5 原流程獨立運作、以上權重一律不套用。**
+> **If an upstream `SLIDE_PACKET ▸ Brief` (produced by `zynkr-slide`) is present**: first read the "per-leg emphasis ▸ paging (leg 2)" directives along with `頁數預算` and the default density, and use them as weights for this leg's judgment — treat `頁數預算` as the **target (not a hard cap)** for splitting pages, and the default density as the starting density for Step 3. If the ▸ Brief's "mode" value is express, this leg's human review (Step 4) switches to **non-blocking**: still list the page list for the user and note "you can stop / modify at any time," but if there's no major problem, auto-advance and hand off without pausing to wait for item-by-item confirmation; when the "mode" value is guided, **or there is no ▸ Brief**, keep Step 4's original per-page blocking HITL. If the ▸ Brief conflicts with this leg's principles, this leg's principles and the user's ruling take precedence. **When there is no ▸ Brief, this leg runs entirely on the standalone Step 1–5 flow, and none of the above weights apply.**
 
-## Step 2 — 逐 beat 展開成頁（決定「切幾頁」）
+## Step 2 — Expand each beat into pages (decide "how many pages to split")
 
-依序處理每個 beat，套用**分頁三原則**決定它要變成幾頁：
+Process each beat in order, applying the **three paging principles** to decide how many pages it becomes:
 
-1. **一頁一個重點**：一個 beat 若只承載一句關鍵訊息 → 1 頁。若 beat 內含多個並列重點（例如三大效益、四個步驟）→ 拆成「1 張概覽頁 + N 張展開頁」或「1 張清單頁」，依資訊量而定。**寧可多一頁，也不要一頁兩個重點**——觀眾的注意力一頁只夠裝一件事。
-2. **標題自帶結論**：每頁標題寫成**完整的主張句**，不是名詞標籤。寫「導入後客服回應時間縮短 40%」而非「成效」；寫「三個原因讓現有流程撐不住」而非「痛點」。觀眾只看標題就該抓到這頁的結論。
-3. **對齊敘事節奏**：在 beats 序列的**起點補 title 頁**、**重大段落轉折處補 section 頁**、**結尾補 closing 頁**。這些是故事線沒有、但簡報需要的「骨架頁」，負責給觀眾路標感。
+1. **One point per page**: if a beat carries only a single key message → 1 page. If a beat contains multiple parallel points (e.g., three major benefits, four steps) → split it into "1 overview page + N expansion pages" or "1 list page," depending on the volume of information. **Better to add a page than to put two points on one page** — the audience's attention only has room for one thing per page.
+2. **Titles carry their own conclusion**: write each page's title as a **complete claim sentence**, not a noun label. Write "Response time dropped 40% after rollout" instead of "Results"; write "Three reasons the current process can't hold up" instead of "Pain points." The audience should grasp the page's conclusion just from the title.
+3. **Align with the narrative rhythm**: **add a title page at the start** of the beat sequence, **add a section page at major transitions between segments**, and **add a closing page at the end**. These are "skeleton pages" the storyline doesn't have but the deck needs — they give the audience a sense of signposting.
 
-同時替每頁標上**頁面類型**（嚴格用合約 enum：`title / section / content / data / quote / closing`）：
+At the same time, tag each page with a **page type** (strictly use the contract enum: `title / section / content / data / quote / closing`):
 
-| 頁面類型 | 何時使用（判準） |
+| Page type | When to use (criteria) |
 |---|---|
-| `title` | 全場第一頁：簡報主題 + 講者／場合。對應 through-line 的一句話版本。 |
-| `section` | 進入新的大段落（跨 beat 的轉場），給觀眾「我們現在到哪了」的路標。 |
-| `content` | 主力頁：論述、要點、概念說明。大多數頁都是這型。 |
-| `data` | 該頁的關鍵訊息**靠數字／比較／趨勢成立**（成長、佔比、前後對照、KPI）。 |
-| `quote` | 用一句客戶證言、權威引述或金句承載情緒／可信度。 |
-| `closing` | 結尾：行動呼籲 (CTA)、下一步、聯絡方式、回扣 through-line。 |
+| `title` | The very first page: presentation topic + speaker/occasion. Corresponds to a one-sentence version of the through-line. |
+| `section` | Entering a new major segment (a cross-beat transition); gives the audience a "where are we now" signpost. |
+| `content` | The workhorse page: argument, bullet points, concept explanation. Most pages are this type. |
+| `data` | The page's key message **stands on numbers / comparisons / trends** (growth, share, before/after, KPIs). |
+| `quote` | Use a customer testimonial, authoritative citation, or memorable line to carry emotion/credibility. |
+| `closing` | The ending: call to action (CTA), next steps, contact info, callback to the through-line. |
 
-> 判別 `content` vs `data` 的關鍵：拿掉數字後這頁還站得住嗎？站不住 → `data`。這個標記會幫下一棒（1.27）更快選到 data-chart 版式，但**版式由 1.27 決定，我只標頁面類型、不選 archetype**。
+> The key to telling `content` vs `data` apart: does the page still stand once you remove the numbers? If not → `data`. This tag helps the next leg (1.27) pick a data-chart layout faster, but **the layout is decided by 1.27; I only tag the page type, I don't choose the archetype**.
 
-## Step 3 — 配置每頁內容（決定「每頁放多少」）
+## Step 3 — Configure each page's content (decide "how much per page")
 
-替每頁填入**內容要點**與**資訊密度**，套用**單頁資訊量上限**：
+Fill in each page's **content bullets** and **information density**, applying the **per-page information cap**:
 
-- **內容要點上限**：一頁 content 以 **3–5 條要點**為原則，每條一行可讀完（約 ≤ 1.5 行）。超過 5 條 → 回 Step 2 拆頁或合併同類項。`title` / `section` / `quote` / `closing` 通常只有 1 句主訊息。
-- **層級上限**：要點最多兩層（主點 + 子點），**不要三層巢狀**——投影片不是 Word 大綱，巢狀越深觀眾越讀不下去。
-- **資訊密度**標記（給下一棒判斷留白與字級的依據），三檔擇一：
-  - `低`：1 句金句或 1 個大數字（big-statement / quote / data 單一指標感）。
-  - `中`：3–5 條要點、或一組對照、或一張單純圖表（多數 content/data 頁）。
-  - `高`：表格、流程多步、需並排比較的密集資訊（提醒：高密度頁要留意是否該再拆）。
-- **每頁固定欄位**（嚴格對齊合約，欄名不可改）：`{頁碼, 對應 beat, 頁面類型, 標題, 內容要點, 資訊密度}`。`對應 beat` 要回填來源 beat 名稱；骨架頁（title / section / closing 等故事線沒有、由本棒補出的頁）標 `—`，讓追溯回故事線時不斷鏈；唯有 closing 回扣全場時可標「全場」。
+- **Content bullet cap**: a content page should follow a principle of **3–5 bullets**, each readable in one line (about ≤ 1.5 lines). More than 5 bullets → go back to Step 2 to split the page or merge like items. `title` / `section` / `quote` / `closing` usually have just 1 main-message sentence.
+- **Hierarchy cap**: bullets go at most two levels deep (main point + sub-point); **no three-level nesting** — a slide is not a Word outline, and the deeper the nesting, the harder it is for the audience to keep reading.
+- **Information density** tag (the basis for the next leg to decide whitespace and font size); pick one of three levels:
+  - `低`: 1 memorable line or 1 big number (big-statement / quote / data with a single-metric feel).
+  - `中`: 3–5 bullets, or one comparison, or a single simple chart (most content/data pages).
+  - `高`: tables, multi-step processes, dense information requiring side-by-side comparison (note: high-density pages should be checked for whether they ought to be split further).
+- **Fixed fields per page** (strictly aligned to the contract, field names must not change): `{頁碼, 對應 beat, 頁面類型, 標題, 內容要點, 資訊密度}`. `對應 beat` must be backfilled with the source beat name; skeleton pages (title / section / closing and other pages the storyline doesn't have, added by this leg) are marked `—`, so the trace back to the storyline doesn't break the chain; only when a closing calls back to the whole deck may it be marked 「全場」.
 
-完成後做一次**全局檢查**：頁碼連續、每個 beat 都有對應頁、沒有任何一頁塞了兩個重點、標題清單單獨讀下來就是一條完整故事線（這是最後的 sanity check——**標題即大綱**）。
+When done, run a **global check**: page numbers are continuous, every beat has a corresponding page, no single page holds two points, and the title list read on its own is a complete storyline (this is the final sanity check — **the titles are the outline**).
 
-## Step 4 — 人工審核（HITL）
+## Step 4 — Human review (HITL)
 
-把完整分頁清單**逐頁編號**列給使用者，明確問三件事，請他用編號回覆：
+List the complete page list to the user **numbered page by page**, explicitly asking three things, and ask them to reply by number:
 
-1. 要**保留／刪除**哪幾頁？（哪些頁其實多餘）
-2. 要**合併／拆分**哪幾頁？（哪些頁太擠、哪些太空）
-3. 標題的**結論**是否寫對了？（有沒有哪頁標題沒抓到該頁真正想講的事）
+1. Which pages to **keep / delete**? (Which pages are actually redundant?)
+2. Which pages to **merge / split**? (Which pages are too crowded, which too empty?)
+3. Are the titles' **conclusions** written correctly? (Is there any page whose title fails to capture what that page actually wants to say?)
 
-**未經使用者確認，不交棒。** 依回覆調整後，若改動大就再列一次給他過目。
+**Do not hand off without the user's confirmation.** After adjusting per their reply, if the changes are large, list it again for them to review.
 
-## Step 5 — 交棒並存檔
+## Step 5 — Hand off and save
 
-確認後，將分頁清單存入本份簡報的工作子資料夾（durable 紀錄，與 1.25 / 1.27 同一份 SLIDE_PACKET），並輸出交棒包：
+After confirmation, save the page list into this presentation's working subfolder (durable record, the same SLIDE_PACKET as 1.25 / 1.27), and output the handoff packet:
 
 ```
 ✅ 分頁已確認
@@ -128,15 +128,15 @@ SLIDE_PACKET ▸ Pages
 分頁與每頁內容已確認，可交棒給 slide-visual-selector (1.27) 選版式與視覺。
 ```
 
-> 欄位名稱（頁碼／對應 beat／頁面類型／標題／內容要點／資訊密度）與頁面類型 enum（`title / section / content / data / quote / closing`）必須與接力合約**逐字一致**，下一棒 1.27 才接得住。存檔後可主動提示使用者：「分頁已定稿，要進入視覺選擇（slide-visual-selector，第三棒）了嗎？」若 slide-visual-selector 尚未安裝，提示先安裝再接力。
+> The field names (頁碼／對應 beat／頁面類型／標題／內容要點／資訊密度) and the page-type enum (`title / section / content / data / quote / closing`) must be **verbatim identical** to the relay contract, otherwise the next leg 1.27 can't pick it up. After saving, you may proactively prompt the user: "Paging is finalized — shall we move on to visual selection (slide-visual-selector, the third leg)?" If slide-visual-selector isn't installed yet, prompt them to install it before continuing the relay.
 
 ## Outputs
 
-一份有序、每頁職責明確的分頁清單 `SLIDE_PACKET ▸ Pages`：每頁帶 `{頁碼, 對應 beat, 頁面類型, 標題, 內容要點, 資訊密度}`，並附上套用的分頁原則。交給 `slide-visual-selector` (1.27) 選版式與視覺。
+An ordered page list `SLIDE_PACKET ▸ Pages` with a clear responsibility per page: each page carries `{頁碼, 對應 beat, 頁面類型, 標題, 內容要點, 資訊密度}`, plus the applied paging principles. Handed to `slide-visual-selector` (1.27) to choose layout and visuals.
 
 ## Limitations
 
-- **只做分頁與每頁內容配置**——切幾頁、每頁放什麼／放多少、標題與資訊密度。產出的是「投影片頁」，不是「敘事段 beat」。
-- **不選版式 archetype、不指定視覺元素或版面配置、不套品牌色彩字體**：那是 slide-visual-selector (1.27) 的事；我只標頁面類型（`title / section / content / data / quote / closing`），不碰版式 enum（`title / big-statement / bulleted-list / …`）。
-- **不算繪 .pptx**：渲染由 1.27 的 ▸ Visuals 餵進已安裝的 pptx 技能完成。
-- **不回頭重寫故事線**：beats、through-line、敘事弧線屬於 slide-storyline-designer (1.25)；若分頁時發現故事有缺口，我只回報並建議補法、請使用者回上一棒，不擅自改敘事。
+- **Only does paging and per-page content allocation** — how many pages to split, what/how much goes on each page, titles, and information density. The output is "slide pages," not "narrative beats."
+- **Does not choose the layout archetype, specify visual elements or page layout, or apply brand colors/fonts**: that's slide-visual-selector (1.27)'s job; I only tag the page type (`title / section / content / data / quote / closing`), I don't touch the layout enum (`title / big-statement / bulleted-list / …`).
+- **Does not render .pptx**: rendering is done by feeding 1.27's ▸ Visuals into the installed pptx skill.
+- **Does not go back and rewrite the storyline**: beats, through-line, and narrative arc belong to slide-storyline-designer (1.25); if I find a gap in the story while paging, I only report it and suggest a fix, asking the user to go back to the previous leg — I don't alter the narrative on my own.

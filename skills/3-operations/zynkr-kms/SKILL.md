@@ -19,9 +19,9 @@ project: zynkr-kms
 platform: claude
 status: WIP
 author: Peter Tu
-input: "已回覆的 Support／Inbound-Sales Gmail threads（或 Peter 指定的單一 thread）；KB 為 `[3.2] Support knowledge base` 資料夾內的『巢狀』文件組（00 INDEX & Retrieval Map 路由 → 各 section doc + 01 Core Facts）"
-process: "拉出已回覆、未匯入的 threads → 確認可學習並抽取 Q＋Peter 的答覆（去 PII）→ 三鏡頭（意圖分類／落點 section doc／結構化）擬條目 → 提案給 Peter 核可 → 經 INDEX 路由寫入對應 section doc（fact 寫 01 Core Facts）→ 標記 KMS-ingested"
-output: "經 Peter 核可後寫入巢狀 KB 對應 section doc 的條目；新意圖則新建 section doc 並在 INDEX 註冊；來源 thread 標記 KMS-ingested；結束給一份新增／更新／略過摘要"
+input: "Resolved Support／Inbound-Sales Gmail threads (or a single thread Peter specifies); the KB is the 'nested' set of docs inside the `[3.2] Support knowledge base` folder (00 INDEX & Retrieval Map routes → each section doc + 01 Core Facts)"
+process: "Pull resolved, not-yet-ingested threads → confirm they are learnable and extract the question + Peter's answer (PII-stripped) → draft entries through three lenses (intent classification / target section doc / structuring) → propose to Peter for approval → write into the matching section doc via INDEX routing (facts go in 01 Core Facts) → mark KMS-ingested"
+output: "After Peter's approval, entries are written into the matching section doc of the nested KB; a new intent creates a new section doc and registers it in the INDEX; the source thread is marked KMS-ingested; finishes with an added / updated / skipped summary"
 synergy: ["zynkr-support"]
 ---
 

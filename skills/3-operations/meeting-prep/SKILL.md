@@ -1,15 +1,15 @@
 ---
 name: meeting-prep
 sheetId: "3.03"
-description: "排程自動執行的會議準備助手：每天早上 9 點掃描 7 天內的會議並發送 action 提醒，每天下午 3 點發送隔天會議的完整 briefing。通知透過 Google Chat 傳給自己。不需要手動觸發，不處理會後追蹤。"
+description: "A scheduled, auto-running meeting-prep assistant: every day at 9 AM it scans meetings within the next 7 days and sends action reminders; every day at 3 PM it sends a full briefing for the next day's meetings. Notifications are sent to yourself via Google Chat. No manual trigger needed; does not handle post-meeting follow-up."
 category: operations
 project: meeting-prep
 platform: claude
 status: WIP
 author: Jane Liao
-input: "無（排程自動觸發，讀取 Google Calendar 與 Gmail）"
-process: "9am cron：掃描 7 天日曆 → 發 action 提醒到 Google Chat｜3pm cron：掃 Gmail 找與會者背景 → 發 briefing 到 Google Chat"
-output: "Google Chat 自我訊息：早上為 action checklist，下午為結構化 briefing"
+input: "None (scheduled auto-trigger; reads Google Calendar and Gmail)"
+process: "9am cron: scan the 7-day calendar → send action reminders to Google Chat | 3pm cron: scan Gmail for attendee background → send briefing to Google Chat"
+output: "Google Chat self-message: an action checklist in the morning, a structured briefing in the afternoon"
 synergy: []
 ---
 
@@ -19,45 +19,45 @@ synergy: []
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill meeting-prep
 ```
 
-每天自動執行兩次的會議準備助手：早上 9 點告訴你未來一週有哪些會議需要提前準備，下午 3 點針對隔天的會議送出完整 briefing，包含與會者背景、近期往來 email 摘要與建議準備事項。通知直接打進 Google Chat，不需要手動觸發。
+A meeting-prep assistant that runs automatically twice a day: at 9 AM it tells you which meetings in the coming week need advance preparation, and at 3 PM it sends a full briefing for the next day's meetings — including attendee background, a summary of recent email exchanges, and suggested prep items. Notifications go straight into Google Chat, no manual trigger required.
 
 ---
 
-## 兩個排程模式
+## Two Scheduled Modes
 
-| 排程 | 時間 | 功能 |
+| Schedule | Time | Function |
 |------|------|------|
-| **Morning Scan** | 每天 09:00 | 掃未來 7 天的會議 → 發 action 提醒 |
-| **Afternoon Briefing** | 每天 15:00 | 掃隔天的會議 → 發完整 briefing |
+| **Morning Scan** | Daily 09:00 | Scan meetings in the next 7 days → send action reminders |
+| **Afternoon Briefing** | Daily 15:00 | Scan the next day's meetings → send a full briefing |
 
 ---
 
-## Mode A — Morning Scan（09:00 觸發）
+## Mode A — Morning Scan (triggered at 09:00)
 
-### Step A1 — 掃描 Google Calendar
+### Step A1 — Scan Google Calendar
 
-讀取未來 7 天內的所有日曆事件。
+Read all calendar events within the next 7 days.
 
-使用 `mcp__google_workspace__get_events`：
-- `user_google_email`: 使用者 email
-- `time_min`: 今天 00:00
-- `time_max`: 今天 + 7 天 23:59
+Use `mcp__google_workspace__get_events`:
+- `user_google_email`: the user's email
+- `time_min`: today 00:00
+- `time_max`: today + 7 days 23:59
 
-篩選條件：
-- 只保留有其他與會者的事件（非個人 block time）
-- 排除全天事件（All-day events）
-- 排除已取消的事件
+Filter criteria:
+- Keep only events that have other attendees (not personal block time)
+- Exclude all-day events
+- Exclude cancelled events
 
-### Step A2 — 發 Action 提醒到 Google Chat
+### Step A2 — Send Action Reminders to Google Chat
 
-對每場符合條件的會議，列出需要採取的行動。
+For each qualifying meeting, list the actions that need to be taken.
 
-判斷邏輯：
-- 距今 1 天以內 → `🔴 明天！請確認是否有準備`
-- 距今 2–3 天 → `🟡 本週內，建議開始準備`
-- 距今 4–7 天 → `🟢 本週末前留意`
+Decision logic:
+- Within 1 day from now → `🔴 明天！請確認是否有準備`
+- 2–3 days out → `🟡 本週內，建議開始準備`
+- 4–7 days out → `🟢 本週末前留意`
 
-發送格式（Google Chat self-message）：
+Output format (Google Chat self-message):
 
 ```
 📅 本週會議 Action 清單｜[日期]
@@ -77,37 +77,37 @@ npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill mee
 如無特定會議 → 發送「📅 本週無多人會議，保持待命。」
 ```
 
-使用 `mcp__google_workspace__google_chat_send_self_message`（需 Peter 端接入 Google Chat API）。
+Use `mcp__google_workspace__google_chat_send_self_message` (requires Peter to wire up the Google Chat API on his end).
 
 ---
 
-## Mode B — Afternoon Briefing（15:00 觸發）
+## Mode B — Afternoon Briefing (triggered at 15:00)
 
-### Step B1 — 取得隔天的會議
+### Step B1 — Get the Next Day's Meetings
 
-使用 `mcp__google_workspace__get_events`：
-- `time_min`: 明天 00:00
-- `time_max`: 明天 23:59
+Use `mcp__google_workspace__get_events`:
+- `time_min`: tomorrow 00:00
+- `time_max`: tomorrow 23:59
 
-篩選同 Mode A，取得 `TOMORROW_MEETINGS[]`。
+Apply the same filtering as Mode A to obtain `TOMORROW_MEETINGS[]`.
 
-若無會議 → 發送「✅ 明天沒有多人會議，無需準備。」即結束。
+If there are no meetings → send "✅ 明天沒有多人會議，無需準備。" and stop.
 
-### Step B2 — 蒐集 Gmail 背景資料
+### Step B2 — Gather Gmail Background
 
-對每場會議的每位與會者，搜尋近期往來 email。
+For each attendee of each meeting, search recent email exchanges.
 
-使用 `mcp__google_workspace__search_gmail_messages`：
-- query：`from:[attendee_email] OR to:[attendee_email]`
-- 時間範圍：過去 30 天
+Use `mcp__google_workspace__search_gmail_messages`:
+- query: `from:[attendee_email] OR to:[attendee_email]`
+- time range: the past 30 days
 
-整理每位與會者：
-- 近 3–5 封 email 的主旨 + 一句話摘要
-- 是否有未回覆的待辦（偵測「請確認」「麻煩回覆」「waiting for」等關鍵字）
+Compile for each attendee:
+- Subjects of the most recent 3–5 emails + a one-line summary each
+- Whether there are any unanswered to-dos (detect keywords like 「請確認」, 「麻煩回覆」, "waiting for", etc.)
 
-### Step B3 — 生成並發送 Briefing
+### Step B3 — Generate and Send the Briefing
 
-對每場會議生成一則 Google Chat 訊息：
+Generate one Google Chat message per meeting:
 
 ```
 📋 明日會議 Briefing｜[會議名稱]
@@ -131,31 +131,31 @@ npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill mee
 2. [問題或資料]
 ```
 
-每場會議發送一則獨立訊息。
+Send one independent message per meeting.
 
 ---
 
 ## Inputs
 
-| 參數 | 預設值 | 說明 |
+| Parameter | Default | Description |
 |------|--------|------|
-| `SCAN_DAYS` | 7 | Morning scan 掃描未來幾天 |
-| `EMAIL_LOOKBACK_DAYS` | 30 | 往回搜尋幾天的 Gmail |
+| `SCAN_DAYS` | 7 | How many days ahead the morning scan covers |
+| `EMAIL_LOOKBACK_DAYS` | 30 | How many days back to search Gmail |
 
 ---
 
 ## Outputs
 
-| 排程 | 輸出 |
+| Schedule | Output |
 |------|------|
-| 09:00 | Google Chat self-message：7 天 action checklist |
-| 15:00 | Google Chat self-message：隔天每場會議各一則 briefing |
+| 09:00 | Google Chat self-message: a 7-day action checklist |
+| 15:00 | Google Chat self-message: one briefing per meeting for the next day |
 
 ---
 
 ## Limitations
 
-- **Google Chat MCP 尚未接入**：目前 google_workspace MCP 支援 Gmail / Drive / Calendar，Google Chat 需 Peter 端另行串接 Chat API
-- 不支援 LINE / Slack 等其他聊天工具
-- 與會者若無 Gmail 往來紀錄，背景欄顯示「無歷史記錄」
-- 排程觸發需搭配 cron job 或 Claude Code schedule skill 實作
+- **Google Chat MCP not yet wired up**: currently the google_workspace MCP supports Gmail / Drive / Calendar; Google Chat requires Peter to separately integrate the Chat API on his end
+- Does not support LINE / Slack or other chat tools
+- If an attendee has no Gmail exchange history, the background field shows "無歷史記錄"
+- Scheduled triggering requires implementation via a cron job or the Claude Code schedule skill

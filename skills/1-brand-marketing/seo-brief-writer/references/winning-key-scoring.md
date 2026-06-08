@@ -1,24 +1,24 @@
-# 勝出關鍵審核表 / 評分表（decision-first）
+# Winning-Key Review Sheet / Scoring Sheet (decision-first)
 
-對應流程圖綠色節點「勝出關鍵審核表，評分表」。決定本篇要靠什麼贏——以 Zynkr「決策優先」品牌為準。
+Corresponds to the green node "Winning-Key Review Sheet, Scoring Sheet" in the flow diagram. Decides what this piece will win on — judged against Zynkr's "decision-first" brand.
 
-## 五個勝出維度（各 1–5 分）
+## Five Winning Dimensions (1–5 points each)
 
-| 維度 | 問題 |
+| Dimension | Question |
 |---|---|
-| 決策切角 | 文章是否「先問對問題、點出真實 trade-off、收在明確方向」？（decision-first，不是 answer-first） |
-| 獨特觀點 | 切角是否與天花板文章不同、補了「大家都給答案卻沒談決策」的缺口？ |
-| 結構更好 | 能否用更清楚的 H2/H3、表格、步驟超越？ |
-| AEO 友善 | 答案寫前面、FAQ、schema、可被 AI 整段引用？ |
-| 承諾收尾 | 是否收在一個讀者明天就能行動的方向／建議（Commit），而非開放式總結？ |
+| Decision angle | Does the article "ask the right question first, surface the real trade-off, and land on a clear direction"? (decision-first, not answer-first) |
+| Unique perspective | Is the angle different from the ceiling article, filling the gap of "everyone gives the answer but nobody talks about the decision"? |
+| Better structure | Can it outdo them with clearer H2/H3, tables, and steps? |
+| AEO-friendly | Answer up front, FAQ, schema, quotable by AI in full passages? |
+| Committed close | Does it land on a direction/recommendation the reader can act on tomorrow (Commit), rather than an open-ended summary? |
 
-## 判定
+## Verdict
 
-- 總分高 → 值得做，且勝出關鍵明確。
-- 決策切角 = 1 分（只是又一篇給答案的內容）→ 退回 seo-angle-finder 換角度。
+- High total score → worth doing, and the winning key is clear.
+- Decision angle = 1 point (just another piece that hands out answers) → send back to seo-angle-finder for a different angle.
 
-## 輸出
+## Output
 
-- 一句「價值主張」：讀者讀完能更清楚地做出什麼決策（不是「學會一個工具」）。
-- 勝出關鍵 2–3 點：本篇靠這些贏。
-- 善用 Words to own（決策／取捨／判斷／方向／脈絡）；避開 Words to reduce（賦能／生產力工具／無縫…）。
+- A one-line "value proposition": what decision can the reader make more clearly after reading (not "learned how to use a tool").
+- 2–3 winning keys: what this piece wins on.
+- Make good use of Words to own (決策／取捨／判斷／方向／脈絡 — decision / trade-off / judgment / direction / context); avoid Words to reduce (賦能／生產力工具／無縫… — empower / productivity tool / seamless…).

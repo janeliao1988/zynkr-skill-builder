@@ -1,15 +1,15 @@
 ---
 name: seo-keyword-classifier
 sheetId: "1.19"
-description: "SEO 流程第五棒：把關鍵字地圖「按搜尋意圖」分類（不是按產品類別），並提供多種分群版本供選擇。對應 v2 流程圖「按照不同分類方式分類，提供不同版本」。當使用者交出 KeywordMap 交棒包、說「關鍵字分類」、「按意圖分群」時觸發。只分類，不驗證需求難度、不寫文章。"
+description: "Fifth leg of the SEO pipeline: classify the keyword map \"by search intent\" (not by product category), and offer several grouping versions to choose from. Maps to the v2 flowchart step \"classify by different classification methods, provide different versions\". Triggers when the user hands over a KeywordMap handoff packet, or says '關鍵字分類' or '按意圖分群'. Only classifies — does not validate demand or difficulty, and does not write articles."
 category: brand-marketing
 project: seo-keyword-classifier
 platform: claude
 status: WIP
 author: Peter Tu
-input: "seo-keyword-mapper 的 SEO_PACKET ▸ KeywordMap"
-process: "依 intent-taxonomy 按搜尋意圖分群 + keyword-sop 篩選原則 → 產出 2–3 種分群版本 → 人工 Trigger 選版本 → 交棒"
-output: "依意圖分群的關鍵字（多版本擇一），交給 seo-demand-validator"
+input: "The SEO_PACKET ▸ KeywordMap from seo-keyword-mapper"
+process: "Group by search intent per intent-taxonomy + apply the keyword-sop screening principles → produce 2–3 grouping versions → human Trigger picks a version → hand off"
+output: "Keywords grouped by intent (pick one of multiple versions), handed off to seo-demand-validator"
 synergy: ["seo-demand-validator"]
 ---
 
@@ -19,35 +19,35 @@ synergy: ["seo-demand-validator"]
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill seo-keyword-classifier
 ```
 
-SEO 流程第五棒，對應流程圖「選擇賽道：分類和驗證關鍵字需求」的分類步驟。**關鍵原則（流程圖原作者註記）：按「搜尋意圖」分群，不是直接按產品類別。** 同一個產品可能橫跨多種意圖；意圖才決定文章型態與漏斗位置。
+Fifth leg of the SEO pipeline, corresponding to the classification step of the flowchart's "pick your lane: classify and validate keyword demand". **Key principle (note from the flowchart's original author): group by "search intent", not directly by product category.** A single product may span multiple intents; intent is what determines article type and funnel position.
 
 ---
 
 ## Resources you'll use
 
-> **知識來源**：本 skill 用到的 rubric/範本優先從 SEO Knowledge Base 的「01 Rubrics & Templates」(Drive，google-workspace MCP，依名稱 search) 讀取；取不到時 fallback 本地 `./references/`。對照表見 `seo-article-pipeline/seo-pipeline-config.md`。
+> **Knowledge sources**: the rubrics/templates this skill uses are read preferentially from the SEO Knowledge Base's "01 Rubrics & Templates" (Drive, google-workspace MCP, search by name); when unavailable, fall back to the local `./references/`. See the mapping table in `seo-article-pipeline/seo-pipeline-config.md`.
 
-- **篩選 SOP**：`./references/keyword-sop.md`
-- **意圖分類法**：`./references/intent-taxonomy.md`
-- **SEO 知識庫資料夾 ID**：`<your-seo-kb-folder-id>`
+- **Screening SOP**: `./references/keyword-sop.md`
+- **Intent taxonomy**: `./references/intent-taxonomy.md`
+- **SEO knowledge base folder ID**: `<your-seo-kb-folder-id>`
 
-## Step 1 — 接收關鍵字地圖
+## Step 1 — Receive the keyword map
 
-讀取 `SEO_PACKET ▸ KeywordMap`。
+Read `SEO_PACKET ▸ KeywordMap`.
 
-## Step 2 — 篩選
+## Step 2 — Screen
 
-依 `./references/keyword-sop.md` 先剔除明顯不相關、品牌不打的字。
+Following `./references/keyword-sop.md`, first remove keywords that are clearly irrelevant or that the brand won't pursue.
 
-## Step 3 — 按意圖分群（多版本）
+## Step 3 — Group by intent (multiple versions)
 
-依 `./references/intent-taxonomy.md` 產出 **2–3 種分群版本**（例：純意圖分群 / 意圖×漏斗矩陣 / 意圖×五大內容支柱）。對應流程圖「提供不同版本」。每版各列優缺點。
+Following `./references/intent-taxonomy.md`, produce **2–3 grouping versions** (e.g. pure intent grouping / intent × funnel matrix / intent × five content pillars). Maps to the flowchart's "provide different versions". List the pros and cons of each version.
 
-## Step 4 — 人工 Trigger 選版本（HITL）
+## Step 4 — Human Trigger picks a version (HITL)
 
-對應「Trigger 關鍵字分類」。問使用者選哪一版（編號），或要混搭。
+Maps to "Trigger keyword classification". Ask the user which version (by number) to use, or whether to mix and match.
 
-## Step 5 — 交棒並存檔
+## Step 5 — Hand off and save
 
 ```
 SEO_PACKET ▸ Classified
@@ -60,8 +60,8 @@ SEO_PACKET ▸ Classified
 
 ## Outputs
 
-依意圖分群的關鍵字（`SEO_PACKET ▸ Classified`）。
+Keywords grouped by intent (`SEO_PACKET ▸ Classified`).
 
 ## Limitations
 
-不驗證搜尋需求 / 難度（下一棒）、不寫文章。**不按產品類別硬分**。
+Does not validate search demand / difficulty (the next leg), and does not write articles. **Does not force a product-category split.**

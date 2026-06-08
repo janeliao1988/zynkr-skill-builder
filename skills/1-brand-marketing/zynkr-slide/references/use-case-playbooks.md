@@ -1,117 +1,117 @@
-# 簡報用途 Playbooks（use-case → 預設配方）
+# Slide Use-Case Playbooks (use-case → default recipe)
 
-> `zynkr-slide` 的知識核心。每一格回答一件事：**「這是哪種簡報，所以三棒該往哪個方向用力？」**
-> 內容是**通用簡報設計原則**，不含任何品牌專屬 IP（品牌一律由 `./brand-source.md` 在執行時載入）。
-> 用法：Step 1 用「偵測線索」把使用者的請求映到一個用途；Step 3 把那一格的「對映場合 / 頁數預算 / 預設密度 / 逐棒強調」抄進 `SLIDE_PACKET ▸ Brief`。
-
----
-
-## 怎麼用這份 playbook
-
-- **一份簡報一個用途**。抓最主要的那個；混合型（例「對客戶報季度數據」）就挑主軸用途、再從次要用途借一兩條 directive。
-- **場合 (場合 enum) 仍是 storyline 的既有四選一**（`對外提案 / 內部更新 / 教學培訓 / 募資`）。用途是更細的「playbook key」，每個用途下面寫了**建議對映**到哪個場合──讓棒1 仍拿得到它認得的 enum，同時用 directives 加味。使用者可在 intake 改場合。
-- **逐棒強調 directives 是要逐字抄進 ▸ Brief 的具體指令**，不是背景說明。抄過去時可依素材微調，但要保持「可執行」。
-- **頁數預算是 target 不是硬上限**；素材多取上緣、少取下緣。實際切幾頁永遠是棒2 的判斷。
-- **找不到匹配用途** → 退回對映場合的通用骨架（等於只用三棒原本的行為），▸ Brief 的逐棒強調寫「依場合預設，無額外加味」。
+> The knowledge core of `zynkr-slide`. Every cell answers one thing: **"What kind of deck is this, and therefore which direction should the three relay stages push?"**
+> The content is **generic slide-design principles** — it contains no brand-specific IP (branding is always loaded at runtime by `./brand-source.md`).
+> Usage: in Step 1, use the "detection clues" to map the user's request to a use-case; in Step 3, copy that cell's "mapped occasion / page budget / default density / per-stage emphasis" into `SLIDE_PACKET ▸ Brief`.
 
 ---
 
-## 速查表
+## How to use this playbook
 
-| 用途 (use-case) | 對映場合 | 頁數預算 | 預設密度 | 一句話定位 |
+- **One deck, one use-case**. Grab the primary one; for hybrids (e.g. "report quarterly numbers to a client"), pick the main use-case and borrow one or two directives from the secondary one.
+- **The occasion (occasion enum) is still the existing four-way choice in storyline** (`external pitch / internal update / training / fundraise`). The use-case is a finer-grained "playbook key"; under each use-case we write the **suggested mapping** to which occasion — so stage 1 still receives an enum it recognizes, while the directives add flavor. The user can change the occasion during intake.
+- **The per-stage emphasis directives are concrete instructions to be copied verbatim into ▸ Brief**, not background notes. You may tweak them slightly to fit the material when copying, but keep them "executable."
+- **The page budget is a target, not a hard cap**; take the upper end when there's lots of material, the lower end when there's little. How many pages to actually split into is always stage 2's call.
+- **No matching use-case found** → fall back to the generic skeleton of the mapped occasion (equivalent to using the three stages' original behavior), and write "default per occasion, no extra flavor" for the per-stage emphasis in ▸ Brief.
+
+---
+
+## Quick-reference table
+
+| use-case | mapped occasion | page budget | default density | one-line positioning |
 |---|---|---|---|---|
-| `deep-dive` | 內部更新（預設）／教學培訓／對外提案 | 15–25 | 中→高 | 把一件事拆到見骨，證據鏈不跳級 |
-| `business-review` | 內部更新 | 12–18 | 中（KPI 頁可高） | 對照目標講結果，收在決策請求 |
-| `data-presentation` | 內部更新（預設）／對外提案 | 10–18 | 中（多單圖頁） | 一圖一結論，先結論後圖 |
-| `all-hands` | 內部更新 | 8–14 | 低 | 廣眾、鼓舞、可被複述的主軸 |
-| `planning` | 內部更新 | 10–16 | 低→中 | 願景→現況→目標→路線圖→承諾 |
-| `pitch`（既有） | 對外提案 | 10–16 | 中 | 痛點放大、解法、證據、單一 CTA |
-| `update`（既有） | 內部更新 | 8–14 | 中 | TL;DR 先行、進度與決策 |
-| `teach`（既有） | 教學培訓 | 12–20 | 中 | 先框架後案例，步驟可複製 |
-| `fundraise`（既有） | 募資 | 12–18 | 中 | 問題→市場→解法→證據→團隊→要錢 |
+| `deep-dive` | internal update (default) / training / external pitch | 15–25 | medium→high | dissect one thing to the bone; the evidence chain skips no link |
+| `business-review` | internal update | 12–18 | medium (KPI pages can go high) | report results against targets, close on a decision request |
+| `data-presentation` | internal update (default) / external pitch | 10–18 | medium (mostly single-chart pages) | one chart, one conclusion — conclusion first, then chart |
+| `all-hands` | internal update | 8–14 | low | broad audience, inspirational, a repeatable through-line |
+| `planning` | internal update | 10–16 | low→medium | vision → current state → goals → roadmap → commitment |
+| `pitch` (existing) | external pitch | 10–16 | medium | amplify the pain, the solution, the evidence, a single CTA |
+| `update` (existing) | internal update | 8–14 | medium | TL;DR up front, progress and decisions |
+| `teach` (existing) | training | 12–20 | medium | framework first then cases, reproducible steps |
+| `fundraise` (existing) | fundraise | 12–18 | medium | problem → market → solution → evidence → team → the ask |
 
 ---
 
-## 四個新 playbook（v1 重點）
+## The four new playbooks (v1 focus)
 
-### `deep-dive` — 深度剖析 / 技術深掘 / 專題深入
+### `deep-dive` — deep analysis / technical deep-dive / in-depth topic study
 
-- **偵測線索**：「deep dive」「深入」「深度剖析」「技術細節」「完整分析」「拆解原理」「root cause」「為什麼會這樣」「把這件事講透」；受眾多為內行/技術/決策核心；要的是**嚴謹與洞見**，不是概覽。
-- **對映場合**：預設 `內部更新`；若主要是「教觀眾一套分析框架」→ `教學培訓`；若用深掘來對外說服 → `對外提案`。intake 讓使用者定。
-- **敘事骨架 bias**：問題/現象 → 假設 → **逐層拆證據鏈** → 反例/邊界條件 → 結論與 so-what → 行動/開放問題。比一般簡報多一層「證據→推論」的縱深。
-- **頁數預算**：15–25（容許長、容許密）。**預設密度**：中→高。
-- **逐棒強調**：
-  - **故事線 (棒1)**：加重邏輯檢查中的「斷裂 (non-sequitur)」與「舉證落差」兩項；每個 beat 都要逼出一句 **so-what**（這層分析「所以呢」）；證據鏈不可跳級，缺一環就標待補。
-  - **分頁 (棒2)**：密度上限可放寬到「高」；`data` 頁優先；同一 beat 容許拆成「概覽頁 + 逐層展開頁」；長鏈用多頁承載而非塞爆單頁。
-  - **視覺 (棒3)**：偏好 `data-chart` / `two-column-compare`（含 before/after 對照）/ `process-diagram`；視覺要**揭示因果與衝擊**（不是裝飾）；每頁仍一個主視覺；複雜鏈用 process-diagram 標 1→N。（只用九種 archetype enum 內的版式名，before/after 是內容訊號、對映到 `two-column-compare`。）
+- **Detection clues**: "deep dive", "深入", "深度剖析", "技術細節", "完整分析", "拆解原理", "root cause", "為什麼會這樣", "把這件事講透"; the audience is mostly insiders / technical / core decision-makers; they want **rigor and insight**, not an overview.
+- **Mapped occasion**: defaults to `internal update`; if the main goal is "teach the audience an analytical framework" → `training`; if the deep-dive is used to persuade externally → `external pitch`. Let the user decide during intake.
+- **Narrative skeleton bias**: problem/phenomenon → hypothesis → **unpack the evidence chain layer by layer** → counterexamples/boundary conditions → conclusion and so-what → action/open questions. One extra layer of "evidence → inference" depth beyond a normal deck.
+- **Page budget**: 15–25 (long is allowed, dense is allowed). **Default density**: medium→high.
+- **Per-stage emphasis**:
+  - **Storyline (stage 1)**: weight the "non-sequitur" and "evidence gap" checks in the logic review more heavily; every beat must force out a single **so-what** ("so what does this layer of analysis mean?"); the evidence chain must not skip levels — flag any missing link as to-be-filled.
+  - **Pagination (stage 2)**: the density ceiling may be relaxed to "high"; prioritize `data` pages; a single beat may be split into an "overview page + layer-by-layer expansion pages"; carry a long chain across multiple pages rather than cramming a single page.
+  - **Visuals (stage 3)**: prefer `data-chart` / `two-column-compare` (including before/after comparisons) / `process-diagram`; visuals must **reveal causality and impact** (not decorate); still one main visual per page; use process-diagram to mark 1→N for a complex chain. (Use only layout names within the nine-archetype enum; before/after is a content signal that maps to `two-column-compare`.)
 
-### `business-review` — 業務檢視 / 經營回顧 / QBR / 月會季會
+### `business-review` — business review / performance retrospective / QBR / monthly or quarterly meeting
 
-- **偵測線索**：「business review」「QBR」「季度回顧」「經營檢討」「業績回顧」「月會/季會」「vs target」「達標/未達標」「KPI 回顧」「複盤」；受眾為主管/團隊。
-- **對映場合**：`內部更新`（但比一般 update 更重「對照目標」與「決策請求」）。
-- **敘事骨架 bias**：TL;DR 結論 → 整體 vs 目標 → 分項拆解（哪些達標/未達標、落後幅度）→ 亮點 → 風險/落後項與對策 → **決策請求** → 下一步。
-- **頁數預算**：12–18。**預設密度**：中（KPI/儀表板頁可到高）。
-- **逐棒強調**：
-  - **故事線 (棒1)**：TL;DR 必須在最前一個 beat；每個分項都要對照目標（達標/未達標/落後幅度）；收尾必須是明確 **decision request**，不是「謝謝聆聽」。
-  - **分頁 (棒2)**：`data` 頁優先承載 KPI vs target；每個重大落後項一頁、附原因與對策；亮點與風險分頁，不混在同一頁。
-  - **視覺 (棒3)**：`data-chart`（bar 比達成率、line 比趨勢）+ 大數字 callout；`two-column-compare` 用於「目標 vs 實際」；達標/落後僅作語意提示，色值與決策色節制由品牌決定。
+- **Detection clues**: "business review", "QBR", "季度回顧", "經營檢討", "業績回顧", "月會/季會", "vs target", "達標/未達標", "KPI 回顧", "複盤"; the audience is managers/teams.
+- **Mapped occasion**: `internal update` (but weighting "against targets" and "decision request" more heavily than a normal update).
+- **Narrative skeleton bias**: TL;DR conclusion → overall vs target → line-item breakdown (which hit/missed target, and by how much) → highlights → risks/laggards and countermeasures → **decision request** → next steps.
+- **Page budget**: 12–18. **Default density**: medium (KPI/dashboard pages may go high).
+- **Per-stage emphasis**:
+  - **Storyline (stage 1)**: the TL;DR must be in the very first beat; every line item must be compared against its target (hit/missed/by how much); the close must be an explicit **decision request**, not "thanks for listening."
+  - **Pagination (stage 2)**: prioritize `data` pages to carry KPI vs target; give each major laggard its own page with cause and countermeasure; split highlights and risks onto separate pages, never mixed on one page.
+  - **Visuals (stage 3)**: `data-chart` (bar for attainment rate, line for trend) + big-number callouts; `two-column-compare` for "target vs actual"; hit/miss is only a semantic cue — color values and restraint on the decision color are decided by the brand.
 
-### `data-presentation` — 數據簡報 / 研究結果 / dashboard 導讀
+### `data-presentation` — data presentation / research results / dashboard walkthrough
 
-- **偵測線索**：「數據簡報」「data presentation」「research results」「報數字」「把這份數據講清楚」「圖表」「dashboard 導讀」「analytics」；主體是一批數字/圖表，要把它**講成結論**。
-- **對映場合**：預設 `內部更新`；對客戶/投資人報數據 → `對外提案`。
-- **敘事骨架 bias**：一句總 takeaway → 背景/資料來源與口徑 → **一圖一結論逐張展開**（每張圖一個 so-what）→ 綜合 pattern → 結論/建議。
-- **頁數預算**：10–18。**預設密度**：中（多為單圖頁）。
-- **逐棒強調**：
-  - **故事線 (棒1)**：每個 beat = 一個「數據結論」，不是「一張圖」；**先有結論再有圖**（Zelazny 原則）；避免「資料傾倒」（一頁塞多圖無主張）。
-  - **分頁 (棒2)**：多數頁標 `data`；一頁一圖一結論；標題寫**數據結論句**（「Q3 新客成長 38%」）而非「XX 趨勢圖」。
-  - **視覺 (棒3)**：`data-chart` 為主，嚴格走 chart 子判準（bar/line/pie/table）；每張圖配一個大數字 callout 點 takeaway；**拒絕無資訊的裝飾圖**；純精確值用 table 不用 chart。
+- **Detection clues**: "數據簡報", "data presentation", "research results", "報數字", "把這份數據講清楚", "圖表", "dashboard 導讀", "analytics"; the subject is a batch of numbers/charts that need to be **turned into conclusions**.
+- **Mapped occasion**: defaults to `internal update`; reporting data to clients/investors → `external pitch`.
+- **Narrative skeleton bias**: a single overall takeaway → background/data source and definitions → **one chart, one conclusion, unpacked one at a time** (one so-what per chart) → composite pattern → conclusion/recommendation.
+- **Page budget**: 10–18. **Default density**: medium (mostly single-chart pages).
+- **Per-stage emphasis**:
+  - **Storyline (stage 1)**: each beat = one "data conclusion," not "one chart"; **conclusion before chart** (Zelazny's principle); avoid "data dumping" (a page crammed with charts but no claim).
+  - **Pagination (stage 2)**: mark most pages as `data`; one chart, one conclusion per page; write the title as a **data-conclusion sentence** ("Q3 new-customer growth 38%") rather than "XX trend chart."
+  - **Visuals (stage 3)**: `data-chart` is primary, strictly following the chart sub-criteria (bar/line/pie/table); pair each chart with a big-number callout that states the takeaway; **reject decorative charts that carry no information**; for pure precise values use a table, not a chart.
 
-### `all-hands` / `planning` — 全員大會 / 全體會議；季度規劃 / 願景溝通
+### `all-hands` / `planning` — all-hands / company-wide meeting; quarterly planning / vision communication
 
-> 兩個情境共用低密度、廣眾取向，但 beats 不同；intake 時分清是「鼓舞型 all-hands」還是「路線圖型 planning」。
+> The two scenarios share a low-density, broad-audience orientation, but the beats differ; during intake, distinguish whether it's an "inspirational all-hands" or a "roadmap-style planning."
 
-- **偵測線索**：
-  - all-hands：「all-hands」「全員」「全體大會」「town hall」「kickoff」「願景溝通」「對全公司講」。
-  - planning：「planning」「規劃」「roadmap」「藍圖」「季度規劃」「OKR 溝通」「里程碑」。
-  - 共通：受眾**廣、跨職能、非專家**。
-- **對映場合**：`內部更新`。
-- **敘事骨架 bias**：
-  - all-hands：我們在哪（戰報/脈絡）→ 一個貫穿主軸（鼓舞）→ 三件大事 → 每件的 why + 進展 → **對每個人的意義** → 號召。情緒/邏輯起伏明顯，少細節。
-  - planning：願景一句 → 現況 → 目標/OKR → **路線圖（里程碑時間軸）** → 資源/責任 → 風險 → 承諾。
-- **頁數預算**：all-hands 8–14；planning 10–16。**預設密度**：all-hands 低；planning 低→中（路線圖頁偏中）。
-- **逐棒強調**：
-  - **故事線 (棒1)**：主軸要**可被全場複述**、情緒/邏輯起伏明顯；少用術語；每段回扣「對你/對我們的意義」。planning 變體走「願景→現況→目標→路線圖→承諾」。
-  - **分頁 (棒2)**：密度壓在「低」；多用 `section` 頁給路標；`big-statement` 承載每個大重點；planning 的路線圖獨立一頁（時間軸）；避免密集條列。
-  - **視覺 (棒3)**：`big-statement` / `image-led` 為主（`section` 是頁面類型不是版式──section 頁用 `big-statement` 或 title 章節變體承載）；planning 用 `process-diagram` 畫里程碑時間軸；少表格少密集 chart；用色可較大膽（仍守「決策色每頁最多 1 次」）。
-
----
-
-## 既有四個場合（playbook 只補頁數/密度/輕量加味，敘事骨架沿用 storyline 內建表）
-
-> 這四個的敘事弧線範本已寫在 `slide-storyline-designer` 的 Step 3 表內，playbook **不重寫**，只補 zynkr-slide 需要的頁數預算、預設密度與輕量逐棒強調。
-
-### `pitch` — 對外提案
-- 對映場合 `對外提案`｜頁數 10–16｜密度 中。
-- 逐棒：**棒1** 痛點要放大、收在單一 CTA；**棒2** 證據/案例獨立成頁；**棒3** `image-led` + `big-statement` 撐情緒、`data-chart` 撐證據、結尾 `closing-CTA` 強。
-
-### `update` — 內部更新
-- 對映場合 `內部更新`｜頁數 8–14｜密度 中。
-- 逐棒：**棒1** TL;DR 先行；**棒2** 進度 vs 目標、風險、決策請求分頁；**棒3** 精簡、`data-chart` 點進度，少裝飾。
-
-### `teach` — 教學培訓
-- 對映場合 `教學培訓`｜頁數 12–20｜密度 中。
-- 逐棒：**棒1** 先框架後案例、重可複製步驟；**棒2** 每個步驟/常見錯誤一頁；**棒3** `process-diagram` 走流程、worked example 用 `two-column-compare`（對/錯）。
-
-### `fundraise` — 募資
-- 對映場合 `募資`｜頁數 12–18｜密度 中。
-- 逐棒：**棒1** 走完整 8 段弧線（問題→市場→解法→證據→團隊→要錢），缺一不可；**棒2** 牽引力/數據獨立成頁；**棒3** `data-chart` 撐 traction、`big-statement` 撐願景、結尾 `closing-CTA` = 明確的 ask（金額與用途）。
+- **Detection clues**:
+  - all-hands: "all-hands", "全員", "全體大會", "town hall", "kickoff", "願景溝通", "對全公司講".
+  - planning: "planning", "規劃", "roadmap", "藍圖", "季度規劃", "OKR 溝通", "里程碑".
+  - Common: the audience is **broad, cross-functional, non-expert**.
+- **Mapped occasion**: `internal update`.
+- **Narrative skeleton bias**:
+  - all-hands: where we are (status/context) → one through-line (inspirational) → three big things → the why + progress for each → **what it means for everyone** → call to action. Pronounced emotional/logical arc, few details.
+  - planning: a one-line vision → current state → goals/OKRs → **roadmap (milestone timeline)** → resources/ownership → risks → commitment.
+- **Page budget**: all-hands 8–14; planning 10–16. **Default density**: all-hands low; planning low→medium (roadmap page leans medium).
+- **Per-stage emphasis**:
+  - **Storyline (stage 1)**: the through-line must be **repeatable by the whole room**, with a pronounced emotional/logical arc; use little jargon; every section ties back to "what it means for you / for us." The planning variant follows "vision → current state → goals → roadmap → commitment."
+  - **Pagination (stage 2)**: hold density at "low"; use plenty of `section` pages as signposts; let `big-statement` carry each major point; give the planning roadmap its own page (timeline); avoid dense bullet lists.
+  - **Visuals (stage 3)**: `big-statement` / `image-led` are primary (`section` is a page type, not a layout — section pages are carried by `big-statement` or a title section-divider variant); planning uses `process-diagram` to draw the milestone timeline; few tables, few dense charts; color can be bolder (still respecting "the decision color at most once per page").
 
 ---
 
-## 通用守則（所有用途都成立，對映自三棒的內建原則）
+## The four existing occasions (the playbook only adds page count / density / light flavor; narrative skeletons reuse the storyline built-in table)
 
-- **先定訊息，再選形式**（Zelazny）：同一份資料，結論不同視覺就不同。標題永遠自帶結論。
-- **一頁一個重點 / 一頁一主視覺**：密度爆表是分頁問題，退回棒2，不靠縮字硬擠。
-- **用色節制**：決策色每頁最多 1 次；實際色值一律由品牌（`./brand-source.md`）決定，playbook 不寫死顏色。
-- **不捏素材**：缺數據/案例標「待補」交還使用者，任何一棒都不自行編造。
+> The narrative-arc templates for these four are already written in `slide-storyline-designer`'s Step 3 table; the playbook **does not rewrite** them — it only adds the page budget, default density, and light per-stage emphasis that zynkr-slide needs.
+
+### `pitch` — external pitch
+- Mapped occasion `external pitch` | pages 10–16 | density medium.
+- Per stage: **stage 1** amplify the pain, close on a single CTA; **stage 2** give evidence/cases their own pages; **stage 3** `image-led` + `big-statement` to carry emotion, `data-chart` to carry evidence, a strong `closing-CTA` at the end.
+
+### `update` — internal update
+- Mapped occasion `internal update` | pages 8–14 | density medium.
+- Per stage: **stage 1** lead with the TL;DR; **stage 2** split progress vs target, risks, and decision requests onto separate pages; **stage 3** keep it lean, use `data-chart` to mark progress, minimal decoration.
+
+### `teach` — training
+- Mapped occasion `training` | pages 12–20 | density medium.
+- Per stage: **stage 1** framework first then cases, emphasize reproducible steps; **stage 2** one page per step / common mistake; **stage 3** `process-diagram` to walk the flow, worked examples in `two-column-compare` (right/wrong).
+
+### `fundraise` — fundraise
+- Mapped occasion `fundraise` | pages 12–18 | density medium.
+- Per stage: **stage 1** walk the full 8-part arc (problem → market → solution → evidence → team → the ask), none may be missing; **stage 2** give traction/data their own pages; **stage 3** `data-chart` to carry traction, `big-statement` to carry the vision, the closing `closing-CTA` = an explicit ask (amount and use of funds).
+
+---
+
+## Universal rules (true for every use-case, mapped from the three stages' built-in principles)
+
+- **Set the message first, then choose the form** (Zelazny): for the same data, a different conclusion calls for a different visual. The title always carries its own conclusion.
+- **One point per page / one main visual per page**: density overflow is a pagination problem — return it to stage 2; don't force-fit by shrinking text.
+- **Restraint with color**: the decision color at most once per page; the actual color values are always decided by the brand (`./brand-source.md`) — the playbook never hard-codes colors.
+- **No fabricating material**: missing data/cases are marked "to-be-filled" and handed back to the user; no stage invents anything on its own.

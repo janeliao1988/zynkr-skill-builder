@@ -1,31 +1,31 @@
-# meta description + schema 規則
+# meta description + schema rules
 
-對應流程圖「上 meta description」與 AEO 結構化需求。
+Corresponds to the "add meta description" step and the AEO structured-data requirements in the flow diagram.
 
 ## meta description
 
-- 長度：zh-TW 約 60–80 字；EN 約 150–160 字元。
-- 含主關鍵字一次（自然）。
-- 寫成「誘因 + 讀者能得到什麼」，不是內容摘要堆關鍵字。
-- 標題（title tag）含主關鍵字、置前；不超過約 30 字（zh）/ 60 字元（EN）。
-- 標題不以句號結尾（品牌規範）；系列分隔用 ·。
+- Length: zh-TW around 60–80 characters; EN around 150–160 characters.
+- Include the primary keyword once (naturally).
+- Write it as "hook + what the reader gets", not a content summary that just piles on keywords.
+- Title (title tag): include the primary keyword, place it up front; keep it under about 30 characters (zh) / 60 characters (EN).
+- Do not end the title with a full-width period (brand standard); use · as the series separator.
 
-## 結構化資料 schema（給 AEO）
+## Structured-data schema (for AEO)
 
-- **FAQ schema**：用大綱階段的 FAQ（3–5 題），輸出 JSON-LD。
-- **Article schema**：含 headline、author（真實署名，E-E-A-T）、datePublished、publisher。
-- 旗艦比較型文章可加 ItemList / Comparison。
+- **FAQ schema**: use the FAQ from the outline stage (3–5 questions), output as JSON-LD.
+- **Article schema**: include headline, author (real byline, E-E-A-T), datePublished, publisher.
+- Flagship comparison-style articles may add ItemList / Comparison.
 
-## 上架檢查表（publish checklist）
+## Publish checklist
 
-- [ ] 開頭即答句存在且精準
-- [ ] 主關鍵字出現在 H1、首段、至少一個 H2
-- [ ] FAQ 區塊 + FAQ schema
-- [ ] 內部連結（支柱 + 相關 + CTA）已標
-- [ ] meta description 合規、含關鍵字
-- [ ] title 不以句號結尾、含關鍵字
-- [ ] 真實作者署名（E-E-A-T）
-- [ ] 圖片 alt、第一手截圖（show the thinking — 佐證判斷，非炫耀）
-- [ ] 品牌聲音：無 Words to reduce（賦能/生產力工具/無縫/AI-powered…）；收尾收在明確方向（Commit）
-- [ ] 旗艦：標記需 EN 版（交 zh-tw-translator）
-- [ ] 已存入 Drive 本篇工作子資料夾（durable 紀錄）
+- [ ] An opening answer sentence exists and is precise
+- [ ] Primary keyword appears in the H1, the first paragraph, and at least one H2
+- [ ] FAQ section + FAQ schema
+- [ ] Internal links (pillar + related + CTA) are marked
+- [ ] meta description is compliant and contains the keyword
+- [ ] title does not end with a full-width period and contains the keyword
+- [ ] Real author byline (E-E-A-T)
+- [ ] Image alt text, first-hand screenshots (show the thinking — to substantiate the judgment, not to show off)
+- [ ] Brand voice: no Words to reduce (empower / productivity tool / seamless / AI-powered…); close on a clear direction (Commit)
+- [ ] Flagship: flag that an EN version is needed (hand off to zh-tw-translator)
+- [ ] Saved into this article's working subfolder in Drive (durable record)

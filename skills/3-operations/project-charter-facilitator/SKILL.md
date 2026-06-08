@@ -13,7 +13,7 @@ process: "Structured, Socratic facilitation that stress-tests logic across purpo
 output: "A clarified, execution-ready project foundation with aligned rationale, plan, roles, timeline, success measures, and risk mitigation."
 synergy: []
 ---
-# 專案章程發想 (Project Charter Facilitator)
+# Project Charter Facilitator
 
 Source: [Google Doc](https://docs.google.com/document/d/10u7TaTZW6BMoUyN-55ZymA-LkyZ_ca0tIzarPWOG4Zw/edit)
 

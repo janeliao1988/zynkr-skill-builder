@@ -1,112 +1,111 @@
-# 文章模板 Article Types（2.0）
+# Article Templates / Article Types (2.0)
 
-## 時間軸發展型（Chronological Narrative）
+## Chronological Narrative（時間軸發展型）
 
-請按照時間軸的方式組織文章內容，從過去的發展背景開始，依序描述如何演變到現在，並展望未來可能的趨勢。若適用，也建議加入關鍵的歷史事件或階段性發展，幫助讀者理解變遷脈絡。
+Organize the article's content along a timeline: start from the background and development in the past, walk through how it evolved into the present in order, and look ahead to possible future trends. Where applicable, also consider adding key historical events or milestone developments to help the reader understand the arc of change.
 
-範例輸出：
+Sample output:
 
 * 早期的生產力工具（紙本筆記、待辦清單）  
 * 數位工具的興起（Excel、Trello、Evernote）  
 * AI 生產力工具（Notion AI、ChatGPT、自動化工具）  
 * 未來可能的發展趨勢
 
-## 邏輯分層型（Concept to Structure）
+## Concept to Structure（邏輯分層型）
 
-根據『從概念到分類』的邏輯層級組織內容，先提出整體觀點或理論，再以清楚分類說明子項與應用方式，適合做為教學與結構整理。可結合 MECE 原則設計分類。
+Organize the content following a "from concept to classification" logical hierarchy: first present the overall viewpoint or theory, then explain the sub-items and ways to apply them using clear categories. This works well for teaching and for structuring information. You can use the MECE principle to design the categories.
 
-範例輸出：
+Sample output:
 
 * 內容品質的定義（為什麼重要？）  
 * 主要影響因素（準確性、可讀性、結構化）  
 * 實際應用方法（流程設計、AI 工具輔助）  
 * 實戰案例（高品質 vs. 低品質內容）
 
-## 因果關係型（Cause and Effect）
+## Cause and Effect（因果關係型）
 
-請按照因果關係邏輯組織內容，先說明問題或現象的原因，再分析造成的後果，最後提供具體解決方案。可輔以數據、案例支持。
+Organize the content following cause-and-effect logic: first explain the cause of the problem or phenomenon, then analyze the consequences it produces, and finally provide a concrete solution. You can back this up with data and case studies.
 
-範例輸出：
+Sample output:
 
 * 原因：遠端工作缺乏即時回饋、文字易誤解  
 * 結果：效率下降、決策拉長、關係疏遠  
 * 解法：強化書面溝通、使用同步工具
 
-## 思維流程型（Problem → Process → Solution）
+## Problem → Process → Solution（思維流程型）
 
-依照問題 → 分析過程 → 解決方案順序組織內容，常用於技能學習或解題框架介紹，幫助讀者理解解決問題的思考脈絡。
+Organize the content in the order of problem → analysis process → solution. This is often used for skill learning or for introducing a problem-solving framework, helping the reader follow the line of thinking behind solving a problem.
 
-範例輸出：
+Sample output:
 
 * 問題：寫作時常常卡住、拖延  
 * 過程：分析拖延原因、探索常見誤區  
 * 解決方案：應用 GUIDE 框架、設計寫作流程
 
-## 敘事型（起承轉合 Narrative）
+## Narrative（起承轉合 Narrative）
 
-以故事形式進行說明，採『起承轉合』結構組織內容，適合用來引導共鳴與轉折，引出深刻觀點或個人轉變歷程。
+Explain things in story form, organizing the content with the "setup–development–turn–resolution" (起承轉合) structure. This is well suited to building resonance and creating turning points, leading into a profound insight or a personal journey of change.
 
-範例輸出：
+Sample output:
 
 * 起：拖延寫作的挫折經驗  
 * 承：分析拖延背後的心理與外在原因  
 * 轉：嘗試策略找出有效解法  
 * 合：總結出最適方法並給行動建議
 
-## 經驗轉化型（From Practice to Method）
+## From Practice to Method（經驗轉化型）
 
-將親身經歷轉化為系統方法，從實戰故事出發，提煉可複製的流程與心法，幫助讀者學會如何從經驗中建立模型。
+Turn first-hand experience into a systematic method: start from a real-world story, then distill a repeatable process and underlying principles, helping the reader learn how to build a model out of experience.
 
-範例輸出：
+Sample output:
 
 * 觸發事件（新創團隊缺乏訓練SOP）  
 * 摸索過程（手動整理處理案例）  
 * 方法建立（歸納流程與文件）  
 * 驗證應用（團隊效率提升的成果）
 
-## STAC 混合型（Story → Teaching → Application → Conclusion）
+## STAC Hybrid（Story → Teaching → Application → Conclusion）
 
-結合故事與教學的混合結構：先用情境故事勾起共鳴，再拆解原則或技巧，接著提供應用案例，最後總結行動與價值。
+A hybrid structure that combines story and teaching: first use a situational story to spark resonance, then break down the principles or techniques, next provide an application case, and finally summarize the action and the value.
 
-範例輸出：
+Sample output:
 
 * Story：主管指正簡報邏輯混亂的挫折經歷  
 * Teaching：介紹 Top-down 與 SCQA 簡報法則  
 * Application：示範報告標題串連的方式  
 * Conclusion：簡報是邏輯 \+ 故事的表達
 
-## AIDA 型（Attention, Interest, Desire, Action）
+## AIDA（Attention, Interest, Desire, Action）
 
-以行銷心理為基礎的說服型寫作結構，從吸引注意、引起興趣、激發渴望到具體行動，適合應用在履歷、轉職、商業文案等主題。
+A persuasion-oriented writing structure grounded in marketing psychology, moving from grabbing attention, sparking interest, and igniting desire, through to a concrete action. It works well for topics such as résumés, career changes, and business copywriting.
 
-範例輸出：
+Sample output:
 
 * Attention：數據指出 85% 人不滿現職  
 * Interest：解構轉職成功的核心條件  
 * Desire：展示他人成功案例與轉變  
 * Action：建議下一步行動策略
 
-## 個人信件型（Personal Letter Style）
+## Personal Letter Style（個人信件型）
 
-以第一人稱的口吻撰寫，像是寫給讀者的私人信件。主體部分像聊天一樣分享生活體悟、創業觀察或心情雜記，親切自然，有高度共鳴感。透過情緒與觀點的真實展現，讓讀者感受到「你不是在寫給一群人，而是寫給我」。
+Write in the first person, as if writing a private letter to the reader. The body shares life insights, startup observations, or stray reflections in a chatty way — warm, natural, and highly relatable. By genuinely showing emotions and opinions, you make the reader feel that "you're not writing to a crowd, you're writing to me."
 
-這種風格適合用在電子報、社群貼文或個人品牌經營中，強調信任感與個人連結。
+This style suits newsletters, social posts, or personal-brand building, where the emphasis is on trust and personal connection.
 
-**建議結構：**
+**Suggested structure:**
 
-* 近況開場：以輕鬆語氣更新近況，拉近心理距離  
-* 內在轉折：揭露一段真實的情緒、疑問或矛盾，引起共鳴  
-* 觀點分享：延伸思考，提出某個值得反思的觀點  
-* 未來展望 / 提問：分享未來的計劃或對讀者的開放式邀請
+* Opening update: update the reader on what's new in a relaxed tone, closing the psychological distance  
+* Inner turn: reveal a real emotion, doubt, or contradiction to build resonance  
+* Sharing a viewpoint: extend the thinking and put forward a point worth reflecting on  
+* Looking ahead / a question: share future plans or an open-ended invitation to the reader
 
-**特色：**
+**Characteristics:**
 
-* 不刻意追求完整敘事或結構，而是用數段獨立的「短思考／短段落」串聯，像日記、備忘錄、思緒片段。
+* It does not deliberately pursue a complete narrative or structure; instead it strings together several independent "short thoughts / short paragraphs," like a diary, a memo, or fragments of thought.
 
-範例輸出：
+Sample output:
 
 * 「上禮拜我第一次開課，說真的，有點感動。」  
 * 「我常常想：到底什麼東西該收錢、什麼又該免費？」  
 * 「有時候覺得自己像是卡在兩個極端中間——想讓內容被更多人看見，但又不能什麼都免費。」  
 * 「如果你對這種寫法有想法，也歡迎回信跟我聊聊。」
-

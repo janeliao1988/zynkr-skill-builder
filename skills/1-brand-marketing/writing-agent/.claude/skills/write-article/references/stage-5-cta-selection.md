@@ -1,255 +1,255 @@
-本文件為 Zynkr 內容團隊 CTA 對照手冊，協助小編根據文章主題快速選擇合適 CTA。
+This document is the Zynkr content team's CTA reference handbook, helping editors quickly pick the right CTA based on the article topic.
 
-每一類 CTA 都對應不同的溝通目的與轉換階段，請依照文章內容選擇最適合的版本，以維持品牌語氣一致、提升互動與轉換效果。
+Each CTA category maps to a different communication goal and conversion stage. Choose the version that best fits the article content, so the brand voice stays consistent and engagement and conversion improve.
 
-## 一、電子報訂閱 CTA 
+## 1. Newsletter Subscription CTA
 
-對應產品主軸：電子報、職涯加速內容
+Corresponding product focus: newsletter, career-acceleration content
 
-【背景與使用時機】
+[Background and when to use]
 
-此類 CTA 用於希望與讀者建立長期關係、維繫內容互動的文章結尾。
+This type of CTA is for the end of articles where you want to build a long-term relationship with readers and sustain content engagement.
 
-適合放在提供實用知識、觀念分享、個人成長經驗、英文學習或效率工具等主題文章後，讓讀者在獲得啟發後，自然轉向「想持續接收更多價值內容」。
+It suits articles that share practical knowledge, perspectives, personal growth experiences, English learning, or productivity tools — so that, once inspired, readers naturally shift toward "wanting to keep receiving more valuable content."
 
-【主要目的】  
-   
-建立信任與長期內容關係，將讀者轉化為電子報訂閱者，形成穩定受眾池。
+[Primary objective]
 
-【子目的分類】
+Build trust and a long-term content relationship, converting readers into newsletter subscribers and forming a stable audience pool.
 
-1. 通用職場知識／成長思維導向：吸引重視自我成長與職場進步的族群。  
-2. 招募視角／履歷與面試技巧：吸引求職者、轉職族群。  
-3. 效率工具／生產力技巧：吸引效率導向與工具控受眾。  
-4. 英文能力／商用英文主題：吸引希望提升英文實戰力的職場人。  
-5. 個人成長經歷／職涯故事：吸引認同作者理念與經歷的讀者。
+[Sub-objective categories]
 
-【適合出現的文章類型】
+1. General workplace knowledge / growth-mindset oriented: attracts people who value self-growth and workplace progress.
+2. Recruiter perspective / résumé and interview skills: attracts job seekers and career-changers.
+3. Productivity tools / efficiency tips: attracts efficiency-oriented and tool-enthusiast audiences.
+4. English proficiency / business English topics: attracts working professionals who want to improve their practical English.
+5. Personal growth journey / career story: attracts readers who identify with the author's philosophy and experience.
 
-* 職場軟實力與溝通技巧類文章  
-* 成長型思維或自我提升類內容  
-* 效率工具應用與生產力技巧  
-* 英文學習與跨國職場經驗分享  
-* 個人故事與職涯啟發文
+[Article types it suits]
 
-【CTA 案例與連結】
+* Workplace soft skills and communication articles
+* Growth-mindset or self-improvement content
+* Productivity tool applications and efficiency tips
+* English learning and cross-border workplace experience sharing
+* Personal stories and career-inspiration pieces
 
-連結：[https://peter-career-hack.ck.page/newsletter](https://peter-career-hack.ck.page/newsletter)
+[CTA examples and link]
 
-代表句範例：  
- 
+Link: [https://peter-career-hack.ck.page/newsletter](https://peter-career-hack.ck.page/newsletter)
 
-* 喜歡這些職場知識嗎？訂閱我的電子報跟著我一起培養成長思維...  
-* 喜歡我的文章的話可以訂閱我的電子報，我會用像筆友的方式和你對話...  
-* 我發現，資訊的好壞很大程度是取決於資訊的來源...  
-* 我常會從用人主管的角度分享如何打造履歷和準備面試...  
-* 千里馬不一定總是能找到伯樂，從故事中學會升遷的技巧...  
-* 喜歡這些職場增加效率的小技巧嗎？訂閱我的電子報...  
-* 喜歡這些商用英文的分享嗎？訂閱我的電子報...  
-* 我在七年內升遷七次，薪水上漲 18 倍...  
+Sample sentences:
+
+
+* 喜歡這些職場知識嗎？訂閱我的電子報跟著我一起培養成長思維...
+* 喜歡我的文章的話可以訂閱我的電子報，我會用像筆友的方式和你對話...
+* 我發現，資訊的好壞很大程度是取決於資訊的來源...
+* 我常會從用人主管的角度分享如何打造履歷和準備面試...
+* 千里馬不一定總是能找到伯樂，從故事中學會升遷的技巧...
+* 喜歡這些職場增加效率的小技巧嗎？訂閱我的電子報...
+* 喜歡這些商用英文的分享嗎？訂閱我的電子報...
+* 我在七年內升遷七次，薪水上漲 18 倍...
 * 如何從約聘到海外的高階經理人，我一路以來的升遷秘密...
 
-## 二、職涯講座 CTA
+## 2. Career Talk CTA
 
-對應產品主軸：職涯講座／線上活動推廣
+Corresponding product focus: career talks / online event promotion
 
-【背景與使用時機】
+[Background and when to use]
 
-此類 CTA 用於推廣職涯講座、分享會或線上活動，目的是促進報名與品牌曝光。適合放在探討職涯轉折、升遷、外商經驗或職涯啟發的文章中。可根據文章情境選擇不同風格（專業、共鳴、急迫、啟發）。
+This type of CTA is for promoting career talks, sharing sessions, or online events, with the goal of driving sign-ups and brand exposure. It suits articles that explore career turning points, promotions, international-company experience, or career inspiration. You can pick a different style depending on the article's context (professional, resonant, urgent, inspirational).
 
-【主要目的】
+[Primary objective]
 
- 提升互動與講座報名，強化品牌權威與曝光度。
+Boost engagement and talk sign-ups, and strengthen brand authority and exposure.
 
-【子目的分類】
+[Sub-objective categories]
 
-1. 專業型（方法導向）：強調具體策略與結構，建立專業權威。  
-2. 情感共鳴型（貼近心境）：拉近距離，產生情感共鳴。  
-3. 行動急迫型（推動力）：創造「錯過就沒了」的稀缺感。  
-4. 啟發型（願景感）：傳遞更高遠的職涯信念與品牌理念。
+1. Professional type (method-oriented): emphasizes concrete strategies and structure to build professional authority.
+2. Emotional-resonance type (close to the reader's state of mind): closes the distance and creates emotional resonance.
+3. Action-urgency type (driving force): creates the scarcity feeling of "miss it and it's gone."
+4. Inspirational type (sense of vision): conveys a loftier career conviction and brand philosophy.
 
-【適合出現的文章類型】
+[Article types it suits]
 
-* 海外職涯、升遷經驗分享文  
-* 求職策略、面試技巧文章  
-* 職場心態與生涯規劃文  
-* 品牌理念與價值延伸內容
+* Overseas career and promotion experience sharing
+* Job-search strategy and interview-skills articles
+* Workplace mindset and life-planning pieces
+* Brand-philosophy and value-extension content
 
-【CTA 案例與連結】
+[CTA examples and link]
 
-連結：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
+Link: [https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
 
-專業型（方法導向）：海外職涯不是夢，而是方法。在這場分享中，我會把找職缺、面試到升遷的完整策略一次拆給你。如果你也在思考下一步職涯升級，歡迎報名講座，一起聊聊怎麼少走彎路。報名連結在留言區：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
+Professional type (method-oriented): 海外職涯不是夢，而是方法。在這場分享中，我會把找職缺、面試到升遷的完整策略一次拆給你。如果你也在思考下一步職涯升級，歡迎報名講座，一起聊聊怎麼少走彎路。報名連結在留言區：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
 
-情感共鳴型（貼近心境）：你是否也曾想過：「我的背景，有可能被國際企業看見嗎？」我當初也有過同樣的疑問，直到我找到方法，一步步從文組背景走到外商經理。如果你也在卡關，不妨來聽聽這場分享，或許會帶給你一些新的思路。報名方式放在留言，期待在講座裡見到你。連結：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)  
-行動急迫型（帶點推動力）：職涯的機會，不是留給「最厲害的人」，而是留給「準備好的人」。我會在這場講座分享完整的攻略，幫助你避免盲投履歷、浪費時間。報名連結我放留言，快來卡位。連結：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
+Emotional-resonance type (close to the reader's state of mind): 你是否也曾想過：「我的背景，有可能被國際企業看見嗎？」我當初也有過同樣的疑問，直到我找到方法，一步步從文組背景走到外商經理。如果你也在卡關，不妨來聽聽這場分享，或許會帶給你一些新的思路。報名方式放在留言，期待在講座裡見到你。連結：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
+Action-urgency type (with some driving force): 職涯的機會，不是留給「最厲害的人」，而是留給「準備好的人」。我會在這場講座分享完整的攻略，幫助你避免盲投履歷、浪費時間。報名連結我放留言，快來卡位。連結：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
 
-啟發型（願景感）：你的職涯，能不能走到更大的舞台？答案是肯定的。只要懂方法，你也能被國際企業看見，把舞台搬到海外。這場講座，我會把海外求職的完整攻略一次分享給你。有興趣的朋友直接報名，留言裡有連結。連結：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
+Inspirational type (sense of vision): 你的職涯，能不能走到更大的舞台？答案是肯定的。只要懂方法，你也能被國際企業看見，把舞台搬到海外。這場講座，我會把海外求職的完整攻略一次分享給你。有興趣的朋友直接報名，留言裡有連結。連結：[https://www.accupass.com/organizer/detail/2407051348334405109540](https://www.accupass.com/organizer/detail/2407051348334405109540)
 
-## 三、AI 寫作課正式 CTA（導購類）
+## 3. AI Writing Course Official CTA (sales-driving)
 
-對應產品主軸：AI 寫作課正式推出銷售頁面
+Corresponding product focus: official launch of the AI Writing Course sales page
 
-【背景與使用時機】
+[Background and when to use]
 
-此 CTA 適用於課程正式推出後，用於推動實際購買。
+This CTA is for after the course has officially launched, to drive actual purchases.
 
-通常出現在「AI 寫作」等主題文章中，或與課程價值主題呼應的故事型文章結尾。
+It typically appears in articles on topics like "AI writing," or at the end of story-style articles that echo the course's value themes.
 
-【主要目的】
+[Primary objective]
 
-促進課程報名與轉換，同時鞏固「AI × 寫作 × 系統化思維」品牌定位。
+Drive course sign-ups and conversions, while reinforcing the "AI × writing × systematic thinking" brand positioning.
 
-【子目的分類】
+[Sub-objective categories]
 
-1. 用個人故事導入：建立情感共鳴。  
-2. 用寫作痛點引出 AI 解法：明確指出問題與轉變。  
-3. 強調課程特色與學習收益：增加轉換說服力。  
-4. 明確附上課程連結：降低行動阻力。
+1. Lead in with a personal story: build emotional resonance.
+2. Use writing pain points to introduce the AI solution: clearly name the problem and the transformation.
+3. Emphasize course features and learning benefits: increase conversion persuasiveness.
+4. Clearly include the course link: lower the barrier to action.
 
-【適合出現的文章類型】
+[Article types it suits]
 
-* AI 應用與生產力工具類  
-* 寫作技巧、內容創作心法  
-* 創作者心路歷程與學習故事
+* AI applications and productivity tools
+* Writing techniques, content-creation methodology
+* Creators' journeys and learning stories
 
-【CTA 案例與連結】
+[CTA examples and link]
 
-連結：[https://tbr.digital/courses/ai-writing](https://tbr.digital/courses/ai-writing)
+Link: [https://tbr.digital/courses/ai-writing](https://tbr.digital/courses/ai-writing)
 
-代表句範例：
+Sample sentences:
 
-* 這堂課，就是我走過那段路後，整理出來的實戰方法。如果你也正在寫作的路上，看看這堂我親自打造的課程。這可能會是你寫作路上，最值得的一次投資。  
-* 實際案例（完整段落示例）：我曾經也是那個對著空白頁面發呆的人，靈感抓不住、文章寫得出來卻總覺得說服力不夠。後來我學會用 AI 做為寫作的副駕駛，不只是幫我寫，而是幫我「想清楚」。從靈感到架構，從潤稿到風格，我一步步建立起屬於自己的內容節奏。這堂課，就是我走過那段路後，整理出來的實戰方法。如果你也想寫得更快、更穩、更有說服力，歡迎來看看這門《新時代的 AI 寫作課》。留言放連結：[https://tbr.digital/courses/ai-writing](https://tbr.digital/courses/ai-writing)
+* 這堂課，就是我走過那段路後，整理出來的實戰方法。如果你也正在寫作的路上，看看這堂我親自打造的課程。這可能會是你寫作路上，最值得的一次投資。
+* Actual example (full-paragraph sample): 我曾經也是那個對著空白頁面發呆的人，靈感抓不住、文章寫得出來卻總覺得說服力不夠。後來我學會用 AI 做為寫作的副駕駛，不只是幫我寫，而是幫我「想清楚」。從靈感到架構，從潤稿到風格，我一步步建立起屬於自己的內容節奏。這堂課，就是我走過那段路後，整理出來的實戰方法。如果你也想寫得更快、更穩、更有說服力，歡迎來看看這門《新時代的 AI 寫作課》。留言放連結：[https://tbr.digital/courses/ai-writing](https://tbr.digital/courses/ai-writing)
 
-## 四、AI 寫作課問卷 CTA（課前調研）
+## 4. AI Writing Course Survey CTA (pre-course research)
 
-對應產品主軸：任何課程共創前期
+Corresponding product focus: the early co-creation phase of any course
 
-【背景與使用時機】
+[Background and when to use]
 
-此 CTA 適用於新課程尚未正式上架、需要進行市場驗證或課程共創階段。
+This CTA is for when a new course is not yet officially live and needs market validation or course co-creation.
 
-用於測試課程需求、蒐集用戶痛點與偏好，同時建立潛在購課名單。
+It is used to test course demand, collect user pain points and preferences, and build a list of prospective course buyers.
 
-適合放在「AI、內容創作、學習方法、職涯轉型」等主題文章的結尾。
+It suits the end of articles on topics like "AI, content creation, learning methods, career transition."
 
-【主要目的】
+[Primary objective]
 
- 蒐集市場需求與課程設計意見，提前建立潛在客戶名單（warm leads）。
+Collect market demand and course-design input, and build a list of prospective customers (warm leads) in advance.
 
-【子目的分類】
+[Sub-objective categories]
 
-1. 讓用戶填寫問卷，參與課程設計。  
-2. 透過限時優惠（如五折）提升行動誘因。  
-3. 培養共創感與參與感，為後續正式課程導購鋪路。
+1. Get users to fill out the survey and take part in course design.
+2. Use a limited-time offer (such as 50% off) to boost the incentive to act.
+3. Cultivate a sense of co-creation and participation, paving the way for later official course sales.
 
-【適合出現的文章類型】
+[Article types it suits]
 
-* AI 工具、AI 寫作、AI 應用教學文  
-* 個人品牌或內容創作方法分享  
-* 職涯學習、技能轉型相關主題
+* AI tools, AI writing, AI application tutorials
+* Personal brand or content-creation methodology sharing
+* Career learning and skill-transition topics
 
-【CTA 案例與代表句】
+[CTA examples and sample sentences]
 
-連結：\[問卷連結\]
+Link: \[survey link\]
 
-代表句範例：
+Sample sentences:
 
-* 我即將把這整套方法整理成一門課...希望你可以填寫問卷。  
-* 現在填寫問卷，不只可以影響課程設計，還能獲得五折優惠。  
+* 我即將把這整套方法整理成一門課...希望你可以填寫問卷。
+* 現在填寫問卷，不只可以影響課程設計，還能獲得五折優惠。
 * 這個優惠只會出現這一次，錯過就沒有了。
 
-## 五、職涯課程問卷 CTA（Hahow 合作｜課前共創）
+## 5. Career Course Survey CTA (Hahow collaboration｜pre-course co-creation)
 
-**對應產品主軸：Hahow 職涯課程（規劃中，尚未正式上架）**
+**Corresponding product focus: Hahow career course (in planning, not yet officially live)**
 
-【背景與使用時機】
+[Background and when to use]
 
-此 CTA 用於 **Hahow 合作職涯課程的前期共創與需求驗證階段**。
+This CTA is for the **early co-creation and demand-validation phase of the Hahow collaboration career course**.
 
-目的是在課程正式設計前，先蒐集真實的職涯卡關情境、決策困難與學習期待，確保課程內容來自實際工作與人生選擇，而非抽象理論。
+The goal is to collect real career sticking points, decision difficulties, and learning expectations before the course is formally designed, ensuring the course content comes from real work and life choices rather than abstract theory.
 
-適合放在以下文章結尾：
+It suits the end of the following articles:
 
-* 職涯迷惘、升遷卡關、轉職焦慮  
-* 長期職涯規劃、外商職涯、職涯決策框架  
-* 個人經驗反思、選擇成本、成長路線分析
+* Career confusion, promotion roadblocks, career-change anxiety
+* Long-term career planning, international-company careers, career-decision frameworks
+* Personal-experience reflection, opportunity cost, growth-path analysis
 
-當讀者開始思考「下一步怎麼選，才不會後悔」時，引導填寫問卷。
+When readers start thinking "how do I choose my next step so I won't regret it," guide them to fill out the survey.
 
-【主要目的】
+[Primary objective]
 
-* 蒐集真實職涯問題與學習需求  
-* 驗證課程主題與結構是否切中痛點  
-* 建立第一批高度匹配的潛在學員名單（warm leads）
+* Collect real career problems and learning needs
+* Validate whether the course topic and structure hit the pain points
+* Build the first batch of highly matched prospective students (warm leads)
 
-【子目的分類】
+[Sub-objective categories]
 
-* 職涯定位與盤點型：不知道自己卡在哪一關  
-* 升遷／轉職決策型：選擇很多，但風險不清楚  
-* 系統化思考型：想要一套能重複使用的職涯判斷框架  
-* 共創參與型：希望課程是「為我這種人設計的」
+* Career-positioning and stocktaking type: don't know which stage they're stuck at
+* Promotion / career-change decision type: many options, but the risks are unclear
+* Systematic-thinking type: want a reusable framework for career judgment
+* Co-creation-participation type: want the course to feel "designed for people like me"
 
-【適合出現的文章類型】
+[Article types it suits]
 
-* 職涯決策、人生選擇相關內容  
-* 升遷、轉職、外商職涯經驗分享  
-* 方法論型職涯思考、結構化分析文章
+* Career-decision and life-choice content
+* Promotion, career-change, and international-company career experience sharing
+* Methodology-oriented career thinking and structured-analysis articles
 
-【CTA 案例與連結】
+[CTA examples and link]
 
-🔗 問卷連結 [https://forms.gle/XNF4ssZVekECotpbA](https://forms.gle/XNF4ssZVekECotpbA)
+🔗 Survey link [https://forms.gle/XNF4ssZVekECotpbA](https://forms.gle/XNF4ssZVekECotpbA)
 
-**代表句範例：**
+**Sample sentences:**
 
-* 我正在和 Hahow 一起規劃一門職涯課程，在動筆設計之前，我想先確認：你真正卡關的點是什麼。  
-* 如果你正站在職涯十字路口，這份問卷會幫助我把課程做得更貼近實際選擇情境。  
+* 我正在和 Hahow 一起規劃一門職涯課程，在動筆設計之前，我想先確認：你真正卡關的點是什麼。
+* 如果你正站在職涯十字路口，這份問卷會幫助我把課程做得更貼近實際選擇情境。
 * 這不是報名頁，而是一個共創起點。你的回答，會直接影響這門課最後長成什麼樣子。
 
-## 六、AI 職場應用活動 CTA（AI 助理實作工作坊）
+## 6. AI Workplace Application Event CTA (AI Assistant Hands-on Workshop)
 
-**對應產品主軸：AI × 職場流程實作工作坊（可立即部署）**
+**Corresponding product focus: AI × workplace-process hands-on workshop (ready to deploy immediately)**
 
-【背景與使用時機】
+[Background and when to use]
 
-此 CTA 用於推廣 **高度實作導向的 AI 職場應用工作坊**。
+This CTA is for promoting a **highly hands-on AI workplace-application workshop**.
 
-核心不是「介紹 AI 工具」，而是協助學員把自己每天在做的固定流程，轉換成 **可重複使用、可部署的 AI 助理**。
+The core is not "introducing AI tools," but helping participants turn the fixed processes they do every day into **reusable, deployable AI assistants**.
 
-適合放在：
+It suits:
 
-* AI 職場應用、工作流程優化文章  
-* 生產力、效率、決策品質提升內容  
-* AI 對工作方式改變的觀點與實例分析
+* AI workplace-application and workflow-optimization articles
+* Productivity, efficiency, and decision-quality improvement content
+* Perspectives and case analyses on how AI changes the way we work
 
-當讀者已經理解 AI 的重要性，但仍停留在「知道可以用，卻不知道怎麼落地」的階段。
+When readers already understand that AI matters but are still stuck at "I know it can be used, but I don't know how to make it real."
 
-【主要目的】
+[Primary objective]
 
-* 推動活動報名與實際參與  
-* 建立「AI \= 工作流程設計能力」的認知  
-* 讓學員當場產出可立即上線的 AI 助理
+* Drive event sign-ups and actual participation
+* Establish the perception that "AI \= workflow-design capability"
+* Have participants produce, on the spot, an AI assistant that can go live immediately
 
-【子目的分類】
+[Sub-objective categories]
 
-* 實作導向型：不是聽懂，而是做完  
-* 流程轉換型：把日常工作 AI 化  
-* 架構思維型：IPO → GUIDE → FE/BE/DB  
-* 立即部署型：custom GPT / Gemini Gem 當天完成
+* Hands-on type: not just understanding, but finishing
+* Process-conversion type: turn daily work into AI
+* Architectural-thinking type: IPO → GUIDE → FE/BE/DB
+* Immediate-deployment type: custom GPT / Gemini Gem completed the same day
 
-【適合出現的文章類型】
+[Article types it suits]
 
-* AI 工具教學與應用案例  
-* 工作流程拆解、效率系統設計  
-* AI 與職涯、工作型態改變的深度文章
+* AI tool tutorials and application cases
+* Workflow breakdowns and efficiency-system design
+* In-depth articles on AI and careers / changing modes of work
 
-【CTA 案例與代表句】
+[CTA examples and sample sentences]
 
-🔗 活動連結：\[AI 助理實作工作坊頁面\]
+🔗 Event link: \[AI Assistant Hands-on Workshop page\]
 
-**代表句範例：**
+**Sample sentences:**
 
-* 如果你每天都在做重複流程，這場工作坊會帶你把它們變成真正能用的 AI 助理。  
-* 這不是示範課，而是一場「做完就能上線」的實作。每位學員都會帶走 2–3 個可部署的 AI 助理。  
+* 如果你每天都在做重複流程，這場工作坊會帶你把它們變成真正能用的 AI 助理。
+* 這不是示範課，而是一場「做完就能上線」的實作。每位學員都會帶走 2–3 個可部署的 AI 助理。
 * 從流程拆解、指令設計，到 custom GPT / Gemini Gem 部署，整個工作系統會在兩小時內完成。

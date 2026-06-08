@@ -1,29 +1,29 @@
-# SEO 關鍵字檢查清單
+# SEO Keyword Checklist
 
-對應流程圖綠色節點「SEO 關鍵字的檢查清單」。整理關鍵字地圖時逐項檢查。
+Corresponds to the green flowchart node "SEO keyword checklist." Check each item off while assembling the keyword map.
 
-## 每筆關鍵字必含欄位
+## Required fields for every keyword
 
-- 關鍵字（zh-TW，旗艦另記 EN）
-- 線頭（來自哪個種子 / 切角 / 問題）
-- 搜尋量（來自工具；無則標「待補」）
-- 難度 / 競爭度（來自工具；無則標「待補」）
-- 意圖暗示（問題 / 比較 / 情境 / 決策）
-- 漏斗階段（TOFU / MOFU / BOFU）
+- Keyword (zh-TW; record the EN separately for flagship topics)
+- Thread origin (which seed / angle / question it came from)
+- Search volume (from the tool; mark "TBD" if unavailable)
+- Difficulty / competitiveness (from the tool; mark "TBD" if unavailable)
+- Intent signal (question / comparison / scenario / decision)
+- Funnel stage (TOFU / MOFU / BOFU)
 
-## 擴展來源
+## Expansion sources
 
-- Ubersuggest：keyword ideas、related、questions、搜尋量、SEO difficulty。
-- AnswerThePublic：問題、介系詞、比較字。
-- AI 引擎 prompt mining：買家會打進 ChatGPT 的整句問題（給 AEO）。
+- Ubersuggest: keyword ideas, related, questions, search volume, SEO difficulty.
+- AnswerThePublic: questions, prepositions, comparison words.
+- AI engine prompt mining: full-sentence questions buyers would type into ChatGPT (for AEO).
 
-## 涵蓋度檢查
+## Coverage check
 
-- 每個切角至少對應到一組關鍵字。
-- 長尾 / 問句型關鍵字佔比足夠（轉換與 AEO 用）。
-- BOFU 決策字（顧問、ROI、比較、推薦）有覆蓋（漏斗目標）。
-- zh-TW 為主；旗艦主題標記需要 EN 版本。
+- Every angle maps to at least one set of keywords.
+- A sufficient share of long-tail / question-style keywords (for conversion and AEO).
+- BOFU decision words (consultant, ROI, comparison, recommendation) are covered (the funnel goal).
+- zh-TW is primary; flag flagship topics that need an EN version.
 
-## 不做
+## Out of scope
 
-不在這裡判斷意圖分群、不排序、不刪字——留給 classifier 與 validator。
+Do not judge intent clustering here, do not rank, do not prune keywords — leave that to the classifier and validator.

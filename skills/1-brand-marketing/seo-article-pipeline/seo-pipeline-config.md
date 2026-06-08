@@ -99,11 +99,11 @@ Zynkr is a **decision-first AI consulting counterpart**, not "AI enablement / pr
 
 ## Content pillars (decision-first; B2B-priority)
 
-1. **AI 決策思維** — 在不確定中做更好的判斷（TOFU thought leadership；品牌核心）
-2. **流程即決策** — 用 AI 重構工作流程的判斷點（B2B core / authority）
-3. **打造會思考的 AI 夥伴** — Agent 先問對問題再給答案（builder credibility）
-4. **AI 導入的關鍵抉擇** — 該自動化什麼、何時、為何（B2B BOFU / decision）
-5. **用 AI 蓋產品** — 每一步都是一個決策（practitioner，AEO-strong）
+1. **AI 決策思維** — making better judgment calls amid uncertainty (TOFU thought leadership; brand core)
+2. **流程即決策** — using AI to re-engineer the decision points in a workflow (B2B core / authority)
+3. **打造會思考的 AI 夥伴** — the Agent asks the right question first, then answers (builder credibility)
+4. **AI 導入的關鍵抉擇** — what to automate, when, and why (B2B BOFU / decision)
+5. **用 AI 蓋產品** — every step is a decision (practitioner, AEO-strong)
 
 ## Conventions
 

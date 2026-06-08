@@ -1,7 +1,7 @@
 ---
 name: zynkr-recruiter
 sheetId: "7.07"
-description: "End-to-end recruiting pipeline — JD authoring, resume screening, interview design with scorecard, and calibration / final decision — bilingual (中英) outputs throughout."
+description: "End-to-end recruiting pipeline — JD authoring, resume screening, interview design with scorecard, and calibration / final decision — bilingual (Chinese-English) outputs throughout."
 category: people-talent
 project: recruiting-pipeline
 platform: claude
@@ -158,7 +158,7 @@ Next steps:
 
 ## Rules
 
-- All deliverables must be bilingual (中英對照)
+- All deliverables must be bilingual (Chinese-English, side by side)
 - Never invent candidate evidence not in the transcript
 - Never modify the original scorecard during calibration
 - Stage 3 designs questions only; Stage 4 evaluates — keep them separate

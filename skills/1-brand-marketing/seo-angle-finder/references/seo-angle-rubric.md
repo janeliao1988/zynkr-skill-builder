@@ -1,23 +1,23 @@
-# SEO 切角評估 Rubric（decision-first）
+# SEO Angle Evaluation Rubric (decision-first)
 
-對應流程圖「哪裡可以加強」。所有切角以 Zynkr 品牌核心「決策優先（decision-first）」為準——我們的差異不是「我們蓋了什麼」，而是「我們幫讀者把決策想清楚」。
+Maps to the "where can it be strengthened" step in the flow diagram. Every angle is judged against Zynkr's brand core, "decision-first" — our differentiator is not "what we built" but "how we help the reader think the decision through."
 
-## 四維度
+## Four Dimensions
 
-1. **決策切角（最重要）**：這個切角能否「先問對問題 → 點出真實 trade-off → 收在一個明確方向」？通用 AI 內容只給答案；Zynkr 切角要逼出背後的決策。沒有決策張力的切角退回。
-2. **競品缺口**：競品涵蓋什麼、漏了什麼。尤其「大家都在給答案、沒人點出背後的取捨」之處，就是 Zynkr 的切角。
-3. **第一手經驗（作為證據，不是賣點）**：有沒有 Zynkr 親身經驗（顧問方法論：Frame/Clarify/Constrain/Compare/Commit、SIPOC、實作）可以「支撐判斷」？show the thinking，不是炫耀 build。
-4. **AEO 搶引用潛力**：能否用「答案寫前面 + 結構化」被 AI 引擎引用？
+1. **Decision angle (most important)**: Can this angle "ask the right question first → surface the real trade-off → land on one clear direction"? Generic AI content only gives answers; a Zynkr angle has to force out the decision behind them. Reject any angle with no decision tension.
+2. **Competitor gap**: What competitors cover, and what they miss. Especially the spots where "everyone is handing out answers and nobody points out the trade-off behind them" — that is the Zynkr angle.
+3. **First-hand experience (as evidence, not a selling point)**: Is there hands-on Zynkr experience (the consulting methodology: Frame/Clarify/Constrain/Compare/Commit, SIPOC, implementation work) that can "back up the judgment"? Show the thinking, don't show off the build.
+4. **AEO citation-grabbing potential**: Can it get cited by AI engines by "putting the answer up front + structuring it"?
 
-## 評分
+## Scoring
 
-各維度 1–3 分；**至少要能成立一個清楚的「決策切角」**，否則退回換角度（避免淪為通用、賣功能的內容，違反 Brand Guide）。
+Each dimension scores 1–3 points; **at minimum it must support one clear "decision angle"**, otherwise reject it and find a different angle (avoid degenerating into generic, feature-selling content, which violates the Brand Guide).
 
-## 輸出每個切角
+## Output for Each Angle
 
-- 切角標題
-- 對應的買家決策 / 問題（來自 Questions 包）
-- 競品缺口一句話
-- 決策切角一句話：要逼讀者面對的 sharper question + 真實 trade-off
-- 第一手證據點一句話
-- AEO 潛力（高／中／低）
+- Angle title
+- The corresponding buyer decision / question (from the Questions packet)
+- One-sentence competitor gap
+- One-sentence decision angle: the sharper question + real trade-off the reader must be forced to confront
+- One-sentence first-hand evidence point
+- AEO potential (high / medium / low)

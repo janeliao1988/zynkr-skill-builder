@@ -1,26 +1,26 @@
-# 競爭對手審核表
+# Competitor Review Table
 
-對應流程圖綠色節點「競爭對手審核表」。針對每個候選目標關鍵字，看實際 SERP 前幾名填寫。
+Corresponds to the green "Competitor Review Table" node in the flow diagram. For each candidate target keyword, fill it out based on the actual top SERP results.
 
-## 每個目標關鍵字填一張表
+## Fill out one table per target keyword
 
-| 欄位 | 說明 |
+| Field | Description |
 |---|---|
-| 目標關鍵字 | 主字 |
-| SERP 前 3–5 名 | 標題 + 網域 + 內容型態 |
-| 共通點 | 前幾名共同的格式 / 深度 / 角度（搜尋意圖的證據） |
-| 內容深度門檻 | 要贏需要多深（字數、章節、資料、圖表） |
-| 競爭難度 | 工具難度 + 網域權重觀察（高/中/低） |
-| 缺口 | 前幾名都漏了什麼 |
-| Zynkr 勝出點 | 用什麼第一手證據 / 切角能贏（接 seo-angle-finder） |
-| 判定 | 做 / 不做 / 觀望 |
+| Target keyword | Primary term |
+| Top 3–5 SERP results | Title + domain + content format |
+| Common patterns | The format / depth / angle shared by the top results (evidence of search intent) |
+| Content depth threshold | How deep you need to go to win (word count, sections, data, charts) |
+| Competition difficulty | Tool difficulty score + domain authority observation (high / medium / low) |
+| Gaps | What all the top results are missing |
+| Zynkr winning edge | What first-hand evidence / angle can win (hands off to seo-angle-finder) |
+| Verdict | Do / don't do / wait and see |
 
-## 收斂原則（刪不必要的字）
+## Convergence principles (cut the unnecessary terms)
 
-- 難度高且無明顯勝出點 → 不做或觀望。
-- 多個字 SERP 意圖相同 → 合併成一個主題（一篇文章打一群字）。
-- 需求弱（無真實 SERP 競爭且非策略長尾）→ 刪。
+- High difficulty with no clear winning edge → don't do, or wait and see.
+- Multiple terms with the same SERP intent → merge into one topic (one article targets a cluster of terms).
+- Weak demand (no real SERP competition and not a strategic long-tail) → cut.
 
-## 輸出
+## Output
 
-每個保留主題：標題、目標關鍵字（主+輔）、意圖/漏斗、SERP 共通點、Zynkr 勝出點。
+For each retained topic: title, target keywords (primary + supporting), intent / funnel stage, SERP common patterns, Zynkr winning edge.

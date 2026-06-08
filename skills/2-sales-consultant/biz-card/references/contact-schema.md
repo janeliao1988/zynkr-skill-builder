@@ -21,7 +21,7 @@ The following schema is used to store all contacts extracted from business cards
 | 8 | `address` | Office address | No. 1, Xinyi Rd., Taipei |
 | 9 | `linkedin` | LinkedIn URL or handle | linkedin.com/in/davidwang |
 | 10 | `industry` | Industry category (inferred if not stated) | SaaS / Enterprise Software |
-| 11 | `notes` | Any extra info from card or context | 展場: COMPUTEX 2025 |
+| 11 | `notes` | Any extra info from card or context | Trade show: COMPUTEX 2025 |
 | 12 | `card_date` | Date the card was received | 2026-04-08 |
 
 ## Normalization Rules

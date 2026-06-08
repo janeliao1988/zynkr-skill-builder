@@ -49,9 +49,9 @@ This is a dual-write — the Sheet above stays as the full-fidelity record.
 
 | Field | Default | Why |
 |-------|---------|-----|
-| `lifecycle_stage` | `lead` (潛在客戶) | a freshly-met card is top-of-funnel |
-| `legal_basis` | `consent` (同意) | required field; the card was handed over |
-| `lead_status` | `other` (其他) | "met in person / event" has no dedicated enum |
+| `lifecycle_stage` | `lead` (prospect) | a freshly-met card is top-of-funnel |
+| `legal_basis` | `consent` | required field; the card was handed over |
+| `lead_status` | `other` | "met in person / event" has no dedicated enum |
 | `deal_status` | `NULL` | not a deal yet |
 
 ### Card → CRM field mapping (only 5 of the 12 fields have a column)

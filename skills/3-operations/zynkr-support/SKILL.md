@@ -8,9 +8,9 @@ project: zynkr-support
 platform: claude
 status: WIP
 author: Peter Tu
-input: "Gmail 中未回覆的 Support／Inbound-Sales／website-form threads；KB 為 `[3.2] Support knowledge base` 資料夾內的『巢狀』文件組（00 INDEX & Retrieval Map 為路由入口）"
-process: "拉未回覆 queue → 讀全文＋偵測未回覆＋判斷語言 → 辨識 intent → 經 INDEX 路由到對應 section doc＋01 Core Facts 找答案 → 有答案起草正式回信／無答案起 holding reply＋[[NEEDS PETER]] 並通知 Peter → Peter 補上答案後，把該 thread 交棒給 /zynkr-kms 寫回 KB"
-output: "每封 thread 一份 Gmail 草稿；一份摘要（已草稿／需要 Peter／已跳過）；對已由 Peter 補答的 thread，觸發 /zynkr-kms 交棒"
+input: "Unreplied Support / Inbound-Sales / website-form threads in Gmail; the KB is the 'nested' document set inside the `[3.2] Support knowledge base` folder (the 00 INDEX & Retrieval Map is the routing entry point)"
+process: "Pull the unreplied queue → read the full thread + detect unreplied + determine language → identify intent → route through the INDEX to the matching section doc + 01 Core Facts to find the answer → if an answer exists draft a proper reply / if none, write a holding reply + [[NEEDS PETER]] and notify Peter → after Peter supplies the answer, hand the thread off to /zynkr-kms to write it back into the KB"
+output: "One Gmail draft per thread; a summary (drafted / needs Peter / skipped); for threads Peter has since answered, trigger the /zynkr-kms hand-off"
 synergy: ["zynkr-kms"]
 ---
 

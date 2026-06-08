@@ -1,6 +1,6 @@
 ---
 name: slide-visual-selector
-description: "簡報助理三棒接力的第三棒（接 slide-page-splitter 之後、交給 pptx 技能算繪）：拿到 SLIDE_PACKET ▸ Pages 後，逐頁判斷「這頁最有效的視覺呈現是什麼」（圖表／條列／圖解／圖片／比較／大字主張…），把每頁收斂成一份可直接算繪的逐頁視覺規格 SLIDE_PACKET ▸ Visuals，交棒給已安裝的 pptx 技能算成 .pptx。當使用者交出 ▸ Pages 交棒包、說「挑視覺呈現」「選版式」「決定每頁要用什麼圖」「把分頁變成可算繪的視覺規格」「準備餵 pptx」時主動觸發。範圍界線：只做『內容 → 版式 archetype → pptxgenjs 原語』的視覺對應與版面配置；不重寫故事線（那是 slide-storyline-designer）、不重新分頁（那是 slide-page-splitter）、不實際產生 .pptx 檔（那是 pptx 技能）。"
+description: "The third leg of the slide-assistant three-leg relay (picks up after slide-page-splitter, then hands off to the pptx skill for rendering): once it has the SLIDE_PACKET ▸ Pages, it decides page by page \"what is the most effective visual treatment for this page?\" (chart / bullets / diagram / image / comparison / big statement…), and converges each page into a render-ready per-page visual spec SLIDE_PACKET ▸ Visuals, handing it off to the installed pptx skill to render into a .pptx. Trigger proactively when the user hands over a ▸ Pages handoff packet, or says 「挑視覺呈現」「選版式」「決定每頁要用什麼圖」「把分頁變成可算繪的視覺規格」「準備餵 pptx」. Scope boundary: it only does the visual mapping and layout of 'content → layout archetype → pptxgenjs primitive'; it does not rewrite the storyline (that is slide-storyline-designer), does not re-paginate (that is slide-page-splitter), and does not actually generate the .pptx file (that is the pptx skill)."
 category: brand-marketing
 project: slide-visual-selector
 platform: claude
@@ -8,9 +8,9 @@ status: Done
 author: Peter Tu
 sheetId: "1.27"
 originalName: "品牌行銷助理 ─ 品牌行銷視覺呈現選擇"
-input: "slide-page-splitter 的 SLIDE_PACKET ▸ Pages 交棒包（已分頁、每頁有頁碼/對應 beat/頁面類型/標題/內容要點/資訊密度）"
-process: "逐頁用『內容特徵 → 版式 archetype』判準選版式 → 把標題與內容要點對應到 pptxgenjs 原語（addText/bullets/addTable/addChart/addShape/addImage）並寫出版面配置 → 人工審核保留/調整 → 交棒"
-output: "render-ready 的逐頁視覺規格 SLIDE_PACKET ▸ Visuals，交給已安裝的 pptx 技能（Create from scratch / pptxgenjs.md）算繪成 .pptx"
+input: "slide-page-splitter's SLIDE_PACKET ▸ Pages handoff packet (already paginated, with each page carrying page number / corresponding beat / page type / title / content points / information density)"
+process: "For each page, pick the layout using the 'content characteristics → layout archetype' decision rule → map the title and content points to pptxgenjs primitives (addText/bullets/addTable/addChart/addShape/addImage) and write out the layout → human review keep/adjust → hand off"
+output: "A render-ready per-page visual spec SLIDE_PACKET ▸ Visuals, handed to the installed pptx skill (Create from scratch / pptxgenjs.md) to render into a .pptx"
 synergy: ["slide-page-splitter", "pptx"]
 ---
 
@@ -20,12 +20,12 @@ synergy: ["slide-page-splitter", "pptx"]
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill slide-visual-selector
 ```
 
-## 這是第幾棒
+## Which leg is this
 
-簡報助理三棒接力的**第三棒**。完整接力鏈是：
+The **third leg** of the slide-assistant three-leg relay. The full relay chain is:
 
 ```
-zynkr-slide（總指揮，選用）─ 一路帶著 SLIDE_PACKET ▸ Brief
+zynkr-slide (orchestrator, optional) ─ carries SLIDE_PACKET ▸ Brief throughout
         ▼
 slide-storyline-designer (1.25)
         │  SLIDE_PACKET ▸ Storyline
@@ -33,169 +33,169 @@ slide-storyline-designer (1.25)
 slide-page-splitter (1.26)
         │  SLIDE_PACKET ▸ Pages
         ▼
-slide-visual-selector (1.27)  ← 你在這
+slide-visual-selector (1.27)  ← you are here
         │  SLIDE_PACKET ▸ Visuals (render-ready)
         ▼
-pptx 技能  → 算繪成 .pptx
+pptx skill  → renders into .pptx
 ```
 
-**核心理念**：分頁完成後，每一頁的內容**已經定了**，剩下的關鍵問題只有一個——「這頁用什麼視覺呈現，聽眾最快看懂、最記得住？」一份數據放成一段文字會被略過，放成一張長條圖就一秒看懂；三個並列選項寫成條列容易混在一起，做成兩欄比較表才看得出差異。這一棒就是替每頁做這個判斷，並把它收斂成 pptx 技能能**直接算繪**的逐頁視覺規格。
+**Core idea**: once pagination is done, the content of every page is **already fixed**, and the only key question left is — "what visual treatment for this page lets the audience understand it fastest and remember it best?" A set of figures laid out as a paragraph of text gets skipped; laid out as a bar chart it's understood in one second. Three parallel options written as bullets are easy to muddle together; turned into a two-column comparison table, the differences become visible. This leg makes exactly that judgment for each page, and converges it into a per-page visual spec that the pptx skill can render **directly**.
 
-**吃什麼**：`SLIDE_PACKET ▸ Pages`（上一棒 slide-page-splitter 的產出，每頁帶 `{頁碼, 對應 beat, 頁面類型, 標題, 內容要點, 資訊密度}`）。
+**What it eats**: `SLIDE_PACKET ▸ Pages` (the output of the previous leg, slide-page-splitter, each page carrying `{page number, corresponding beat, page type, title, content points, information density}`).
 
-**吐什麼**：`SLIDE_PACKET ▸ Visuals`（render-ready），每頁帶 `{頁碼, 標題, 版式 archetype, 視覺元素, 內容對應, 版面配置, 設計備註}`，欄位名稱與接力合約逐字一致，交給已安裝的 pptx 技能算成 `.pptx`。
+**What it spits out**: `SLIDE_PACKET ▸ Visuals` (render-ready), each page carrying `{page number, title, layout archetype, visual elements, content mapping, layout, design notes}`, with field names matching the relay contract verbatim, handed to the installed pptx skill to render into a `.pptx`.
 
-**不吐什麼**：不重寫故事線、不重新分頁、不自己產生 `.pptx` 檔。只做「內容 → 版式 archetype → 算繪原語」的視覺對應與版面配置（見 ## Limitations）。
+**What it does NOT spit out**: it does not rewrite the storyline, does not re-paginate, does not generate the `.pptx` file itself. It only does the "content → layout archetype → rendering primitive" visual mapping and layout (see ## Limitations).
 
 ---
 
 ## Resources you'll use
 
-- **下游算繪技能（已安裝）**：pptx 技能於 `~/.claude/skills/pptx/`。本棒交棒時會請它走 **Create from scratch** 路徑（`Read ~/.claude/skills/pptx/pptxgenjs.md`）。pptx 技能取代了已關閉的 #7 open-slide React runtime，因此 ▸ Visuals 的每個視覺元素都要對得上一個 pptxgenjs 原語，下游才能 1:1 算繪。
-- **算繪畫布常識**（寫版面配置時心裡要有底，座標單位英吋）：pptx 技能預設 `pres.layout = 'LAYOUT_16x9'`；但本棒一律以 **16:9 寬版 ≈ 13.33" × 7.5"** 描述版面（即 pptxgenjs 的 `LAYOUT_WIDE`，下游若要更大畫布即用此 layout），預留 0.5" 邊界。座標只給「相對區塊」即可（例如「左半 / 右半」「上方標題帶 / 下方內容區」），精確 x/y/w/h 由 pptx 技能換算，本棒不寫死像素級座標。
-- **內容→視覺判定框架**：`./references/visual-decision-framework.md` ──「看到這種內容 → 用這組 building blocks」的完整判定邏輯（內容關係分類、偵測線索、building-block 配方、worked examples、反模式；綜合 Zelazny《Say It With Charts》先定訊息再選圖、Minto 金字塔、visualframeworks.com 框架目錄）。Step 2 判版式時先查它。
-- **品牌視覺來源（設定）**：`./references/brand-source.md` ── 本技能**不內建品牌內容**；此檔設定要從哪裡載入你的品牌視覺規範（色彩角色、字級、影像法則、logo），並附通用 schema。Step 3 寫「設計備註」時依它載入品牌；未設定則走中性預設。
+- **Downstream rendering skill (installed)**: the pptx skill at `~/.claude/skills/pptx/`. When this leg hands off, it asks that skill to take the **Create from scratch** path (`Read ~/.claude/skills/pptx/pptxgenjs.md`). The pptx skill replaces the retired #7 open-slide React runtime, so every visual element in ▸ Visuals must map onto a pptxgenjs primitive, so the downstream can render 1:1.
+- **Rendering-canvas common sense** (keep this in mind when writing layouts; coordinate unit is inches): the pptx skill defaults to `pres.layout = 'LAYOUT_16x9'`; but this leg always describes layouts in **16:9 widescreen ≈ 13.33" × 7.5"** (i.e. pptxgenjs's `LAYOUT_WIDE`, which the downstream uses if it wants a larger canvas), reserving a 0.5" margin. Coordinates only need to be "relative blocks" (e.g. "left half / right half", "top title band / bottom content area"); the exact x/y/w/h is computed by the pptx skill, and this leg does not hardcode pixel-level coordinates.
+- **Content→visual decision framework**: `./references/visual-decision-framework.md` ── the complete decision logic of "see this kind of content → use this set of building blocks" (content-relationship classification, detection cues, building-block recipes, worked examples, anti-patterns; synthesizing Zelazny's *Say It With Charts* "define the message first, then pick the chart", the Minto Pyramid, and the visualframeworks.com framework catalog). Consult it first when deciding the layout in Step 2.
+- **Brand visual source (configuration)**: `./references/brand-source.md` ── this skill does **not** ship brand content built in; this file configures where to load your brand visual standards from (color roles, type scale, image rules, logo), and includes a generic schema. When writing "design notes" in Step 3, load the brand per this file; if unconfigured, fall back to neutral defaults.
 
 ---
 
-## Step 1 — 接收分頁清單（▸ Pages）
+## Step 1 — Receive the page list (▸ Pages)
 
-讀取上一棒的 `SLIDE_PACKET ▸ Pages`，確認每頁都帶齊合約欄位：`{頁碼, 對應 beat, 頁面類型, 標題, 內容要點, 資訊密度}`，且頁面類型用的是合約 enum（`title / section / content / data / quote / closing`）。
+Read the previous leg's `SLIDE_PACKET ▸ Pages`, and confirm every page carries the full contract fields: `{page number, corresponding beat, page type, title, content points, information density}`, and that the page type uses the contract enum (`title / section / content / data / quote / closing`).
 
-若使用者**沒有提供** ▸ Pages，先要求他貼上，或先去跑 `slide-page-splitter`（再往前是 `slide-storyline-designer`）。**不要**自己腦補分頁、也不要在沒有 ▸ Pages 的情況下提前展開視覺規格——那會破壞接力合約的欄位銜接，下一棒（pptx 技能）也接不住。
+If the user **has not provided** ▸ Pages, first ask them to paste it, or go run `slide-page-splitter` first (and further back, `slide-storyline-designer`). Do **not** make up pagination yourself, and do not expand the visual spec ahead of time when there is no ▸ Pages — that would break the field linkage of the relay contract, and the next leg (the pptx skill) can't catch it either.
 
-> **若帶有上游 `SLIDE_PACKET ▸ Brief`（由 `zynkr-slide` 產生）**：先讀「逐棒強調 ▸ 視覺 (棒3)」directives 與 `簡報用途`，作為選 archetype 與寫設計備註的權重（例：deep-dive 偏 `data-chart` / `two-column-compare`（含 before/after 對照）揭示衝擊；all-hands 偏 `big-statement`、低密度，`section` 頁用 `big-statement` 或 title 章節變體承載）。`套用品牌` 為「是」時依本棒 `./references/brand-source.md` 載入品牌，「否」走中性預設。若 ▸ Brief 的「模式 (mode)」值為 express，本棒人工審核（Step 4）改走**非阻斷式**：列出逐頁視覺規格並標明可隨時喊停，無重大問題即自動往下交給 pptx 算繪；「模式 (mode)」值為 guided、**或沒有 ▸ Brief** 時，維持 Step 4 原本逐頁阻斷式 HITL。▸ Brief 的視覺偏好仍受本棒把關原則約束（一頁一主視覺、只輸出九種 archetype enum 內的版式名、拒絕無資訊的圖、密度爆表退回棒2）。**沒有 ▸ Brief 時，本棒完全照 Step 1–5 原流程獨立運作、以上權重一律不套用。**
+> **If an upstream `SLIDE_PACKET ▸ Brief` is present (produced by `zynkr-slide`)**: first read the "per-leg emphasis ▸ visual (leg 3)" directives and `presentation purpose`, and use them as weights for choosing archetypes and writing design notes (e.g. deep-dive leans toward `data-chart` / `two-column-compare` (including before/after contrasts) to reveal impact; all-hands leans toward `big-statement`, low density, with `section` pages carried by `big-statement` or a title section variant). When `apply brand` is "yes", load the brand per this leg's `./references/brand-source.md`; when "no", use neutral defaults. If the ▸ Brief's "mode" value is express, this leg's human review (Step 4) switches to **non-blocking**: it lists the per-page visual spec and notes that the user can stop it at any time, and if there are no major issues it automatically continues and hands off to pptx for rendering; when the "mode" value is guided, **or there is no ▸ Brief**, keep Step 4's original per-page blocking HITL. The ▸ Brief's visual preferences are still bound by this leg's gatekeeping principles (one main visual per page, only output layout names within the nine-archetype enum, reject charts with no information, kick density overflow back to leg 2). **When there is no ▸ Brief, this leg runs entirely standalone per the original Step 1–5 flow, and none of the above weights apply.**
 
 ---
 
-## Step 2 — 逐頁選版式（內容特徵 → archetype）
+## Step 2 — Pick a layout per page (content characteristics → archetype)
 
-對**每一頁**，先讀它的「頁面類型 + 內容要點 + 資訊密度」，再用下表把它映到一個**版式 archetype**。版式 enum（嚴格對齊合約）：
-`title / big-statement / bulleted-list / two-column-compare / data-chart / process-diagram / image-led / quote / closing-CTA`。
+For **each page**, first read its "page type + content points + information density", then use the table below to map it to one **layout archetype**. The layout enum (strictly aligned with the contract):
+`title / big-statement / bulleted-list / two-column-compare / data-chart / process-diagram / image-led / quote / closing-CTA`.
 
-> 下表是**常用快速判準**。完整的「內容關係 → building blocks」分類（含偵測線索、配方、worked examples、反模式）見 `./references/visual-decision-framework.md`──遇到不確定怎麼選的頁先查它。核心原則：**先定訊息，再選形式**（同一份資料，訊息不同視覺就不同）。
+> The table below is the **common-case quick decision rule**. The full "content relationship → building blocks" classification (with detection cues, recipes, worked examples, anti-patterns) is in `./references/visual-decision-framework.md` ── consult it for any page where you're not sure how to choose. Core principle: **define the message first, then pick the form** (same data, different message → different visual).
 
-判準對應表（內容特徵 → 版式 archetype）：
+Decision mapping table (content characteristics → layout archetype):
 
-| 內容特徵 / 訊號 | 選這個 archetype | 為什麼 |
+| Content characteristic / signal | Choose this archetype | Why |
 |---|---|---|
-| 頁面類型 = `title`（封面：簡報名 + 副標 + 講者/場合） | `title` | 第一印象，留白與大標，不塞內容 |
-| 頁面類型 = `section`（段落分隔、宣告下一個 beat） | `big-statement` 或 `title`（章節變體） | 視覺喘息點，一句話佔版面，幫聽眾重新定位 |
-| 只有**一個**衝擊性結論／關鍵數字／一句話主張（資訊密度低） | `big-statement` | 一頁一個重點，大字比一段文字更有力 |
-| 3–6 個**並列、彼此獨立**的要點，沒有量化、不需互比 | `bulleted-list` | 條列最直接；超過 6 點代表該回頭請上一棒拆頁 |
-| 兩個對象的**對照**（方案A vs B、before/after、現況 vs 目標、我們 vs 競品） | `two-column-compare` | 並排才看得出差異，比上下條列清楚 |
-| 有**量化數據**：趨勢、佔比、排名、多期比較（頁面類型多為 `data`） | `data-chart` | 數字要被「看見」而非「讀到」；見下方 chart 子判準 |
-| **有序流程 / 步驟 / 階段 / 因果鏈 / 時間軸** | `process-diagram` | 用節點與箭頭表達順序，文字條列表達不出流動 |
-| 訊息**靠畫面承載**（產品照、情境照、示意圖、概念隱喻） | `image-led` | 一張對的圖勝過三行字；圖為主、文字為輔 |
-| 頁面類型 = `quote`（客戶見證、名言、強背書） | `quote` | 引號 + 出處的留白排版，借第三方權威 |
-| 頁面類型 = `closing`（行動呼籲、聯絡方式、下一步） | `closing-CTA` | 收尾要明確「然後呢」，給單一行動 |
+| Page type = `title` (cover: deck name + subtitle + speaker/occasion) | `title` | First impression; whitespace and a big headline, don't cram content |
+| Page type = `section` (section divider, announcing the next beat) | `big-statement` or `title` (section variant) | A visual breathing point; one line fills the page, helping the audience reorient |
+| Only **one** impactful conclusion / key number / one-line claim (low information density) | `big-statement` | One point per page; big type is more forceful than a paragraph of text |
+| 3–6 **parallel, mutually independent** points, no quantification, no need to compare against each other | `bulleted-list` | Bullets are the most direct; more than 6 points means it should go back to the previous leg to be split |
+| A **contrast** of two subjects (option A vs B, before/after, current vs target, us vs competitor) | `two-column-compare` | Side by side reveals the difference; clearer than stacked bullets |
+| Has **quantified data**: trend, share, ranking, multi-period comparison (page type is usually `data`) | `data-chart` | Numbers should be "seen", not "read"; see the chart sub-rule below |
+| **Ordered process / steps / phases / causal chain / timeline** | `process-diagram` | Use nodes and arrows to express order; bullet text can't express flow |
+| The message is **carried by the image** (product shot, situational photo, schematic, conceptual metaphor) | `image-led` | One right image beats three lines of text; image leads, text supports |
+| Page type = `quote` (customer testimonial, famous quote, strong endorsement) | `quote` | Quote marks + attribution with whitespace; borrows third-party authority |
+| Page type = `closing` (call to action, contact info, next steps) | `closing-CTA` | The ending must make "so what now?" explicit; give a single action |
 
-`data-chart` 的圖型子判準（→ 對應 pptxgenjs `addChart` 的 chart type）：
+`data-chart` chart-type sub-rule (→ the corresponding pptxgenjs `addChart` chart type):
 
-| 數據意圖 | chart type | pptxgenjs |
+| Data intent | chart type | pptxgenjs |
 |---|---|---|
-| 類別間比大小 / 排名 | bar（`barDir:'col'` 直條或 `'bar'` 橫條） | `addChart(pres.charts.BAR, …)` |
-| 隨時間/序列變化的趨勢 | line | `addChart(pres.charts.LINE, …)` |
-| 整體的組成佔比（≤5 類） | pie / doughnut | `addChart(pres.charts.PIE / DOUGHNUT, …)` |
-| 純表格型、需逐格精確值 | 不是 chart，改用 table | `addTable(rows, …)` |
+| Compare sizes / rankings across categories | bar (`barDir:'col'` vertical columns or `'bar'` horizontal bars) | `addChart(pres.charts.BAR, …)` |
+| Trend changing over time/sequence | line | `addChart(pres.charts.LINE, …)` |
+| Composition share of a whole (≤5 categories) | pie / doughnut | `addChart(pres.charts.PIE / DOUGHNUT, …)` |
+| Pure tabular, need exact per-cell values | not a chart, use a table instead | `addTable(rows, …)` |
 
-判斷時的把關原則：
+Gatekeeping principles when deciding:
 
-- **一頁一種主視覺**。每頁挑**一個**主 archetype；最多再加輔助元素（標題帶、頁碼、一個小 icon），不要同頁塞兩張圖搶焦點。
-- **標題自帶結論**（沿用上一棒的標題哲學）。視覺只負責把那個結論「演」出來，不是裝飾。
-- **拒絕無資訊的圖**。若一頁沒有可量化的數字，就不要硬塞 chart；條列或大字更誠實。
-- **資訊密度爆表 = 退回上一棒**。若某頁要塞 >6 條列或 >1 張主圖才講得完，這是分頁問題，標記出來請使用者回 `slide-page-splitter` 拆頁，本棒不靠縮字硬擠。
-- **不裝飾，要圖解 + 用色節制**（通用設計原則）。能用結構性圖解（幾何形狀）說清楚就別塞 stock 圖；**決策色每頁最多 1 次**（只標真正的決定／CTA），強調色節制使用。實際色值由 `./references/brand-source.md` 載入的品牌決定。
+- **One main visual per page**. Pick **one** main archetype per page; at most add supporting elements (title band, page number, one small icon), don't cram two images onto the same page competing for focus.
+- **The title carries its own conclusion** (following the previous leg's title philosophy). The visual is only there to "act out" that conclusion, not to decorate.
+- **Reject charts with no information**. If a page has no quantifiable number, don't force in a chart; bullets or big type are more honest.
+- **Information density overflow = kick it back to the previous leg**. If a page needs >6 bullets or >1 main image to finish saying its point, that's a pagination problem — flag it and ask the user to go back to `slide-page-splitter` to split the page; this leg does not force a fit by shrinking type.
+- **Don't decorate, do diagram + use color sparingly** (general design principle). If a structural diagram (geometric shapes) can make it clear, don't stuff in a stock image; **the decision color is used at most once per page** (mark only the real decision / CTA), and the accent color is used sparingly. The actual color values come from the brand loaded via `./references/brand-source.md`.
 
 ---
 
-## Step 3 — 把內容對應到算繪原語 + 寫版面配置
+## Step 3 — Map content to rendering primitives + write the layout
 
-選好 archetype 後，替每頁把「標題 + 內容要點」翻成具體的**視覺元素**。每個視覺元素都必須能 1:1 對應一個 pptxgenjs 原語，否則 pptx 技能無法算繪：
+After picking the archetype, translate each page's "title + content points" into concrete **visual elements**. Every visual element must be able to map 1:1 to a pptxgenjs primitive, otherwise the pptx skill can't render it:
 
-| 視覺元素 | pptxgenjs 原語 | 典型用途 |
+| Visual element | pptxgenjs primitive | Typical use |
 |---|---|---|
-| 文字塊 | `addText(text, {x,y,w,h,fontSize,color,bold,align})` | 標題、大字主張、引言、說明 |
-| 條列 | `addText([{text, options:{bullet:true, breakLine:true}}, …])` | bulleted-list 的每一點（用 `bullet:true`，**不要**打 unicode「•」，會變雙重項目符號） |
-| 表格 | `addTable(rows, opts)` | two-column-compare 的對照、需精確值的數據 |
-| 圖表 | `addChart(type, data, opts)` | data-chart（BAR / LINE / PIE / DOUGHNUT） |
-| 形狀圖 | `addShape(pres.shapes.RECTANGLE / OVAL / ROUNDED_RECTANGLE / LINE, {…})` | process-diagram 的節點/連線、色塊、卡片底、欄位分隔 |
-| 圖片 | `addImage({path|data, x,y,w,h})` | image-led 主圖、icon（icon 由 react-icons 轉 PNG，pptx 技能會處理） |
+| Text block | `addText(text, {x,y,w,h,fontSize,color,bold,align})` | Title, big-statement claim, quote, caption |
+| Bullets | `addText([{text, options:{bullet:true, breakLine:true}}, …])` | Each point of a bulleted-list (use `bullet:true`; do **not** type a unicode "•", it produces a double bullet) |
+| Table | `addTable(rows, opts)` | The contrast of two-column-compare, data needing exact values |
+| Chart | `addChart(type, data, opts)` | data-chart (BAR / LINE / PIE / DOUGHNUT) |
+| Shape diagram | `addShape(pres.shapes.RECTANGLE / OVAL / ROUNDED_RECTANGLE / LINE, {…})` | Nodes/connectors of a process-diagram, color blocks, card backgrounds, column dividers |
+| Image | `addImage({path|data, x,y,w,h})` | image-led main image, icon (icons are converted from react-icons to PNG; the pptx skill handles it) |
 
-接著替每頁寫 **版面配置**（用相對區塊描述，座標由 pptx 換算）。各 archetype 的版面骨架：
+Then write the **layout** for each page (describe with relative blocks; coordinates are computed by pptx). The layout skeleton of each archetype:
 
-- `title`：上中大標 + 副標一行；講者/場合靠下；大量留白。深底配淺字（封面常用深底）。
-- `big-statement`：一句主張置中或靠左偏上，字級最大；可加一條品牌色色塊／OVAL 當背景重音。
-- `bulleted-list`：左上標題帶；下方左對齊 `bullet:true` 條列（**勿置中**）；右側可留一張示意圖或 icon 欄。
-- `two-column-compare`：標題帶 + 下方左右兩欄（兩個 `addTable`，或兩組卡片 `addShape`+`addText`），欄寬對稱、表頭用品牌色填底。
-- `data-chart`：標題帶（標題寫出數據結論）+ 主圖 `addChart` 佔下方主區；旁邊可放一個大數字 callout（`addText` 60–72pt）點出 key takeaway。
-- `process-diagram`：標題帶 + 一排/一列節點（`ROUNDED_RECTANGLE` 卡片 + 內文）以 `LINE` 相連，依步驟數均分；標號 1→N。
-- `image-led`：半版主圖（`addImage`，左半或右半 bleed）+ 另半文字疊放或留白；文字塊配色與圖對比足夠。
-- `quote`：大引號 + 引文（斜體或大字）置中／靠左 + 出處小字靠下；大量留白。
-- `closing-CTA`：明確單一行動（`addText` 大字）+ 必要聯絡資訊/QR；深底收尾呼應封面，形成「深—淺—深」三明治。
+- `title`: a big headline at top-center + one subtitle line; speaker/occasion lower down; lots of whitespace. Dark background with light text (covers commonly use a dark background).
+- `big-statement`: one claim centered or left-aligned in the upper area, largest type; can add a brand-color block / OVAL as a background accent.
+- `bulleted-list`: title band at top-left; below it, left-aligned `bullet:true` bullets (**not centered**); the right side can leave a schematic image or icon column.
+- `two-column-compare`: title band + two left/right columns below (two `addTable`s, or two sets of cards `addShape`+`addText`), columns of symmetric width, header filled with brand color.
+- `data-chart`: title band (the title states the data conclusion) + the main chart `addChart` filling the bottom main area; alongside it you can place a large number callout (`addText` 60–72pt) pointing out the key takeaway.
+- `process-diagram`: title band + a row/column of nodes (`ROUNDED_RECTANGLE` cards + inner text) connected by `LINE`, evenly divided by the number of steps; numbered 1→N.
+- `image-led`: a half-page main image (`addImage`, left-half or right-half bleed) + the other half with overlaid text or whitespace; the text block's color contrasts enough with the image.
+- `quote`: a large quote mark + the quote (italic or big type) centered/left-aligned + small attribution lower down; lots of whitespace.
+- `closing-CTA`: an explicit single action (`addText` big type) + necessary contact info/QR; dark-background ending echoing the cover, forming a "dark—light—dark" sandwich.
 
-**設計備註**逐頁標出，並依 `./references/brand-source.md` 載入的品牌套用（未設定品牌則用中性預設）：
+Mark the **design notes** per page, applying the brand loaded via `./references/brand-source.md` (use neutral defaults if no brand is configured):
 
-- **底色**：用品牌「預設表面色」；封面／章節／結尾用品牌「深對比色」全幅深底（文字翻成表面色）。
-- **決策強調**：每頁最多一個「決策色」（CTA／唯一的決定）；思考關鍵動詞用「強調色」（每標題 ≤ 1）。
-- **字級**：依品牌字級級距（標題／內文／註腳／編號）給 pptx `fontSize`；字體用品牌字體角色（顯示／內文／編號／中文）。
-- **圖表配色**：用品牌色盤，只有要點序列才上決策色，**不要**用 Office 預設花色。
-- 標出每頁要「強調哪個字／哪個數字」。給 pptx 的色值一律去掉 `#`（例 `color: "RRGGBB"`）。
-
----
-
-## Step 4 — 人工審核 (HITL)
-
-把逐頁視覺規格**編號列出**給使用者（每頁一行摘要：`P# | 標題 | archetype | 主視覺元素`），請他逐頁確認、要求保留／改版式／調整版面。重點請使用者覆核：
-
-1. 版式選得對不對（特別是「該不該用 chart」「該不該用比較表」這類判斷）。
-2. 有沒有哪頁資訊密度過高、其實該退回 `slide-page-splitter` 拆頁。
-3. 每頁的視覺元素是否都對得上一個 pptxgenjs 原語（沒有「畫不出來」的東西）。
-
-使用者全部點頭前，**不要**交棒給 pptx 技能算繪。改動大就調整後再列一次給他過目。
+- **Background color**: use the brand's "default surface color"; cover / section / closing use the brand's "dark contrast color" as a full-bleed dark background (text flips to the surface color).
+- **Decision emphasis**: at most one "decision color" per page (CTA / the single decision); the key thinking verb uses the "accent color" (≤ 1 per title).
+- **Type scale**: give pptx `fontSize` per the brand type scale (title / body / footnote / numbering); use the brand font roles (display / body / numbering / Chinese) for typefaces.
+- **Chart coloring**: use the brand palette; only the key series gets the decision color; do **not** use Office's default rainbow.
+- Mark on each page which word / which number to "emphasize". Color values given to pptx always drop the `#` (e.g. `color: "RRGGBB"`).
 
 ---
 
-## Step 5 — 交棒並存檔（→ pptx 技能算繪）
+## Step 4 — Human review (HITL)
 
-審核通過後：
+List the per-page visual spec to the user **numbered** (one summary line per page: `P# | title | archetype | main visual element`), and ask them to confirm page by page, requesting keep / change layout / adjust layout. Key items for the user to review:
 
-1. 把完整 `SLIDE_PACKET ▸ Visuals` 存入本份簡報的工作子資料夾（durable 紀錄，與 1.25 / 1.26 同一份 SLIDE_PACKET）。
-2. **呼叫已安裝的 pptx 技能**：請它走 **Create from scratch** 路徑（`Read ~/.claude/skills/pptx/pptxgenjs.md`），以 `SLIDE_PACKET ▸ Visuals` 為輸入，逐頁 `pres.addSlide()` 把每個視覺元素用對應原語算繪成 `.pptx`，並完成 pptx 技能本身要求的 QA（markitdown 文字檢查 + 子代理視覺檢查）。
-3. 提醒 pptx 技能：色彩與字體依 `./references/brand-source.md` 載入的品牌（表面色底、單一決策色、品牌色盤圖表，色值去 `#`），版面依本棒給的版面配置；未設定品牌則用中性預設。
+1. Whether the layout was chosen correctly (especially judgments like "should this use a chart" or "should this use a comparison table").
+2. Whether any page's information density is too high and should actually go back to `slide-page-splitter` to be split.
+3. Whether every page's visual elements all map onto a pptxgenjs primitive (nothing "can't be drawn").
 
-交棒區塊（render-ready，欄位嚴格對齊合約）：
+Before the user signs off on everything, do **not** hand off to the pptx skill for rendering. If changes are large, adjust and then list it again for their review.
+
+---
+
+## Step 5 — Hand off and save (→ pptx skill renders)
+
+After review passes:
+
+1. Save the complete `SLIDE_PACKET ▸ Visuals` into this deck's working subfolder (durable record, the same SLIDE_PACKET as 1.25 / 1.26).
+2. **Call the installed pptx skill**: ask it to take the **Create from scratch** path (`Read ~/.claude/skills/pptx/pptxgenjs.md`), with `SLIDE_PACKET ▸ Visuals` as input, and page by page `pres.addSlide()` render each visual element with its corresponding primitive into a `.pptx`, and complete the QA that the pptx skill itself requires (markitdown text check + subagent visual check).
+3. Remind the pptx skill: colors and fonts follow the brand loaded via `./references/brand-source.md` (surface-color background, single decision color, brand-palette charts, color values with `#` dropped), and the layout follows the layout this leg gives; use neutral defaults if no brand is configured.
+
+Handoff block (render-ready, fields strictly aligned with the contract):
 
 ```
-SLIDE_PACKET ▸ Visuals   （交給 pptx 技能算繪成 .pptx）
+SLIDE_PACKET ▸ Visuals   (handed to the pptx skill to render into a .pptx)
 
-逐頁視覺規格（每頁一筆）：
-- 頁碼：P1
-  標題：<這頁標題（自帶結論）>
-  版式 archetype：<title / big-statement / bulleted-list / two-column-compare / data-chart / process-diagram / image-led / quote / closing-CTA>
-  視覺元素：
-    - <文字塊 addText> — <內容>
-    - <條列 bullets / 表格 addTable / 圖表 addChart{type} / 形狀圖 addShape / 圖片 addImage> — <內容/數據>
-  內容對應：<這些視覺元素分別承載 ▸ Pages 哪些內容要點>
-  版面配置：<相對區塊描述，例：上方標題帶；下方左右兩欄；右側半版主圖…（畫布 16:9 ≈ 13.33×7.5，邊界 0.5"）>
-  設計備註：<深/淺底、字級層級、強調哪個字/數字；色彩依 brandbook 主色/強調色>
+Per-page visual spec (one entry per page):
+- Page number: P1
+  Title: <this page's title (carries its own conclusion)>
+  Layout archetype: <title / big-statement / bulleted-list / two-column-compare / data-chart / process-diagram / image-led / quote / closing-CTA>
+  Visual elements:
+    - <text block addText> — <content>
+    - <bullets / table addTable / chart addChart{type} / shape diagram addShape / image addImage> — <content/data>
+  Content mapping: <which of ▸ Pages's content points each of these visual elements carries>
+  Layout: <relative-block description, e.g.: title band at top; two left/right columns below; right-half main image…(canvas 16:9 ≈ 13.33×7.5, margin 0.5")>
+  Design notes: <dark/light background, type-scale hierarchy, which word/number to emphasize; colors per brandbook primary/accent color>
 
-- 頁碼：P2
-  …（同上結構，逐頁列完）
+- Page number: P2
+  …(same structure as above, list every page)
 
-— 視覺規格已逐頁確認，可交棒給 pptx 技能（Read pptxgenjs.md，Create from scratch）算繪成 .pptx。
+— Visual spec confirmed page by page; ready to hand off to the pptx skill (Read pptxgenjs.md, Create from scratch) to render into a .pptx.
 ```
 
 ---
 
 ## Outputs
 
-一份 render-ready 的逐頁視覺規格 `SLIDE_PACKET ▸ Visuals`：每頁都已決定版式 archetype、列出可 1:1 對應 pptxgenjs 原語的視覺元素、寫好版面配置與依 brandbook 的設計備註，並經使用者逐頁審核，可直接交給已安裝的 pptx 技能算成 `.pptx`。
+A render-ready per-page visual spec `SLIDE_PACKET ▸ Visuals`: every page has its layout archetype decided, lists the visual elements that map 1:1 onto pptxgenjs primitives, has its layout and brandbook-based design notes written, and has been reviewed by the user page by page, ready to hand directly to the installed pptx skill to render into a `.pptx`.
 
 ## Limitations
 
-只做「內容 → 版式 archetype → pptxgenjs 算繪原語」的視覺選擇與版面配置。**不做**：
+It only does the visual selection and layout of "content → layout archetype → pptxgenjs rendering primitive". It does **not**:
 
-- **不重寫故事線**：簡報目標 / 核心主張 / 敘事弧線屬於第一棒 `slide-storyline-designer` (1.25)（▸ Storyline）。
-- **不重新分頁、不改每頁要講什麼**：那是第二棒 `slide-page-splitter` (1.26)（▸ Pages）；遇到單頁資訊量爆表只標記退回，不自己硬塞。
-- **不實際產生 `.pptx` 檔、不寫 pptxgenjs 程式碼、不做最終算繪 QA**：那是下游已安裝的 **pptx 技能**（`~/.claude/skills/pptx`，Create from scratch / pptxgenjs.md），本棒只把 ▸ Visuals 交給它。
+- **Rewrite the storyline**: the presentation goal / core claim / narrative arc belong to the first leg `slide-storyline-designer` (1.25) (▸ Storyline).
+- **Re-paginate or change what each page says**: that is the second leg `slide-page-splitter` (1.26) (▸ Pages); when a single page's information overflows, it only flags it for return, it does not force a cram.
+- **Actually generate the `.pptx` file, write pptxgenjs code, or do the final rendering QA**: that is the downstream installed **pptx skill** (`~/.claude/skills/pptx`, Create from scratch / pptxgenjs.md); this leg only hands ▸ Visuals to it.

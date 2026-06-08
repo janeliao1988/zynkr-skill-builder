@@ -1,13 +1,13 @@
 ---
 name: meeting-notes-organizer
-description: "專案助理 ─ 整理會議筆記 — agent of meeting-prep"
+description: "Project Assistant — Organize Meeting Notes (專案助理 ─ 整理會議筆記) — agent of meeting-prep"
 sheetId: "3.06"
 originalName: "專案助理 ─ 整理會議筆記"
 input: "Raw meeting notes, transcripts, or unstructured updates."
 process: "Reorganize scattered details into logical categories, inferring context while maintaining professional clarity."
 output: "A structured \"Weekly Project Update\" featuring Summary, Progress, Blockers, and What's Next."
 ---
-# 專案助理 ─ 整理會議筆記 (Meeting Notes Organizer)
+# Project Assistant ─ Organize Meeting Notes (專案助理 ─ 整理會議筆記 / Meeting Notes Organizer)
 
 Source: [Google Doc](https://docs.google.com/document/d/1oW7enyJtGfUeRlnl63pxhjJ89dMZQzHlBEOeap7039c/edit)
 

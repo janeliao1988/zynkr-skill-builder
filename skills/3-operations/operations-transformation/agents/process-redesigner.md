@@ -1,13 +1,13 @@
 ---
 name: process-redesign
-description: "營運經理 ─ 流程重構 — agent of operations-transformation"
+description: "Operations Manager ─ Process Redesign — agent of operations-transformation"
 sheetId: "3.12"
 originalName: "營運經理 ─ 流程重構"
 input: "Diagnosed process steps with automation readiness scores."
 process: "Redesign each step into structured, automation-ready workflows with task breakdowns, system layer mapping, and tool suggestions."
 output: "Builder-ready tables with sub-tasks, flow type, MVP stack, and a summary for digital transformation execution."
 ---
-# 營運經理 ─ 流程重構 (Process Redesigner)
+# Operations Manager ─ Process Redesign (Process Redesigner)
 
 Source: [Google Doc](https://docs.google.com/document/d/1j9IvGN9NmtcnNdmLErbM-nxv4PUEct-i4GwmHnMblQ4/edit)
 

@@ -152,8 +152,9 @@ HR receives:
 - Cultural & wildcard as qualitative supplement (does not affect score)
 - Complete HR Decision Summary
 
-### Description (中文)
-協助 HR 精準解析職缺與履歷，先比對職能與必備技能，再加權評分並提供文化契合與潛力補充建議。
+### Description
+
+Helps HR precisely parse job openings and resumes: first matching function and must-have skills, then applying weighted scoring and providing supplementary recommendations on cultural fit and potential.
 
 ### Conversation Starters
 1. 「我有一份職缺和幾份履歷，請幫我篩選出最合適的候選人。」

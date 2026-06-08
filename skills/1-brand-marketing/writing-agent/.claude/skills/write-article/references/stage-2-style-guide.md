@@ -1,74 +1,74 @@
-### **一、核心風格（Core Writing Style）**
+### **1. Core Writing Style**
 
-你的寫作風格是實踐性、結構化與故事導向，強調：
+Your writing style is practical, structured, and story-driven, with an emphasis on:
 
-* **實用性 (Actionable)**：內容需具備可實踐的步驟或方法。  
-* **結構化 (Structured)**：採用清晰且有邏輯的架構，便於讀者理解。  
-* **故事化 (Story-driven)**：透過個人經驗或生動的案例引入主題，建立共鳴。  
-* **親和感 (Conversational)**：用口語化、平易近人的語言縮短與讀者的距離。  
-* **輕量化（Memorable over Complete）：**內容不求一次解釋所有概念，而是抓住讀者最需要的1 \- 2 個觀念，搭配個人經驗或具體行動，留下深刻印象。
-
-### 
-
-### **二、內容結構 (Content Structure)**
-
-使用 GUIDE 框架設計內容：
-
-* **Goal：**用具體、簡短的真實故事引出主題，避免抽象問題敘述。  
-* **Understanding：**若非必要，不單獨寫一整段理論說明，可融入故事背景或決策中自然帶出。  
-* **Identity：**強調你曾經歷相似的處境或困難來建立認同感，避免講道理。  
-* **Deliverable：**不是給出「四大步驟」，而是「我都怎麼做」，讓做法更個人化。  
-* **Evidence：**可用輕量的數據或實際觀察補充，避免厚重文獻式舉例。
+* **Actionable**: The content must offer steps or methods that can be put into practice.  
+* **Structured**: Use a clear, logical architecture so readers can follow it easily.  
+* **Story-driven**: Introduce the topic through personal experience or vivid examples to build resonance.  
+* **Conversational**: Use colloquial, approachable language to close the distance with the reader.  
+* **Memorable over Complete:** The content does not try to explain every concept at once; instead it captures the 1–2 ideas the reader needs most, pairs them with personal experience or concrete actions, and leaves a lasting impression.
 
 ### 
 
-### **三、敘事技巧 (Narrative Techniques)**
+### **2. Content Structure**
 
-* **SCQA 框架** (情境、衝突、問題、解答)：幫助內容邏輯明確且易於追蹤。  
-* **比喻與隱喻**：經常使用生動比喻，增加內容的趣味性與理解力。  
-* **問題導向**：用問題引導讀者思考，增強參與感。
+Design the content using the GUIDE framework:
 
-### 
-
-### **四、語言使用 (Language Usage)**
-
-* **簡潔精準**：避免冗言贅字，每一句話盡量精準有效。  
-* **親切且口語化**：用日常用語與讀者交流，降低閱讀阻力。  
-* **情感適度呈現**：清晰呈現自己的感受與反應，拉近讀者距離。  
-* **資訊節奏控制：**單段資訊量不超過 3 個重點；每一頁 / 畫面只處理一個核心訊息，避免認知過載。
+* **Goal:** Lead into the topic with a concrete, brief, true story; avoid abstract problem statements.  
+* **Understanding:** Unless necessary, do not write a standalone paragraph of pure theory; weave it naturally into the story's context or the decisions being made.  
+* **Identity:** Emphasize that you once went through a similar situation or difficulty in order to build a sense of identification; avoid lecturing.  
+* **Deliverable:** Rather than handing over "four major steps," frame it as "how I do it" to make the method more personal.  
+* **Evidence:** Supplement with lightweight data or real-world observations; avoid heavy, literature-style citations.
 
 ### 
 
-### **五、文章撰寫流程 (Writing Process)**
+### **3. Narrative Techniques**
 
-1. **定義問題 (Define the Problem)**：從讀者的痛點或常見問題出發。  
-2. **選擇合適故事 (Choose Relevant Stories)**：用自己的經驗或經典案例切入。  
-3. **建構大綱 (Outline Using GUIDE)**：以 GUIDE 結構明確設定每段重點。  
-4. **撰寫初稿 (Draft)**：以口語化的方式，自然流暢地完成初稿。  
-5. **精簡與校準 (Edit & Refine)**：檢視語言是否簡潔、故事是否清晰，並檢查邏輯連貫性。  
-6. **刪減與聚焦（Refine & Focus）：**檢視每段是否只強調一個重點，是否能刪除多餘理論與細節。保留對讀者最有啟發性的行動與思考方式。
+* **SCQA framework** (Situation, Complication, Question, Answer): keeps the content logically clear and easy to follow.  
+* **Analogies and metaphors**: use vivid comparisons frequently to make the content more engaging and easier to grasp.  
+* **Question-oriented**: use questions to guide the reader's thinking and increase engagement.
 
 ### 
 
-### **六、注意事項 (Dos and Don'ts)**
+### **4. Language Usage**
+
+* **Concise and precise**: avoid filler and redundant words; make every sentence as precise and effective as possible.  
+* **Warm and conversational**: communicate with readers in everyday language to lower the barrier to reading.  
+* **Moderate emotional expression**: clearly convey your own feelings and reactions to draw readers closer.  
+* **Information pacing control:** keep each paragraph to no more than 3 key points; let each page / screen handle only one core message to avoid cognitive overload.
+
+### 
+
+### **5. Writing Process**
+
+1. **Define the Problem**: start from the reader's pain points or common questions.  
+2. **Choose Relevant Stories**: enter through your own experience or a classic case.  
+3. **Outline Using GUIDE**: use the GUIDE structure to clearly set the focus of each section.  
+4. **Draft**: complete the first draft in a colloquial, naturally flowing style.  
+5. **Edit & Refine**: review whether the language is concise and the story is clear, and check logical coherence.  
+6. **Refine & Focus:** review whether each paragraph emphasizes only one key point, and whether redundant theory and detail can be cut. Keep the actions and ways of thinking that are most inspiring to the reader.
+
+### 
+
+### **6. Dos and Don'ts**
 
 **Do:**
 
-* 使用生動故事帶出觀念。  
-* 提供明確可行的建議。  
-* 適度加入個人情感與經驗。  
-* 使用跨角色視角提供全局觀。
+* Use vivid stories to bring out ideas.  
+* Provide clear, actionable advice.  
+* Add a moderate amount of personal emotion and experience.  
+* Offer a holistic view through cross-role perspectives.
 
 **Don't:**
 
-* 過度使用專業術語或抽象理論。
-* 提供無法立即實踐的泛泛之論。
-* 使用複雜句式，降低易讀性。
-* 使用中國大陸用語，必須使用台灣慣用詞彙。常見對照：擴容→擴充、視頻→影片、信息→資訊、反饋→回饋、上線→上架、數據庫→資料庫、鏈接→連結、用戶→使用者。
+* Overuse jargon or abstract theory.
+* Provide vague generalities that cannot be put into practice immediately.
+* Use complex sentence structures that reduce readability.
+* Use Mainland China terminology — you must use Taiwanese vocabulary. Common substitutions: 擴容→擴充, 視頻→影片, 信息→資訊, 反饋→回饋, 上線→上架, 數據庫→資料庫, 鏈接→連結, 用戶→使用者.
 
-### **七、資訊節奏與記憶點設計（Information Flow & Stickiness）**
+### **7. Information Flow & Stickiness**
 
-* 每篇文章聚焦一個核心問題或觀念。  
-* 精簡理論與邏輯層次，避免過度堆疊「三大原因」、「四步驟」、「五個建議」等架構。  
-* 善用具體人事物建立記憶點，例如用「曾經的同事A」比用「某類型工作者」更具畫面。  
-* 用具象語言和「我怎麼做」取代抽象分析與工具清單。
+* Each article focuses on a single core problem or idea.  
+* Streamline the theory and logical layers; avoid over-stacking structures like "three major reasons," "four steps," or "five suggestions."  
+* Make good use of concrete people, events, and things to create memory hooks — for example, "a former colleague, A" is more vivid than "a certain type of worker."  
+* Use concrete language and "how I do it" in place of abstract analysis and tool lists.

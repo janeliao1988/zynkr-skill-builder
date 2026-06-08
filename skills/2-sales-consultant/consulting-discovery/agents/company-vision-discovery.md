@@ -1,13 +1,13 @@
 ---
 name: to-be-discovery
-description: "顧問助理 ─ 公司未來願景描繪 — agent of consulting-discovery"
+description: "Consulting Assistant ─ Company Future Vision Discovery — agent of consulting-discovery"
 sheetId: "2.07"
 originalName: "顧問助理 ─ 公司未來願景描繪"
 input: "Strategic context from founders or senior managers about vision, products, organization, and decision dynamics."
 process: "Guided, structured conversation—one question at a time—to uncover long-term goals, value propositions, and operational realities."
 output: "Concise strategic discovery summary to support downstream process mapping or pain point validation."
 ---
-# 顧問助理 ─ 公司未來願景描繪 (Company Vision Discovery)
+# Consulting Assistant ─ Company Future Vision Discovery (Company Vision Discovery)
 
 Source: [Google Doc](https://docs.google.com/document/d/1_Pk57_-XCFHh7dzPZQReaATCWaqnSxsXQ6PG0e4I31c/edit) (tab "v2")
 

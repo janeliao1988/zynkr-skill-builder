@@ -1,15 +1,15 @@
 ---
 name: seo-demand-validator
 sheetId: "1.20"
-description: "SEO 流程第六棒：驗證關鍵字的真實需求與競爭難度，比較現有 SERP 共通點，刪去不必要的字，整理出目標關鍵字與主題清單。對應 v2 流程圖節點 (6)。當使用者交出 Classified 交棒包、說「驗證需求」、「整理主題清單」時觸發。只驗證與收斂，不寫 Brief、不寫文章。"
+description: "Sixth stage of the SEO pipeline: validate the real demand and competitive difficulty of keywords, compare the common patterns across the current SERP, prune unnecessary terms, and consolidate a list of target keywords and topics. Corresponds to node (6) in the v2 flow diagram. Triggers when the user hands over a Classified handoff packet or says 「驗證需求」 (validate demand) or 「整理主題清單」 (organize the topic list). It only validates and converges — it does not write the Brief and does not write the article."
 category: brand-marketing
 project: seo-demand-validator
 platform: claude
 status: WIP
 author: Peter Tu
-input: "seo-keyword-classifier 的 SEO_PACKET ▸ Classified；人工 Google/SERP 觀察與工具難度數據"
-process: "依 competitor-review-table 比較 SERP 共通點與競爭難度 → 人工驗證需求、刪不必要字 → 收斂成主題清單＋目標關鍵字 → 交棒"
-output: "主題清單 + 目標關鍵字 + SERP 共通點，交給 seo-brief-writer"
+input: "seo-keyword-classifier's SEO_PACKET ▸ Classified; manual Google/SERP observations and tool-based difficulty data"
+process: "Compare SERP common patterns and competitive difficulty per the competitor-review-table → manually validate demand, prune unnecessary terms → converge into a topic list + target keywords → hand off"
+output: "Topic list + target keywords + SERP common patterns, handed off to seo-brief-writer"
 synergy: ["seo-brief-writer"]
 ---
 
@@ -19,37 +19,37 @@ synergy: ["seo-brief-writer"]
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill seo-demand-validator
 ```
 
-SEO 流程第六棒，對應流程圖「搜尋關鍵字，人工驗證需求」與「輔助驗證相關性和競爭難度／比較現有 SERP 共通點／整理分類及目標關鍵字」。它把分群後的關鍵字收斂成「值得做」的主題清單——用真實 SERP 觀察驗證，而不是只看工具數字。
+Sixth stage of the SEO pipeline, corresponding to the flow diagram's "search the keywords, manually validate demand" and "assist in validating relevance and competitive difficulty / compare the common patterns across the current SERP / organize the classification and target keywords." It converges the clustered keywords into a topic list that is "worth doing" — validated with real SERP observation, not just tool numbers.
 
 ---
 
 ## Resources you'll use
 
-> **知識來源**：本 skill 用到的 rubric/範本優先從 SEO Knowledge Base 的「01 Rubrics & Templates」(Drive，google-workspace MCP，依名稱 search) 讀取；取不到時 fallback 本地 `./references/`。對照表見 `seo-article-pipeline/seo-pipeline-config.md`。
+> **Knowledge source**: The rubrics/templates used by this skill should be read first from the SEO Knowledge Base's "01 Rubrics & Templates" (Drive, google-workspace MCP, search by name); when unavailable, fall back to the local `./references/`. See the mapping table in `seo-article-pipeline/seo-pipeline-config.md`.
 
-- **競爭對手審核表**：`./references/competitor-review-table.md`
-- **SEO 知識庫資料夾 ID**：`<your-seo-kb-folder-id>`
-- **MCP / 工具**：`google-workspace`；WebFetch / WebSearch 看現有 SERP
+- **Competitor review table**: `./references/competitor-review-table.md`
+- **SEO Knowledge Base folder ID**: `<your-seo-kb-folder-id>`
+- **MCP / tools**: `google-workspace`; WebFetch / WebSearch to view the current SERP
 
-## Step 1 — 接收分群
+## Step 1 — Receive the clustering
 
-讀取 `SEO_PACKET ▸ Classified`。
+Read `SEO_PACKET ▸ Classified`.
 
-## Step 2 — 人工驗證需求（HITL）
+## Step 2 — Manually validate demand (HITL)
 
-對應「按照不同版本去 Google 搜尋，驗證需求」。請使用者（或用 WebSearch）針對候選目標字看實際 SERP：是否有真實內容在競爭、搜尋者到底想要什麼。
+Corresponds to "Google-search each variant to validate demand." Have the user (or use WebSearch) look at the actual SERP for each candidate target term: whether there is real content competing, and what the searcher actually wants.
 
-## Step 3 — 比較 SERP 共通點 + 難度
+## Step 3 — Compare SERP common patterns + difficulty
 
-依 `./references/competitor-review-table.md` 填競爭對手審核表：前幾名共通點（格式、深度、角度）、競爭難度、Zynkr 能否勝出。對應 (6) 的兩個 AI 節點。
+Fill in the competitor review table per `./references/competitor-review-table.md`: the common patterns of the top results (format, depth, angle), competitive difficulty, and whether Zynkr can win. Corresponds to the two AI nodes of (6).
 
-## Step 4 — 刪字 + 收斂主題清單（HITL）
+## Step 4 — Prune terms + converge the topic list (HITL)
 
-對應「刪除不必要的字」。剔除需求弱／難度過高無勝算的字，把剩下的收斂成「主題 → 目標關鍵字（主+輔）」清單。
+Corresponds to "remove unnecessary terms." Cut the terms with weak demand or difficulty too high to have a winning chance, and converge the rest into a "topic → target keywords (primary + supporting)" list.
 
-## Step 5 — 交棒並存檔
+## Step 5 — Hand off and save
 
-存「主題清單」工作檔，輸出：
+Save the "topic list" working file, and output:
 
 ```
 SEO_PACKET ▸ Topics
@@ -61,8 +61,8 @@ SEO_PACKET ▸ Topics
 
 ## Outputs
 
-主題清單 + 目標關鍵字 + SERP 共通點（`SEO_PACKET ▸ Topics` + Drive 工作檔）。
+Topic list + target keywords + SERP common patterns (`SEO_PACKET ▸ Topics` + Drive working file).
 
 ## Limitations
 
-不寫 Brief、不寫文章。難度數據以工具 / 真實 SERP 為準，不臆測。
+Does not write the Brief and does not write the article. Difficulty data is grounded in tools / the real SERP, not guessed.

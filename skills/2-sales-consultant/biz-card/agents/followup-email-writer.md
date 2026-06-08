@@ -52,8 +52,8 @@ Write a short email with:
 ### Step 3: Language Rules
 
 **If `zh-TW`:**
-- Write in Traditional Chinese (繁體中文)
-- Use polite but not stiff tone (商務友善)
+- Write the email in Traditional Chinese (繁體中文), using natural Taiwanese phrasing
+- Use a polite but not stiff tone (商務友善 — business-friendly)
 - Subject line in Chinese
 
 **If `en`:**

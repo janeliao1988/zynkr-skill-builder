@@ -1,107 +1,106 @@
-## **一、連接詞與語助詞調整（避免制式感，增添人味）**
+## **1. Adjusting connectives and modal particles (avoid a formulaic feel, add a human touch)**
 
-* **避免過度重複**：檢查文章中是否反覆使用「首先、其次、再來、最後」等詞。可改為：  
-  * 「從這裡開始說起」  
-  * 「接著就發生了更荒謬的事」  
-  * 「換個角度來看」  
-* **加入語助詞或情緒詞**：  
-  * 開頭可用：「哇」、「天啊」、「你敢信嗎」、「想像一下」  
-  * 結尾可用：「了、吧、耶、呢、喔」  
-* **直接刪除連接詞**：若太多轉折詞，可乾脆刪掉，用自然語氣銜接。
+* **Avoid excessive repetition**: Check whether the article repeatedly uses words like 「首先、其次、再來、最後」 (first, second, next, finally). These can be changed to:
+  * 「從這裡開始說起」
+  * 「接著就發生了更荒謬的事」
+  * 「換個角度來看」
+* **Add modal particles or emotive words**:
+  * Openers can use: 「哇」、「天啊」、「你敢信嗎」、「想像一下」
+  * Endings can use: 「了、吧、耶、呢、喔」
+* **Simply delete connectives**: If there are too many transition words, just cut them and let a natural tone bridge the sentences.
 
-## **二、語句與段落切分（提升閱讀節奏）**
+## **2. Splitting sentences and paragraphs (improve reading rhythm)**
 
-* **縮短長句**：一個句子最好控制在 15–20 字一個節奏，超過可用句號拆開。  
-* **手機閱讀習慣**：每段 40–60 字為佳，避免大篇幅文字牆。  
-* **列舉用符號**：多個形容詞或名詞時，使用頓號（、）或逗號。  
-* **建議策略**：如遇結構過長，乾脆整句重寫。
+* **Shorten long sentences**: It's best to keep one sentence to a rhythm of around 15–20 characters; if it runs longer, break it with a full stop.
+* **Mobile reading habits**: Around 40–60 characters per paragraph is ideal; avoid large walls of text.
+* **Use punctuation for listing**: When listing several adjectives or nouns, use the enumeration comma (、) or a comma.
+* **Suggested strategy**: If a structure is too long, just rewrite the whole sentence.
 
-## **三、用詞與語氣調整（避免翻譯腔與過度禮貌）**
+## **3. Adjusting word choice and tone (avoid translation-ese and excessive politeness)**
 
-* **稱謂口語化**：避免「親愛的朋友」、「尊敬的顧客」，可改「嗨」、「你好」，甚至省略。  
-* **讀者稱呼**：社群文章建議用「你」、「粉絲」，避免「您」、「消費者」。  
-* **形容詞精簡**：刪除「非常重要」、「極其有效」等冗贅詞，改成具體說法，如：「這次討論拖了兩小時，因為沒人搞清楚誰要負責。」  
-* **口語替換**：多用台灣常見詞彙，如「卡住」、「翻車」、「搞懂」、「摸不著頭緒」。
+* **Make forms of address colloquial**: Avoid 「親愛的朋友」、「尊敬的顧客」 (dear friend, esteemed customer); change them to 「嗨」、「你好」, or even omit them.
+* **How to address the reader**: For social posts, use 「你」、「粉絲」; avoid 「您」、「消費者」.
+* **Trim adjectives**: Delete redundant words like 「非常重要」、「極其有效」 (extremely important, exceptionally effective) and replace them with concrete statements, e.g., 「這次討論拖了兩小時，因為沒人搞清楚誰要負責。」
+* **Colloquial substitutions**: Use common Taiwanese vocabulary, such as 「卡住」、「翻車」、「搞懂」、「摸不著頭緒」.
 
 ## 
 
-## **四、去除 AI 味（讓文章更像真人寫的）**
+## **4. Removing the AI flavor (make the article read more like it was written by a real person)**
 
-### **① 語氣避免「完美中立」**
+### **1️⃣ Keep the tone from being "perfectly neutral"**
 
-* 刪掉「在當今快速變遷的世界中…」這類模板。  
-* 改用故事或情緒引導，例如：「老實說，我當時也差點放棄。」
+* Delete templated openers like 「在當今快速變遷的世界中…」 (in today's rapidly changing world…).
+* Lead with a story or emotion instead, e.g., 「老實說，我當時也差點放棄。」
 
-### **② 結構避免過於工整**
+### **2️⃣ Keep the structure from being too neat**
 
-* 減少「首先、其次、最後」的規律感。
-* 用場景突入或對話開場：「那天開會時，主管突然丟出一句…」
-* 以下 5 種 AI 感模板句必須標記並建議改寫：
-  1. **主題倒裝開場**：「這種X，我後來才知道，…」→ 直接說發現的事
-  2. **問題初遇公式**：「這個問題第一次問的時候，我完全Y」→ 改用第一人稱直述
-  3. **收尾感悟公式**：「有一件事，是我希望當年…能早一點Y的——」→ 改用假設性口語
-  4. **歸納總結公式**：「這N件事加在一起，背後的邏輯只有一個：」→ 改用更口語的帶入句
-  5. **後設框架開場**：「先說一個數字：…」「先說一個結論：…」→ 直接陳述內容，不要用後設框架帶入
+* Reduce the regular cadence of 「首先、其次、最後」 (first, second, finally).
+* Open with a scene break-in or dialogue: 「那天開會時，主管突然丟出一句…」
+* The following 5 AI-flavored template sentences must be flagged and recommended for rewriting:
+  1. **Topic-inversion opener**: 「這種X，我後來才知道，…」 → just state what was discovered
+  2. **First-encounter-with-the-problem formula**: 「這個問題第一次問的時候，我完全Y」 → rewrite as a first-person direct statement
+  3. **Closing-realization formula**: 「有一件事，是我希望當年…能早一點Y的——」 → rewrite as a hypothetical, colloquial line
+  4. **Summary-recap formula**: 「這N件事加在一起，背後的邏輯只有一個：」 → rewrite as a more colloquial lead-in sentence
+  5. **Meta-framing opener**: 「先說一個數字：…」「先說一個結論：…」 → state the content directly; don't use a meta-framing lead-in
 
-### **③ 避免抽象、禮貌過度**
+### **3️⃣ Avoid abstraction and excessive politeness**
 
-* 抽象詞改實例：  
-  * 「有效溝通」→「我們開會整整卡了兩小時，因為沒人講清楚誰要做什麼。」
+* Turn abstract words into concrete examples:
+  * 「有效溝通」 (effective communication) → 「我們開會整整卡了兩小時，因為沒人講清楚誰要做什麼。」
 
-### **④ 結尾避免制式**
+### **4️⃣ Keep the ending from being formulaic**
 
-* 刪掉「總結來說…」、「綜上所述…」。  
-* 改用行動呼籲或自我反思：  
-  * 「你覺得自己能做到嗎？」  
+* Delete 「總結來說…」、「綜上所述…」 (in summary…, to sum up…).
+* Use a call to action or self-reflection instead:
+  * 「你覺得自己能做到嗎？」
   * 「我決定明天就開始實驗看看。」
 
-### **⑤ 增加節奏變化**
+### **5️⃣ Add rhythmic variation**
 
-* 在長句間穿插短句或插話：  
-  * 「我試過了——真的沒用。」  
+* Insert short sentences or asides between long ones:
+  * 「我試過了——真的沒用。」
   * 「說真的，那天我差點摔滑鼠。」
 
-## **五、對比寫法替代方案（避免「不是…而是…」）**
+## **5. Alternatives for contrast phrasing (avoid 「不是…而是…」)**
 
-遇到需要強調對比或轉折時，建議改用以下句型：
+When you need to emphasize a contrast or a turn, use these sentence patterns instead:
 
-### **1\. 選擇／取捨**
+### **1. Choice / trade-off**
 
-* 與其…更應該…  
-* 寧可…也要…  
+* 與其…更應該…
+* 寧可…也要…
 * 相比之下…更值得…
 
-### **2\. 表面 vs 核心**
+### **2. Surface vs. core**
 
-* 表面上看似…但核心在於…  
-* 看起來像是…其實更關鍵的是…  
+* 表面上看似…但核心在於…
+* 看起來像是…其實更關鍵的是…
 * 很多人以為…真正的關鍵卻是…
 
-### **3\. 思維轉換**
+### **3. Shift in thinking**
 
-* 不要只停留在…而要進一步思考…  
-* 若以傳統角度會認為…但在新環境下應該…  
+* 不要只停留在…而要進一步思考…
+* 若以傳統角度會認為…但在新環境下應該…
 * 把思路從…轉到…
 
-### **4\. 動態對照**
+### **4. Dynamic comparison**
 
-* 短期看來…但長期來說…  
-* 當下重點是…未來更應該…  
+* 短期看來…但長期來說…
+* 當下重點是…未來更應該…
 * 從個人角度是…從團隊角度卻是…
 
-### **5\. 價值優先**
+### **5. Value priority**
 
-* 重點不在…而在…  
-* 最終衡量的關鍵是…  
+* 重點不在…而在…
+* 最終衡量的關鍵是…
 * 影響最大的其實是…
 
-## **六、最終整體檢查（人味＋邏輯＋節奏）**
+## **6. Final overall check (human touch + logic + rhythm)**
 
-* **朗讀檢查**：用語音唸出來，卡住就表示不順。  
-* **情緒補充**：如「我本來以為這樣做很聰明，結果完全翻車。」  
-* **角度轉換**：抽象句改成第一人稱主觀經歷。  
-* **讀者視角**：檢查全文是否像真實的人在分享故事。
-* **替換品質檢查**：替換禁用詞時，替換語句也必須通過 AI 味檢測，不得用另一個 AI 感句式替代。
-* **中國用語檢查**：掃描文章中的中國大陸用語，標記並建議替換為台灣慣用詞。常見對照：擴容→擴充、視頻→影片、信息→資訊、反饋→回饋、上線→上架、數據庫→資料庫、鏈接→連結、用戶→使用者。
-* **段落重複檢查**：檢查不同段落是否重複傳達相同資訊或數據，若有則標記並建議合併或刪除。
-
+* **Read-aloud check**: Read it out loud; anywhere you stumble means it doesn't flow.
+* **Emotional reinforcement**: e.g., 「我本來以為這樣做很聰明，結果完全翻車。」
+* **Perspective shift**: Turn abstract sentences into first-person subjective experiences.
+* **Reader's-eye view**: Check whether the whole piece reads like a real person sharing a story.
+* **Substitution quality check**: When replacing forbidden words, the replacement must also pass the AI-flavor test — don't swap in another AI-flavored sentence pattern.
+* **Mainland-Chinese-term check**: Scan the article for Mainland Chinese terms, flag them, and suggest replacing them with the customary Taiwanese terms. Common mappings: 擴容→擴充、視頻→影片、信息→資訊、反饋→回饋、上線→上架、數據庫→資料庫、鏈接→連結、用戶→使用者.
+* **Paragraph-repetition check**: Check whether different paragraphs convey the same information or data; if so, flag it and suggest merging or deleting.

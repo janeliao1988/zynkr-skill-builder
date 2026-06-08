@@ -1,4 +1,4 @@
-# Strategy Templates — 陌生開發策略 Phrase Library
+# Strategy Templates — Cold-Outbound (陌生開發) Phrase Library
 
 Reference library for Step 6 strategy synthesis. Compose by picking one **Industry anchor** + one **Challenge angle** + one **Topic proposal** + optional **Hot Lead nudge**. Aim for 120–180 chars total.
 
@@ -72,10 +72,10 @@ If `attend_motivation` includes 評估內訓 OR 評估公開班, append one of:
 
 ## Composition Examples
 
-**Example 1 — Manufacturing + 資安單一痛點 + Listed company**
+**Example 1 — Manufacturing + single security pain point + Listed company**
 > 半導體製造大廠唯一痛點是資安——主推「本地部署 Llama + PCB 製程文件 RAG Agent」。建議找 HR/IT 雙窗口，從製程工程師工作流入手。
 
-**Example 2 — SME + 多項痛點 + Generic topic**
+**Example 2 — SME + multiple pain points + Generic topic**
 > 食品業 SME，4 項痛點齊備——主推「客戶下單 LINE Bot + 訂單自動化 Agent」低成本入門。可走階段性顧問模式應對預算疑慮。
 
 **Example 3 — Government + Hot Lead double signal**
@@ -88,8 +88,8 @@ Same company appearing in 2 rows can have 2 different strategies — always synt
 
 ## Special Cases
 
-- **Generic company name (`無`, `個人`, etc.)** → leave 策略 empty. The participant still goes into Hot Lead detection but no outbound strategy is drafted.
-- **Unidentified company (搜尋無結果)** → write a short note in 公司背景 like "搜尋無明確結果" and use J/K only in 策略 (e.g. "建議下次活動補確認公司名稱；J 列三項挑戰齊備，先納入電子報 nurture。").
-- **Duplicate company across rows** → cache the website + background, but synthesize the strategy fresh per row using THIS row's J/K. Reference earlier row as "同 No.XX [公司名]" when appropriate.
+- **Generic company name (`無`, `個人`, etc.)** → leave the 策略 field empty. The participant still goes into Hot Lead detection but no outbound strategy is drafted.
+- **Unidentified company (搜尋無結果)** → write a short note in 公司背景 like "搜尋無明確結果" and use J/K only in the 策略 field (e.g. "建議下次活動補確認公司名稱；J 列三項挑戰齊備，先納入電子報 nurture。").
+- **Duplicate company across rows** → cache the website + background, but synthesize the strategy fresh per row using THIS row's J/K. Reference the earlier row as "同 No.XX [公司名]" when appropriate.
 - **Competitor / Same industry as Zynkr** (e.g. WePredict, NSECURED, 程曦) → frame as 同業合作 / 互推 rather than top-down selling.
 - **NGO / NPO / Education** → frame as pro-bono, 公益價, 補助申請合作, or strategic partnership rather than commercial BD.

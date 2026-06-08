@@ -1,30 +1,30 @@
-# 買家問題展開框架
+# Buyer Question Expansion Frames
 
-從人物誌痛點展開「購買前真正會問的問題」。四類框架，每類給漏斗階段提示。
+Expand persona pain points into "the questions buyers actually ask before purchasing." Four frame types, each with a funnel-stage hint.
 
-## 四類問題框架（Neil Patel intent 模型）
+## Four Question Frames (Neil Patel intent model)
 
-| 類型 | 問句模板 | 常見漏斗階段 |
+| Type | Question template | Common funnel stage |
 |---|---|---|
-| 問題型 Questions | 「X 是什麼」「為什麼會 X」「X 怎麼做」 | TOFU |
-| 比較型 Comparisons | 「A vs B」「X 哪個好」「X 推薦」 | MOFU–BOFU |
-| 情境型 Use-case | 「在 <情境> 下怎麼 X」「<角色> 如何 X」 | MOFU |
-| 決策型 Decision | 「怎麼選 X」「X 顧問怎麼挑」「X 多少錢／ROI」 | BOFU |
+| Questions | "What is X," "Why does X happen," "How do you do X" | TOFU |
+| Comparisons | "A vs B," "Which X is better," "X recommendations" | MOFU–BOFU |
+| Use-case | "How to X in <situation>," "How does <role> do X" | MOFU |
+| Decision | "How to choose X," "How to pick an X consultant," "How much does X cost / ROI" | BOFU |
 
-## 漏斗階段定義
+## Funnel Stage Definitions
 
-- **TOFU 認知**：還在理解問題本身（「AI 素養是什麼」）。
-- **MOFU 評估**：在比較解法（「如何把 AI 導入團隊流程」）。
-- **BOFU 決策**：準備出手（「企業 AI 導入顧問怎麼選」「ROI」）。B2B discovery 漏斗優先這層。
+- **TOFU (Awareness)**: Still trying to understand the problem itself (「AI 素養是什麼」).
+- **MOFU (Evaluation)**: Comparing solutions (「如何把 AI 導入團隊流程」).
+- **BOFU (Decision)**: Ready to act (「企業 AI 導入顧問怎麼選」, "ROI"). The B2B discovery funnel prioritizes this stage.
 
-## 反推種子關鍵字原則
+## Principles for Back-Deriving Seed Keywords
 
-- 用人物誌「會打進搜尋框的口語」，不是行銷術語。
-- 一個問題可拆多個種子字（長尾優先）。
-- 標記哪些是 AI 引擎會被問到的 prompt（給 AEO 用）。
+- Use the persona's "colloquial phrasing they'd actually type into the search box," not marketing jargon.
+- A single question can be split into multiple seed terms (prioritize long-tail).
+- Flag which ones are prompts an AI engine would be asked (for AEO use).
 
-## 品質檢查
+## Quality Check
 
-- 每個人物誌至少各有一題 TOFU / MOFU / BOFU。
-- BOFU 題數足夠（漏斗目標是 B2B discovery call）。
-- 問題是真實口語，不是把關鍵字硬包成問句。
+- Each persona has at least one TOFU / MOFU / BOFU question.
+- Enough BOFU questions (the funnel goal is the B2B discovery call).
+- Questions read as genuine colloquial speech, not keywords forcibly wrapped into a question.

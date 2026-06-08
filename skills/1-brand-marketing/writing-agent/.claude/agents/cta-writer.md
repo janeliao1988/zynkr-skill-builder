@@ -44,60 +44,60 @@ Wait for the full article before starting analysis. Do not give suggestions prem
 
 ## CTA Knowledge Base (Six Types)
 
-### 一、電子報訂閱
-- **目的**：建立長期讀者關係，將讀者轉化為電子報訂閱者
-- **適合文章**：職場軟實力、生產力工具、英文學習、個人成長故事、觀念分享
-- **子目的標籤**：通用職場知識、招募視角、效率工具、英文能力、個人成長故事
-- **連結**：https://peter-career-hack.ck.page/newsletter
-- **代表句方向**：
+### 1. Newsletter Subscription
+- **Goal**: Build a long-term reader relationship; convert readers into newsletter subscribers
+- **Best-fit articles**: Workplace soft skills, productivity tools, English learning, personal-growth stories, idea-sharing pieces
+- **Sub-goal tags**: General workplace knowledge, recruiter perspective, efficiency tools, English ability, personal-growth story
+- **Link**: https://peter-career-hack.ck.page/newsletter
+- **Example sentence directions**:
   - 喜歡這些職場知識嗎？訂閱我的電子報跟著我一起培養成長思維
   - 我常會從用人主管的角度分享如何打造履歷和準備面試
   - 喜歡這些職場增加效率的小技巧嗎？訂閱我的電子報
 
-### 二、職涯講座
-- **目的**：推廣職涯講座／線上活動，促進報名與品牌曝光
-- **適合文章**：海外職涯、升遷經驗、求職策略、面試技巧、職場心態與生涯規劃
-- **子目的標籤**：專業型（方法導向）、情感共鳴型、行動急迫型、啟發型
-- **連結**：https://www.accupass.com/organizer/detail/2407051348334405109540
-- **代表句方向**：
+### 2. Career Talk
+- **Goal**: Promote career talks / online events; drive sign-ups and brand exposure
+- **Best-fit articles**: Overseas careers, promotion experiences, job-hunting strategy, interview techniques, workplace mindset and career planning
+- **Sub-goal tags**: Professional (method-oriented), emotional-resonance, action-urgency, inspirational
+- **Link**: https://www.accupass.com/organizer/detail/2407051348334405109540
+- **Example sentence directions**:
   - 專業型：海外職涯不是夢，而是方法。在這場分享中，我會把找職缺、面試到升遷的完整策略一次拆給你
   - 情感共鳴型：你是否也曾想過「我的背景，有可能被國際企業看見嗎？」
   - 行動急迫型：職涯的機會，不是留給最厲害的人，而是留給準備好的人
   - 啟發型：你的職涯，能不能走到更大的舞台？
 
-### 三、AI 寫作課（導購）
-- **目的**：促進課程報名與轉換，鞏固「AI × 寫作 × 系統化思維」品牌定位
-- **適合文章**：AI 應用與生產力工具、寫作技巧、內容創作心法、創作者學習故事
-- **子目的標籤**：個人故事導入、寫作痛點解法、課程特色說明、明確行動號召
-- **連結**：https://tbr.digital/courses/ai-writing
-- **代表句方向**：
+### 3. AI Writing Course (conversion)
+- **Goal**: Drive course sign-ups and conversion; reinforce the "AI × writing × systematic thinking" brand positioning
+- **Best-fit articles**: AI applications and productivity tools, writing techniques, content-creation methods, creator learning stories
+- **Sub-goal tags**: Personal-story lead-in, writing pain-point solution, course-feature explanation, clear call to action
+- **Link**: https://tbr.digital/courses/ai-writing
+- **Example sentence directions**:
   - 這堂課，就是我走過那段路後，整理出來的實戰方法
   - 如果你也想寫得更快、更穩、更有說服力，歡迎來看看這門《新時代的 AI 寫作課》
 
-### 四、AI 寫作課問卷（課前調研）
-- **目的**：蒐集市場需求，建立潛在學員名單（warm leads）
-- **適合文章**：AI 工具、個人品牌、內容創作、職涯學習與技能轉型
-- **子目的標籤**：課程共創、限時優惠誘因、需求驗證
-- **連結**：[問卷連結待補]
-- **代表句方向**：
+### 4. AI Writing Course Survey (pre-course research)
+- **Goal**: Gather market demand; build a list of potential students (warm leads)
+- **Best-fit articles**: AI tools, personal branding, content creation, career learning and skills transition
+- **Sub-goal tags**: Course co-creation, limited-time-offer incentive, demand validation
+- **Link**: [問卷連結待補]
+- **Example sentence directions**:
   - 我即將把這整套方法整理成一門課，希望你可以填寫問卷
   - 現在填寫問卷，不只可以影響課程設計，還能獲得五折優惠
 
-### 五、職涯課程問卷（Hahow 合作）
-- **目的**：蒐集真實職涯卡關情境，驗證課程方向，建立潛在學員名單
-- **適合文章**：職涯決策、升遷轉職、職涯規劃框架、外商職涯、個人反思
-- **子目的標籤**：職涯定位型、升遷決策型、系統化思考型、共創參與型
-- **連結**：https://forms.gle/XNF4ssZVekECotpbA
-- **代表句方向**：
+### 5. Career Course Survey (Hahow collaboration)
+- **Goal**: Gather real career-roadblock scenarios; validate course direction; build a list of potential students
+- **Best-fit articles**: Career decisions, promotion and job change, career-planning frameworks, multinational-company careers, personal reflection
+- **Sub-goal tags**: Career-positioning, promotion-decision, systematic-thinking, co-creation participation
+- **Link**: https://forms.gle/XNF4ssZVekECotpbA
+- **Example sentence directions**:
   - 我正在和 Hahow 一起規劃一門職涯課程，在動筆設計之前，我想先確認：你真正卡關的點是什麼
   - 這不是報名頁，而是一個共創起點。你的回答，會直接影響這門課最後長成什麼樣子
 
-### 六、AI 職場應用工作坊
-- **目的**：推動活動報名，建立「AI = 工作流程設計能力」認知
-- **適合文章**：AI 工具教學、工作流程拆解、效率系統設計、AI 對職場的影響
-- **子目的標籤**：實作導向型、流程轉換型、架構思維型、立即部署型
-- **連結**：[工作坊頁面待補]
-- **代表句方向**：
+### 6. AI Workplace Application Workshop
+- **Goal**: Drive event sign-ups; build the perception that "AI = workflow-design capability"
+- **Best-fit articles**: AI tool tutorials, workflow breakdowns, efficiency-system design, AI's impact on the workplace
+- **Sub-goal tags**: Hands-on-oriented, process-transformation, architecture-thinking, immediate-deployment
+- **Link**: [工作坊頁面待補]
+- **Example sentence directions**:
   - 如果你每天都在做重複流程，這場工作坊會帶你把它們變成真正能用的 AI 助理
   - 這不是示範課，而是一場「做完就能上線」的實作
 
