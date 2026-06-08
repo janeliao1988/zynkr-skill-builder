@@ -69,6 +69,8 @@ KB without Peter's approval.**
 - **Canonical facts doc** — **`Zynkr Support KB — 01 Core Facts`**
   (ID `1R8JoTiIihh4h7Yk3P2GlIgOIzbgSWMNkIzFcmWOzvb0`). ALL `### FACT:<id>` blocks live here; its
   append anchor is `<!-- ▼APPEND:core-facts▼ -->`.
+- **Tone & Style doc (ALWAYS-READ)** — **`Zynkr Support KB — 13 Tone of Voice & Style`**
+  (ID `1srAumHBnBgKqy3-pSnef-gKRJiXcShLO7vK-6mah7qE`). Voice/tone rules + the anti-Chinglish (晶晶體) 用語對照表; append anchor `<!-- ▼APPEND:tone-style▼ -->`. When Peter gives a **tone / wording / term** rule (e.g. `parachute`→「和團隊諮詢、觀察流程」, `discovery call`→「線上會議」) — a style rule, not a Q&A — append a row to the 用語對照表 here instead of creating a section entry.
 - **Section docs** (one per intent; Q&A entries live here and CITE facts):
 
   | Intent tag | Section doc | Doc ID | Append anchor |
@@ -172,7 +174,7 @@ Peter; never silently invent one or dump it in `other` without saying so.
   entry goes. If the intent has **no section doc yet**, the entry will create one (Step 5).
 - **Dedupe**: read that **one section doc** (`mcp__google-workspace__get_doc_content`) and scan it
   for a **near-duplicate question**. If one exists, propose an **UPDATE / supersede** rather than a
-  second entry. (You no longer read the whole KB — just the relevant section doc + Core Facts.)
+  second entry. (You no longer read the whole KB — just the relevant section doc + Core Facts + Tone of Voice & Style.)
   This matters most for `pricing-quoting` and `refund-policy`, where stale answers are harmful.
 
 ### Lens 3 — Structure for the LLM (core fact vs. citing entry)
