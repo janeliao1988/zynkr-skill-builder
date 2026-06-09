@@ -1,10 +1,10 @@
 [
   {
-    "id": "1.31",
+    "id": "1.01",
     "sheet_id": "1.01",
     "slug": "zynkr-content-writer",
     "name": "zynkr-content-writer",
-    "summary": "Article topic or idea — can be vague, an outline, a draft, or completed copy at any stage 7-stage pipeline orchestrated by /write-article — ideation, style selection, drafting, editing, reader perspective scoring, title",
+    "summary": "The user provides an abstract philosophical question and answers assistant's prompts.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
     "platform": "claude",
@@ -12,7 +12,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/zynkr-content-writer/CLAUDE.md",
-    "install_command": "curl -sL zynkr.ai/s/1.31.md -o ~/.claude/skills/zynkr-content-writer.md",
+    "install_command": "curl -sL zynkr.ai/s/1.01.md -o ~/.claude/skills/zynkr-content-writer.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -23,10 +23,10 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "1.32",
+    "id": "1.02",
     "sheet_id": "1.02",
-    "slug": "zynkr-content-writer-socratic-ideation-partner",
-    "name": "socratic-ideation-partner",
+    "slug": "content-idea",
+    "name": "content-idea",
     "summary": "Use this agent when you want to brainstorm, explore, or develop article ideas through guided Socratic dialogue.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
@@ -34,7 +34,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/socratic-ideation-partner.md",
+    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/content-idea.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -43,36 +43,36 @@
       "0-optional"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-09"
+    "first_seen": "2026-05-09"
   },
   {
-    "id": "1.11",
+    "id": "1.03",
     "sheet_id": "1.03",
-    "slug": "article-fission",
-    "name": "article-fission",
+    "slug": "content-fission",
+    "name": "content-fission",
     "summary": "Article fission — extract outline + summary from any popular article, then run 3 rounds of reflective dialogue to surface the writer's own refined take, ending with a new actionable outline ready for style + writing hand",
     "category": "brand-marketing",
-    "project": "article-fission",
+    "project": "content-fission",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/article-fission/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.11.md -o ~/.claude/skills/article-fission.md",
+    "source_path": "skills/1-brand-marketing/content-fission/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/1.03.md -o ~/.claude/skills/content-fission.md",
     "tags": [
-      "article-fission",
+      "content-fission",
       "brand-marketing",
       "claude",
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.33",
+    "id": "1.04",
     "sheet_id": "1.04",
-    "slug": "zynkr-content-writer-article-style-selector",
-    "name": "article-style-selector",
+    "slug": "content-style-select",
+    "name": "content-style-select",
     "summary": "Triggered when a user has an article draft (topic + initial thoughts) and needs help selecting a suitable article structure and mapping out section key points.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
@@ -80,7 +80,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/article-style-selector.md",
+    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/content-style-select.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -92,18 +92,18 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "1.34",
+    "id": "1.05",
     "sheet_id": "1.05",
-    "slug": "zynkr-content-writer-article-drafter",
-    "name": "article-drafter",
-    "summary": "Triggered when the user has a confirmed article structure and section key points (typically from the article-style-selector handoff summary) and is ready to draft the article paragraph by paragraph.",
+    "slug": "content-draft",
+    "name": "content-draft",
+    "summary": "Triggered when the user has a confirmed article structure and section key points (typically from the content-style-select handoff summary) and is ready to draft the article paragraph by paragraph.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/article-drafter.md",
+    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/content-draft.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -115,33 +115,33 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "1.02",
+    "id": "1.06",
     "sheet_id": "1.06",
-    "slug": "write-newsletter",
-    "name": "write-newsletter",
+    "slug": "content-newsletter-draft",
+    "name": "content-newsletter-draft",
     "summary": "Drafts Peter's weekly Chinese newsletter from the user's article outline or topic idea, shaping it into a structured handoff for the /write-article pipeline.",
     "category": "brand-marketing",
-    "project": "write-newsletter",
+    "project": "content-newsletter-draft",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/write-newsletter/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.02.md -o ~/.claude/skills/write-newsletter.md",
+    "source_path": "skills/1-brand-marketing/content-newsletter-draft/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/1.06.md -o ~/.claude/skills/content-newsletter-draft.md",
     "tags": [
-      "write-newsletter",
+      "content-newsletter-draft",
       "brand-marketing",
       "claude",
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-09"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.35",
+    "id": "1.07",
     "sheet_id": "1.07",
-    "slug": "zynkr-content-writer-article-editor",
-    "name": "article-editor",
+    "slug": "content-editor",
+    "name": "content-editor",
     "summary": "Triggered when the user has a completed article draft and wants editorial review and improvement suggestions.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
@@ -149,7 +149,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/article-editor.md",
+    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/content-editor.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -161,10 +161,10 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "1.36",
+    "id": "1.08",
     "sheet_id": "1.08",
-    "slug": "zynkr-content-writer-reader-perspective",
-    "name": "reader-perspective",
+    "slug": "content-reader",
+    "name": "content-reader",
     "summary": "Triggered when the user has a completed article and wants a reader's perspective review with scoring and critical analysis.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
@@ -172,7 +172,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/reader-perspective.md",
+    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/content-reader.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -184,10 +184,10 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "1.37",
+    "id": "1.09",
     "sheet_id": "1.09",
-    "slug": "zynkr-content-writer-article-title-suggester",
-    "name": "article-title-suggester",
+    "slug": "content-title",
+    "name": "content-title",
     "summary": "Triggered when the user has a completed article and wants SEO title suggestions, or when the user provides a topic and wants a full SEO content strategy.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
@@ -195,7 +195,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/article-title-suggester.md",
+    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/content-title.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -207,10 +207,10 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "1.38",
+    "id": "1.10",
     "sheet_id": "1.10",
-    "slug": "zynkr-content-writer-cta-writer",
-    "name": "cta-writer",
+    "slug": "content-cta",
+    "name": "content-cta",
     "summary": "Triggered when the user has a completed article and wants CTA (Call-To-Action) suggestions.",
     "category": "brand-marketing",
     "project": "zynkr-content-writer",
@@ -218,7 +218,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/cta-writer.md",
+    "source_path": "skills/1-brand-marketing/zynkr-content-writer/.claude/agents/content-cta.md",
     "tags": [
       "zynkr-content-writer",
       "brand-marketing",
@@ -230,21 +230,44 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "1.30",
+    "id": "1.12",
     "sheet_id": "1.12",
-    "slug": "article-governance",
-    "name": "article-governance",
+    "slug": "content-governance",
+    "name": "content-governance",
     "summary": "Sync a newsletter article from Google Docs to the Notion Content DB.",
     "category": "brand-marketing",
-    "project": "article-governance",
+    "project": "content-governance",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/article-governance/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.30.md -o ~/.claude/skills/article-governance.md",
+    "source_path": "skills/1-brand-marketing/content-governance/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/1.12.md -o ~/.claude/skills/content-governance.md",
     "tags": [
-      "article-governance",
+      "content-governance",
+      "brand-marketing",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-06-09"
+  },
+  {
+    "id": "1.13",
+    "sheet_id": "1.13",
+    "slug": "content-translator",
+    "name": "content-translator",
+    "summary": "Translate English (or any source language) into natural, conversational Traditional Chinese using Taiwanese expressions and tone.",
+    "category": "brand-marketing",
+    "project": "content-translator",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/1-brand-marketing/content-translator/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/1.13.md -o ~/.claude/skills/content-translator.md",
+    "tags": [
+      "content-translator",
       "brand-marketing",
       "claude",
       "skill"
@@ -254,29 +277,6 @@
   },
   {
     "id": "1.14",
-    "sheet_id": "1.13",
-    "slug": "zh-tw-translator",
-    "name": "zh-tw-translator",
-    "summary": "Translate English (or any source language) into natural, conversational Traditional Chinese using Taiwanese expressions and tone.",
-    "category": "brand-marketing",
-    "project": "zh-tw-translator",
-    "platform": "claude",
-    "status": "Done",
-    "author": "Peter Tu",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/zh-tw-translator/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.14.md -o ~/.claude/skills/zh-tw-translator.md",
-    "tags": [
-      "zh-tw-translator",
-      "brand-marketing",
-      "claude",
-      "skill"
-    ],
-    "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
-  },
-  {
-    "id": "1.17",
     "sheet_id": "1.14",
     "slug": "seo-article-pipeline",
     "name": "seo-article-pipeline",
@@ -288,7 +288,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-article-pipeline/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.17.md -o ~/.claude/skills/seo-article-pipeline.md",
+    "install_command": "curl -sL zynkr.ai/s/1.14.md -o ~/.claude/skills/seo-article-pipeline.md",
     "tags": [
       "seo-article-pipeline",
       "brand-marketing",
@@ -296,10 +296,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-29"
+    "first_seen": "2026-05-25"
   },
   {
-    "id": "1.23",
+    "id": "1.15",
     "sheet_id": "1.15",
     "slug": "seo-persona-builder",
     "name": "seo-persona-builder",
@@ -311,7 +311,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-persona-builder/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.23.md -o ~/.claude/skills/seo-persona-builder.md",
+    "install_command": "curl -sL zynkr.ai/s/1.15.md -o ~/.claude/skills/seo-persona-builder.md",
     "tags": [
       "seo-persona-builder",
       "brand-marketing",
@@ -319,10 +319,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-29"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.24",
+    "id": "1.16",
     "sheet_id": "1.16",
     "slug": "seo-question-miner",
     "name": "seo-question-miner",
@@ -334,7 +334,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-question-miner/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.24.md -o ~/.claude/skills/seo-question-miner.md",
+    "install_command": "curl -sL zynkr.ai/s/1.16.md -o ~/.claude/skills/seo-question-miner.md",
     "tags": [
       "seo-question-miner",
       "brand-marketing",
@@ -342,10 +342,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-29"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.15",
+    "id": "1.17",
     "sheet_id": "1.17",
     "slug": "seo-angle-finder",
     "name": "seo-angle-finder",
@@ -357,7 +357,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-angle-finder/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.15.md -o ~/.claude/skills/seo-angle-finder.md",
+    "install_command": "curl -sL zynkr.ai/s/1.17.md -o ~/.claude/skills/seo-angle-finder.md",
     "tags": [
       "seo-angle-finder",
       "brand-marketing",
@@ -368,7 +368,7 @@
     "first_seen": "2026-05-29"
   },
   {
-    "id": "1.21",
+    "id": "1.18",
     "sheet_id": "1.18",
     "slug": "seo-keyword-mapper",
     "name": "seo-keyword-mapper",
@@ -380,7 +380,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-keyword-mapper/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.21.md -o ~/.claude/skills/seo-keyword-mapper.md",
+    "install_command": "curl -sL zynkr.ai/s/1.18.md -o ~/.claude/skills/seo-keyword-mapper.md",
     "tags": [
       "seo-keyword-mapper",
       "brand-marketing",
@@ -388,10 +388,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-29"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.20",
+    "id": "1.19",
     "sheet_id": "1.19",
     "slug": "seo-keyword-classifier",
     "name": "seo-keyword-classifier",
@@ -403,7 +403,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-keyword-classifier/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.20.md -o ~/.claude/skills/seo-keyword-classifier.md",
+    "install_command": "curl -sL zynkr.ai/s/1.19.md -o ~/.claude/skills/seo-keyword-classifier.md",
     "tags": [
       "seo-keyword-classifier",
       "brand-marketing",
@@ -411,10 +411,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-29"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.19",
+    "id": "1.20",
     "sheet_id": "1.20",
     "slug": "seo-demand-validator",
     "name": "seo-demand-validator",
@@ -426,7 +426,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-demand-validator/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.19.md -o ~/.claude/skills/seo-demand-validator.md",
+    "install_command": "curl -sL zynkr.ai/s/1.20.md -o ~/.claude/skills/seo-demand-validator.md",
     "tags": [
       "seo-demand-validator",
       "brand-marketing",
@@ -437,7 +437,7 @@
     "first_seen": "2026-05-29"
   },
   {
-    "id": "1.18",
+    "id": "1.21",
     "sheet_id": "1.21",
     "slug": "seo-brief-writer",
     "name": "seo-brief-writer",
@@ -449,7 +449,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-brief-writer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.18.md -o ~/.claude/skills/seo-brief-writer.md",
+    "install_command": "curl -sL zynkr.ai/s/1.21.md -o ~/.claude/skills/seo-brief-writer.md",
     "tags": [
       "seo-brief-writer",
       "brand-marketing",
@@ -464,7 +464,7 @@
     "sheet_id": "1.22",
     "slug": "seo-outline-designer",
     "name": "seo-outline-designer",
-    "summary": "Stage 8 of the SEO pipeline: turn the SEO Brief into an article outline and FAQ section, outputting a handoff summary compatible with article-drafter.",
+    "summary": "Stage 8 of the SEO pipeline: turn the SEO Brief into an article outline and FAQ section, outputting a handoff summary compatible with content-draft.",
     "category": "brand-marketing",
     "project": "seo-outline-designer",
     "platform": "claude",
@@ -483,7 +483,7 @@
     "first_seen": "2026-05-29"
   },
   {
-    "id": "1.16",
+    "id": "1.23",
     "sheet_id": "1.23",
     "slug": "seo-article-finalizer",
     "name": "seo-article-finalizer",
@@ -495,7 +495,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/seo-article-finalizer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.16.md -o ~/.claude/skills/seo-article-finalizer.md",
+    "install_command": "curl -sL zynkr.ai/s/1.23.md -o ~/.claude/skills/seo-article-finalizer.md",
     "tags": [
       "seo-article-finalizer",
       "brand-marketing",
@@ -506,7 +506,7 @@
     "first_seen": "2026-05-29"
   },
   {
-    "id": "1.29",
+    "id": "1.24",
     "sheet_id": "1.24",
     "slug": "zynkr-slide",
     "name": "zynkr-slide",
@@ -518,7 +518,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/zynkr-slide/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.29.md -o ~/.claude/skills/zynkr-slide.md",
+    "install_command": "curl -sL zynkr.ai/s/1.24.md -o ~/.claude/skills/zynkr-slide.md",
     "tags": [
       "zynkr-slide",
       "brand-marketing",
@@ -526,10 +526,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-03"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.26",
+    "id": "1.25",
     "sheet_id": "1.25",
     "slug": "slide-storyline-designer",
     "name": "slide-storyline-designer",
@@ -541,7 +541,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/slide-storyline-designer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.26.md -o ~/.claude/skills/slide-storyline-designer.md",
+    "install_command": "curl -sL zynkr.ai/s/1.25.md -o ~/.claude/skills/slide-storyline-designer.md",
     "tags": [
       "slide-storyline-designer",
       "brand-marketing",
@@ -549,10 +549,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-02"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "1.25",
+    "id": "1.26",
     "sheet_id": "1.26",
     "slug": "slide-page-splitter",
     "name": "slide-page-splitter",
@@ -564,7 +564,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/1-brand-marketing/slide-page-splitter/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/1.25.md -o ~/.claude/skills/slide-page-splitter.md",
+    "install_command": "curl -sL zynkr.ai/s/1.26.md -o ~/.claude/skills/slide-page-splitter.md",
     "tags": [
       "slide-page-splitter",
       "brand-marketing",
@@ -579,7 +579,7 @@
     "sheet_id": "1.27",
     "slug": "slide-visual-selector",
     "name": "slide-visual-selector",
-    "summary": "The third leg of the slide-assistant three-leg relay (picks up after slide-page-splitter, then hands off to the pptx skill for rendering): once it has the SLIDE_PACKET ▸ Pages, it decides page by page \"what is the most e",
+    "summary": "The third leg of the slide-assistant three-leg relay (picks up after slide-page-splitter, then hands off to the slide-pptx skill for rendering): once it has the SLIDE_PACKET ▸ Pages, it decides page by page \"what is the",
     "category": "brand-marketing",
     "project": "slide-visual-selector",
     "platform": "claude",
@@ -600,33 +600,33 @@
   {
     "id": "1.28",
     "sheet_id": "1.28",
-    "slug": "pptx",
-    "name": "pptx",
+    "slug": "slide-pptx",
+    "name": "slide-pptx",
     "summary": "The 'rendering engine' that comes after the three-stage slide relay (the fourth stage, maintained by Anthropic): it takes the SLIDE_PACKET ▸ Visuals handed off by slide-visual-selector and renders it page by page into a",
     "category": "brand-marketing",
-    "project": "pptx",
+    "project": "slide-pptx",
     "platform": "claude",
     "status": "Done",
     "author": "Anthropic, PBC",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/1-brand-marketing/pptx/SKILL.md",
-    "install_command": "npx skills add https://github.com/anthropics/skills --skill pptx",
+    "source_path": "skills/1-brand-marketing/slide-pptx/SKILL.md",
+    "install_command": "npx skills add https://github.com/anthropics/skills --skill slide-pptx",
     "tags": [
-      "pptx",
+      "slide-pptx",
       "brand-marketing",
       "claude",
       "skill"
     ],
     "updated_at": "2026-06-09",
     "upstream_repo": "https://github.com/anthropics/skills",
-    "original_source_url": "https://github.com/anthropics/skills/blob/HEAD/skills/pptx/SKILL.md",
+    "original_source_url": "https://github.com/anthropics/skills/blob/HEAD/skills/slide-pptx/SKILL.md",
     "original_author": "Anthropic, PBC",
-    "github_stars": 148387,
-    "github_forks": 17505,
+    "github_stars": 148546,
+    "github_forks": 17527,
     "first_seen": "2026-06-03"
   },
   {
-    "id": "2.33",
+    "id": "2.01",
     "sheet_id": "2.01",
     "slug": "sales-client-sourcing",
     "name": "sales-client-sourcing",
@@ -638,7 +638,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/2-sales-consultant/sales-client-sourcing/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/2.33.md -o ~/.claude/skills/sales-client-sourcing.md",
+    "install_command": "curl -sL zynkr.ai/s/2.01.md -o ~/.claude/skills/sales-client-sourcing.md",
     "tags": [
       "sales-client-sourcing",
       "sales-consultant",
@@ -646,10 +646,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.35",
+    "id": "2.02",
     "sheet_id": "2.02",
     "slug": "sales-specialist",
     "name": "sales-specialist",
@@ -661,7 +661,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/2-sales-consultant/sales-specialist/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/2.35.md -o ~/.claude/skills/sales-specialist.md",
+    "install_command": "curl -sL zynkr.ai/s/2.02.md -o ~/.claude/skills/sales-specialist.md",
     "tags": [
       "sales-specialist",
       "sales-consultant",
@@ -672,9 +672,9 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "2.36",
+    "id": "2.03",
     "sheet_id": "2.03",
-    "slug": "sales-specialist-followup-email-writer",
+    "slug": "sales-follow-up-mail",
     "name": "sales-follow-up-mail",
     "summary": "Writes a personalized follow-up email for a business contact using their card info and company research.",
     "category": "sales-consultant",
@@ -694,7 +694,7 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "2.34",
+    "id": "2.04",
     "sheet_id": "2.04",
     "slug": "consult-intake",
     "name": "consult-intake",
@@ -706,32 +706,9 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/2-sales-consultant/consult-intake/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/2.34.md -o ~/.claude/skills/consult-intake.md",
+    "install_command": "curl -sL zynkr.ai/s/2.04.md -o ~/.claude/skills/consult-intake.md",
     "tags": [
       "consult-intake",
-      "sales-consultant",
-      "claude",
-      "skill"
-    ],
-    "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
-  },
-  {
-    "id": "2.37",
-    "sheet_id": "2.05",
-    "slug": "sales-project-specialist",
-    "name": "sales-project-specialist",
-    "summary": "Turn a single sales / consulting meeting into tracked work.",
-    "category": "sales-consultant",
-    "project": "sales-project-specialist",
-    "platform": "claude",
-    "status": "Done",
-    "author": "Peter Tu",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/2-sales-consultant/sales-project-specialist/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/2.37.md -o ~/.claude/skills/sales-project-specialist.md",
-    "tags": [
-      "sales-project-specialist",
       "sales-consultant",
       "claude",
       "skill"
@@ -740,74 +717,97 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "2.29",
-    "sheet_id": "2.06",
-    "slug": "consulting-discovery",
-    "name": "consulting-discovery",
-    "summary": "Two-stage consulting discovery — pain-point intake then company vision exploration — to produce a needs definition and strategic discovery summary before any solution work.",
+    "id": "2.05",
+    "sheet_id": "2.05",
+    "slug": "consult-project-specialist",
+    "name": "consult-project-specialist",
+    "summary": "Turn a single sales / consulting meeting into tracked work.",
     "category": "sales-consultant",
-    "project": "consulting-discovery",
+    "project": "consult-project-specialist",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/2-sales-consultant/consulting-discovery/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/2.29.md -o ~/.claude/skills/consulting-discovery.md",
+    "source_path": "skills/2-sales-consultant/consult-project-specialist/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/2.05.md -o ~/.claude/skills/consult-project-specialist.md",
     "tags": [
-      "consulting-discovery",
+      "consult-project-specialist",
+      "sales-consultant",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-06-09"
+  },
+  {
+    "id": "2.06",
+    "sheet_id": "2.06",
+    "slug": "consult-discovery",
+    "name": "consult-discovery",
+    "summary": "Two-stage consulting discovery — pain-point intake then company vision exploration — to produce a needs definition and strategic discovery summary before any solution work.",
+    "category": "sales-consultant",
+    "project": "consult-discovery",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/2-sales-consultant/consult-discovery/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/2.06.md -o ~/.claude/skills/consult-discovery.md",
+    "tags": [
+      "consult-discovery",
       "sales-consultant",
       "claude",
       "orchestrator"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.30",
+    "id": "2.07",
     "sheet_id": "2.07",
-    "slug": "consulting-discovery-company-vision-discovery",
-    "name": "to-be-discovery",
-    "summary": "Consulting Assistant ─ Company Future Vision Discovery — agent of consulting-discovery",
+    "slug": "consult-to-be",
+    "name": "consult-to-be",
+    "summary": "Consulting Assistant ─ Company Future Vision Discovery — agent of consult-discovery",
     "category": "sales-consultant",
-    "project": "consulting-discovery",
+    "project": "consult-discovery",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/2-sales-consultant/consulting-discovery/agents/company-vision-discovery.md",
+    "source_path": "skills/2-sales-consultant/consult-discovery/agents/consult-to-be.md",
     "tags": [
-      "consulting-discovery",
+      "consult-discovery",
       "sales-consultant",
       "claude",
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.31",
+    "id": "2.08",
     "sheet_id": "2.08",
-    "slug": "consulting-discovery-pain-point-discovery",
-    "name": "as-is-discovery",
-    "summary": "Consulting Assistant ─ Pain Point Analysis — agent of consulting-discovery",
+    "slug": "consult-as-is",
+    "name": "consult-as-is",
+    "summary": "Consulting Assistant ─ Pain Point Analysis — agent of consult-discovery",
     "category": "sales-consultant",
-    "project": "consulting-discovery",
+    "project": "consult-discovery",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/2-sales-consultant/consulting-discovery/agents/pain-point-discovery.md",
+    "source_path": "skills/2-sales-consultant/consult-discovery/agents/consult-as-is.md",
     "tags": [
-      "consulting-discovery",
+      "consult-discovery",
       "sales-consultant",
       "claude",
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "3.13",
+    "id": "3.01",
     "sheet_id": "3.01",
     "slug": "zynkr-support",
     "name": "zynkr-support",
@@ -819,7 +819,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/3-operations/zynkr-support/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.13.md -o ~/.claude/skills/zynkr-support.md",
+    "install_command": "curl -sL zynkr.ai/s/3.01.md -o ~/.claude/skills/zynkr-support.md",
     "tags": [
       "zynkr-support",
       "operations",
@@ -827,10 +827,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "3.11",
+    "id": "3.02",
     "sheet_id": "3.02",
     "slug": "zynkr-kms",
     "name": "zynkr-kms",
@@ -842,7 +842,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/3-operations/zynkr-kms/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.11.md -o ~/.claude/skills/zynkr-kms.md",
+    "install_command": "curl -sL zynkr.ai/s/3.02.md -o ~/.claude/skills/zynkr-kms.md",
     "tags": [
       "zynkr-kms",
       "operations",
@@ -850,34 +850,102 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-05"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "3.14",
+    "id": "3.03",
     "sheet_id": "3.03",
-    "slug": "meeting-prep",
-    "name": "meeting-prep",
-    "summary": "A scheduled, auto-running meeting-prep assistant: every day at 9 AM it scans meetings within the next 7 days and sends action reminders; every day at 3 PM it sends a full briefing for the next day's meetings.",
+    "slug": "admin-meeting-prep",
+    "name": "admin-meeting-prep",
+    "summary": "A scheduled, auto-running admin-meeting-prep assistant: every day at 9 AM it scans meetings within the next 7 days and sends action reminders; every day at 3 PM it sends a full briefing for the next day's meetings.",
     "category": "operations",
-    "project": "meeting-prep",
+    "project": "admin-meeting-prep",
     "platform": "claude",
     "status": "WIP",
     "author": "Jane Liao",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/3-operations/meeting-prep/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.14.md -o ~/.claude/skills/meeting-prep.md",
+    "source_path": "skills/3-operations/admin-meeting-prep/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/3.03.md -o ~/.claude/skills/admin-meeting-prep.md",
     "tags": [
-      "meeting-prep",
+      "admin-meeting-prep",
       "operations",
       "claude",
       "orchestrator"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "3.16",
+    "id": "3.04",
     "sheet_id": "3.04",
+    "slug": "admin-meeting-note",
+    "name": "admin-meeting-note",
+    "summary": "Project Assistant — Organize Meeting Notes (專案助理 ─ 整理會議筆記) — agent of admin-meeting-prep",
+    "category": "operations",
+    "project": "admin-meeting-prep",
+    "platform": "claude",
+    "status": "WIP",
+    "author": "Jane Liao",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/3-operations/admin-meeting-prep/agents/admin-meeting-note.md",
+    "tags": [
+      "admin-meeting-prep",
+      "operations",
+      "claude",
+      "subagent"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "3.05",
+    "sheet_id": "3.05",
+    "slug": "admin-governance",
+    "name": "admin-governance",
+    "summary": "Weekly hygiene ritual for Zynkr's local↔cloud knowledge governance.",
+    "category": "operations",
+    "project": "admin-governance",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/3-operations/admin-governance/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/3.05.md -o ~/.claude/skills/admin-governance.md",
+    "tags": [
+      "admin-governance",
+      "operations",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "3.06",
+    "sheet_id": "3.06",
+    "slug": "admin-video-document",
+    "name": "admin-video-document",
+    "summary": "Files loose recordings sitting in Peter's Google Drive recording inbox into the right category sub-folder, with an approval gate.",
+    "category": "operations",
+    "project": "admin-video-document",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/3-operations/admin-video-document/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/3.06.md -o ~/.claude/skills/admin-video-document.md",
+    "tags": [
+      "admin-video-document",
+      "operations",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "3.07",
+    "sheet_id": "3.07",
     "slug": "project-planning",
     "name": "project-planning",
     "summary": "Stress-test and refine a project idea before execution via a 7-stage Socratic facilitation — WHY (5 Whys) → WHAT → HOW → WHO (RACI) → WHEN (Gantt) → MEASURES → RISKS — producing an execution-ready project charter.",
@@ -888,7 +956,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/3-operations/project-planning/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.16.md -o ~/.claude/skills/project-planning.md",
+    "install_command": "curl -sL zynkr.ai/s/3.07.md -o ~/.claude/skills/project-planning.md",
     "tags": [
       "project-planning",
       "operations",
@@ -899,8 +967,8 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "3.12",
-    "sheet_id": "3.05",
+    "id": "3.08",
+    "sheet_id": "3.08",
     "slug": "project-note-specialist",
     "name": "project-note-specialist",
     "summary": "Turn raw meeting notes, transcripts, voice memos, or messy unstructured updates into a clean structured Weekly Project Update (Summary · Progress · Blockers · What's Next).",
@@ -911,7 +979,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/3-operations/project-note-specialist/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.12.md -o ~/.claude/skills/project-note-specialist.md",
+    "install_command": "curl -sL zynkr.ai/s/3.08.md -o ~/.claude/skills/project-note-specialist.md",
     "tags": [
       "project-note-specialist",
       "operations",
@@ -919,33 +987,11 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-05"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "3.15",
-    "sheet_id": "3.06",
-    "slug": "meeting-prep-meeting-notes-organizer",
-    "name": "meeting-notes-organizer",
-    "summary": "Project Assistant — Organize Meeting Notes (專案助理 ─ 整理會議筆記) — agent of meeting-prep",
-    "category": "operations",
-    "project": "meeting-prep",
-    "platform": "claude",
-    "status": "WIP",
-    "author": "Jane Liao",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/3-operations/meeting-prep/agents/meeting-notes-organizer.md",
-    "tags": [
-      "meeting-prep",
-      "operations",
-      "claude",
-      "subagent"
-    ],
-    "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
-  },
-  {
-    "id": "3.17",
-    "sheet_id": "3.07",
+    "id": "3.09",
+    "sheet_id": "3.09",
     "slug": "project-status-update",
     "name": "project-status-update",
     "summary": "Generates a weekly project status update for a project tracked in a Google Sheet.",
@@ -956,32 +1002,9 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/3-operations/project-status-update/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.17.md -o ~/.claude/skills/project-status-update.md",
+    "install_command": "curl -sL zynkr.ai/s/3.09.md -o ~/.claude/skills/project-status-update.md",
     "tags": [
       "project-status-update",
-      "operations",
-      "claude",
-      "skill"
-    ],
-    "updated_at": "2026-06-09",
-    "first_seen": "2026-06-09"
-  },
-  {
-    "id": "3.09",
-    "sheet_id": "3.08",
-    "slug": "drift-check",
-    "name": "drift-check",
-    "summary": "Weekly hygiene ritual for Zynkr's local↔cloud knowledge governance.",
-    "category": "operations",
-    "project": "drift-check",
-    "platform": "claude",
-    "status": "Done",
-    "author": "Peter Tu",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/3-operations/drift-check/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.09.md -o ~/.claude/skills/drift-check.md",
-    "tags": [
-      "drift-check",
       "operations",
       "claude",
       "skill"
@@ -990,8 +1013,8 @@
     "first_seen": "2026-05-27"
   },
   {
-    "id": "3.04",
-    "sheet_id": "3.09",
+    "id": "3.10",
+    "sheet_id": "3.10",
     "slug": "operations-transformation",
     "name": "operations-transformation",
     "summary": "Three-stage operations transformation pipeline — process discovery (SIPOC), digital transformation assessment, then automation-ready process redesign — to turn pain points into builder-ready blueprints.",
@@ -1002,7 +1025,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/3-operations/operations-transformation/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/3.04.md -o ~/.claude/skills/operations-transformation.md",
+    "install_command": "curl -sL zynkr.ai/s/3.10.md -o ~/.claude/skills/operations-transformation.md",
     "tags": [
       "operations-transformation",
       "operations",
@@ -1010,13 +1033,13 @@
       "orchestrator"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "3.06",
-    "sheet_id": "3.10",
-    "slug": "operations-transformation-process-discovery",
-    "name": "process-discovery",
+    "id": "3.11",
+    "sheet_id": "3.11",
+    "slug": "operations-process-discovery",
+    "name": "operations-process-discovery",
     "summary": "Operations Assistant — Process Discovery — agent of operations-transformation",
     "category": "operations",
     "project": "operations-transformation",
@@ -1024,7 +1047,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/3-operations/operations-transformation/agents/process-discovery.md",
+    "source_path": "skills/3-operations/operations-transformation/agents/operations-process-discovery.md",
     "tags": [
       "operations-transformation",
       "operations",
@@ -1032,13 +1055,13 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-05"
   },
   {
-    "id": "3.05",
-    "sheet_id": "3.11",
-    "slug": "operations-transformation-digital-transformation-assessor",
-    "name": "automation-validation",
+    "id": "3.12",
+    "sheet_id": "3.12",
+    "slug": "operations-automation-validation",
+    "name": "operations-automation-validation",
     "summary": "Operations Assistant — Digital Transformation Assessor — agent of operations-transformation",
     "category": "operations",
     "project": "operations-transformation",
@@ -1046,7 +1069,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/3-operations/operations-transformation/agents/digital-transformation-assessor.md",
+    "source_path": "skills/3-operations/operations-transformation/agents/operations-automation-validation.md",
     "tags": [
       "operations-transformation",
       "operations",
@@ -1054,13 +1077,13 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-05"
   },
   {
-    "id": "3.07",
-    "sheet_id": "3.12",
-    "slug": "operations-transformation-process-redesigner",
-    "name": "process-redesign",
+    "id": "3.13",
+    "sheet_id": "3.13",
+    "slug": "operations-process-redesign",
+    "name": "operations-process-redesign",
     "summary": "Operations Manager ─ Process Redesign — agent of operations-transformation",
     "category": "operations",
     "project": "operations-transformation",
@@ -1068,7 +1091,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/3-operations/operations-transformation/agents/process-redesigner.md",
+    "source_path": "skills/3-operations/operations-transformation/agents/operations-process-redesign.md",
     "tags": [
       "operations-transformation",
       "operations",
@@ -1076,24 +1099,24 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-06"
   },
   {
     "id": "4.01",
     "sheet_id": "4.01",
-    "slug": "polish-lecture-transcript",
-    "name": "polish-lecture-transcript",
+    "slug": "training-lecture-transcript",
+    "name": "training-lecture-transcript",
     "summary": "Polish long video lecture transcripts into lecturer-friendly readout scripts in Traditional Chinese.",
     "category": "training",
-    "project": "polish-lecture-transcript",
+    "project": "training-lecture-transcript",
     "platform": "multi",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/polish-lecture-transcript/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/4.01.md -o ~/.claude/skills/polish-lecture-transcript.md",
+    "source_path": "skills/4-training/training-lecture-transcript/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/4.01.md -o ~/.claude/skills/training-lecture-transcript.md",
     "tags": [
-      "polish-lecture-transcript",
+      "training-lecture-transcript",
       "training",
       "multi",
       "skill"
@@ -1104,19 +1127,19 @@
   {
     "id": "4.02",
     "sheet_id": "4.02",
-    "slug": "process-livestream",
-    "name": "process-livestream",
+    "slug": "training-process-video",
+    "name": "training-process-video",
     "summary": "Post-process a livestream transcript into four parallel workstreams: an event recap Google Doc, a Q&A knowledge base diff, course lecture note proposals, and marketing content idea seeds.",
     "category": "training",
-    "project": "process-livestream",
+    "project": "training-process-video",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/process-livestream/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/4.02.md -o ~/.claude/skills/process-livestream.md",
+    "source_path": "skills/4-training/training-process-video/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/4.02.md -o ~/.claude/skills/training-process-video.md",
     "tags": [
-      "process-livestream",
+      "training-process-video",
       "training",
       "claude",
       "orchestrator"
@@ -1125,20 +1148,42 @@
     "first_seen": "2026-05-09"
   },
   {
-    "id": "4.04",
+    "id": "4.03",
     "sheet_id": "4.03",
-    "slug": "process-livestream-admin",
-    "name": "admin",
-    "summary": "admin for process-livestream",
+    "slug": "training-doc-admin",
+    "name": "training-doc-admin",
+    "summary": "training-doc-admin for training-process-video",
     "category": "training",
-    "project": "process-livestream",
+    "project": "training-process-video",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/process-livestream/agents/admin.md",
+    "source_path": "skills/4-training/training-process-video/agents/training-doc-admin.md",
     "tags": [
-      "process-livestream",
+      "training-process-video",
+      "training",
+      "claude",
+      "subagent"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-05-09"
+  },
+  {
+    "id": "4.04",
+    "sheet_id": "4.04",
+    "slug": "training-idea-curator",
+    "name": "training-idea-curator",
+    "summary": "training-idea-curator for training-process-video",
+    "category": "training",
+    "project": "training-process-video",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/4-training/training-process-video/agents/training-idea-curator.md",
+    "tags": [
+      "training-process-video",
       "training",
       "claude",
       "subagent"
@@ -1148,19 +1193,19 @@
   },
   {
     "id": "4.05",
-    "sheet_id": "4.04",
-    "slug": "process-livestream-content-idea-curator",
-    "name": "content-idea-curator",
-    "summary": "content-idea-curator for process-livestream",
+    "sheet_id": "4.05",
+    "slug": "training-outline-enhancer",
+    "name": "training-outline-enhancer",
+    "summary": "training-outline-enhancer for training-process-video",
     "category": "training",
-    "project": "process-livestream",
+    "project": "training-process-video",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/process-livestream/agents/content-idea-curator.md",
+    "source_path": "skills/4-training/training-process-video/agents/training-outline-enhancer.md",
     "tags": [
-      "process-livestream",
+      "training-process-video",
       "training",
       "claude",
       "subagent"
@@ -1170,19 +1215,19 @@
   },
   {
     "id": "4.06",
-    "sheet_id": "4.05",
-    "slug": "process-livestream-course-outline-enhancer",
-    "name": "course-outline-enhancer",
-    "summary": "course-outline-enhancer for process-livestream",
+    "sheet_id": "4.06",
+    "slug": "training-event-recap",
+    "name": "training-event-recap",
+    "summary": "training-event-recap for training-process-video",
     "category": "training",
-    "project": "process-livestream",
+    "project": "training-process-video",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/process-livestream/agents/course-outline-enhancer.md",
+    "source_path": "skills/4-training/training-process-video/agents/training-event-recap.md",
     "tags": [
-      "process-livestream",
+      "training-process-video",
       "training",
       "claude",
       "subagent"
@@ -1192,19 +1237,19 @@
   },
   {
     "id": "4.07",
-    "sheet_id": "4.06",
-    "slug": "process-livestream-event-recap",
-    "name": "event-recap",
-    "summary": "event-recap for process-livestream",
+    "sheet_id": "4.07",
+    "slug": "training-qa-knowledge",
+    "name": "training-qa-knowledge",
+    "summary": "training-qa-knowledge for training-process-video",
     "category": "training",
-    "project": "process-livestream",
+    "project": "training-process-video",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/process-livestream/agents/event-recap.md",
+    "source_path": "skills/4-training/training-process-video/agents/training-qa-knowledge.md",
     "tags": [
-      "process-livestream",
+      "training-process-video",
       "training",
       "claude",
       "subagent"
@@ -1214,74 +1259,52 @@
   },
   {
     "id": "4.08",
-    "sheet_id": "4.07",
-    "slug": "process-livestream-qa-knowledge-base",
-    "name": "qa-knowledge-base",
-    "summary": "qa-knowledge-base for process-livestream",
-    "category": "training",
-    "project": "process-livestream",
-    "platform": "claude",
-    "status": "Done",
-    "author": "Peter Tu",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/process-livestream/agents/qa-knowledge-base.md",
-    "tags": [
-      "process-livestream",
-      "training",
-      "claude",
-      "subagent"
-    ],
-    "updated_at": "2026-06-09",
-    "first_seen": "2026-05-09"
-  },
-  {
-    "id": "4.09",
     "sheet_id": "4.08",
-    "slug": "lecture-recap-writer",
-    "name": "lecture-recap-writer",
+    "slug": "training-lecture-recap",
+    "name": "training-lecture-recap",
     "summary": "Turn a video file or transcript into a reader-friendly lecture recap structured into five fixed sections — Summary, Theme, Q&A, Tools, Call to Action — while strictly avoiding any reference-outline detail leakage.",
     "category": "training",
-    "project": "lecture-recap-writer",
+    "project": "training-lecture-recap",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/lecture-recap-writer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/4.09.md -o ~/.claude/skills/lecture-recap-writer.md",
+    "source_path": "skills/4-training/training-lecture-recap/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/4.08.md -o ~/.claude/skills/training-lecture-recap.md",
     "tags": [
-      "lecture-recap-writer",
+      "training-lecture-recap",
       "training",
       "claude",
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-05-09"
   },
   {
-    "id": "4.03",
+    "id": "4.10",
     "sheet_id": "4.10",
-    "slug": "srt-optimizer",
-    "name": "srt-optimizer",
+    "slug": "training-srt-optimizer",
+    "name": "training-srt-optimizer",
     "summary": "Minimally clean subtitle .srt files into readable Traditional Chinese while preserving original wording, cue timing, and subtitle alignment.",
     "category": "training",
-    "project": "srt-optimizer",
+    "project": "training-srt-optimizer",
     "platform": "multi",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/4-training/srt-optimizer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/4.03.md -o ~/.claude/skills/srt-optimizer.md",
+    "source_path": "skills/4-training/training-srt-optimizer/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/4.10.md -o ~/.claude/skills/training-srt-optimizer.md",
     "tags": [
-      "srt-optimizer",
+      "training-srt-optimizer",
       "training",
       "multi",
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-09"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "5.03",
+    "id": "5.01",
     "sheet_id": "5.01",
     "slug": "skill-finder",
     "name": "skill-finder",
@@ -1293,7 +1316,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/5-product/skill-finder/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/5.03.md -o ~/.claude/skills/skill-finder.md",
+    "install_command": "curl -sL zynkr.ai/s/5.01.md -o ~/.claude/skills/skill-finder.md",
     "tags": [
       "skill-finder",
       "product",
@@ -1301,10 +1324,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "5.01",
+    "id": "5.02",
     "sheet_id": "5.02",
     "slug": "product-planning",
     "name": "product-planning",
@@ -1316,7 +1339,7 @@
     "author": "MrPM-Stanley",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/5-product/product-planning/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/5.01.md -o ~/.claude/skills/product-planning.md",
+    "install_command": "curl -sL zynkr.ai/s/5.02.md -o ~/.claude/skills/product-planning.md",
     "tags": [
       "product-planning",
       "product",
@@ -1329,47 +1352,47 @@
     "original_author": "MrPM-Stanley",
     "github_stars": 39,
     "github_forks": 9,
-    "first_seen": "2026-05-20"
+    "first_seen": "2026-05-25"
+  },
+  {
+    "id": "5.03",
+    "sheet_id": "5.03",
+    "slug": "product-flow-design",
+    "name": "product-flow-design",
+    "summary": "Read, draft, edit, and lint Lucid charts using Peter's FE/BE/DB three-layer architecture convention.",
+    "category": "product",
+    "project": "product-flow-design",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Peter Tu",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/5-product/product-flow-design/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/5.03.md -o ~/.claude/skills/product-flow-design.md",
+    "tags": [
+      "product-flow-design",
+      "product",
+      "claude",
+      "skill"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-05-25"
   },
   {
     "id": "5.04",
-    "sheet_id": "5.03",
-    "slug": "lucid-specialist",
-    "name": "lucid-specialist",
-    "summary": "Read, draft, edit, and lint Lucid charts using Peter's FE/BE/DB three-layer architecture convention.",
-    "category": "product",
-    "project": "lucid-specialist",
-    "platform": "claude",
-    "status": "Done",
-    "author": "Peter Tu",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/5-product/lucid-specialist/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/5.04.md -o ~/.claude/skills/lucid-specialist.md",
-    "tags": [
-      "lucid-specialist",
-      "product",
-      "claude",
-      "skill"
-    ],
-    "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
-  },
-  {
-    "id": "5.02",
     "sheet_id": "5.04",
-    "slug": "prompt-engineer",
-    "name": "prompt-engineer",
+    "slug": "product-optimize-prompt",
+    "name": "product-optimize-prompt",
     "summary": "Refactor a prompt (or prompt idea) into a production-ready package via 4 phases — GUIDE intake → diagnosis → structured refactor with explicit IPO sections + system/developer/user layers → optional multi-turn conversatio",
     "category": "product",
-    "project": "prompt-engineer",
+    "project": "product-optimize-prompt",
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/5-product/prompt-engineer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/5.02.md -o ~/.claude/skills/prompt-engineer.md",
+    "source_path": "skills/5-product/product-optimize-prompt/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/5.04.md -o ~/.claude/skills/product-optimize-prompt.md",
     "tags": [
-      "prompt-engineer",
+      "product-optimize-prompt",
       "product",
       "claude",
       "skill"
@@ -1378,35 +1401,35 @@
     "first_seen": "2026-05-25"
   },
   {
-    "id": "6.16",
+    "id": "6.01",
     "sheet_id": "6.01",
-    "slug": "find-skills",
-    "name": "find-skills",
+    "slug": "eng-find-skills",
+    "name": "eng-find-skills",
     "summary": "Helps users discover and install agent skills when they ask questions like 'how do I do X', 'find a skill for X', 'is there a skill that can...', or express interest in extending capabilities.",
     "category": "engineer",
-    "project": "find-skills",
+    "project": "eng-find-skills",
     "platform": "claude",
     "status": "Done",
     "author": "vercel-labs",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/6-engineer/find-skills/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.16.md -o ~/.claude/skills/find-skills.md",
+    "source_path": "skills/6-engineer/eng-find-skills/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/6.01.md -o ~/.claude/skills/eng-find-skills.md",
     "tags": [
-      "find-skills",
+      "eng-find-skills",
       "engineer",
       "claude",
       "skill"
     ],
     "updated_at": "2026-06-09",
     "upstream_repo": "https://github.com/vercel-labs/skills",
-    "original_source_url": "https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md",
+    "original_source_url": "https://github.com/vercel-labs/skills/blob/main/skills/eng-find-skills/SKILL.md",
     "original_author": "vercel-labs",
-    "github_stars": 21806,
-    "github_forks": 1743,
-    "first_seen": "2026-05-25"
+    "github_stars": 21844,
+    "github_forks": 1746,
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "6.17",
+    "id": "6.02",
     "sheet_id": "6.02",
     "slug": "zynkr",
     "name": "zynkr",
@@ -1418,7 +1441,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/6-engineer/zynkr/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.17.md -o ~/.claude/skills/zynkr.md",
+    "install_command": "curl -sL zynkr.ai/s/6.02.md -o ~/.claude/skills/zynkr.md",
     "tags": [
       "zynkr",
       "engineer",
@@ -1426,10 +1449,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "6.07",
+    "id": "6.03",
     "sheet_id": "6.03",
     "slug": "skill-sourcer",
     "name": "skill-sourcer",
@@ -1441,7 +1464,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/6-engineer/skill-sourcer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.07.md -o ~/.claude/skills/skill-sourcer.md",
+    "install_command": "curl -sL zynkr.ai/s/6.03.md -o ~/.claude/skills/skill-sourcer.md",
     "tags": [
       "skill-sourcer",
       "engineer",
@@ -1449,12 +1472,12 @@
       "orchestrator"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-12"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "6.08",
+    "id": "6.04",
     "sheet_id": "6.04",
-    "slug": "skill-sourcer-classifier",
+    "slug": "skill-classifier",
     "name": "skill-classifier",
     "summary": "Map an extracted skill to the Zynkr taxonomy category (0–9)",
     "category": "engineer",
@@ -1471,12 +1494,12 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-12"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "6.09",
+    "id": "6.05",
     "sheet_id": "6.05",
-    "slug": "skill-sourcer-deduplicator",
+    "slug": "skill-deduplicator",
     "name": "skill-deduplicator",
     "summary": "Check an incoming skill against the Zynkr Skills Pipeline GitHub Project for duplication or semantic overlap",
     "category": "engineer",
@@ -1493,12 +1516,12 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-12"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "6.10",
+    "id": "6.06",
     "sheet_id": "6.06",
-    "slug": "skill-sourcer-extractor",
+    "slug": "skill-extractor",
     "name": "skill-extractor",
     "summary": "Parse raw input (text, URL, file) and extract structured skill intent",
     "category": "engineer",
@@ -1515,12 +1538,12 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-12"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "6.11",
+    "id": "6.07",
     "sheet_id": "6.07",
-    "slug": "skill-sourcer-proposer",
+    "slug": "skill-proposer",
     "name": "skill-proposer",
     "summary": "Propose a verified-new skill by opening an issue in zynkr-skill-idea and adding it to the skills pipeline GitHub Project.",
     "category": "engineer",
@@ -1540,7 +1563,7 @@
     "first_seen": "2026-05-12"
   },
   {
-    "id": "6.14",
+    "id": "6.08",
     "sheet_id": "6.08",
     "slug": "skill-triager",
     "name": "skill-triager",
@@ -1552,7 +1575,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/6-engineer/skill-triager/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.14.md -o ~/.claude/skills/skill-triager.md",
+    "install_command": "curl -sL zynkr.ai/s/6.08.md -o ~/.claude/skills/skill-triager.md",
     "tags": [
       "skill-triager",
       "engineer",
@@ -1560,10 +1583,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-24"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "6.18",
+    "id": "6.09",
     "sheet_id": "6.09",
     "slug": "skill-qa",
     "name": "skill-qa",
@@ -1575,7 +1598,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/6-engineer/skill-qa/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.18.md -o ~/.claude/skills/skill-qa.md",
+    "install_command": "curl -sL zynkr.ai/s/6.09.md -o ~/.claude/skills/skill-qa.md",
     "tags": [
       "skill-qa",
       "engineer",
@@ -1583,10 +1606,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-03"
+    "first_seen": "2026-05-12"
   },
   {
-    "id": "6.15",
+    "id": "6.10",
     "sheet_id": "6.10",
     "slug": "skill-publish",
     "name": "skill-publish",
@@ -1598,7 +1621,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/6-engineer/skill-publish/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.15.md -o ~/.claude/skills/skill-publish.md",
+    "install_command": "curl -sL zynkr.ai/s/6.10.md -o ~/.claude/skills/skill-publish.md",
     "tags": [
       "skill-publish",
       "engineer",
@@ -1606,10 +1629,10 @@
       "skill"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-05-25"
+    "first_seen": "2026-05-12"
   },
   {
-    "id": "6.19",
+    "id": "6.11",
     "sheet_id": "6.11",
     "slug": "agent-browser",
     "name": "agent-browser",
@@ -1621,7 +1644,7 @@
     "author": "Vercel Labs",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/6-engineer/agent-browser/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.19.md -o ~/.claude/skills/agent-browser.md",
+    "install_command": "curl -sL zynkr.ai/s/6.11.md -o ~/.claude/skills/agent-browser.md",
     "tags": [
       "agent-browser",
       "engineer",
@@ -1632,40 +1655,12 @@
     "upstream_repo": "https://github.com/vercel-labs/agent-browser",
     "original_source_url": "https://github.com/vercel-labs/agent-browser/blob/main/README.md",
     "original_author": "Vercel Labs",
-    "github_stars": 35651,
-    "github_forks": 2245,
-    "first_seen": "2026-06-09"
+    "github_stars": 35675,
+    "github_forks": 2244,
+    "first_seen": "2026-05-12"
   },
   {
-    "id": "6.13",
-    "sheet_id": "6.13",
-    "slug": "hermes-agent",
-    "name": "hermes-agent",
-    "summary": "Self-improving AI agent runtime by Nous Research.",
-    "category": "engineer",
-    "project": "hermes-agent",
-    "platform": "multi",
-    "status": "Done",
-    "author": "Nous Research",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/6-engineer/hermes-agent/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/6.13.md -o ~/.claude/skills/hermes-agent.md",
-    "tags": [
-      "hermes-agent",
-      "engineer",
-      "multi",
-      "skill"
-    ],
-    "updated_at": "2026-06-09",
-    "upstream_repo": "https://github.com/NousResearch/hermes-agent",
-    "original_source_url": "https://github.com/NousResearch/hermes-agent/blob/main/README.md",
-    "original_author": "Nous Research",
-    "github_stars": 188277,
-    "github_forks": 32439,
-    "first_seen": "2026-05-20"
-  },
-  {
-    "id": "2.21",
+    "id": "7.01",
     "sheet_id": "7.01",
     "slug": "cv-customizer",
     "name": "cv-customizer",
@@ -1677,7 +1672,7 @@
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/7-people-talent/cv-customizer/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/2.21.md -o ~/.claude/skills/cv-customizer.md",
+    "install_command": "curl -sL zynkr.ai/s/7.01.md -o ~/.claude/skills/cv-customizer.md",
     "tags": [
       "cv-customizer",
       "people-talent",
@@ -1685,13 +1680,13 @@
       "orchestrator"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.22",
+    "id": "7.02",
     "sheet_id": "7.02",
-    "slug": "cv-customizer-cv-phase1-job-decoder",
-    "name": "cv-phase1-job-decoder",
+    "slug": "cv-job-decoder",
+    "name": "cv-job-decoder",
     "summary": "Analyzes a job description to extract role context, prioritized skills (MECE + 80/20), success metrics, and ATS keywords.",
     "category": "people-talent",
     "project": "cv-customizer",
@@ -1699,7 +1694,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-phase1-job-decoder.md",
+    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-job-decoder.md",
     "tags": [
       "cv-customizer",
       "people-talent",
@@ -1707,13 +1702,13 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.23",
+    "id": "7.03",
     "sheet_id": "7.03",
-    "slug": "cv-customizer-cv-phase2-story-extractor",
-    "name": "cv-phase2-story-extractor",
+    "slug": "cv-story-extractor",
+    "name": "cv-story-extractor",
     "summary": "Surfaces underrepresented skills by comparing the candidate's CV with the job requirements from phase 1, then guides the candidate to articulate strong, job-aligned stories using the SCQA framework.",
     "category": "people-talent",
     "project": "cv-customizer",
@@ -1721,7 +1716,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-phase2-story-extractor.md",
+    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-story-extractor.md",
     "tags": [
       "cv-customizer",
       "people-talent",
@@ -1729,13 +1724,13 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.24",
+    "id": "7.04",
     "sheet_id": "7.04",
-    "slug": "cv-customizer-cv-phase3-fit-scorer",
-    "name": "cv-phase3-fit-scorer",
+    "slug": "cv-fit-scorer",
+    "name": "cv-fit-scorer",
     "summary": "Scores the candidate's CV against the job across four dimensions (Relevance, Value, Narrative, ATS), benchmarks against top-performing peers in similar roles, and recommends concrete improvements.",
     "category": "people-talent",
     "project": "cv-customizer",
@@ -1743,7 +1738,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-phase3-fit-scorer.md",
+    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-fit-scorer.md",
     "tags": [
       "cv-customizer",
       "people-talent",
@@ -1751,13 +1746,13 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.25",
+    "id": "7.05",
     "sheet_id": "7.05",
-    "slug": "cv-customizer-cv-phase4-progression",
-    "name": "cv-phase4-progression",
+    "slug": "cv-progression",
+    "name": "cv-progression",
     "summary": "Automatically analyzes the career skill progression in a candidate's CV, checking for role-skill alignment, depth vs breadth, progression signals, and leadership framing.",
     "category": "people-talent",
     "project": "cv-customizer",
@@ -1765,7 +1760,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-phase4-progression.md",
+    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-progression.md",
     "tags": [
       "cv-customizer",
       "people-talent",
@@ -1773,13 +1768,13 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.26",
+    "id": "7.06",
     "sheet_id": "7.06",
-    "slug": "cv-customizer-cv-phase5-rewriter",
-    "name": "cv-phase5-rewriter",
+    "slug": "cv-rewrite",
+    "name": "cv-rewrite",
     "summary": "Rewrites the candidate's CV section by section (Accept / Modify / Skip per section) using insights from phases 1–4, fully aligned with the CV template and optimized for recruiter readability and ATS logic.",
     "category": "people-talent",
     "project": "cv-customizer",
@@ -1787,7 +1782,7 @@
     "status": "Done",
     "author": "Peter Tu",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-phase5-rewriter.md",
+    "source_path": "skills/7-people-talent/cv-customizer/agents/cv-rewrite.md",
     "tags": [
       "cv-customizer",
       "people-talent",
@@ -1795,10 +1790,10 @@
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "7.06",
+    "id": "7.07",
     "sheet_id": "7.07",
     "slug": "zynkr-recruiter",
     "name": "zynkr-recruiter",
@@ -1810,7 +1805,7 @@
     "author": "Jane Liao",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
     "source_path": "skills/7-people-talent/zynkr-recruiter/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/7.06.md -o ~/.claude/skills/zynkr-recruiter.md",
+    "install_command": "curl -sL zynkr.ai/s/7.07.md -o ~/.claude/skills/zynkr-recruiter.md",
     "tags": [
       "zynkr-recruiter",
       "people-talent",
@@ -1821,10 +1816,10 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "7.09",
+    "id": "7.08",
     "sheet_id": "7.08",
-    "slug": "zynkr-recruiter-jd-architect",
-    "name": "jd-architect",
+    "slug": "recruiter-jd-architect",
+    "name": "recruiter-jd-architect",
     "summary": "Recruiting assistant — align role requirements (招募助理 ─ 對齊職務需求) — agent of zynkr-recruiter",
     "category": "people-talent",
     "project": "zynkr-recruiter",
@@ -1832,7 +1827,29 @@
     "status": "Done",
     "author": "Jane Liao",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/jd-architect.md",
+    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/recruiter-jd-architect.md",
+    "tags": [
+      "zynkr-recruiter",
+      "people-talent",
+      "claude",
+      "subagent"
+    ],
+    "updated_at": "2026-06-09",
+    "first_seen": "2026-06-09"
+  },
+  {
+    "id": "7.09",
+    "sheet_id": "7.09",
+    "slug": "recruiter-resume-screener",
+    "name": "recruiter-resume-screener",
+    "summary": "招募助理 ─ 履歷篩選 — agent of zynkr-recruiter",
+    "category": "people-talent",
+    "project": "zynkr-recruiter",
+    "platform": "claude",
+    "status": "Done",
+    "author": "Jane Liao",
+    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/recruiter-resume-screener.md",
     "tags": [
       "zynkr-recruiter",
       "people-talent",
@@ -1844,31 +1861,9 @@
   },
   {
     "id": "7.10",
-    "sheet_id": "7.09",
-    "slug": "zynkr-recruiter-resume-screener",
-    "name": "resume-screener",
-    "summary": "招募助理 ─ 履歷篩選 — agent of zynkr-recruiter",
-    "category": "people-talent",
-    "project": "zynkr-recruiter",
-    "platform": "claude",
-    "status": "Done",
-    "author": "Jane Liao",
-    "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/resume-screener.md",
-    "tags": [
-      "zynkr-recruiter",
-      "people-talent",
-      "claude",
-      "subagent"
-    ],
-    "updated_at": "2026-06-09",
-    "first_seen": "2026-06-09"
-  },
-  {
-    "id": "7.08",
     "sheet_id": "7.10",
-    "slug": "zynkr-recruiter-interview-question-designer",
-    "name": "interview-question-designer",
+    "slug": "recruiter-interview-question",
+    "name": "recruiter-interview-question",
     "summary": "Recruiting Assistant ─ Interview Question & Scorecard Designer — agent of zynkr-recruiter",
     "category": "people-talent",
     "project": "zynkr-recruiter",
@@ -1876,7 +1871,7 @@
     "status": "Done",
     "author": "Jane Liao",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/interview-question-designer.md",
+    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/recruiter-interview-question.md",
     "tags": [
       "zynkr-recruiter",
       "people-talent",
@@ -1887,55 +1882,55 @@
     "first_seen": "2026-06-09"
   },
   {
-    "id": "2.28",
+    "id": "7.11",
     "sheet_id": "7.11",
-    "slug": "interview-question-predictor",
-    "name": "interview-question-predictor",
+    "slug": "recruiter-interview-question-customize",
+    "name": "recruiter-interview-question-customize",
     "summary": "Anticipates likely interview questions for a specific role by analyzing the job description, the candidate's resume, the interview stage, and company context from an interviewer's perspective.",
     "category": "people-talent",
-    "project": "interview-question-predictor",
+    "project": "recruiter-interview-question-customize",
     "platform": "claude",
     "status": "Done",
     "author": "Jane Liao",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/interview-question-predictor/SKILL.md",
-    "install_command": "curl -sL zynkr.ai/s/2.28.md -o ~/.claude/skills/interview-question-predictor.md",
+    "source_path": "skills/7-people-talent/recruiter-interview-question-customize/SKILL.md",
+    "install_command": "curl -sL zynkr.ai/s/7.11.md -o ~/.claude/skills/recruiter-interview-question-customize.md",
     "tags": [
-      "interview-question-predictor",
+      "recruiter-interview-question-customize",
       "people-talent",
       "claude",
       "orchestrator"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "2.32",
+    "id": "7.12",
     "sheet_id": "7.12",
-    "slug": "interview-question-predictor-mock-interview",
-    "name": "mock-interview",
-    "summary": "Mock Interview (模擬面試) — agent of interview-question-predictor",
+    "slug": "recruiter-mock-interview",
+    "name": "recruiter-mock-interview",
+    "summary": "Mock Interview (模擬面試) — agent of recruiter-interview-question-customize",
     "category": "people-talent",
-    "project": "interview-question-predictor",
+    "project": "recruiter-interview-question-customize",
     "platform": "claude",
     "status": "Done",
     "author": "Jane Liao",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/interview-question-predictor/agents/mock-interview.md",
+    "source_path": "skills/7-people-talent/recruiter-interview-question-customize/agents/recruiter-mock-interview.md",
     "tags": [
-      "interview-question-predictor",
+      "recruiter-interview-question-customize",
       "people-talent",
       "claude",
       "subagent"
     ],
     "updated_at": "2026-06-09",
-    "first_seen": "2026-06-06"
+    "first_seen": "2026-06-09"
   },
   {
-    "id": "7.07",
+    "id": "7.13",
     "sheet_id": "7.13",
-    "slug": "zynkr-recruiter-interview-calibrator",
-    "name": "interview-calibrator",
+    "slug": "recruiter-calibrator",
+    "name": "recruiter-calibrator",
     "summary": "Recruiting assistant — interview score calibration and decision (招募助理 ─ 面試評分校準與決策) — agent of zynkr-recruiter",
     "category": "people-talent",
     "project": "zynkr-recruiter",
@@ -1943,7 +1938,7 @@
     "status": "Done",
     "author": "Jane Liao",
     "repo_url": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
-    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/interview-calibrator.md",
+    "source_path": "skills/7-people-talent/zynkr-recruiter/agents/recruiter-calibrator.md",
     "tags": [
       "zynkr-recruiter",
       "people-talent",

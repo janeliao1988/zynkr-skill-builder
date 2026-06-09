@@ -41,7 +41,7 @@ jobs:
           else
             RANGE="$BEFORE ${{ github.sha }}"
           fi
-          FILES=$(git diff --name-only $RANGE -- 'skills/**/SKILL.md' || true)
+          FILES=$(git diff --name-only $RANGE -- 'skills/**/SKILL.md' | grep -v '/.claude/skills/' || true)
           if [ -z "$FILES" ]; then echo "No changed SKILL.md in this push — skipping QA."; exit 0; fi
           echo "QA-checking changed skills:"; echo "$FILES"
           fail=0

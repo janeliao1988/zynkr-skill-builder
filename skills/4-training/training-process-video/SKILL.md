@@ -21,7 +21,7 @@ Orchestrate four parallel agents to transform a livestream transcript into reusa
 
 ## Step 0 — Stream selection
 
-Scan the subdirectories of `/Users/petertu/Desktop/Claude/zynkr/4.0 training-design/` for folders that contain a `stream-config.md` file. Each such folder is an available training stream.
+Scan the subdirectories of `<your-training-design-root>/` for folders that contain a `stream-config.md` file. Each such folder is an available training stream.
 
 Display:
 
@@ -41,7 +41,7 @@ Display:
 Wait for the user to type a number.
 
 After selection:
-- Store the absolute path to the selected stream directory as `STREAM_DIR` (e.g., `/Users/petertu/Desktop/Claude/zynkr/4.0 training-design/4.4 claude-code-for-operation`)
+- Store the absolute path to the selected stream directory as `STREAM_DIR` (e.g., `<your-training-design-root>/4.4 claude-code-for-operation`)
 - Read `[STREAM_DIR]/stream-config.md` to load all stream configuration
 - From the config, extract and store:
   - `course_outline`: filename of the course outline file (e.g., `4.4.1 course.md`)
