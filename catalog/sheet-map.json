@@ -56,7 +56,7 @@
 
     "3.01": { "kind": "skip", "category": "strategy", "sheet_name": "策略規劃", "notes": "Status=WIP. Note category drift: sheet prefix 3 vs strategy." },
     "3.02": { "kind": "skip", "category": "operations", "sheet_name": "專案管理發想 (Old)", "notes": "Status=Out dated. Superseded by 3.03." },
-    "3.03": { "kind": "standalone", "category": "operations", "project": "project-charter-facilitator", "slug": "project-charter-facilitator", "sheet_name": "專案章程發想 (New)", "author": "Peter Tu" },
+    "3.03": { "kind": "standalone", "category": "operations", "project": "project-planning", "slug": "project-charter-facilitator", "sheet_name": "專案章程發想 (New)", "author": "Peter Tu" },
     "3.04": { "kind": "skip", "category": "operations", "sheet_name": "專案規劃助理", "notes": "Status=Not started." },
     "3.05": { "kind": "skip", "category": "operations", "sheet_name": "利害關係人提問模擬", "notes": "Status=Not started." },
     "3.06": { "kind": "agent", "category": "operations", "parent_project": "meeting-prep", "slug": "meeting-notes-organizer", "sheet_name": "專案助理 ─ 整理會議筆記", "author": "Peter Tu", "notes": "Attach as agent of existing meeting-prep skill (confirm with user — could be standalone)." },
@@ -70,10 +70,10 @@
     "5.01": { "kind": "skip", "category": "product", "sheet_name": "指令工程助理 ─ 引導產品需求", "notes": "Status=Not started." },
     "5.02": { "kind": "standalone", "category": "product", "project": "prompt-engineer", "slug": "prompt-engineer", "sheet_name": "指令工程助理 ─ 重構指令", "author": "Peter Tu" },
 
-    "7.01": { "kind": "agent", "category": "people-talent", "parent_project": "recruiting-pipeline", "slug": "jd-architect", "sheet_name": "招募助理 ─ 對齊職務需求", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator (user chose orchestrator layout 2026-05-25)." },
-    "7.02": { "kind": "agent", "category": "people-talent", "parent_project": "recruiting-pipeline", "slug": "resume-screener", "sheet_name": "招募助理 ─ 履歷篩選", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator." },
-    "7.03": { "kind": "agent", "category": "people-talent", "parent_project": "recruiting-pipeline", "slug": "interview-question-designer", "sheet_name": "招募助理 ─ 設計考題與計分卡", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator." },
-    "7.04": { "kind": "agent", "category": "people-talent", "parent_project": "recruiting-pipeline", "slug": "interview-calibrator", "sheet_name": "招募助理 ─ 面試評分校準與決策", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator." },
+    "7.01": { "kind": "agent", "category": "people-talent", "parent_project": "zynkr-recruiter", "slug": "jd-architect", "sheet_name": "招募助理 ─ 對齊職務需求", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator (user chose orchestrator layout 2026-05-25)." },
+    "7.02": { "kind": "agent", "category": "people-talent", "parent_project": "zynkr-recruiter", "slug": "resume-screener", "sheet_name": "招募助理 ─ 履歷篩選", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator." },
+    "7.03": { "kind": "agent", "category": "people-talent", "parent_project": "zynkr-recruiter", "slug": "interview-question-designer", "sheet_name": "招募助理 ─ 設計考題與計分卡", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator." },
+    "7.04": { "kind": "agent", "category": "people-talent", "parent_project": "zynkr-recruiter", "slug": "interview-calibrator", "sheet_name": "招募助理 ─ 面試評分校準與決策", "author": "Jane Liao", "notes": "Agent of recruiting-pipeline orchestrator." },
     "7.05": { "kind": "skip", "category": "people-talent", "sheet_name": "招募助理 ─ 候選人溝通", "notes": "Status=WIP." },
     "7.06": { "kind": "drop", "category": "training", "sheet_name": "課程助教 ─ 寫作及與 AI 互動的技巧", "notes": "Migrate=Drop. Course-specific assistant." },
     "7.07": { "kind": "drop", "category": "training", "sheet_name": "課程助教 ─ 打造寫作系統的底層邏輯", "notes": "Migrate=Drop." },
@@ -98,7 +98,7 @@
     "srt-optimizer": { "category": "training", "current_content_id": "4.03" },
     "product-planning": { "category": "product", "current_content_id": "5.01" },
     "skill-sourcer + 4 agents": { "category": "engineer", "current_content_ids": "6.07 + 6.08-6.11" },
-    "vercel-labs-agent-browser": { "category": "engineer", "current_content_id": "6.12" },
+    "agent-browser": { "category": "engineer", "current_content_id": "6.12" },
     "hermes-agent": { "category": "engineer", "current_content_id": "6.13" },
     "skill-triager": { "category": "engineer", "current_content_id": "6.14" }
   }

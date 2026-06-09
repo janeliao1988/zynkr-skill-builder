@@ -2,7 +2,7 @@
 name: project-planning
 description: "Stress-test and refine a project idea before execution via a 7-stage Socratic facilitation — WHY (5 Whys) → WHAT → HOW → WHO (RACI) → WHEN (Gantt) → MEASURES → RISKS — producing an execution-ready project charter."
 category: operations
-project: project-charter-facilitator
+project: project-planning
 platform: claude
 status: Done
 author: Peter Tu

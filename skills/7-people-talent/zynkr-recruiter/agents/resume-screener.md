@@ -1,6 +1,6 @@
 ---
 name: resume-screener
-description: "招募助理 ─ 履歷篩選 — agent of recruiting-pipeline"
+description: "招募助理 ─ 履歷篩選 — agent of zynkr-recruiter"
 sheetId: "7.09"
 originalName: "招募助理 ─ 履歷篩選"
 input: "JD criteria, one or more candidate resumes, optional company culture notes, and optional desired shortlist size."

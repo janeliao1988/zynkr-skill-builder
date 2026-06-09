@@ -1,6 +1,6 @@
 ---
 name: interview-calibrator
-description: "Recruiting assistant — interview score calibration and decision (招募助理 ─ 面試評分校準與決策) — agent of recruiting-pipeline"
+description: "Recruiting assistant — interview score calibration and decision (招募助理 ─ 面試評分校準與決策) — agent of zynkr-recruiter"
 sheetId: "7.13"
 originalName: "招募助理 ─ 面試評分校準與決策"
 input: "Interview transcripts, interviewer scorecards, Assistant A's question set and scoring standards, and hiring manager/HR inputs."

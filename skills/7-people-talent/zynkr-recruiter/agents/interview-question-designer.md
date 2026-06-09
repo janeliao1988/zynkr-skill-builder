@@ -1,6 +1,6 @@
 ---
 name: interview-question-designer
-description: "Recruiting Assistant ─ Interview Question & Scorecard Designer — agent of recruiting-pipeline"
+description: "Recruiting Assistant ─ Interview Question & Scorecard Designer — agent of zynkr-recruiter"
 sheetId: "7.10"
 originalName: "招募助理 ─ 設計考題與計分卡"
 input: "JD Blueprint, competency requirements, role context, and candidate risk insights (from resume screening)."

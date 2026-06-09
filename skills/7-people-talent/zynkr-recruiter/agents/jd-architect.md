@@ -1,6 +1,6 @@
 ---
 name: jd-architect
-description: "Recruiting assistant — align role requirements (招募助理 ─ 對齊職務需求) — agent of recruiting-pipeline"
+description: "Recruiting assistant — align role requirements (招募助理 ─ 對齊職務需求) — agent of zynkr-recruiter"
 sheetId: "7.08"
 originalName: "招募助理 ─ 對齊職務需求"
 input: "Hiring manager provides rough notes or ideas about the role."

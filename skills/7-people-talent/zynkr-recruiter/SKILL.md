@@ -3,7 +3,7 @@ name: zynkr-recruiter
 sheetId: "7.07"
 description: "End-to-end recruiting pipeline — JD authoring, resume screening, interview design with scorecard, and calibration / final decision — bilingual (Chinese-English) outputs throughout."
 category: people-talent
-project: recruiting-pipeline
+project: zynkr-recruiter
 platform: claude
 status: Done
 author: Jane Liao
@@ -20,7 +20,7 @@ synergy:
 # Recruiting Pipeline
 
 ```bash
-npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill recruiting-pipeline
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill zynkr-recruiter
 ```
 
 Run the full hiring loop — from rough role notes to a calibrated hire/no-hire decision — through four specialized agents. Use this skill at any entry point in the loop; the orchestrator will route to the right agent and pass artifacts forward.
