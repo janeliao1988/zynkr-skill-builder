@@ -2,9 +2,10 @@
 
 This is the cheat-sheet for Step 3 of `admin-video-document`. The destination
 sub-folders are **discovered at runtime** (they may change), but this maps the
-folders Peter currently keeps in the recording inbox to the kind of recording
-that belongs in each. Classify primarily from the **Gemini Notes content**; fall
-back to the title heuristics below.
+folders kept in the recording inbox to the kind of recording that belongs in
+each. The folder names below are an example taxonomy — adapt to whatever
+sub-folders the inbox actually contains. Classify primarily from the **Gemini
+Notes content**; fall back to the title heuristics below.
 
 ## Folder → what belongs there
 
@@ -18,8 +19,8 @@ back to the title heuristics below.
 | `[5.0] Development knowledge` | Product/engineering knowledge: 資料結構, 設計方法論, FE/BE/DB 流程重構, 技術架構, input/process/output, MVP demos of the product |
 | `[5.1] Discovery & design` | Product discovery, user research, design exploration sessions |
 | `[5.2] AI assistant go-to-market` | GTM for the AI assistant product specifically |
-| `[7.0] People` | 1:1s and people conversations — e.g. `Peggy <> Peter`, internal partner/coaching catch-ups (NOT a client engagement → that's Consult, see below; NOT a team-wide meeting) |
-| `[8.0] Weekly meeting` | Recurring **internal** team/partner meetings — `Team Weekly Meeting`, `Weekly 合夥人`, `Team Weekly Meeting (Read only)`. ⚠️ A `Weekly 合夥人` / `<Name> / Peter` title can actually be a **client** meeting — if the Notes are about a prospect/pilot/proposal, it goes to `Consult`, not here. |
+| `[7.0] People` | 1:1s and people conversations — internal partner/coaching catch-ups (NOT a client engagement → that's Consult, see below; NOT a team-wide meeting) |
+| `[8.0] Weekly meeting` | Recurring **internal** team/partner meetings — `Team Weekly Meeting`, a partner weekly, `Team Weekly Meeting (Read only)`. ⚠️ A partner-weekly / `<Name> / You` title can actually be a **client** meeting — if the Notes are about a prospect/pilot/proposal, it goes to `Consult`, not here. |
 | `[2.0] Sales & consult/Consult` (nested) | **Client / consulting engagements** — a specific external client's meeting, demo, pilot, or proposal session. Files here are numbered `[N] <Client> (...) - <date>` (video) + `[N] <Client>_<transcript/notes>` (companion), e.g. `[1] Bicky (Pilot Round) - 2025/08/29`. **Stack up to the next `[N]` and rename** (Step 5 numbering rule). Cross-check the Video Index: a name already filed under Sales & consult is a client, not a `[7.0] People` 1:1. |
 | `[@] AI Writing` | AI 寫作課直播回放 / writing-course livestream replays |
 | `[@] AI 助理實作` | Hands-on AI-assistant build-along sessions |
@@ -29,9 +30,9 @@ back to the title heuristics below.
 
 ## Title heuristics (fallback when there's no Notes Doc)
 
-- `Team Weekly Meeting…` / `Weekly 合夥人…` → `[8.0] Weekly meeting`
+- `Team Weekly Meeting…` / a recurring partner weekly → `[8.0] Weekly meeting`
 - `<Name> <> <Name>` / `<Name> / <Name>` (two people) → `[7.0] People` — **unless** that name is a client (check the Video Index for the name under `[2.0] Sales & consult`, or Notes read like a prospect/pilot/demo) → then `Consult` and renumber
-- A `Weekly 合夥人` / generic title whose Notes are clearly about **one external client's** business, demo, pilot, or proposal → `[2.0] Sales & consult/Consult` (renumber `[N]`)
+- A partner-weekly / generic title whose Notes are clearly about **one external client's** business, demo, pilot, or proposal → `[2.0] Sales & consult/Consult` (renumber `[N]`)
 - Contains `Demo` / `演示` / `MVP` of the product, framed for a prospect → `[2.0] Sales & consult`; framed as how-it-was-built → `[5.0] Development knowledge`
 - 寫作課 / 寫作助理 / Custom GPT 教學 → `[4.0] Course design` (or `[@] AI Writing` if it's a livestream **replay**)
 - 技術架構 / 資料結構 / 流程重構 / 方法論 → `[5.0] Development knowledge`
@@ -46,4 +47,4 @@ back to the title heuristics below.
 - **低** — Title-only guess (no Notes Doc), or genuinely ambiguous.
 
 When confidence would be 低 *and* no folder is a decent fit, raise a
-**🆕 新資料夾 proposal** instead of forcing a poor match — Peter approves it at the gate.
+**🆕 新資料夾 proposal** instead of forcing a poor match — the user approves it at the gate.

@@ -839,7 +839,7 @@
     "upstreamRepo": "https://github.com/anthropics/skills",
     "originalSourceUrl": "https://github.com/anthropics/skills/blob/HEAD/skills/slide-pptx/SKILL.md",
     "originalAuthor": "Anthropic, PBC",
-    "githubStars": 148546,
+    "githubStars": 148548,
     "githubForks": 17527
   },
   {
@@ -1233,7 +1233,7 @@
     "platform": "claude",
     "status": "Done",
     "author": "Peter Tu",
-    "description": "Files loose recordings sitting in Peter's Google Drive recording inbox into the right category sub-folder, with an approval gate. For each loose video it groups the same-prefix siblings (the ` - Notes by Gemini` Doc, ` - Chat` .txt, any .srt) into one unit, reads the Gemini Notes to classify which sub-folder it belongs in, shows Peter a filing plan to approve, then moves the whole group and logs the move to the `[@] Video Index` sheet. If nothing fits it proposes a new sub-folder. Trigger on /admin-video-document, '整理錄影檔', '歸檔錄影', '歸檔影片到資料夾', '整理錄影資料夾', 'file my recordings', 'sort the recording folder', 'organise the recordings folder', or when Peter points at the recording inbox and wants the videos filed.",
+    "description": "Files loose meeting recordings sitting in a Google Drive recording inbox into the right category sub-folder, with an approval gate. For each loose video it groups the same-prefix siblings (the ` - Notes by Gemini` Doc, ` - Chat` .txt, any .srt) into one unit, reads the Gemini Notes to classify which sub-folder it belongs in, shows the user a filing plan to approve, then moves the whole group and logs the move to a `Video Index` sheet. If nothing fits it proposes a new sub-folder. Trigger on /admin-video-document, '整理錄影檔', '歸檔錄影', '歸檔影片到資料夾', '整理錄影資料夾', 'file my recordings', 'sort the recording folder', 'organise the recordings folder', or when the user points at the recording inbox and wants the videos filed.",
     "input": "Raw meeting notes, transcripts, or unstructured updates.",
     "process": "Reorganize scattered details into logical categories, inferring context while maintaining professional clarity.",
     "output": "A structured \"Weekly Project Update\" featuring Summary, Progress, Blockers, and What’s Next.",
@@ -1862,7 +1862,7 @@
     "upstreamRepo": "https://github.com/vercel-labs/skills",
     "originalSourceUrl": "https://github.com/vercel-labs/skills/blob/main/skills/eng-find-skills/SKILL.md",
     "originalAuthor": "vercel-labs",
-    "githubStars": 21844,
+    "githubStars": 21845,
     "githubForks": 1747
   },
   {
