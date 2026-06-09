@@ -325,7 +325,7 @@ Validate SKILL.md frontmatter before pushing (no clone, no writes):
 cd scripts
 npm ci
 npm run validate              # whole skills/ tree
-npm run validate -- ../skills/2-sales-consultant/biz-card        # single skill folder
+npm run validate -- ../skills/2-sales-consultant/sales-specialist        # single skill folder
 npm run validate -- ../skills/4-training/process-livestream/SKILL.md  # single file
 ```
 

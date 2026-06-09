@@ -1,4 +1,4 @@
--- biz-card :: create one CRM contact from one business card
+-- sales-specialist :: create one CRM contact from one business card
 -- ---------------------------------------------------------------------------
 -- Runs against the Zynkr Supabase project (project_id = uomieoqlkazknjgmfdda)
 -- via mcp__supabase__execute_sql. One statement does the whole transform:

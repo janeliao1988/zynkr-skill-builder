@@ -3,7 +3,7 @@ name: sales-specialist
 sheetId: "2.02"
 description: "Business card pipeline — OCR extraction, schema normalization, Google Sheet logging, Supabase CRM contact creation, company research, and personalized follow-up email drafting."
 category: sales-consultant
-project: biz-card
+project: sales-specialist
 platform: claude
 status: Done
 author: Peter Tu
@@ -13,10 +13,10 @@ output: "Row in Google Sheet + contact in the Supabase CRM (contacts page) + per
 synergy: []
 ---
 
-# Biz Card
+# Sales Specialist
 
 ```bash
-npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill biz-card
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill sales-specialist
 ```
 
 Automate the full post-trade-show workflow: extract contact info from business card images, log them to a Google Sheets CRM, research each company, and draft personalized follow-up emails. Use this skill after a conference, expo, or networking event where you've collected business cards and want them turned into CRM rows plus drafts ready to send before context fades.
@@ -26,7 +26,7 @@ Automate the full post-trade-show workflow: extract contact info from business c
 ## Step 0 — Load Config
 
 Read the config file at:
-`./biz-card-config.md`
+`./sales-specialist-config.md`
 
 Read the contact schema at:
 `./references/contact-schema.md`

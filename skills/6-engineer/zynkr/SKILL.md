@@ -10,7 +10,7 @@ author: Peter Tu
 input: "Anything: a URL, local file path, skill slug, free-text idea, status question, or pasted content. The skill classifies the input shape before doing anything else."
 process: "Classify input shape → look up state across the four signals (Project / issues / on-disk / live API) when the input references a skill-pipeline item → route to the right sub-skill via the Skill tool when confidence is high, or ask one targeted clarifying question when ambiguous. Surfaces queue / dashboard views on read-only queries."
 output: "Either: (a) an auto-invocation of the right Zynkr sub-skill (most common); (b) one targeted clarifying question when intent is genuinely ambiguous; (c) a compact state table when the user asks 'what's in my queue' / 'where is X'."
-synergy: ["skill-sourcer", "skill-triager", "skill-publish", "skill-finder", "write-newsletter", "polish-lecture-transcript", "biz-card", "cv-customizer", "zynkr-support", "newsletter-to-notion", "write-article", "srt-optimizer", "zynkr-slide"]
+synergy: ["skill-sourcer", "skill-triager", "skill-publish", "skill-finder", "write-newsletter", "polish-lecture-transcript", "sales-specialist", "cv-customizer", "zynkr-support", "newsletter-to-notion", "write-article", "srt-optimizer", "zynkr-slide"]
 ---
 
 # Zynkr
@@ -21,7 +21,7 @@ npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill zyn
 
 The **front-door router** for everything Peter drops into the assistant. Take any input — a URL, a path, a slug, a half-formed idea, a "where am I with X?" question — figure out which Zynkr capability it belongs to, read the relevant state, and route. This is Zynkr's mission expressed as a skill: *gather knowledge, turn it into a capability, add it to the knowledge base* — applied recursively to the assistant itself.
 
-> **Where this fits:** `/zynkr` sits **above** the canonical skill-authoring chain (`/skill-sourcer` → `/skill-triager` → `/skill-creator` → `/skill-publish`) and beside the content skills (`/write-newsletter`, `/biz-card`, `/polish-lecture-transcript`, etc.). It does not replace any of them. Power users still call them directly. `/zynkr` is the catch-all for unstructured input.
+> **Where this fits:** `/zynkr` sits **above** the canonical skill-authoring chain (`/skill-sourcer` → `/skill-triager` → `/skill-creator` → `/skill-publish`) and beside the content skills (`/write-newsletter`, `/sales-specialist`, `/polish-lecture-transcript`, etc.). It does not replace any of them. Power users still call them directly. `/zynkr` is the catch-all for unstructured input.
 
 ---
 
@@ -37,7 +37,7 @@ Pattern-match the user's input against the table below. **First match wins.** He
 | A folder path or file path that resolves to a `SKILL.md` on disk | `local-skill-md` |
 | `https://docs.google.com/document/...` | `google-doc` |
 | `.srt` / `.vtt` extension OR `youtu.be` / `youtube.com/watch` URL OR words like "transcript", "字幕", "逐字稿" | `transcript` |
-| Image of a business card (jpg/png/heic) or words like "business card", "名片" | `biz-card` |
+| Image of a business card (jpg/png/heic) or words like "business card", "名片" | `sales-specialist` |
 | Question-shaped — starts with `what / where / how many / show me / list / 還有什麼 / 還有哪些` | `query` |
 | Free text mentioning a known sub-skill domain (newsletter / 電子報, CV / 履歷, support 信箱, article 文章) | `typed-text` |
 | Free text asking to build a deck / 簡報 / 投影片 / presentation / pitch deck (make / build / 做 / produce) | `deck-request` |
@@ -101,7 +101,7 @@ Switch on `(input-type, state)` using the table below. Auto-invoke means use the
 | `google-doc` + unclear intent | Ask: "Newsletter draft to sync to Notion, or something else?" | Medium → ask |
 | `transcript` (`.srt` / `.vtt`) | Invoke `/srt-optimizer` | High → auto |
 | `transcript` (video URL or long YouTube link, no .srt yet) | Invoke `/polish-lecture-transcript` | Medium → confirm |
-| `biz-card` image | Invoke `/biz-card` | High → auto |
+| `sales-specialist` image | Invoke `/sales-specialist` | High → auto |
 | `typed-text` mentioning newsletter / 電子報 | Invoke `/write-newsletter` | Medium → confirm intent |
 | `typed-text` mentioning CV / 履歷 / resume | Invoke `/cv-customizer` | Medium → confirm |
 | `typed-text` mentioning article / 文章 outline | Invoke `/write-article` | Medium → confirm |

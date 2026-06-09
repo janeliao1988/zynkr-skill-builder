@@ -1,5 +1,5 @@
 ---
-name: biz-card-config
+name: sales-specialist-config
 description: "Configuration for the business card pipeline skill — Google Sheet target, column mapping, and email defaults."
 ---
 

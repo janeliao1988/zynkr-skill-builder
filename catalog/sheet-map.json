@@ -83,7 +83,7 @@
     "7.11": { "kind": "drop", "category": "training", "sheet_name": "課程助教 ─ 終極升遷指南第二章", "notes": "Migrate=Drop." },
     "7.12": { "kind": "drop", "category": "training", "sheet_name": "課程助教 ─ 策略規劃助理", "notes": "Migrate=Drop." },
 
-    "8.01": { "kind": "skip", "category": "sales-consultant", "sheet_name": "業務助理 ─ 名片整理", "notes": "Status=WIP in sheet, but biz-card already exists in repo as Done. Sheet status is stale — drift. Backfill sheetId when sheet is updated." },
+    "8.01": { "kind": "skip", "category": "sales-consultant", "sheet_name": "業務助理 ─ 名片整理", "notes": "Status=WIP in sheet, but sales-specialist (formerly biz-card) already exists in repo as Done. Sheet status is stale — drift. Backfill sheetId when sheet is updated." },
     "8.02": { "kind": "skip", "category": "sales-consultant", "sheet_name": "業務助理 ─ 線索評分助理", "notes": "Status=WIP." }
   },
   "repo_only": {

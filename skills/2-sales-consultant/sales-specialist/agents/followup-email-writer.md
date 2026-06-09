@@ -1,10 +1,10 @@
 ---
 name: sales-follow-up-mail
 sheetId: "2.03"
-description: "Writes a personalized follow-up email for a business contact using their card info and company research. Used as a subagent in the biz-card pipeline."
+description: "Writes a personalized follow-up email for a business contact using their card info and company research. Used as a subagent in the sales-specialist pipeline."
 model: sonnet
 category: sales-consultant
-project: biz-card
+project: sales-specialist
 platform: claude
 status: Done
 author: Peter Tu
