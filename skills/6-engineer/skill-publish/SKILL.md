@@ -205,7 +205,7 @@ gh api repos/peter-tu-zynkr/zynkr-skill-builder/dispatches \
 
 The workflow extracts the bundle to `skills/<N-cat>/<slug>/` — all files inside (SKILL.md, references/, scripts/, assets/) land in the same PR.
 
-**Size limit.** GitHub caps `client_payload` at ~64 KB serialized. Gzipped markdown is usually 25-35% of raw, so most multi-file skills fit comfortably (lucid-specialist with 7 files = ~40 KB b64). If your bundle is too large, use the **pre-push fallback**:
+**Size limit.** GitHub caps `client_payload` at ~64 KB serialized. Gzipped markdown is usually 25-35% of raw, so most multi-file skills fit comfortably (product-flow-design with 7 files = ~40 KB b64). If your bundle is too large, use the **pre-push fallback**:
 
 1. Create branch `skill/<slug>` from `main` locally.
 2. Add the whole folder, commit, push to that branch.

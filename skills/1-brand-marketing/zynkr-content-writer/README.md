@@ -52,13 +52,13 @@ claude
 
 | Stage | Agent | What It Does |
 |-------|-------|--------------|
-| 0 | `socratic-ideation-partner` | Guides vague ideas into a refined premise through Socratic dialogue |
-| 1 | `article-style-selector` | Recommends article structures (9 templates) and maps section key points |
-| 2 | `article-drafter` | Writes the draft section-by-section (~1000–1200 words) following a style guide |
-| 3 | `article-editor` | Reviews against editorial rules, checks forbidden words, removes AI-sounding language |
-| 3.5 | `reader-perspective` | (Optional) Scores the article on a 100-point rubric with critical analysis |
-| 4 | `article-title-suggester` | Generates 10 SEO-optimized title suggestions |
-| 5 | `cta-writer` | Produces 3 CTA options matched to the article's goal |
+| 0 | `content-idea` | Guides vague ideas into a refined premise through Socratic dialogue |
+| 1 | `content-style-select` | Recommends article structures (9 templates) and maps section key points |
+| 2 | `content-draft` | Writes the draft section-by-section (~1000–1200 words) following a style guide |
+| 3 | `content-editor` | Reviews against editorial rules, checks forbidden words, removes AI-sounding language |
+| 3.5 | `content-reader` | (Optional) Scores the article on a 100-point rubric with critical analysis |
+| 4 | `content-title` | Generates 10 SEO-optimized title suggestions |
+| 5 | `content-cta` | Produces 3 CTA options matched to the article's goal |
 
 ## Quick Start
 
@@ -95,7 +95,7 @@ Each agent can also be invoked independently via the Task tool. For example, if 
 Help me edit this article: [paste your draft]
 ```
 
-Claude will automatically route to the `article-editor` agent, as long as the `.claude/agents` files from this repo are installed in the current workspace.
+Claude will automatically route to the `content-editor` agent, as long as the `.claude/agents` files from this repo are installed in the current workspace.
 
 ## Project Structure
 
@@ -103,13 +103,13 @@ Claude will automatically route to the `article-editor` agent, as long as the `.
 .
 .claude/
 ├── agents/
-│   ├── socratic-ideation-partner.md
-│   ├── article-style-selector.md
-│   ├── article-drafter.md
-│   ├── article-editor.md
-│   ├── reader-perspective.md
-│   ├── article-title-suggester.md
-│   └── cta-writer.md
+│   ├── content-idea.md
+│   ├── content-style-select.md
+│   ├── content-draft.md
+│   ├── content-editor.md
+│   ├── content-reader.md
+│   ├── content-title.md
+│   └── content-cta.md
 └── skills/
     └── write-article/
         ├── SKILL.md
@@ -121,7 +121,7 @@ Claude will automatically route to the `article-editor` agent, as long as the `.
             ├── stage-2-style-guide.md
             ├── stage-3-editor.md
             ├── stage-3-editor-guide.md
-            ├── stage-3-5-reader-perspective.md
+            ├── stage-3-5-content-reader.md
             ├── stage-4-article-title.md
             ├── stage-4-seo-list.md
             ├── stage-5-cta-writing.md
@@ -145,13 +145,13 @@ The repo root is intentionally kept small so install instructions and entry poin
 ```text
 .claude/
 ├── agents/
-│   ├── socratic-ideation-partner.md   # Stage 0 — Ideation
-│   ├── article-style-selector.md      # Stage 1 — Structure
-│   ├── article-drafter.md             # Stage 2 — Drafting
-│   ├── article-editor.md              # Stage 3 — Editing
-│   ├── reader-perspective.md          # Stage 3.5 — Review (optional)
-│   ├── article-title-suggester.md     # Stage 4 — SEO Titles
-│   └── cta-writer.md                  # Stage 5 — CTA
+│   ├── content-idea.md   # Stage 0 — Ideation
+│   ├── content-style-select.md      # Stage 1 — Structure
+│   ├── content-draft.md             # Stage 2 — Drafting
+│   ├── content-editor.md              # Stage 3 — Editing
+│   ├── content-reader.md          # Stage 3.5 — Review (optional)
+│   ├── content-title.md     # Stage 4 — SEO Titles
+│   └── content-cta.md                  # Stage 5 — CTA
 └── skills/
     └── write-article/
         └── SKILL.md                   # Pipeline orchestrator

@@ -1,13 +1,13 @@
 ---
 name: operations-transformation
-sheetId: "3.09"
+sheetId: "3.10"
 description: "Three-stage operations transformation pipeline — process discovery (SIPOC), digital transformation assessment, then automation-ready process redesign — to turn pain points into builder-ready blueprints."
 category: operations
 project: operations-transformation
 platform: claude
 status: Done
 author: Peter Tu
-input: "A client-described inefficient or unclear business process, ideally with prior discovery context from consulting-discovery"
+input: "A client-described inefficient or unclear business process, ideally with prior discovery context from consult-discovery"
 process: "Stage 1 SIPOC mapping → Stage 2 automation suitability diagnosis (four-quadrant + ROI) → Stage 3 sub-task / system-layer / MVP-stack redesign"
 output: "SIPOC table, diagnostic table with tech recommendations and ROI, and a builder-ready redesign blueprint with MVP stack"
 synergy:
@@ -22,7 +22,7 @@ synergy:
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill operations-transformation
 ```
 
-Turn an inefficient business process into a builder-ready automation blueprint through three sequential stages. Use this skill after `consulting-discovery` (or whenever you already have a clear pain point) and you want to design the operational fix end-to-end before handing to an engineer.
+Turn an inefficient business process into a builder-ready automation blueprint through three sequential stages. Use this skill after `consult-discovery` (or whenever you already have a clear pain point) and you want to design the operational fix end-to-end before handing to an engineer.
 
 ---
 
@@ -30,7 +30,7 @@ Turn an inefficient business process into a builder-ready automation blueprint t
 
 Ask the user for:
 1. **Pain-point description** — the inefficient or unclear process to redesign
-2. (Optional) `STAGE1_SUMMARY` / `STAGE2_SUMMARY` from `consulting-discovery` if available
+2. (Optional) `STAGE1_SUMMARY` / `STAGE2_SUMMARY` from `consult-discovery` if available
 3. The business outcome they want from the transformation (cost / speed / quality / scale)
 
 Store as `PROCESS_BRIEF`.
@@ -47,7 +47,7 @@ Stage 1: Process Mining — build the SIPOC map
 ---------------------------------------------
 ```
 
-Launch the `process-discovery` agent (`./agents/process-discovery.md`) using the Agent tool, passing `PROCESS_BRIEF`.
+Launch the `operations-process-discovery` agent (`./agents/operations-process-discovery.md`) using the Agent tool, passing `PROCESS_BRIEF`.
 
 The agent walks through:
 1. End-to-end process mapping (main stages, owners)
@@ -73,7 +73,7 @@ Stage 2: Diagnose automation suitability
 ---------------------------------------------
 ```
 
-Launch the `digital-transformation-assessor` agent (`./agents/digital-transformation-assessor.md`), passing `SIPOC_TABLE`.
+Launch the `operations-automation-validation` agent (`./agents/operations-automation-validation.md`), passing `SIPOC_TABLE`.
 
 The agent will produce:
 - **Diagnostic table** per step — Classification (four quadrants), Tech suggestion (LLM / State Machine / Rule-based / Human), ROI, Rationale
@@ -96,7 +96,7 @@ Stage 3: Redesign — sub-tasks, layers, MVP stack
 ---------------------------------------------
 ```
 
-For each selected step from `DIAGNOSTIC_RESULT`, launch the `process-redesigner` agent (`./agents/process-redesigner.md`) one step at a time.
+For each selected step from `DIAGNOSTIC_RESULT`, launch the `operations-process-redesign` agent (`./agents/operations-process-redesign.md`) one step at a time.
 
 Per step, the agent produces:
 - Step title

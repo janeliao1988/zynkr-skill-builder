@@ -48,7 +48,7 @@ Phase 1: Unpack What the Company Wants
 Analyzing job description...
 ```
 
-Launch the `cv-phase1-job-decoder` agent using the Agent tool:
+Launch the `cv-job-decoder` agent using the Agent tool:
 - Pass the full `JD_TEXT` as the prompt
 - Wait for completion
 
@@ -74,7 +74,7 @@ Phase 2: Story Extraction (SCQA)
 ```
 
 Read the instructions from:
-`./agents/cv-phase2-story-extractor.md`
+`./agents/cv-story-extractor.md`
 
 Execute the Phase 2 flow **in the main conversation**:
 1. Compare `CV_TEXT` against `PHASE1_OUTPUT` skill priorities
@@ -95,7 +95,7 @@ Phase 3: Candidate Fit Scoring
 ```
 
 Read the instructions from:
-`./agents/cv-phase3-fit-scorer.md`
+`./agents/cv-fit-scorer.md`
 
 Execute the Phase 3 flow **in the main conversation**:
 1. Score the CV across 4 dimensions (Relevance, Value, Narrative, ATS) — each 1-5
@@ -116,7 +116,7 @@ Phase 4: Career Skill Progression Analysis
 Analyzing career trajectory...
 ```
 
-Launch the `cv-phase4-progression` agent using the Agent tool.
+Launch the `cv-progression` agent using the Agent tool.
 Pass all accumulated context in the prompt:
 ```
 ## Context from Prior Phases
@@ -152,7 +152,7 @@ Phase 5: CV Rewrite & Quality Check
 ```
 
 Read the instructions from:
-`./agents/cv-phase5-rewriter.md`
+`./agents/cv-rewrite.md`
 
 Execute the Phase 5 flow **in the main conversation**, using all prior phase outputs:
 1. Rewrite Executive Summary -> Accept / Modify / Skip

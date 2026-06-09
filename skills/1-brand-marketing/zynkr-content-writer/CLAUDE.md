@@ -26,13 +26,13 @@ Entry: /write-article skill → SKILL.md orchestrator
   ↓ detects user's current stage from input
   ↓ routes via Task tool to one of 7 agents:
 
-Stage 0: socratic-ideation-partner  — Socratic dialogue for vague ideas
-Stage 1: article-style-selector     — Picks from 9 structure templates
-Stage 2: article-drafter            — Writes ~400 words/section per turn
-Stage 3: article-editor             — Editorial review + forbidden-word check
-Stage 3.5: reader-perspective       — 100-point scoring (optional)
-Stage 4: article-title-suggester    — 10 SEO-optimized title candidates
-Stage 5: cta-writer                 — 3 CTA options from 6 predefined types
+Stage 0: content-idea  — Socratic dialogue for vague ideas
+Stage 1: content-style-select     — Picks from 9 structure templates
+Stage 2: content-draft            — Writes ~400 words/section per turn
+Stage 3: content-editor             — Editorial review + forbidden-word check
+Stage 3.5: content-reader       — 100-point scoring (optional)
+Stage 4: content-title    — 10 SEO-optimized title candidates
+Stage 5: content-cta                 — 3 CTA options from 6 predefined types
 ```
 
 **Key design rules:**
@@ -54,7 +54,7 @@ Guide files are stage-specific reference material that map to the pipeline:
 - `stage-1-style-selection.md`, `stage-1-article-structure.md` → Stage 1
 - `stage-2-article-draft.md`, `stage-2-style-guide.md` → Stage 2
 - `stage-3-editor.md`, `stage-3-editor-guide.md` → Stage 3
-- `stage-3-5-reader-perspective.md` → Stage 3.5
+- `stage-3-5-content-reader.md` → Stage 3.5
 - `stage-4-article-title.md`, `stage-4-seo-list.md` → Stage 4
 - `stage-5-cta-writing.md`, `stage-5-cta-selection.md` → Stage 5
 

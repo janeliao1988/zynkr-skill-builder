@@ -31,8 +31,8 @@ After loading, map the roles below to the actual values in the brand guide, then
 | **Highlight color (highlight)** | Thinking / keyword emphasis | Title keywords, **≤ 1 per title** |
 | **Decision color (accent / decision)** | The single decision, CTA | **At most 1 per page** |
 | **Text color / footnote color** | Body text and secondary information | addText color |
-| **Font roles** | Display font / body font / numeral font / Chinese font | pptx `fontFace` |
-| **Type scale** | The pt sizes for display / heading / body / footnote / numbering | pptx `fontSize` |
+| **Font roles** | Display font / body font / numeral font / Chinese font | slide-pptx `fontFace` |
+| **Type scale** | The pt sizes for display / heading / body / footnote / numbering | slide-pptx `fontSize` |
 | **Image rules** | Prefer structural diagrams vs decorative images; motifs; icon specs | image-led / concept / divider pages |
 | **Logo assets** | Light logo on dark backgrounds, dark logo on light backgrounds | cover / closing `addImage` |
 
@@ -63,4 +63,4 @@ Even without a brand guide, these principles always hold:
 - Color values **drop the `#`**: `fill: { color: "RRGGBB" }`, `color: "RRGGBB"`.
 - Default background color: `slide.background = { color: "<surface>" }`.
 - 16:9 widescreen canvas ≈ `13.33" × 7.5"` (`LAYOUT_WIDE`), reserve a `0.5"` margin.
-- If a font is unavailable on the rendering machine, the pptx skill will fall back; this relay only needs to specify the "font role" in the design notes.
+- If a font is unavailable on the rendering machine, the slide-pptx skill will fall back; this relay only needs to specify the "font role" in the design notes.

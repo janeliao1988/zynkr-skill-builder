@@ -1,16 +1,16 @@
 ---
 name: zynkr-slide
 sheetId: "1.24"
-description: "The conductor of the slide relay (sitting above the three-stage relay): fires when the user says '做一份簡報／做個 deck／幫我把這些做成投影片／做季報簡報／all-hands 簡報／deep dive 簡報／pitch deck'. I do a one-shot intelligent intake — detecting which kind of deck this is (deep-dive / business-review / data-presentation / all-hands / planning / pitch / update / teach / fundraise), taking stock of the material and storyline the user has already given, proposing a page count for the user to confirm, and gathering the must-include material and mode — then assembling a SLIDE_PACKET ▸ Brief and driving slide-storyline-designer → slide-page-splitter → slide-visual-selector → the pptx skill in sequence to render the .pptx. Defaults to express mode (ask everything up front once, only asking the user to sign off at two points: storyline finalization and final file); pass the guided parameter to retain each stage's own per-stage human review. Scope boundary: I only do intent detection, context convergence, ▸ Brief injection, and relay orchestration; I don't lay out the narrative arc, split pages, choose layouts, or render the .pptx myself — those belong to the three stages and the pptx skill respectively. In addition, if the user gives a fixed template (charter / one-page QBR / an existing deck to be re-skinned) or asks for a deliverable that maps onto the template library, I take the template-fill branch (copy template → extract content → fill fixed fields → recolor external templates to Zynkr brand colors by default) instead of the three-stage relay."
+description: "The conductor of the slide relay (sitting above the three-stage relay): fires when the user says '做一份簡報／做個 deck／幫我把這些做成投影片／做季報簡報／all-hands 簡報／deep dive 簡報／pitch deck'. I do a one-shot intelligent intake — detecting which kind of deck this is (deep-dive / business-review / data-presentation / all-hands / planning / pitch / update / teach / fundraise), taking stock of the material and storyline the user has already given, proposing a page count for the user to confirm, and gathering the must-include material and mode — then assembling a SLIDE_PACKET ▸ Brief and driving slide-storyline-designer → slide-page-splitter → slide-visual-selector → the slide-pptx skill in sequence to render the .pptx. Defaults to express mode (ask everything up front once, only asking the user to sign off at two points: storyline finalization and final file); pass the guided parameter to retain each stage's own per-stage human review. Scope boundary: I only do intent detection, context convergence, ▸ Brief injection, and relay orchestration; I don't lay out the narrative arc, split pages, choose layouts, or render the .pptx myself — those belong to the three stages and the slide-pptx skill respectively. In addition, if the user gives a fixed template (charter / one-page QBR / an existing deck to be re-skinned) or asks for a deliverable that maps onto the template library, I take the template-fill branch (copy template → extract content → fill fixed fields → recolor external templates to Zynkr brand colors by default) instead of the three-stage relay."
 category: brand-marketing
 project: zynkr-slide
 platform: claude
 status: Done
 author: Peter Tu
 input: "Raw slide material / topic + the message you want to convey (scattered notes, bullets, an old deck, data, or verbal key points all work), optionally with cues about the deck's purpose; or an existing ▸ Storyline / ▸ Pages you want to continue from. Parameter: express (default) / guided."
-process: "Detect intent + take stock of existing context → single intelligent intake (confirm purpose, audience/occasion, proposed page count, must-include material, mode) → load the use-case playbook to assemble the SLIDE_PACKET ▸ Brief → create a shared working subfolder to store the ▸ Brief → drive the three-stage relay in sequence (carrying the ▸ Brief) → hand ▸ Visuals to the pptx skill to render → deliver the .pptx"
+process: "Detect intent + take stock of existing context → single intelligent intake (confirm purpose, audience/occasion, proposed page count, must-include material, mode) → load the use-case playbook to assemble the SLIDE_PACKET ▸ Brief → create a shared working subfolder to store the ▸ Brief → drive the three-stage relay in sequence (carrying the ▸ Brief) → hand ▸ Visuals to the slide-pptx skill to render → deliver the .pptx"
 output: "A finished .pptx (produced via the three-stage relay + pptx-skill rendering), plus the complete SLIDE_PACKET (▸ Brief / ▸ Storyline / ▸ Pages / ▸ Visuals) stored in the same working subfolder."
-synergy: ["slide-storyline-designer", "slide-page-splitter", "slide-visual-selector", "pptx"]
+synergy: ["slide-storyline-designer", "slide-page-splitter", "slide-visual-selector", "slide-pptx"]
 ---
 
 # zynkr-slide
@@ -36,7 +36,7 @@ slide-page-splitter (1.13)
 slide-visual-selector (1.14)
    │  SLIDE_PACKET ▸ Visuals (render-ready)
    ▼
-pptx skill  → renders into a .pptx
+slide-pptx skill  → renders into a .pptx
 ```
 
 **Core idea**: The three-stage relay is already quite complete on its own, but it has two gaps — (1) **four cold starts**: each stage opens by re-asking the user for context it can't infer; (2) **the whole deck has no shared understanding of "what kind of deck this is"**, so the same generic rules get applied to both a deep dive and an all-hands — the deep dive isn't deep enough and the all-hands is too dense. `zynkr-slide` fills these two gaps: **ask once** (collapse the four cold starts into a single intelligent intake), and load a playbook based on the "deck purpose" to assemble a `SLIDE_PACKET ▸ Brief` that gets injected all the way down, so every stage knows "what kind of deck this is and which direction to push."
@@ -45,7 +45,7 @@ pptx skill  → renders into a .pptx
 
 **What it produces**: a finished `.pptx`, plus the complete `SLIDE_PACKET` (▸ Brief / ▸ Storyline / ▸ Pages / ▸ Visuals) stored in the same working subfolder.
 
-**What it does NOT produce**: I do **not** lay out the narrative arc, split pages, choose layouts, or render the `.pptx` myself. I am a **thin orchestration layer** — detect intent, converge context, assemble the ▸ Brief, and drive the three stages and the pptx skill in order (see ## Limitations). Each stage's professional judgment is still made by that stage itself.
+**What it does NOT produce**: I do **not** lay out the narrative arc, split pages, choose layouts, or render the `.pptx` myself. I am a **thin orchestration layer** — detect intent, converge context, assemble the ▸ Brief, and drive the three stages and the slide-pptx skill in order (see ## Limitations). Each stage's professional judgment is still made by that stage itself.
 
 > Whether the user fires me directly by shouting "make a deck" or gets routed in via `/zynkr`, the behavior is identical — both entry points run the same intake → ▸ Brief → relay.
 
@@ -57,7 +57,7 @@ pptx skill  → renders into a .pptx
 - **Brand visual/tone source (config)**: `./references/brand-source.md` — this skill **does not bundle brand content**; this file configures where to load the brand spec from, and ships a generic schema. Load per this file during intake and ▸ Brief assembly; if unset, fall back to neutral defaults and tell the user "brand not applied." Each of the three stages also loads its own brand-source again; this layer is only responsible for carrying the "use brand" intent into the ▸ Brief.
 - **Template source (config)**: `./references/template-source.md` — configures the Drive template-library location (the SOT template folder), how templates are tagged to a use-case (`TEMPLATE-INDEX`), and the field manifest for each template. The **template-fill branch** reads it at Step 1/2 when detecting and selecting a template; if unset/unreadable, ask the user to paste the template link directly.
 - **Downstream three stages (relay chain)**: `slide-storyline-designer` (stage 1), `slide-page-splitter` (stage 2), `slide-visual-selector` (stage 3). Call them stage by stage via the **Skill tool**, letting each stage read its own SKILL.md and run its own logic; I only pass the ▸ Brief and the previous stage's handoff packet, and **do not rewrite its steps**. All three stages already have the hook "if a ▸ Brief is present, obey its directives."
-- **Render skill (already installed)**: the pptx skill at `~/.claude/skills/pptx/`, called by stage 3 once ▸ Visuals is finalized, via **Create from scratch** (`Read ~/.claude/skills/pptx/pptxgenjs.md`). This skill does **not** vendor or rewrite pptx.
+- **Render skill (already installed)**: the slide-pptx skill at `~/.claude/skills/slide-pptx/`, called by stage 3 once ▸ Visuals is finalized, via **Create from scratch** (`Read ~/.claude/skills/slide-pptx/pptxgenjs.md`). This skill does **not** vendor or rewrite slide-pptx.
 
 ---
 
@@ -66,7 +66,7 @@ pptx skill  → renders into a .pptx
 Before asking anything, take stock first, and **do not re-ask for what the user has already given** (this is exactly the value of this skill).
 
 1. **Determine the relay entry point**: does the user already have a relay artifact in hand?
-   - Already pasted/saved `▸ Visuals` → go straight to pptx rendering (end of Step 4).
+   - Already pasted/saved `▸ Visuals` → go straight to slide-pptx rendering (end of Step 4).
    - Already has `▸ Pages` → continue from stage 3.
    - Already has `▸ Storyline` → continue from stage 2.
    - Only raw material / topic → start from stage 1 (most common).
@@ -151,15 +151,15 @@ Create the working subfolder agreed at Step 2 and store the ▸ Brief in it (dur
 
 When Step 1 determines it's **template-fill**: skip the three-stage relay and the storyline/page-split/visual gates, and run the precise template-fill flow below instead. What you assemble is the **▸ Brief (template-fill variant)** (see the note in Step 3, without the three per-stage emphasis fields).
 
-**Before starting**: confirm the pptx skill is installed (`~/.claude/skills/pptx/`); if missing, ask the user to run `npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill pptx` and **stop here**.
+**Before starting**: confirm the slide-pptx skill is installed (`~/.claude/skills/slide-pptx/`); if missing, ask the user to run `npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill slide-pptx` and **stop here**.
 
 1. **Get the template**: user brought their own link → use it; otherwise `copy_drive_file` to copy the template selected at Step 2 (`TEMPLATE-INDEX`) into the working subfolder. **Always copy, never edit the master in place.**
-2. **Export an editable copy**: `get_drive_file_download_url(export_format="pptx")` to export the copy as .pptx — Slides' `get_page` has no text/position/color, so you can't precisely locate each shape (see memory `slides-heavy-edit-technique`).
-3. **Read the field manifest**: take that template's field manifest (field → shape index / type / source hint) from the `TEMPLATE-INDEX` pointed to by `./references/template-source.md`. When the manifest has gaps, use `~/.claude/skills/pptx/.venv/bin/python` + python-pptx to list shapes (index + type + existing text) and backfill one on the spot.
+2. **Export an editable copy**: `get_drive_file_download_url(export_format="slide-pptx")` to export the copy as .pptx — Slides' `get_page` has no text/position/color, so you can't precisely locate each shape (see memory `slides-heavy-edit-technique`).
+3. **Read the field manifest**: take that template's field manifest (field → shape index / type / source hint) from the `TEMPLATE-INDEX` pointed to by `./references/template-source.md`. When the manifest has gaps, use `~/.claude/skills/slide-pptx/.venv/bin/python` + python-pptx to list shapes (index + type + existing text) and backfill one on the spot.
 4. **Field extraction (field-extraction)**: extract the content corresponding to each template field from the source document (Doc / notes). **Mark anything not extractable as "待補" and hand it back to the user — do not fabricate.**
 5. **map-to-template + fill**: use python-pptx to fill text, table cells, and dates by shape index. **Don't re-lay-out, don't move geometry.**
 6. **Visual treatment**: per the ▸ Brief's "視覺處理 (visual-treatment)" (whose default value is read from the "visual-treatment default" column in `TEMPLATE-INDEX`; external / un-indexed templates default to `recolor`). `recolor` = map the template's original colors to Zynkr brand colors (the color values are loaded at runtime by `slide-visual-selector/references/brand-source.md`; **this layer does not hardcode hex**); `keep` = don't touch colors (when the template is already brand); `hybrid` = swap only key colors + fonts. Change fill and run fonts shape by shape.
-7. **Back to Drive**: `create_drive_file(mime_type=pptx, fileUrl=file://…)` to upload to the working subfolder. MCP cannot convert pptx into native Slides — tell the user to do a one-click **File → Save as Google Slides** (see memory `gws-slides-api-disabled`).
+7. **Back to Drive**: `create_drive_file(mime_type=slide-pptx, fileUrl=file://…)` to upload to the working subfolder. MCP cannot convert slide-pptx into native Slides — tell the user to do a one-click **File → Save as Google Slides** (see memory `gws-slides-api-disabled`).
 8. **QA**: soffice → pdf → `pdftoppm -r 200` → Read PNG for a visual check; `markitdown` to check text. ⚠️ Don't name the temp script `inspect.py` (it shadows stdlib and breaks lxml import).
 
 When done → hand off at the **Step 5 final gate**, then proceed to **Step 6 retro**. Re-version / partial edits follow Step 5's return-and-rerun approach (rerun steps 4–8).
@@ -168,7 +168,7 @@ When done → hand off at the **Step 5 final gate**, then proceed to **Step 6 re
 
 ## Step 4 — Run the relay (relay runner)
 
-**Preflight before starting**: first confirm that the stages and the pptx skill you're about to use are all installed (the three stages live in `skills/1-brand-marketing/`; pptx is at `~/.claude/skills/pptx/`). For whichever is missing, tell the user to run `npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill <name>` (pptx must be installed separately), and **stop here** — don't barrel through and fail halfway.
+**Preflight before starting**: first confirm that the stages and the slide-pptx skill you're about to use are all installed (the three stages live in `skills/1-brand-marketing/`; slide-pptx is at `~/.claude/skills/slide-pptx/`). For whichever is missing, tell the user to run `npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill <name>` (slide-pptx must be installed separately), and **stop here** — don't barrel through and fail halfway.
 
 **Transport**: when calling a stage via the **Skill tool**, paste the **full ▸ Brief block + the previous stage's handoff packet** verbatim into that call's args (including the ▸ Brief's "working subfolder" path), so the stage sees the ▸ Brief right there in context; **don't** drop a one-liner hint and expect it to go dig up the file itself. **Let each stage read its own SKILL.md and run its own logic** — I don't rewrite narrative/page-split/layout judgment here.
 
@@ -182,9 +182,9 @@ When done → hand off at the **Step 5 final gate**, then proceed to **Step 6 re
 3. **Stage 3 `slide-visual-selector`**: pass ▸ Pages + ▸ Brief. Stage 3 reads the "視覺 (棒3)" directives, picks an archetype per page, writes the layout, and maps to pptxgenjs primitives.
    - `express`: stage 3's human review is **non-blocking**.
    - `guided`: keep stage 3's original per-page blocking HITL.
-4. **Render** (who calls pptx splits into two paths — don't render twice):
-   - **Normal path** (stage 3 ran this time): **stage 3 itself** calls the installed **pptx skill** (Create from scratch, `Read ~/.claude/skills/pptx/pptxgenjs.md`) once ▸ Visuals is finalized, renders page by page, and completes the QA pptx requires (markitdown text check + subagent visual check). This layer only **confirms it ran**, and does not call again.
-   - **Continuing from ▸ Visuals** (Step 1 entry point = already has Visuals, stage 3 won't run): instead, **this layer (the orchestrator) directly** calls the pptx skill to render + QA.
+4. **Render** (who calls slide-pptx splits into two paths — don't render twice):
+   - **Normal path** (stage 3 ran this time): **stage 3 itself** calls the installed **slide-pptx skill** (Create from scratch, `Read ~/.claude/skills/slide-pptx/pptxgenjs.md`) once ▸ Visuals is finalized, renders page by page, and completes the QA slide-pptx requires (markitdown text check + subagent visual check). This layer only **confirms it ran**, and does not call again.
+   - **Continuing from ▸ Visuals** (Step 1 entry point = already has Visuals, stage 3 won't run): instead, **this layer (the orchestrator) directly** calls the slide-pptx skill to render + QA.
    Both paths: colors/fonts per brand (when ▸ Brief "套用品牌" = yes), layout per ▸ Visuals' layout config.
 
 > **Returning a stage / partial edits**: triggers include a gap in the story, a single page bursting past density, **must-include material exceeding the page budget**. Approach: use the Skill tool with the existing ▸ Brief + the previous stage's handoff packet + the specific edit request to re-call that stage and have it **re-emit the whole handoff packet**, then rerun the affected downstream stages (batch rerun, not per-page patching). Returning a stage doesn't require rerunning intake — the ▸ Brief is still in the working subfolder.
@@ -193,7 +193,7 @@ When done → hand off at the **Step 5 final gate**, then proceed to **Step 6 re
 
 ## Step 5 — Deliver + save (final gate)
 
-1. **Final gate (kept in both modes)**: confirm pptx QA was run by the responsible party (normal path = stage 3; continuation path = this layer) and isn't re-rendered; hand the finished `.pptx` (together with the visual-QA result) to the user to review, list a one-line summary per page, and ask them to confirm or flag the pages to change. To change → follow Step 4's "returning a stage / partial edits" approach: return to the corresponding stage to re-emit, then rerun the affected downstream stages.
+1. **Final gate (kept in both modes)**: confirm slide-pptx QA was run by the responsible party (normal path = stage 3; continuation path = this layer) and isn't re-rendered; hand the finished `.pptx` (together with the visual-QA result) to the user to review, list a one-line summary per page, and ask them to confirm or flag the pages to change. To change → follow Step 4's "returning a stage / partial edits" approach: return to the corresponding stage to re-emit, then rerun the affected downstream stages.
 2. After the whole run, the working subfolder holds the complete set of four: `▸ Brief / ▸ Storyline / ▸ Pages / ▸ Visuals` + the finished `.pptx` (when continuing mid-stream, the earlier handoff packets are the versions the user provided).
 3. Wrap up in one sentence: which purpose ran, how many pages, which mode was used, where the file is.
 
@@ -254,12 +254,12 @@ A finished `.pptx`, plus the complete `SLIDE_PACKET` (▸ Brief / ▸ Storyline 
 
 ## Limitations
 
-`zynkr-slide` is a **thin orchestration layer**. What I **do**: intent detection, single-pass context convergence, ▸ Brief assembly and injection, driving the three stages and pptx in order, and guarding the two human gates of express/guided. What I do **not** do:
+`zynkr-slide` is a **thin orchestration layer**. What I **do**: intent detection, single-pass context convergence, ▸ Brief assembly and injection, driving the three stages and slide-pptx in order, and guarding the two human gates of express/guided. What I do **not** do:
 
 - **I don't lay out the narrative arc or set the core thesis myself**: that's stage 1 `slide-storyline-designer` (1.12); I only feed it the purpose/occasion/directives.
 - **I don't split pages or decide how much goes on each page myself**: that's stage 2 `slide-page-splitter` (1.13); the page budget is a target I give, but the actual page cutting is its judgment.
 - **I don't pick the layout archetype or write the layout or pptxgenjs primitives myself**: that's stage 3 `slide-visual-selector` (1.14).
-- **I don't render the `.pptx` myself or vendor the pptx skill**: rendering and render-QA are handled by the installed pptx skill; this skill only calls it.
+- **I don't render the `.pptx` myself or vendor the slide-pptx skill**: rendering and render-QA are handled by the installed slide-pptx skill; this skill only calls it.
 - **I don't bundle brand content**: brand is always loaded at runtime per `./references/brand-source.md`; this public skill library holds no internal IP.
 - **template-fill only fills, doesn't redesign**: the template-fill branch only **fills the fixed fields of an existing template + does visual treatment**, it doesn't re-lay-out or design a new narrative — to redesign, take the three-stage relay.
 - **retro only proposes, doesn't auto-write-back**: Step 6 retro always **proposes first, writes only after the user approves item by item**, and **never directly edits this SKILL.md** (skill changes go through the `zynkr-skill-idea` issue pipeline).

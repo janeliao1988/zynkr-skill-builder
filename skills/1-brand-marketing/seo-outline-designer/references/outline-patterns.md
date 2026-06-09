@@ -22,7 +22,7 @@ The outline should make at least one move of the Zynkr Method visible: Frame (fr
 
 - A single key-point direction (not just a heading)
 - Where the target / supporting keyword lands
-- 3 writable key points (for article-drafter)
+- 3 writable key points (for content-draft)
 
 ## AEO structural components (include as needed)
 
@@ -33,4 +33,4 @@ The outline should make at least one move of the Zynkr Method visible: Frame (fr
 
 ## Handing off to the existing writing pipeline
 
-The "chosen structure + 3 key points per section" format in the handoff summary must stay consistent with article-style-selector, so article-drafter can pick it up seamlessly; attach the extra fields (keyword placement / FAQ / closing direction / AEO) afterward.
+The "chosen structure + 3 key points per section" format in the handoff summary must stay consistent with content-style-select, so content-draft can pick it up seamlessly; attach the extra fields (keyword placement / FAQ / closing direction / AEO) afterward.

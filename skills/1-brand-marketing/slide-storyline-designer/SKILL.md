@@ -1,6 +1,6 @@
 ---
 name: slide-storyline-designer
-description: "Leg 1 of the three-leg slide relay: take the raw slide material / topic + the message you want to land, and shape it into a logically smooth storyline — confirm the presentation's goal and audience, fix the core claim that runs through the whole talk, lay out an ordered narrative arc (beats), and check each transition one by one for leaps or gaps, producing the SLIDE_PACKET ▸ Storyline narrative skeleton that gets handed to slide-page-splitter for paging. Trigger me proactively when the user says '幫我設計簡報故事線', '順一下這份簡報的邏輯', '這個 deck 的敘事怎麼排', '我要做提案／募資／培訓簡報，先把骨架抓出來', '檢查我的簡報流暢度', or hands you a pile of scattered slide material wanting to clarify the structure first. Scope boundary: I only handle the storyline and logical skeleton — I don't split slide pages, don't write per-page copy, and don't pick layouts or visuals. Paging is leg 2 slide-page-splitter's job, visual specs are leg 3 slide-visual-selector's job, and rendering the .pptx is the pptx skill's job."
+description: "Leg 1 of the three-leg slide relay: take the raw slide material / topic + the message you want to land, and shape it into a logically smooth storyline — confirm the presentation's goal and audience, fix the core claim that runs through the whole talk, lay out an ordered narrative arc (beats), and check each transition one by one for leaps or gaps, producing the SLIDE_PACKET ▸ Storyline narrative skeleton that gets handed to slide-page-splitter for paging. Trigger me proactively when the user says '幫我設計簡報故事線', '順一下這份簡報的邏輯', '這個 deck 的敘事怎麼排', '我要做提案／募資／培訓簡報，先把骨架抓出來', '檢查我的簡報流暢度', or hands you a pile of scattered slide material wanting to clarify the structure first. Scope boundary: I only handle the storyline and logical skeleton — I don't split slide pages, don't write per-page copy, and don't pick layouts or visuals. Paging is leg 2 slide-page-splitter's job, visual specs are leg 3 slide-visual-selector's job, and rendering the .pptx is the slide-pptx skill's job."
 category: brand-marketing
 project: slide-storyline-designer
 platform: claude
@@ -37,7 +37,7 @@ slide-page-splitter (1.26)
 slide-visual-selector (1.27)
         │  SLIDE_PACKET ▸ Visuals (render-ready)
         ▼
-pptx skill  → renders to .pptx
+slide-pptx skill  → renders to .pptx
 ```
 
 **Core idea**: a good presentation isn't "cramming material into slides" — it's "first having a storyline the audience can follow." Most failed presentations fail not on the art but on narrative leaps — the audience loses the thread by slide three. So this leg deliberately **isolates and finishes first** the work of "thinking through what to say, in what order, and where it breaks," before handing down. Splitting pages and placing images before the storyline is smooth is like building walls before the foundation is set.
@@ -205,5 +205,5 @@ A user-reviewed, finalized `SLIDE_PACKET ▸ Storyline` narrative skeleton — c
 - **Only the storyline and logical skeleton, no paging**. Deciding how many pages a presentation splits into, which beat each page maps to, and the information density of a single page is the job of leg 2 **slide-page-splitter (1.26)** (producing SLIDE_PACKET ▸ Pages). What this leg hands over is "narrative beats," not "slide pages."
 - **Doesn't write per-page copy, doesn't set page titles**. Per-page titles and content points belong to the paging leg; this leg only gives each beat's "key message."
 - **Doesn't pick layouts, doesn't place visuals**. Layout archetypes, visual elements (addText / addTable / addChart…), layout arrangement, and design notes are the job of leg 3 **slide-visual-selector (1.27)** (producing SLIDE_PACKET ▸ Visuals).
-- **Doesn't render the .pptx**. Actual file production is handled by the installed **pptx skill** (`~/.claude/skills/pptx`, Create from scratch / pptxgenjs path) after 1.27 is done.
+- **Doesn't render the .pptx**. Actual file production is handled by the installed **slide-pptx skill** (`~/.claude/skills/slide-pptx`, Create from scratch / pptxgenjs path) after 1.27 is done.
 - **Doesn't fabricate material**. Missing data or missing cases are all marked "to be filled" and handed back to the user; it doesn't invent evidence on its own.

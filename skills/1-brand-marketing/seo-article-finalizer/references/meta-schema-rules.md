@@ -27,5 +27,5 @@ Corresponds to the "add meta description" step and the AEO structured-data requi
 - [ ] Real author byline (E-E-A-T)
 - [ ] Image alt text, first-hand screenshots (show the thinking — to substantiate the judgment, not to show off)
 - [ ] Brand voice: no Words to reduce (empower / productivity tool / seamless / AI-powered…); close on a clear direction (Commit)
-- [ ] Flagship: flag that an EN version is needed (hand off to zh-tw-translator)
+- [ ] Flagship: flag that an EN version is needed (hand off to content-translator)
 - [ ] Saved into this article's working subfolder in Drive (durable record)

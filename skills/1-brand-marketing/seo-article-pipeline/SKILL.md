@@ -10,7 +10,7 @@ author: Peter Tu
 input: "A brand material packet (first time) or an article material packet (per article); or a SEO_PACKET handoff packet from any stage"
 process: "Detect the entry point → call the corresponding SEO skill / existing sub-agent stage by stage → a manual gate at every stage → save the working files into this article's Drive subfolder"
 output: "One publish-ready article that has passed SEO/AEO proofreading, with meta/schema/links (zh-TW, plus a separate EN flagship)"
-synergy: ["seo-persona-builder","seo-question-miner","seo-angle-finder","seo-keyword-mapper","seo-keyword-classifier","seo-demand-validator","seo-brief-writer","seo-outline-designer","seo-article-finalizer","article-drafter","article-title-suggester","article-editor","zh-tw-translator"]
+synergy: ["seo-persona-builder","seo-question-miner","seo-angle-finder","seo-keyword-mapper","seo-keyword-classifier","seo-demand-validator","seo-brief-writer","seo-outline-designer","seo-article-finalizer","content-draft","content-title","content-editor","content-translator"]
 ---
 
 # SEO Article Pipeline Orchestrator
@@ -41,11 +41,11 @@ The single source of truth for all IDs and accounts: `./seo-pipeline-config.md`.
 | 6 | (6) Demand/difficulty validation | `seo-demand-validator` | `▸ Topics` |
 | 7 | (7) Brief | `seo-brief-writer` | `▸ Brief` |
 | 8 | (8) Outline + FAQ | `seo-outline-designer` | Handoff summary (drafter-compatible) |
-| 9 | (9) Drafting | `article-drafter` (existing, Task) | Article draft |
-| 10 | (10) Titling | `article-title-suggester` (existing, Task) | Title candidates |
-| 11a | (11) Scored proofreading | `article-editor` (existing, with SEO review criteria) | Proofread article |
+| 9 | (9) Drafting | `content-draft` (existing, Task) | Article draft |
+| 10 | (10) Titling | `content-title` (existing, Task) | Title candidates |
+| 11a | (11) Scored proofreading | `content-editor` (existing, with SEO review criteria) | Proofread article |
 | 11b | (11) SEO setup | `seo-article-finalizer` | `▸ Finalize` (meta/schema/links) |
-| ＋ | EN flagship | `zh-tw-translator` (zh→EN mode) | EN flagship version |
+| ＋ | EN flagship | `content-translator` (zh→EN mode) | EN flagship version |
 
 For the first half (1–8, 11b) use the **Skill tool** to call the corresponding SEO skill; for the second half (9, 10, 11a) use **Task** to call the existing write-article sub-agents.
 
@@ -71,8 +71,8 @@ At the start, create a working subfolder for this article under `<your-seo-kb-fo
 1. After each stage completes, produce a 2–3 sentence summary, show the progress board, and present the next stage.
 2. **Always ask the user before advancing into each stage; never auto-jump across stages.** This corresponds to all the light-blue nodes in the flowchart (review-and-approve / Trigger / scan articles / validate-and-supplement / review outline and FAQ / publish article) and the diamond decision (whether to supplement information).
 3. Pass the previous stage's complete `SEO_PACKET` block intact to the next stage.
-4. Stage 8's handoff summary deliberately uses the same format as `article-style-selector`, so `article-drafter` can take over seamlessly.
-5. After the article publish setup (11b) is done, ask the user whether to produce the EN flagship version (`zh-tw-translator` zh→EN).
+4. Stage 8's handoff summary deliberately uses the same format as `content-style-select`, so `content-draft` can take over seamlessly.
+5. After the article publish setup (11b) is done, ask the user whether to produce the EN flagship version (`content-translator` zh→EN).
 
 ## Progress Board
 
@@ -85,9 +85,9 @@ Mark with ✓ (done) ▶ (in progress) ○ (to do) ⊘ (skipped), updating once 
 
 - First half: call via the Skill tool, e.g. first feed brand material to `seo-persona-builder`; after receiving `SEO_PACKET ▸ Persona`, confirm with HITL, then feed it to `seo-question-miner`, and so on.
 - Second half (existing sub-agents, via Task):
-  - `Task(subagent_type="article-drafter", prompt="這是 SEO 大綱交棒摘要：\n{階段8交棒摘要}\n請逐段撰寫。")`
-  - `Task(subagent_type="article-title-suggester", prompt="這是完成的文章：\n{文章}\n請產出 SEO/AEO 標題候選。")`
-  - `Task(subagent_type="article-editor", prompt="這是初稿：\n{文章}\n請依 style guide 與 SEO 審核準則校稿。")`
+  - `Task(subagent_type="content-draft", prompt="這是 SEO 大綱交棒摘要：\n{階段8交棒摘要}\n請逐段撰寫。")`
+  - `Task(subagent_type="content-title", prompt="這是完成的文章：\n{文章}\n請產出 SEO/AEO 標題候選。")`
+  - `Task(subagent_type="content-editor", prompt="這是初稿：\n{文章}\n請依 style guide 與 SEO 審核準則校稿。")`
 
 ## Behavior Rules
 

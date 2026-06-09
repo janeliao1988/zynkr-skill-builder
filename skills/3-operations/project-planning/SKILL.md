@@ -6,7 +6,7 @@ project: project-planning
 platform: claude
 status: Done
 author: Peter Tu
-sheetId: "3.04"
+sheetId: "3.07"
 originalName: "專案章程發想 (New)"
 input: "A proposed project, initiative, or problem the user wants to validate before execution."
 process: "Structured, Socratic facilitation that stress-tests logic across purpose, problem, execution, governance, timing, metrics, and risks."

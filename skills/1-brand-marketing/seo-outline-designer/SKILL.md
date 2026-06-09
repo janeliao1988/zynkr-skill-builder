@@ -1,16 +1,16 @@
 ---
 name: seo-outline-designer
 sheetId: "1.22"
-description: "Stage 8 of the SEO pipeline: turn the SEO Brief into an article outline and FAQ section, outputting a handoff summary compatible with article-drafter. Corresponds to the v2 flow diagram's 'Structure article: outline design' and 'Build FAQ'. Triggers when the user hands over a Brief handoff packet and says '設計大綱' or '做 FAQ'. Only handles the outline and FAQ; the actual writing is handed off to article-drafter."
+description: "Stage 8 of the SEO pipeline: turn the SEO Brief into an article outline and FAQ section, outputting a handoff summary compatible with content-draft. Corresponds to the v2 flow diagram's 'Structure article: outline design' and 'Build FAQ'. Triggers when the user hands over a Brief handoff packet and says '設計大綱' or '做 FAQ'. Only handles the outline and FAQ; the actual writing is handed off to content-draft."
 category: brand-marketing
 project: seo-outline-designer
 platform: claude
 status: WIP
 author: Peter Tu
 input: "seo-brief-writer's SEO_PACKET ▸ Brief; optional: whether to supplement information (other reference articles), client first-hand information"
-process: "Design the H2/H3 outline per outline-patterns (answer-first opening) → build the FAQ from the Brief's must-answer questions → decide whether to supplement information → human review → output an article-drafter-compatible handoff summary"
-output: "Article outline + FAQ + handoff summary of target keywords, handed off to article-drafter (1.06) for writing"
-synergy: ["article-drafter"]
+process: "Design the H2/H3 outline per outline-patterns (answer-first opening) → build the FAQ from the Brief's must-answer questions → decide whether to supplement information → human review → output an content-draft-compatible handoff summary"
+output: "Article outline + FAQ + handoff summary of target keywords, handed off to content-draft (1.06) for writing"
+synergy: ["content-draft"]
 ---
 
 # SEO Outline Designer
@@ -19,7 +19,7 @@ synergy: ["article-drafter"]
 npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill seo-outline-designer
 ```
 
-Stage 8 of the SEO pipeline, corresponding to the flow diagram's 'Structure article' and 'Build FAQ'. It is the **junction** between the front half of the SEO pipeline and the existing writing pipeline: the handoff summary it produces is deliberately formatted so `article-drafter` (1.06) can consume it directly (structure + per-section talking points), and additionally carries the target keywords, FAQ, and AEO requirements.
+Stage 8 of the SEO pipeline, corresponding to the flow diagram's 'Structure article' and 'Build FAQ'. It is the **junction** between the front half of the SEO pipeline and the existing writing pipeline: the handoff summary it produces is deliberately formatted so `content-draft` (1.06) can consume it directly (structure + per-section talking points), and additionally carries the target keywords, FAQ, and AEO requirements.
 
 ---
 
@@ -28,7 +28,7 @@ Stage 8 of the SEO pipeline, corresponding to the flow diagram's 'Structure arti
 > **Knowledge source**: The rubrics/templates this skill uses are read preferentially from the SEO Knowledge Base's "01 Rubrics & Templates" (Drive, google-workspace MCP, search by name); when unavailable, fall back to the local `./references/`. See the mapping table in `seo-article-pipeline/seo-pipeline-config.md`.
 
 - **Outline patterns**: `./references/outline-patterns.md`
-- **Downstream**: `article-drafter` (1.06) writes, `article-title-suggester` (1.09) titles, `article-editor` (1.07) proofreads
+- **Downstream**: `content-draft` (1.06) writes, `content-title` (1.09) titles, `content-editor` (1.07) proofreads
 - **SEO Knowledge Base folder ID**: `<your-seo-kb-folder-id>`
 
 ## Step 1 — Receive the Brief
@@ -43,7 +43,7 @@ Corresponds to the flow diagram's diamond "Need to supplement information?". If 
 
 ## Step 3 — Design the outline (answer-first)
 
-Per `./references/outline-patterns.md`: answer up front in the opening (to capture AEO) → H2/H3 skeleton, with each H2 marking one talking-point direction plus the placement of the corresponding target/supporting keywords. **Give 3 writable talking points per section** (following article-style-selector's handoff convention, so the drafter can write directly).
+Per `./references/outline-patterns.md`: answer up front in the opening (to capture AEO) → H2/H3 skeleton, with each H2 marking one talking-point direction plus the placement of the corresponding target/supporting keywords. **Give 3 writable talking points per section** (following content-style-select's handoff convention, so the drafter can write directly).
 
 ## Step 4 — Build the FAQ
 
@@ -53,12 +53,12 @@ Write the Brief's must-answer questions (3–5 questions) into an FAQ section, w
 
 Corresponds to "review the outline and FAQ". Once confirmed, save the "article outline" and "FAQ" working files.
 
-## Step 6 — Output an article-drafter-compatible handoff summary
+## Step 6 — Output an content-draft-compatible handoff summary
 
 ```
 ✅ 大綱與 FAQ 已確認（SEO）
 
-**選定架構：** <對應 article-style-selector 的某型，如 思維流程型>
+**選定架構：** <對應 content-style-select 的某型，如 思維流程型>
 **目標關鍵字：** 主 <...> ｜輔 <...>
 **章節要點：**
 **第一章：<H2>**（關鍵字落點：<...>）
@@ -72,12 +72,12 @@ Corresponds to "review the outline and FAQ". Once confirmed, save the "article o
 **AEO 要求：** 開頭即答句「<...>」；命名框架「<...>」
 **CTA：** <B2B discovery / lead magnet>
 
-大綱與要點已確認，可交棒給 article-drafter 進行段落撰寫。
+大綱與要點已確認，可交棒給 content-draft 進行段落撰寫。
 ```
 
 ## Outputs
 
-Article outline + FAQ + handoff summary (compatible with `article-drafter`).
+Article outline + FAQ + handoff summary (compatible with `content-draft`).
 
 ## Limitations
 

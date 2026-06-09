@@ -86,7 +86,7 @@ Other KB files: `03 AEO Prompt Panel & Metrics (measurement)` = `1qx9_tXF2Zp8zLG
 
 Lives in the `02 Seed Knowledge` subfolder (`seed_knowledge_folder_id`). `seo-angle-finder`, `seo-brief-writer`, `seo-persona-builder` `search_drive_files` here for first-hand angles/evidence.
 
-**Living-KB self-heal bridge — MANUAL (not yet automated):** after running a livestream through `process-livestream`, copy its `content-idea-curator` ideas + accepted `qa-knowledge-base` entries into `02 Seed Knowledge` (one doc per stream, named `seed_<date>_<topic>`). Keep entries decision-first (angle = a decision/trade-off, not a feature). Until a sync step is built, this deposit is done by hand so the SEO skills see fresh seed knowledge. Future automation: extend `process-livestream` to write an SEO-seed doc straight into `seed_knowledge_folder_id`.
+**Living-KB self-heal bridge — MANUAL (not yet automated):** after running a livestream through `training-process-video`, copy its `training-idea-curator` ideas + accepted `training-qa-knowledge` entries into `02 Seed Knowledge` (one doc per stream, named `seed_<date>_<topic>`). Keep entries decision-first (angle = a decision/trade-off, not a feature). Until a sync step is built, this deposit is done by hand so the SEO skills see fresh seed knowledge. Future automation: extend `training-process-video` to write an SEO-seed doc straight into `seed_knowledge_folder_id`.
 
 ---
 
@@ -110,4 +110,4 @@ Zynkr is a **decision-first AI consulting counterpart**, not "AI enablement / pr
 - zh-TW headings/taglines do not end with 句號 (。); series separator is ·.
 - Per-article folder name: `<工作標題>`.
 - Artifact filenames: `<工作標題> - 人物誌`, `… - 關鍵字地圖`, `… - Brief`, `… - 大綱`, `… - 上架包`.
-- Languages: zh-TW primary; flagship pieces also produce EN via `zh-tw-translator` reverse mode.
+- Languages: zh-TW primary; flagship pieces also produce EN via `content-translator` reverse mode.

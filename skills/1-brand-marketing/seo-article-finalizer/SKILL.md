@@ -7,7 +7,7 @@ project: seo-article-finalizer
 platform: claude
 status: WIP
 author: Peter Tu
-input: "An article proofed by article-editor (including the SEO review rubric) + that article's SEO_PACKET ▸ Brief"
+input: "An article proofed by content-editor (including the SEO review rubric) + that article's SEO_PACKET ▸ Brief"
 process: "Per internal-link-rules, mark the paragraphs that can take internal/backlinks → per meta-schema-rules, write the meta description and FAQ/Article schema → human confirmation → produce the publish package"
 output: "Publish package: internal/external link suggestions + meta description + schema markup + publish checklist"
 synergy: []
@@ -61,7 +61,7 @@ SEO_PACKET ▸ Finalize
 - schema：FAQ + Article（附 JSON-LD）
 - 上架檢查表：見 meta-schema-rules
 
-文章已完成 SEO 設定，可上架。EN 旗艦版可交 zh-tw-translator。
+文章已完成 SEO 設定，可上架。EN 旗艦版可交 content-translator。
 ```
 
 ## Outputs
@@ -70,4 +70,4 @@ Publish package (link suggestions + meta + schema + publish checklist).
 
 ## Limitations
 
-Does not rewrite content, does not score (that is article-editor). Actual publishing to the website is done manually / via the CMS.
+Does not rewrite content, does not score (that is content-editor). Actual publishing to the website is done manually / via the CMS.

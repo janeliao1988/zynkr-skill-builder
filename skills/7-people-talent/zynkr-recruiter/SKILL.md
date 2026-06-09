@@ -53,7 +53,7 @@ Stage 1: JD Architecture (The RoleCrafter)
 ---------------------------------------------
 ```
 
-Launch the `jd-architect` agent (`./agents/jd-architect.md`) using the Agent tool.
+Launch the `recruiter-jd-architect` agent (`./agents/recruiter-jd-architect.md`) using the Agent tool.
 
 The agent will collect: role context → daily tasks → success metrics → requirements → reporting line → career level → work mode → optional salary → optional stakeholder alignment.
 
@@ -73,7 +73,7 @@ Stage 2: Resume Screening (Hybrid Weighted Scoring)
 
 Ask the user to provide candidate resumes (text or file). Optionally collect 2–3 sentences about company culture and a target shortlist size.
 
-Launch the `resume-screener` agent (`./agents/resume-screener.md`), passing `JD_BLUEPRINT` and the resumes.
+Launch the `recruiter-resume-screener` agent (`./agents/recruiter-resume-screener.md`), passing `JD_BLUEPRINT` and the resumes.
 
 The agent runs three layers of evaluation:
 1. **Hard Skill Gate** — caps Relevance if must-have skills missing
@@ -94,7 +94,7 @@ Stage 3: Interview Design (Competency + Scorecard)
 ---------------------------------------------
 ```
 
-For each shortlisted candidate, launch the `interview-question-designer` agent (`./agents/interview-question-designer.md`), passing `JD_BLUEPRINT` and the candidate's `Candidate Strength Profile` from Stage 2.
+For each shortlisted candidate, launch the `recruiter-interview-question` agent (`./agents/recruiter-interview-question.md`), passing `JD_BLUEPRINT` and the candidate's `Candidate Strength Profile` from Stage 2.
 
 The agent produces:
 1. Competency model (5–7 items)
@@ -125,7 +125,7 @@ After interviews complete, ask the user to provide:
 - Each interviewer's independent scores and notes
 - Whether AI should extract evidence only, or also draft calibration summaries
 
-Launch the `interview-calibrator` agent (`./agents/interview-calibrator.md`), passing `JD_BLUEPRINT`, `INTERVIEW_KIT_<candidate>`, and the interview artifacts.
+Launch the `recruiter-calibrator` agent (`./agents/recruiter-calibrator.md`), passing `JD_BLUEPRINT`, `INTERVIEW_KIT_<candidate>`, and the interview artifacts.
 
 The agent produces:
 1. Behavioral evidence per competency (extracted from transcripts)

@@ -2,7 +2,7 @@
 
 > The judgment bible for slide-visual-selector (the third leg of the slide assistant relay).
 > Purpose: take each page from `▸ Pages`, **look only at this page's "content relationship / message to convey"**, and map it to a set of directly-renderable building blocks: `{archetype, visual elements = pptxgenjs primitives, layout skeleton}`.
-> Alignment: archetype names strictly match the archetype enum in SKILL.md; every visual element maps to a pptxgenjs primitive so the downstream pptx skill can render it 1:1.
+> Alignment: archetype names strictly match the archetype enum in SKILL.md; every visual element maps to a pptxgenjs primitive so the downstream slide-pptx skill can render it 1:1.
 
 
 > **Brand-neutrality note**: this file's "brand note" column and rules consistently use **generic role terms** (decision color / accent color / dark base color / display font / numbering font); the actual color values and fonts are determined by the brand guide loaded via `./brand-source.md`, defaulting to a neutral preset when no brand is set. This file contains no specific brand's color codes or internal information.
@@ -147,11 +147,11 @@ Every visual element must map 1:1 to one of the pptxgenjs primitives below (a 16
 | Chart | `addChart(pres.charts.<TYPE>, data, opts)` | `BAR / LINE / PIE / DOUGHNUT / SCATTER`; bar uses `barDir:'col'` (vertical) or `'bar'` (horizontal) |
 | Shapes (the four common ones) | `addShape(pres.shapes.<SHAPE>, {x,y,w,h,fill,line})` | Only **`RECTANGLE / ROUNDED_RECTANGLE / OVAL / LINE`** have the `pres.shapes.<UPPERCASE>` convenience alias |
 | Shapes (advanced: funnel / pyramid / arrows) | `addShape('<name>', {x,y,w,h,fill,line})` (**string literal**) or `addShape(pres.ShapeType.<name>, {…})` | `'trapezoid'` (funnel layer), `'triangle'` (pyramid), `'rightArrow'`/`'chevron'` (process arrows), `'curvedRightArrow'`/`'circularArrow'` (feedback loop)—**these have no `pres.shapes.*` alias** |
-| Image / icon | `addImage({path|data, x,y,w,h})` | image-led main image, logo, QR; icons converted from react-icons to PNG (handled by the pptx skill) |
+| Image / icon | `addImage({path|data, x,y,w,h})` | image-led main image, logo, QR; icons converted from react-icons to PNG (handled by the slide-pptx skill) |
 
-> **⚠ Shape-naming trap (crashes rendering directly).** pptxgenjs's `pres.shapes` only exposes four UPPERCASE convenience aliases (`pres.shapes.RECTANGLE / OVAL / ROUNDED_RECTANGLE / LINE`). `trapezoid`, `triangle`, `rightArrow`, `chevron`, `curvedRightArrow`, `circularArrow` **have no** `pres.shapes.*` alias—writing `pres.shapes.trapezoid` yields `undefined`, and `addShape(undefined, …)` directly throws `Missing/Invalid shape parameter`. There are only two correct forms: pass a **string literal** `addShape('trapezoid', {…})`, or use the raw enum `addShape(pres.ShapeType.trapezoid, {…})`. Wherever the text below mentions `trapezoid/triangle/rightArrow/...`, it always means the "string literal" primitive entry point—please have the downstream pptx skill render it accordingly, and **do not** add the `pres.shapes.` prefix.
+> **⚠ Shape-naming trap (crashes rendering directly).** pptxgenjs's `pres.shapes` only exposes four UPPERCASE convenience aliases (`pres.shapes.RECTANGLE / OVAL / ROUNDED_RECTANGLE / LINE`). `trapezoid`, `triangle`, `rightArrow`, `chevron`, `curvedRightArrow`, `circularArrow` **have no** `pres.shapes.*` alias—writing `pres.shapes.trapezoid` yields `undefined`, and `addShape(undefined, …)` directly throws `Missing/Invalid shape parameter`. There are only two correct forms: pass a **string literal** `addShape('trapezoid', {…})`, or use the raw enum `addShape(pres.ShapeType.trapezoid, {…})`. Wherever the text below mentions `trapezoid/triangle/rightArrow/...`, it always means the "string literal" primitive entry point—please have the downstream slide-pptx skill render it accordingly, and **do not** add the `pres.shapes.` prefix.
 
-> Rendering details (exact x/y/w/h, color-code conversion, QA) are all handled by the downstream **pptx skill**. This leg only provides "relative blocks + primitive type + where to apply brand color," and does not hard-code pixel-level coordinates.
+> Rendering details (exact x/y/w/h, color-code conversion, QA) are all handled by the downstream **slide-pptx skill**. This leg only provides "relative blocks + primitive type + where to apply brand color," and does not hard-code pixel-level coordinates.
 
 ---
 

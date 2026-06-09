@@ -1,6 +1,6 @@
 ---
 name: slide-page-splitter
-description: "The second leg of the slide-assistant three-leg relay: take the storyline approved by the previous leg (SLIDE_PACKET ▸ Storyline) and, following paging principles, slice it into a page-by-page slide list — deciding which beat each page maps to, what title it carries, how many bullet points it holds, and how dense its information should be. Trigger me immediately when the user hands over a ▸ Storyline handoff packet, or says 「幫我分頁」, 「把故事線切成投影片」, 「每頁放什麼」, 「規劃投影片頁數」, 「slide 分頁設定」. I only handle paging and per-page content allocation, handing off once ▸ Pages is produced; I do not design layout or visuals, nor render .pptx (that's slide-visual-selector and the pptx skill), and I do not go back and rewrite the storyline (that's slide-storyline-designer)."
+description: "The second leg of the slide-assistant three-leg relay: take the storyline approved by the previous leg (SLIDE_PACKET ▸ Storyline) and, following paging principles, slice it into a page-by-page slide list — deciding which beat each page maps to, what title it carries, how many bullet points it holds, and how dense its information should be. Trigger me immediately when the user hands over a ▸ Storyline handoff packet, or says 「幫我分頁」, 「把故事線切成投影片」, 「每頁放什麼」, 「規劃投影片頁數」, 「slide 分頁設定」. I only handle paging and per-page content allocation, handing off once ▸ Pages is produced; I do not design layout or visuals, nor render .pptx (that's slide-visual-selector and the slide-pptx skill), and I do not go back and rewrite the storyline (that's slide-storyline-designer)."
 category: brand-marketing
 project: slide-page-splitter
 platform: claude
@@ -34,7 +34,7 @@ slide-page-splitter (1.26)   ← 你在這
 slide-visual-selector (1.27)
         │  SLIDE_PACKET ▸ Visuals (render-ready)
         ▼
-pptx 技能  → 算繪成 .pptx
+slide-pptx 技能  → 算繪成 .pptx
 ```
 
 **Core idea: the storyline is the "line," the slides are the "points."** The audience can absorb only one key point per page, so paging is not about pouring text evenly into boxes — it's about deciding, for each beat, "how many pages to split it into, which single conclusion each page focuses on, and how much information to pack in before it overflows."
@@ -138,5 +138,5 @@ An ordered page list `SLIDE_PACKET ▸ Pages` with a clear responsibility per pa
 
 - **Only does paging and per-page content allocation** — how many pages to split, what/how much goes on each page, titles, and information density. The output is "slide pages," not "narrative beats."
 - **Does not choose the layout archetype, specify visual elements or page layout, or apply brand colors/fonts**: that's slide-visual-selector (1.27)'s job; I only tag the page type (`title / section / content / data / quote / closing`), I don't touch the layout enum (`title / big-statement / bulleted-list / …`).
-- **Does not render .pptx**: rendering is done by feeding 1.27's ▸ Visuals into the installed pptx skill.
+- **Does not render .pptx**: rendering is done by feeding 1.27's ▸ Visuals into the installed slide-pptx skill.
 - **Does not go back and rewrite the storyline**: beats, through-line, and narrative arc belong to slide-storyline-designer (1.25); if I find a gap in the story while paging, I only report it and suggest a fix, asking the user to go back to the previous leg — I don't alter the narrative on my own.

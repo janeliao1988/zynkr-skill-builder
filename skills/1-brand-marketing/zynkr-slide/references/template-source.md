@@ -15,7 +15,7 @@ TEMPLATE_LIBRARY = 1j0lubFMtZ6lFW-ZTOQcvZ2O4r_ix70yF
 ```
 
 - **Drive folder**: "Slide template" — https://drive.google.com/drive/folders/1j0lubFMtZ6lFW-ZTOQcvZ2O4r_ix70yF
-- **Template format**: **native Google Slides** (one Slides file per template). template-fill will `copy_drive_file` to copy → `get_drive_file_download_url(export_format="pptx")` to export → use python-pptx to fill precisely by shape index.
+- **Template format**: **native Google Slides** (one Slides file per template). template-fill will `copy_drive_file` to copy → `get_drive_file_download_url(export_format="slide-pptx")` to export → use python-pptx to fill precisely by shape index.
 - A link-gated Drive folder ID is low-sensitivity **configuration** and may be written here (same convention as the repo's existing `inbound-sales-config.md` / `seo-pipeline-config.md`); **the template content itself stays in Drive and never enters the repo.**
 
 **When not found / not configured** → template-fill falls back to a neutral default: **ask the user to paste the template link directly**, do not auto-search the library; the rest of the flow is unchanged.
@@ -42,13 +42,13 @@ Two layers, with **`TEMPLATE-INDEX` as authoritative**:
 
 ## 3 · Field manifest (schema) per template
 
-One field manifest per template (placed in `TEMPLATE-INDEX` or next to the template). Fields are located by the **shape index after pptx export** (the most stable; the Slides API cannot locate shapes one by one). Schema:
+One field manifest per template (placed in `TEMPLATE-INDEX` or next to the template). Fields are located by the **shape index after slide-pptx export** (the most stable; the Slides API cannot locate shapes one by one). Schema:
 
 | Field | shape index | Type | Source hint | Required |
 |---|---|---|---|---|
-| `<field name>` | `<int, pptx export order>` | text / table / date / checkbox | `<where to extract from the source document>` | yes / no |
+| `<field name>` | `<int, slide-pptx export order>` | text / table / date / checkbox | `<where to extract from the source document>` | yes / no |
 
-When a manifest is missing a shape index, the runtime uses `~/.claude/skills/pptx/.venv/bin/python` + python-pptx to list shapes (index + type + existing text) and fill it in on the spot.
+When a manifest is missing a shape index, the runtime uses `~/.claude/skills/slide-pptx/.venv/bin/python` + python-pptx to list shapes (index + type + existing text) and fill it in on the spot.
 
 ### Example: `charter` (Project Charter) field manifest
 
