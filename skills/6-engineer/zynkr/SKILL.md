@@ -10,7 +10,7 @@ author: Peter Tu
 input: "Anything: a URL, local file path, skill slug, free-text idea, status question, or pasted content. The skill classifies the input shape before doing anything else."
 process: "Classify input shape → look up state across the four signals (Project / issues / on-disk / live API) when the input references a skill-pipeline item → route to the right sub-skill via the Skill tool when confidence is high, or ask one targeted clarifying question when ambiguous. Surfaces queue / dashboard views on read-only queries."
 output: "Either: (a) an auto-invocation of the right Zynkr sub-skill (most common); (b) one targeted clarifying question when intent is genuinely ambiguous; (c) a compact state table when the user asks 'what's in my queue' / 'where is X'."
-synergy: ["skill-sourcer", "skill-triager", "skill-publish", "skill-finder", "write-newsletter", "polish-lecture-transcript", "sales-specialist", "cv-customizer", "zynkr-support", "newsletter-to-notion", "write-article", "srt-optimizer", "zynkr-slide"]
+synergy: ["skill-sourcer", "skill-triager", "skill-publish", "skill-finder", "write-newsletter", "polish-lecture-transcript", "sales-specialist", "cv-customizer", "zynkr-support", "article-governance", "write-article", "srt-optimizer", "zynkr-slide"]
 ---
 
 # Zynkr
@@ -97,7 +97,7 @@ Switch on `(input-type, state)` using the table below. Auto-invoke means use the
 
 | Input × Context | Action | Confidence |
 |---|---|---|
-| `google-doc` + the URL is a newsletter draft → invoke `/newsletter-to-notion` | High → auto |
+| `google-doc` + the URL is a newsletter draft → invoke `/article-governance` | High → auto |
 | `google-doc` + unclear intent | Ask: "Newsletter draft to sync to Notion, or something else?" | Medium → ask |
 | `transcript` (`.srt` / `.vtt`) | Invoke `/srt-optimizer` | High → auto |
 | `transcript` (video URL or long YouTube link, no .srt yet) | Invoke `/polish-lecture-transcript` | Medium → confirm |

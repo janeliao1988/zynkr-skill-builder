@@ -2,7 +2,7 @@
 name: zynkr-content-writer
 sheetId: "1.01"
 category: "brand-marketing"
-project: "writing-agent"
+project: "zynkr-content-writer"
 platform: "claude"
 status: "Done"
 author: "Peter Tu"

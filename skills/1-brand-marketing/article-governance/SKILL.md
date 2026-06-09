@@ -3,7 +3,7 @@ name: article-governance
 sheetId: "1.12"
 description: Sync a newsletter article from Google Docs to the Notion Content DB. Use this skill whenever the user shares a Google Doc URL and wants to create a Notion page, sync to Notion, add to Content DB, or archive a newsletter. Trigger on phrases like "幫我放上 Notion", "sync to Notion", "add this to Notion", "同步到 Notion", or any message combining a Google Doc link with Notion/archive intent.
 category: brand-marketing
-project: newsletter-to-notion
+project: article-governance
 platform: claude
 status: Done
 author: Peter Tu
@@ -21,7 +21,7 @@ Syncs a newsletter from Google Docs to Peter's Notion Content DB with auto-class
 
 - **Google account**: `<your-google-workspace-account>`
 - **Notion Content DB data source**: `collection://64bd3535-0cb3-4f96-946c-c2240294307c`
-- **Subject taxonomy file**: `/Users/petertu/Desktop/Claude/zynkr/1.0 brand-marketing/subject-taxonomy.csv`
+- **Subject taxonomy file**: `<your-subject-taxonomy-csv>`
 
 ## Steps
 
@@ -37,7 +37,7 @@ Extract:
 
 ### 2. Read the subject taxonomy
 
-Read the CSV at `/Users/petertu/Desktop/Claude/zynkr/1.0 brand-marketing/subject-taxonomy.csv`.
+Read the CSV at `<your-subject-taxonomy-csv>`.
 
 Columns: `subject`, `description_zh`, `keywords_zh`, `keywords_en`
 
