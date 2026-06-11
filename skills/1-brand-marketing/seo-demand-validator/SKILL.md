@@ -1,0 +1,68 @@
+---
+name: seo-demand-validator
+sheetId: "1.20"
+description: "Sixth stage of the SEO pipeline: validate the real demand and competitive difficulty of keywords, compare the common patterns across the current SERP, prune unnecessary terms, and consolidate a list of target keywords and topics. Corresponds to node (6) in the v2 flow diagram. Triggers when the user hands over a Classified handoff packet or says 「驗證需求」 (validate demand) or 「整理主題清單」 (organize the topic list). It only validates and converges — it does not write the Brief and does not write the article."
+category: brand-marketing
+project: seo-demand-validator
+platform: claude
+status: WIP
+author: Peter Tu
+input: "seo-keyword-classifier's SEO_PACKET ▸ Classified; manual Google/SERP observations and tool-based difficulty data"
+process: "Compare SERP common patterns and competitive difficulty per the competitor-review-table → manually validate demand, prune unnecessary terms → converge into a topic list + target keywords → hand off"
+output: "Topic list + target keywords + SERP common patterns, handed off to seo-brief-writer"
+synergy: ["seo-brief-writer"]
+---
+
+# SEO Demand Validator
+
+```bash
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill seo-demand-validator
+```
+
+Sixth stage of the SEO pipeline, corresponding to the flow diagram's "search the keywords, manually validate demand" and "assist in validating relevance and competitive difficulty / compare the common patterns across the current SERP / organize the classification and target keywords." It converges the clustered keywords into a topic list that is "worth doing" — validated with real SERP observation, not just tool numbers.
+
+---
+
+## Resources you'll use
+
+> **Knowledge source**: The rubrics/templates used by this skill should be read first from the SEO Knowledge Base's "01 Rubrics & Templates" (Drive, google-workspace MCP, search by name); when unavailable, fall back to the local `./references/`. See the mapping table in `seo-article-pipeline/seo-pipeline-config.md`.
+
+- **Competitor review table**: `./references/competitor-review-table.md`
+- **SEO Knowledge Base folder ID**: `<your-seo-kb-folder-id>`
+- **MCP / tools**: `google-workspace`; WebFetch / WebSearch to view the current SERP
+
+## Step 1 — Receive the clustering
+
+Read `SEO_PACKET ▸ Classified`.
+
+## Step 2 — Manually validate demand (HITL)
+
+Corresponds to "Google-search each variant to validate demand." Have the user (or use WebSearch) look at the actual SERP for each candidate target term: whether there is real content competing, and what the searcher actually wants.
+
+## Step 3 — Compare SERP common patterns + difficulty
+
+Fill in the competitor review table per `./references/competitor-review-table.md`: the common patterns of the top results (format, depth, angle), competitive difficulty, and whether Zynkr can win. Corresponds to the two AI nodes of (6).
+
+## Step 4 — Prune terms + converge the topic list (HITL)
+
+Corresponds to "remove unnecessary terms." Cut the terms with weak demand or difficulty too high to have a winning chance, and converge the rest into a "topic → target keywords (primary + supporting)" list.
+
+## Step 5 — Hand off and save
+
+Save the "topic list" working file, and output:
+
+```
+SEO_PACKET ▸ Topics
+- 主題：<標題> ｜目標關鍵字：<主字 + 輔字> ｜意圖/漏斗：<...> ｜SERP 共通點：<...> ｜Zynkr 勝出點：<...>
+- ...
+
+主題清單與目標關鍵字已確認，可交棒給 seo-brief-writer。
+```
+
+## Outputs
+
+Topic list + target keywords + SERP common patterns (`SEO_PACKET ▸ Topics` + Drive working file).
+
+## Limitations
+
+Does not write the Brief and does not write the article. Difficulty data is grounded in tools / the real SERP, not guessed.

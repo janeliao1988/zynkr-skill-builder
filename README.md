@@ -13,9 +13,28 @@ zynkr-skill-idea -> zynkr-skill-builder -> zynkr.ai/ai-skills-marketplace
     (ideas)            (source + CI)          (live, auto-sync)
 ```
 
+### The canonical 4-skill authoring chain
+
+Skills land here through a sequential chain of Claude Code skills, each handing off a deliberate artifact to the next:
+
+```
+/skill-sourcer  →  /skill-triager  →  /skill-creator  →  /skill-publish  →  /skill-triager
+  (find idea)       Option A          (build SKILL.md)    (land + dispatch)    Option D
+                    assign-build                                                confirm-ship
+```
+
+Two GitHub Actions workflows in this repo are the automation backbone:
+
+- `pickup-approved-issue.yml` — fired by `/skill-triager` Option A. Scaffolds a stub `SKILL.md` (or mirrors an upstream README in lift-and-shift mode) and opens a PR. Dispatch event: `skill-build-request`.
+- `publish-skill.yml` — fired by `/skill-publish`. Lands an author-supplied `SKILL.md` (via inline base64 or a GitHub URL) and opens a PR. Dispatch event: `skill-publish-request`.
+
+Both end at `ingest-skills.yml` (the shared terminal step) which validates, normalises, regenerates `generated/*.json`, and POSTs to the Supabase mirror.
+
+See [`architecture.md`](./architecture.md) for the full gate-by-gate breakdown including decouple points.
+
 Role boundaries:
-- `zynkr-skill-idea`: idea backlog (GitHub issues), approval workflow
-- `zynkr-skill-builder` (this repo): SKILL.md source files, ingest pipeline, generated JSON artifacts, post-ingest webhook to the Supabase mirror
+- `zynkr-skill-idea`: idea backlog (GitHub issues + Project), approval workflow, `/skill-sourcer` and `/skill-triager` state
+- `zynkr-skill-builder` (this repo): SKILL.md source files, two scaffold/publish workflows, ingest pipeline, generated JSON artifacts, post-ingest webhook to the Supabase mirror
 - `zynkr-website`: frontend — fetches `/api/skills*` (Vercel Functions backed by Supabase) on page load, with raw-GitHub fallback
 
 Primary goals:
@@ -59,6 +78,26 @@ Important boundaries:
 - `scripts/ingest.ts` is the normalization and schema-transform boundary
 - `content/` and `generated/` are the app-facing artifacts; Supabase is a read mirror, not a source of truth
 - frontend consumes `/api/skills*` (Supabase-backed) with a raw-GitHub fallback retained until ~2026-05-26 then removed
+
+### Sync from Sheet
+
+The `[@] AI assistant index` Google Sheet (`1QvrtRB0_1tHM67IEq01T-UpKtsv4nXtIkWB3k5xynd4` / tab `Assistant Index 📖`) is the canonical inventory of all assistants across ChatGPT, Gemini, n8n, and Claude. `scripts/sync-from-sheet.ts` scaffolds new SKILL.md / agent files from sheet rows that don't yet have a repo equivalent.
+
+```text
+Google Sheet (Assistant Index)
+        ↓ (manual: read via google-workspace MCP, save to tmp/)
+tmp/sheet-snapshot.json   +   tmp/docs/<docId>.md
+        ↓
+scripts/sync-from-sheet.ts  +  catalog/sheet-map.json
+        ↓
+skills/[N]-[category]/[slug]/SKILL.md   ← then normal ingest flow
+```
+
+Behavior:
+- Only rows with `Status: Done` are considered; rows with `Migrate: Drop` are skipped permanently
+- Sheet `no.` (e.g. `2.06`) is stored as advisory `sheetId:` in frontmatter — repo content IDs stay FIFO so URLs never churn
+- `catalog/sheet-map.json` is the human-curated bridge: each sheet ID → `{kind: standalone|agent|drop|skip|review, project, parent_project, slug, category}`
+- `--dry-run` previews, `--check-drift` compares sheet vs repo, `--rows 2.06,2.07` scopes to specific IDs, `--refresh` overwrites existing files
 
 Migration state (as of 2026-05-12):
 - `zynkr-website-fe` is the canonical frontend (HTML/CSS/JS on Vercel)
@@ -286,7 +325,7 @@ Validate SKILL.md frontmatter before pushing (no clone, no writes):
 cd scripts
 npm ci
 npm run validate              # whole skills/ tree
-npm run validate -- ../skills/2-sales-consultant/biz-card        # single skill folder
+npm run validate -- ../skills/2-sales-consultant/sales-specialist        # single skill folder
 npm run validate -- ../skills/4-training/process-livestream/SKILL.md  # single file
 ```
 

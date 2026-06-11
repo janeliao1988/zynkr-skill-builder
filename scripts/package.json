@@ -6,8 +6,10 @@
   "scripts": {
     "ingest": "tsx ingest.ts",
     "build-marketplace": "tsx build-marketplace.ts",
+    "build-tree": "tsx build-taxonomy-tree.ts",
     "check-ipo": "tsx check-ipo-drift.ts",
-    "validate": "tsx validate-skill.ts"
+    "validate": "tsx validate-skill.ts",
+    "qa": "tsx validate-skill.ts --tier=all"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

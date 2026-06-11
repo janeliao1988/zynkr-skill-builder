@@ -1,0 +1,138 @@
+---
+name: operations-transformation
+sheetId: "3.10"
+description: "Three-stage operations transformation pipeline — process discovery (SIPOC), digital transformation assessment, then automation-ready process redesign — to turn pain points into builder-ready blueprints."
+category: operations
+project: operations-transformation
+platform: claude
+status: Done
+author: Peter Tu
+input: "A client-described inefficient or unclear business process, ideally with prior discovery context from consult-discovery"
+process: "Stage 1 SIPOC mapping → Stage 2 automation suitability diagnosis (four-quadrant + ROI) → Stage 3 sub-task / system-layer / MVP-stack redesign"
+output: "SIPOC table, diagnostic table with tech recommendations and ROI, and a builder-ready redesign blueprint with MVP stack"
+synergy:
+  - "2.14"
+  - "2.15"
+  - "2.16"
+---
+
+# Operations Transformation
+
+```bash
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill operations-transformation
+```
+
+Turn an inefficient business process into a builder-ready automation blueprint through three sequential stages. Use this skill after `consult-discovery` (or whenever you already have a clear pain point) and you want to design the operational fix end-to-end before handing to an engineer.
+
+---
+
+## Step 1 — Collect inputs
+
+Ask the user for:
+1. **Pain-point description** — the inefficient or unclear process to redesign
+2. (Optional) `STAGE1_SUMMARY` / `STAGE2_SUMMARY` from `consult-discovery` if available
+3. The business outcome they want from the transformation (cost / speed / quality / scale)
+
+Store as `PROCESS_BRIEF`.
+
+---
+
+## Step 2 — Stage 1: Process Discovery / SIPOC mapping (subagent)
+
+Display:
+
+```
+---------------------------------------------
+Stage 1: Process Mining — build the SIPOC map
+---------------------------------------------
+```
+
+Launch the `operations-process-discovery` agent (`./agents/operations-process-discovery.md`) using the Agent tool, passing `PROCESS_BRIEF`.
+
+The agent walks through:
+1. End-to-end process mapping (main stages, owners)
+2. Supplier and Customer per step (one question at a time)
+3. Agent-generated Input/Output assumptions
+
+Store the final SIPOC table as `SIPOC_TABLE`.
+
+Ask:
+```
+Does this SIPOC map look right? (Yes / Adjust)
+```
+
+---
+
+## Step 3 — Stage 2: Digital Transformation Assessment (subagent)
+
+Display:
+
+```
+---------------------------------------------
+Stage 2: Diagnose automation suitability
+---------------------------------------------
+```
+
+Launch the `operations-automation-validation` agent (`./agents/operations-automation-validation.md`), passing `SIPOC_TABLE`.
+
+The agent will produce:
+- **Diagnostic table** per step — Classification (four quadrants), Tech suggestion (LLM / State Machine / Rule-based / Human), ROI, Rationale
+- **Recommendation summary** — which steps to transform now, which to defer
+- A hand-off prompt to Stage 3
+
+Store as `DIAGNOSTIC_RESULT`.
+
+Ask the user which steps to redesign. Default: all steps marked ROI=High or ROI=Medium.
+
+---
+
+## Step 4 — Stage 3: Process Redesign (subagent)
+
+Display:
+
+```
+---------------------------------------------
+Stage 3: Redesign — sub-tasks, layers, MVP stack
+---------------------------------------------
+```
+
+For each selected step from `DIAGNOSTIC_RESULT`, launch the `operations-process-redesign` agent (`./agents/operations-process-redesign.md`) one step at a time.
+
+Per step, the agent produces:
+- Step title
+- Redesign table (Sub-tasks × FE/BE/DB × Suggested tool)
+- Flow type (Sequential / Decision Tree / Loop / Human-in-the-loop)
+- MVP stack recommendation
+- 1–3 sentence summary
+
+After each step, ask:
+```
+Would you like to redesign the next diagnosed step? (Yes / Skip / Stop)
+```
+
+---
+
+## Step 5 — Final blueprint
+
+Compile all step redesigns into a single deliverable:
+1. SIPOC map (Stage 1)
+2. Diagnostic table (Stage 2)
+3. Per-step redesign blueprints (Stage 3)
+4. Consolidated MVP stack (deduped across steps)
+
+Ask:
+```
+Next steps:
+1. Hand off blueprint to engineering team
+2. Iterate on a specific step
+3. Schedule a build session with peter_tu@zynkr.ai
+```
+
+---
+
+## Rules
+
+- Stage 1 may ask discovery questions, but Stage 2 and Stage 3 must trust prior agent output — no re-diagnosing
+- Always one question at a time during Stage 1
+- Diagnostic table classifications are advisory; flag low-ROI steps but do not auto-skip them
+- Never recommend LLM-only solutions for rule-based, low-frequency steps (cost mismatch)

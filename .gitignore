@@ -61,3 +61,7 @@ plan.md
 to-do.md
 process.md
 _private/
+tmp/
+
+# Claude Code local session / worktree dir
+.claude/

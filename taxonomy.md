@@ -43,7 +43,7 @@ This is the canonical category index for the Zynkr skill directory. Each top-lev
 - Consultants (career, AI, process)
 - Client success & account management
 
-**Slug**: `business-consulting`
+**Slug**: `sales-consultant`
 
 ---
 
@@ -118,7 +118,7 @@ This is the canonical category index for the Zynkr skill directory. Each top-lev
 - HR business partners
 - Community of practice leaders
 
-**Slug**: `talent-development`
+**Slug**: `people-talent`
 
 ---
 
@@ -129,10 +129,24 @@ This is the canonical category index for the Zynkr skill directory. Each top-lev
 **Functions**:
 - Finance (budgeting, reporting, tax, P&L)
 - Accounting & audit
-- Legal & contracts
 - Admin & office management
 
 **Slug**: `finance-admin`
+
+---
+
+## 9. Legal
+
+**Definition**: Ensures Zynkr operates within legal, regulatory, and contractual obligations. Owns risk management, intellectual property, privacy, and external agreements across the business.
+
+**Functions**:
+- Contracts & negotiations (NDAs, MSAs, statements of work, vendor agreements)
+- Compliance & regulatory (AI policy, accessibility, sector-specific rules)
+- IP & licensing (trademarks, copyright, open-source licence review)
+- Privacy & data governance (GDPR, CCPA, PIPL, data processing agreements)
+- Dispute resolution & external counsel coordination
+
+**Slug**: `legal`
 
 ---
 

@@ -39,12 +39,12 @@ const MAX_OUTPUT_LENGTH = 180;
 const TAXONOMY: Record<string, number> = {
   "strategy": 0,
   "brand-marketing": 1,
-  "business-consulting": 2,
+  "sales-consultant": 2,
   "operations": 3,
   "training": 4,
   "product": 5,
   "engineer": 6,
-  "talent-development": 7,
+  "people-talent": 7,
   "finance-admin": 8,
   "legal": 9,
 };
@@ -65,9 +65,14 @@ const SkillFrontmatter = z.object({
   process: z.string().optional(),
   output: z.string().optional(),
   synergy: z.array(z.string()).default([]),
+  sheetId: z.string().regex(/^\d+\.\d+$/, "sheetId must look like N.NN, e.g. 2.06").optional(),
   upstream_repo: z.string().optional(),
   original_source_url: z.string().url().optional(),
   original_author: z.string().min(1).optional(),
+  // Override the auto-generated install command. Used by reference-only entries
+  // (e.g. a third-party skill we attribute + link to but do NOT re-host) so the
+  // command installs from the upstream source instead of zynkr.ai/s/<id>.md.
+  install_command: z.string().min(1).optional(),
   security_audits: z.object({
     gen_agent_trust_hub: z.enum(["pass", "fail", "pending"]).optional(),
     socket: z.enum(["pass", "fail", "pending"]).optional(),
@@ -590,7 +595,8 @@ function allocateIdsForSourceFiles(
   prefix: number,
   repoUrl: string,
   sourceFiles: string[],
-  skillIdOverrides: SkillIdOverrideMap
+  skillIdOverrides: SkillIdOverrideMap,
+  sheetIdBySourceFile?: Map<string, string | undefined>
 ): Map<string, string> {
   const existing = loadExistingSkillRecords();
   const existingBySource = new Map<string, string[]>();
@@ -610,6 +616,25 @@ function allocateIdsForSourceFiles(
   const currentSourceKeys = new Set(sourceFiles.map((sourceFile) => buildSourceKey(repoUrl, sourceFile)));
 
   for (const sourceFile of sourceFiles) {
+    // Precedence 0: the authored frontmatter sheetId is the canonical id.
+    // Overrides / existing ids / FIFO only apply to sheetId-less sources.
+    const authoredSheetId = sheetIdBySourceFile?.get(sourceFile);
+    if (authoredSheetId) {
+      if (!/^\d+\.\d+$/.test(authoredSheetId)) {
+        throw new Error(
+          `Malformed sheetId "${authoredSheetId}" on ${sourceFile} — expected N.NN (e.g. 3.06)`
+        );
+      }
+      if (reservedIds.has(authoredSheetId)) {
+        throw new Error(
+          `Duplicate sheetId ${authoredSheetId}: claimed by more than one source file (latest: ${sourceFile})`
+        );
+      }
+      assigned.set(sourceFile, authoredSheetId);
+      reservedIds.add(authoredSheetId);
+      continue;
+    }
+
     const overrideEntry = repoOverrides.get(sourceFile);
     if (overrideEntry) {
       const existingRecord = existingById.get(overrideEntry.forcedId);
@@ -674,12 +699,13 @@ function cleanupRepoRecords(
       record.sourceFile === "CLAUDE.md" ||
       record.sourceFile.endsWith("/CLAUDE.md");
 
-    if (!isManagedPipelineRecord) {
-      continue;
-    }
-
-    const shouldDelete =
-      !activeSourceKeys.has(normalizedKey) || !activeIds.has(record.id);
+    // Managed pipeline records: prune when the source vanished or the id moved.
+    // Plain skill records: prune ONLY when this same source is being re-ingested
+    // under a different id (id := sheetId migration) — never on source removal,
+    // which cleanupOrphanedRepoRecords handles repo-wide.
+    const shouldDelete = isManagedPipelineRecord
+      ? !activeSourceKeys.has(normalizedKey) || !activeIds.has(record.id)
+      : activeSourceKeys.has(normalizedKey) && !activeIds.has(record.id);
 
     if (shouldDelete && fs.existsSync(record.filePath)) {
       fs.rmSync(record.filePath, { force: true });
@@ -796,7 +822,19 @@ function ingestProjectSkills(
   }
 
   const sourceFiles = [skillFile.relPath, ...agentFiles.map((f) => f.relPath)];
-  const idsBySourceFile = allocateIdsForSourceFiles(prefix, repoUrl, sourceFiles, skillIdOverrides);
+  const sheetIdBySourceFile = new Map<string, string | undefined>([
+    [skillFile.relPath, manifest.sheetId],
+    ...agentFiles.map(
+      (f) => [f.relPath, optionalString(f.data as Record<string, unknown>, "sheetId")] as const
+    ),
+  ]);
+  const idsBySourceFile = allocateIdsForSourceFiles(
+    prefix,
+    repoUrl,
+    sourceFiles,
+    skillIdOverrides,
+    sheetIdBySourceFile
+  );
   const synergy = sourceFiles.map((sf) => idsBySourceFile.get(sf)!);
   const ingested: IngestRecord[] = [];
 
@@ -833,9 +871,10 @@ function ingestProjectSkills(
     output: orchestratorIpo.output,
     ipoProvenance: orchestratorIpo.ipoProvenance,
     legacyIpoId: orchestratorLegacyIpoId,
+    sheetId: manifest.sheetId,
     kind: agentFiles.length > 0 ? "orchestrator" : "skill",
     synergy,
-    installCommand: buildInstallCommand(orchestratorId, orchestratorSlug),
+    installCommand: manifest.install_command ?? buildInstallCommand(orchestratorId, orchestratorSlug),
     updatedAt: today,
     firstSeen: readFirstSeen(orchestratorOutPath) ?? today,
     sourceRepo: repoUrl,
@@ -888,6 +927,7 @@ function ingestProjectSkills(
       output: agentIpo.output,
       ipoProvenance: agentIpo.ipoProvenance,
       legacyIpoId: agentLegacyIpoId,
+      sheetId: optionalString(agentData, "sheetId"),
       kind: "subagent",
       synergy,
       updatedAt: today,
@@ -967,11 +1007,24 @@ function ingestRepoAsPipeline(
       agentByName.get(stage.agent);
     return agentFile?.relPath ?? `.claude/agents/${stage.agent}.md`;
   })];
+  const pipelineSheetIdBySourceFile = new Map<string, string | undefined>([
+    [manifestFile.relPath, manifest.sheetId],
+  ]);
+  for (const stage of stages) {
+    const agentFile = agentByStem.get(stage.agent) ?? agentByName.get(stage.agent);
+    if (agentFile) {
+      pipelineSheetIdBySourceFile.set(
+        agentFile.relPath,
+        optionalString(agentFile.data as Record<string, unknown>, "sheetId")
+      );
+    }
+  }
   const idsBySourceFile = allocateIdsForSourceFiles(
     TAXONOMY[manifest.category],
     repoUrl,
     sourceFiles,
-    skillIdOverrides
+    skillIdOverrides,
+    pipelineSheetIdBySourceFile
   );
   const ids = sourceFiles.map((sourceFile) => idsBySourceFile.get(sourceFile)!);
   const synergy = ids;
@@ -1011,6 +1064,7 @@ function ingestRepoAsPipeline(
     output: orchestratorIpo.output,
     ipoProvenance: orchestratorIpo.ipoProvenance,
     legacyIpoId: orchestratorLegacyIpoId,
+    sheetId: manifest.sheetId,
     kind: "orchestrator",
     synergy,
     installCommand: buildInstallCommand(orchestratorId, orchestratorSlug),
@@ -1081,6 +1135,7 @@ function ingestRepoAsPipeline(
       output: stageIpo.output,
       ipoProvenance: stageIpo.ipoProvenance,
       legacyIpoId: stageLegacyIpoId,
+      sheetId: optionalString(agentData, "sheetId"),
       kind: "subagent",
       stage: stage.stage,
       synergy,
@@ -1363,7 +1418,13 @@ async function main() {
         const fm = parsed.data;
         const prefix = TAXONOMY[fm.category];
         const sourceFile = relPath;
-        const id = allocateIdsForSourceFiles(prefix, repoUrl, [sourceFile], skillIdOverrides).get(sourceFile)!;
+        const id = allocateIdsForSourceFiles(
+          prefix,
+          repoUrl,
+          [sourceFile],
+          skillIdOverrides,
+          new Map([[sourceFile, fm.sheetId]])
+        ).get(sourceFile)!;
         const slug = toSlug(fm.name);
         const today = new Date().toISOString().split("T")[0];
         const overrideEntry = getOverrideEntry(skillIdOverrides, repoUrl, sourceFile);
@@ -1395,7 +1456,7 @@ async function main() {
           legacyIpoId,
           kind: "skill",
           synergy: fm.synergy,
-          installCommand: buildInstallCommand(id, slug),
+          installCommand: fm.install_command ?? buildInstallCommand(id, slug),
           updatedAt: today,
           firstSeen: readFirstSeen(outPath) ?? today,
           sourceRepo: repoUrl,

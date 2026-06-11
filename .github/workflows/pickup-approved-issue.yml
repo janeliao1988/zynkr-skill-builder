@@ -24,6 +24,16 @@ on:
       spec_url:
         description: 'Optional spec URL (informational)'
         required: false
+      mode:
+        description: 'Build mode: "rescaffold" (default — custom Zynkr skill body) or "lift-and-shift" (mirror upstream README, status=Done)'
+        required: false
+        default: 'rescaffold'
+      upstream_url:
+        description: 'Required when mode=lift-and-shift. GitHub URL of the upstream repo to mirror.'
+        required: false
+      upstream_author:
+        description: 'Optional author override for lift-and-shift; defaults to GitHub org from upstream_url.'
+        required: false
 
 jobs:
   scaffold:
@@ -42,12 +52,18 @@ jobs:
             echo "slug=${{ github.event.client_payload.slug }}" >> "$GITHUB_OUTPUT"
             echo "category=${{ github.event.client_payload.category }}" >> "$GITHUB_OUTPUT"
             echo "spec_url=${{ github.event.client_payload.spec_url }}" >> "$GITHUB_OUTPUT"
+            echo "mode=${{ github.event.client_payload.mode || 'rescaffold' }}" >> "$GITHUB_OUTPUT"
+            echo "upstream_url=${{ github.event.client_payload.upstream_url }}" >> "$GITHUB_OUTPUT"
+            echo "upstream_author=${{ github.event.client_payload.upstream_author }}" >> "$GITHUB_OUTPUT"
           else
             echo "issue_number=${{ inputs.issue_number }}" >> "$GITHUB_OUTPUT"
             echo "issue_repo=${{ inputs.issue_repo }}" >> "$GITHUB_OUTPUT"
             echo "slug=${{ inputs.slug }}" >> "$GITHUB_OUTPUT"
             echo "category=${{ inputs.category }}" >> "$GITHUB_OUTPUT"
             echo "spec_url=${{ inputs.spec_url }}" >> "$GITHUB_OUTPUT"
+            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+            echo "upstream_url=${{ inputs.upstream_url }}" >> "$GITHUB_OUTPUT"
+            echo "upstream_author=${{ inputs.upstream_author }}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Checkout
@@ -67,21 +83,28 @@ jobs:
       - name: Scaffold SKILL.md
         id: scaffold
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # SKILL_IDEA_PAT is required because the idea repo (peter-tu-zynkr/zynkr-skill-idea)
+          # is private and the default GITHUB_TOKEN is scoped to this repo only.
+          # Falls back to GITHUB_TOKEN if the secret is missing so workflow_dispatch on the same
+          # repo still works for local testing.
+          GH_TOKEN: ${{ secrets.SKILL_IDEA_PAT || secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ steps.payload.outputs.issue_number }}
           ISSUE_REPO: ${{ steps.payload.outputs.issue_repo }}
           SLUG: ${{ steps.payload.outputs.slug }}
           CATEGORY: ${{ steps.payload.outputs.category }}
           SPEC_URL: ${{ steps.payload.outputs.spec_url }}
+          MODE: ${{ steps.payload.outputs.mode }}
+          UPSTREAM_URL: ${{ steps.payload.outputs.upstream_url }}
+          UPSTREAM_AUTHOR: ${{ steps.payload.outputs.upstream_author }}
         working-directory: scripts
         run: |
           set -euo pipefail
           OUT=$(npx tsx ingest-from-issue.ts | tail -n1)
           echo "skill_path=$OUT" >> "$GITHUB_OUTPUT"
 
-      - name: Validate scaffolded frontmatter
+      - name: Validate + QA scaffold (blocks on ERROR-tier; stub body checks are advisory)
         working-directory: scripts
-        run: npx tsx validate-skill.ts "../${{ steps.scaffold.outputs.skill_path }}"
+        run: npx tsx validate-skill.ts "../${{ steps.scaffold.outputs.skill_path }}" --tier=all --github
 
       - name: Create branch, commit, push
         id: push

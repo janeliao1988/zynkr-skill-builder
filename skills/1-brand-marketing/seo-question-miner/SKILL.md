@@ -1,0 +1,69 @@
+---
+name: seo-question-miner
+sheetId: "1.16"
+description: "Second leg of the SEO pipeline: based on the persona, brainstorm the questions your target readers actually ask before buying, then work backward from those questions to seed keywords. Maps to the v2 flowchart step 'brainstorm common questions + interview-answer common questions and list keywords'. Triggers when the user hands over the persona handoff packet or says '發想常見問題' or '挖種子關鍵字'. Only brainstorms questions and seed keywords; it does not do difficulty analysis and does not write articles."
+category: brand-marketing
+project: seo-question-miner
+platform: claude
+status: WIP
+author: Peter Tu
+input: "The SEO_PACKET ▸ Persona handoff packet from seo-persona-builder"
+process: "Following question-frames, expand pre-purchase questions from each persona's pain points (problem / comparison / use case) → work backward from the questions to seed keywords → human review → handoff"
+output: "A staged (TOFU/MOFU/BOFU) buyer-question list + seed keywords, handed off to seo-angle-finder"
+synergy: ["seo-angle-finder"]
+---
+
+# SEO Question Miner
+
+```bash
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill seo-question-miner
+```
+
+The second leg of the SEO pipeline. Neil Patel's core insight: the best keyword opportunities are hidden in "the questions customers actually ask before buying," not in a search-volume spreadsheet. This skill expands a persona's pain points into real questions, then works backward into seed keywords to feed the downstream keyword research.
+
+---
+
+## Resources you'll use
+
+> **Knowledge source**: The rubrics/templates used by this skill should be read first from the SEO Knowledge Base's "01 Rubrics & Templates" (Drive, google-workspace MCP, search by name); when unavailable, fall back to the local `./references/`. See the mapping table in `seo-article-pipeline/seo-pipeline-config.md`.
+
+- **Question expansion framework**: `./references/question-frames.md`
+- **SEO knowledge base folder ID**: `<your-seo-kb-folder-id>` (optional reads: Line community questions, support inbox, seed knowledge)
+- **MCP server**: `google-workspace`
+
+## Step 1 — Receive the persona
+
+Read the `SEO_PACKET ▸ Persona` from the previous leg. If the user hasn't provided one, first ask for it or run `seo-persona-builder`; **do not expand ahead of time**.
+
+## Step 2 — Expand pre-purchase questions
+
+For each persona, use the four frame types in `./references/question-frames.md` (problem, comparison, situational, decision) to expand several questions for each, and tag the funnel stage TOFU / MOFU / BOFU. Optional: use `search_drive_files` to pull real questions from the Line community and support in the knowledge base as supplementary material.
+
+## Step 3 — Work backward to seed keywords
+
+Each question maps to 1–3 conversational seed keywords (these are the starting point the next leg feeds into Ubersuggest / AnswerThePublic, not the final keywords).
+
+## Step 4 — Human review (HITL)
+
+List the questions plus seed keywords and ask the user which to keep / delete (by number). Maps to the flowchart step "user reviews and approves the common questions."
+
+## Step 5 — Hand off and save
+
+Save into this article's working subfolder, output:
+
+```
+SEO_PACKET ▸ Questions
+- TOFU 問題：<...> ｜種子字：<...>
+- MOFU 問題：<...> ｜種子字：<...>
+- BOFU 問題：<...> ｜種子字：<...>
+
+問題與種子關鍵字已確認，可交棒給 seo-angle-finder。
+```
+
+## Outputs
+
+A staged buyer-question list + seed keywords (`SEO_PACKET ▸ Questions`).
+
+## Limitations
+
+Does not do search-volume / difficulty analysis (that's seo-keyword-mapper / seo-demand-validator). Does not write articles.

@@ -1,0 +1,70 @@
+---
+name: seo-brief-writer
+sheetId: "1.21"
+description: "Seventh stage of the SEO pipeline: for one selected topic, find the value proposition and winning angle, and produce a complete SEO writing Brief. Corresponds to the v2 flowchart step 「選擇主題：設計 Brief」. Triggers when the user hands over a Topics handoff packet, provides reference articles/forums/expert opinions, or says 「寫 Brief」. Only writes the Brief — does not design the outline and does not write the article."
+category: brand-marketing
+project: seo-brief-writer
+platform: claude
+status: WIP
+author: Peter Tu
+input: "The SEO_PACKET ▸ Topics from seo-demand-validator; optional: reference articles / forum Q&A / expert opinions (an article reference pack)"
+process: "Analyze ceiling articles per ceiling-article-features → find the winning angle and value proposition per winning-key-scoring → apply brief-template to produce the Brief → human verification and augmentation → hand off"
+output: "One SEO writing Brief, handed to seo-outline-designer"
+synergy: ["seo-outline-designer"]
+---
+
+# SEO Brief Writer
+
+```bash
+npx skills add https://github.com/peter-tu-zynkr/zynkr-skill-builder --skill seo-brief-writer
+```
+
+Seventh stage of the SEO pipeline, corresponding to the flowchart step "find the value proposition and winning angle + write the Brief". It first breaks down what makes this topic's "ceiling article" (the strongest result on the SERP) work, identifies the key angle Zynkr needs to win on, then produces a Brief that can be fed directly into the outline and writing stages.
+
+---
+
+## Resources you'll use
+
+> **Knowledge source**: The rubrics/templates this skill uses should be read first from the SEO Knowledge Base's "01 Rubrics & Templates" (Drive, via the google-workspace MCP, search by name); if unavailable, fall back to the local `./references/`. See the mapping table in `seo-article-pipeline/seo-pipeline-config.md`.
+
+- **Ceiling article features**: `./references/ceiling-article-features.md`
+- **Winning-angle review sheet / scoring sheet**: `./references/winning-key-scoring.md`
+- **Brief template**: `./references/brief-template.md`
+- **SEO Knowledge Base folder ID**: `<your-seo-kb-folder-id>`; seed knowledge and first-hand material live in the `02 Seed Knowledge` subfolder — use `search_drive_files` to pull it in to support your judgment
+
+## Step 1 — Receive the topic + reference material
+
+Read `SEO_PACKET ▸ Topics` and lock onto one topic. If the user provides reference articles / forum Q&A / expert opinions (an article reference pack), fold them into the analysis. You can use `search_drive_files` to pull seed knowledge and supplement first-hand material.
+
+## Step 2 — Analyze the ceiling articles
+
+Per `./references/ceiling-article-features.md`, dissect the 2–3 strongest results on the SERP: coverage points, structure, depth, gaps.
+
+## Step 3 — Find the winning angle and value proposition
+
+Score per `./references/winning-key-scoring.md` and decide what this piece will win on (prioritize a decision-first angle: a sharper question + real trade-offs + a clear recommendation; first-hand experience as supporting evidence), then write a one-sentence value proposition.
+
+## Step 4 — Produce the Brief
+
+Apply `./references/brief-template.md`: target keyword, search intent, target reader (persona), value proposition, winning angle, must-cover points, first-hand material, CTA (B2B discovery first), AEO requirements, language (zh-TW + whether a flagship EN version is needed).
+
+## Step 5 — Human verification and augmentation (HITL)
+
+Corresponds to "verify and augment". Give the Brief to the user to add first-hand information / correct the direction, and save it once confirmed.
+
+## Step 6 — Hand off
+
+```
+SEO_PACKET ▸ Brief
+<complete Brief, per the brief-template fields>
+
+Brief confirmed; ready to hand off to seo-outline-designer to design the outline and FAQ.
+```
+
+## Outputs
+
+One SEO writing Brief (`SEO_PACKET ▸ Brief` + the Drive working file "SEO 撰寫 Brief").
+
+## Limitations
+
+Does not design the outline (next stage), does not write the article. When first-hand material is insufficient, mark `[需 Peter 補]` rather than fabricating cases.
