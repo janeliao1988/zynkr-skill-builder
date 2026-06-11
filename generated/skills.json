@@ -839,8 +839,8 @@
     "upstreamRepo": "https://github.com/anthropics/skills",
     "originalSourceUrl": "https://github.com/anthropics/skills/blob/HEAD/skills/slide-pptx/SKILL.md",
     "originalAuthor": "Anthropic, PBC",
-    "githubStars": 149308,
-    "githubForks": 17610
+    "githubStars": 149377,
+    "githubForks": 17622
   },
   {
     "id": "2.01",
@@ -1465,6 +1465,34 @@
     "sourceFile": "3-operations/operations-transformation/agents/operations-process-redesign.md"
   },
   {
+    "id": "3.14",
+    "name": "meeting-prep",
+    "category": "operations",
+    "project": "meeting-prep",
+    "platform": "claude",
+    "status": "WIP",
+    "author": "Jane Liao",
+    "description": "排程自動執行的會議準備助手：每天早上 9 點掃描 7 天內的會議並發送 action 提醒，每天下午 3 點發送隔天會議的完整 briefing。通知透過 Google Chat 傳給自己。不需要手動觸發，不處理會後追蹤。",
+    "input": "無（排程自動觸發，讀取 Google Calendar 與 Gmail）",
+    "process": "9am cron：掃描 7 天日曆 → 發 action 提醒到 Google Chat｜3pm cron：掃 Gmail 找與會者背景 → 發 briefing 到 Google Chat",
+    "output": "Google Chat 自我訊息：早上為 action checklist，下午為結構化 briefing",
+    "ipoProvenance": {
+      "input": "frontmatter",
+      "process": "frontmatter",
+      "output": "frontmatter"
+    },
+    "legacyIpoId": "3.14",
+    "kind": "skill",
+    "synergy": [
+      "3.14"
+    ],
+    "installCommand": "curl -sL zynkr.ai/s/3.14.md -o ~/.claude/skills/meeting-prep.md",
+    "updatedAt": "2026-06-11",
+    "firstSeen": "2026-06-11",
+    "sourceRepo": "https://github.com/peter-tu-zynkr/zynkr-skill-builder",
+    "sourceFile": "3-operations/meeting-prep/SKILL.md"
+  },
+  {
     "id": "4.01",
     "name": "training-lecture-transcript",
     "category": "training",
@@ -1862,8 +1890,8 @@
     "upstreamRepo": "https://github.com/vercel-labs/skills",
     "originalSourceUrl": "https://github.com/vercel-labs/skills/blob/main/skills/eng-find-skills/SKILL.md",
     "originalAuthor": "vercel-labs",
-    "githubStars": 22037,
-    "githubForks": 1761
+    "githubStars": 22042,
+    "githubForks": 1764
   },
   {
     "id": "6.02",
@@ -2172,8 +2200,8 @@
       "socket": "pending",
       "snyk": "pending"
     },
-    "githubStars": 35818,
-    "githubForks": 2256
+    "githubStars": 35832,
+    "githubForks": 2255
   },
   {
     "id": "7.01",
